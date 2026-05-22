@@ -8,488 +8,270 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* ── Reset ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --brand:    #1a7a4a;
-      --brand-lt: #e8f5ee;
-      --text:     #111827;
-      --muted:    #6b7280;
-      --border:   #e5e7eb;
-      --bg:       #f3f4f6;
-      --white:    #ffffff;
-      --indica:   #7c3aed;
-      --sativa:   #d97706;
-      --hybrid:   #0891b2;
-      --cbd:      #2563eb;
-      --new:      #16a34a;
-      --radius:   10px;
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --brand:#1a7a4a;--brand-lt:#e8f5ee;--text:#111827;--muted:#6b7280;
+      --border:#e5e7eb;--bg:#f3f4f6;--white:#ffffff;
+      --indica:#7c3aed;--sativa:#d97706;--hybrid:#0891b2;--cbd:#2563eb;--cbg:#6366f1;
+      --new:#16a34a;--radius:10px;
     }
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      font-size: 14px;
-    }
-
-    /* ── Top banner ── */
-    .top-bar {
-      background: var(--brand);
-      color: #fff;
-      text-align: center;
-      font-size: .75rem;
-      padding: 6px;
-      letter-spacing: .3px;
-    }
-
-    /* ── Header ── */
-    header {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      padding: 0 24px;
-      position: sticky; top: 0; z-index: 30;
-    }
-    .header-inner {
-      max-width: 1400px; margin: 0 auto;
-      display: flex; align-items: center; gap: 20px;
-      height: 64px;
-    }
-    .logo {
-      display: flex; align-items: center; gap: 10px;
-      font-weight: 700; font-size: 1.05rem; color: var(--brand);
-      text-decoration: none; white-space: nowrap;
-    }
-    .logo-leaf {
-      width: 34px; height: 34px; background: var(--brand);
-      border-radius: 50% 50% 50% 0;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; color: #fff; flex-shrink: 0;
-    }
-    .header-meta {
-      margin-left: auto; text-align: right;
-      font-size: .75rem; color: var(--muted); line-height: 1.5;
-    }
-    .header-meta strong { color: var(--brand); }
-
-    /* ── Category tabs ── */
-    .tabs-wrap {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      position: sticky; top: 64px; z-index: 20;
-    }
-    .tabs {
-      max-width: 1400px; margin: 0 auto;
-      display: flex; gap: 2px;
-      overflow-x: auto; padding: 0 24px;
-      scrollbar-width: none;
-    }
-    .tabs::-webkit-scrollbar { display: none; }
-    .tab {
-      flex-shrink: 0;
-      padding: 12px 16px;
-      border: none; background: none;
-      font-family: inherit; font-size: .82rem; font-weight: 500;
-      color: var(--muted); cursor: pointer;
-      border-bottom: 2px solid transparent;
-      transition: color .15s, border-color .15s;
-      white-space: nowrap;
-    }
-    .tab:hover { color: var(--brand); }
-    .tab.on { color: var(--brand); border-bottom-color: var(--brand); }
-
-    /* ── Main ── */
-    main { max-width: 1400px; margin: 0 auto; padding: 28px 24px 60px; }
-    .section { margin-bottom: 44px; }
-    .section-head {
-      display: flex; align-items: baseline; gap: 10px;
-      margin-bottom: 18px;
-    }
-    .section-title { font-size: 1.1rem; font-weight: 700; }
-    .section-count { font-size: .8rem; color: var(--muted); }
-
-    /* ── Grid ── */
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
-
-    /* ── Card ── */
-    .card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      display: flex; flex-direction: column;
-      transition: box-shadow .15s, transform .15s;
-      cursor: default;
-    }
-    .card:hover {
-      box-shadow: 0 4px 16px rgba(0,0,0,.10);
-      transform: translateY(-2px);
-    }
-
-    /* Card image area */
-    .card-img {
-      position: relative;
-      background: #f9fafb;
-      border-bottom: 1px solid var(--border);
-      height: 170px;
-      overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .card-img img {
-      width: 100%; height: 100%; object-fit: cover;
-      display: block;
-    }
-    .card-img .no-img {
-      font-size: 3.2rem; color: #d1d5db;
-    }
-
-    /* Badges on image */
-    .badges {
-      position: absolute; top: 8px; left: 8px;
-      display: flex; flex-direction: column; gap: 4px;
-    }
-    .strain-badge {
-      display: inline-block;
-      padding: 2px 8px; border-radius: 20px;
-      font-size: .66rem; font-weight: 700; letter-spacing: .3px;
-      text-transform: uppercase; color: #fff;
-    }
-    .strain-indica  { background: var(--indica); }
-    .strain-sativa  { background: var(--sativa); }
-    .strain-hybrid  { background: var(--hybrid); }
-    .strain-cbd     { background: var(--cbd); }
-    .strain-cbg     { background: #6366f1; }
-    .strain-default { background: #6b7280; }
-
-    .new-badge {
-      display: inline-block;
-      padding: 2px 8px; border-radius: 20px;
-      font-size: .66rem; font-weight: 700; letter-spacing: .3px;
-      text-transform: uppercase;
-      background: var(--new); color: #fff;
-    }
-    .recent-badge {
-      display: inline-block;
-      padding: 2px 8px; border-radius: 20px;
-      font-size: .66rem; font-weight: 700; letter-spacing: .3px;
-      text-transform: uppercase;
-      background: #f59e0b; color: #fff;
-    }
-
-    /* THC/CBD pill on image */
-    .potency-row {
-      position: absolute; bottom: 8px; right: 8px;
-      display: flex; gap: 4px;
-    }
-    .potency-pill {
-      background: rgba(0,0,0,.65);
-      color: #fff;
-      font-size: .67rem; font-weight: 600;
-      padding: 2px 6px; border-radius: 4px;
-      backdrop-filter: blur(2px);
-    }
-    .potency-pill.thc { background: rgba(22,163,74,.85); }
-    .potency-pill.cbd { background: rgba(37,99,235,.85); }
-
-    /* Card body */
-    .card-body { padding: 12px 13px 14px; flex: 1; display: flex; flex-direction: column; gap: 4px; }
-    .card-brand { font-size: .72rem; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: .3px; }
-    .card-name  { font-size: .9rem; font-weight: 600; line-height: 1.3; color: var(--text); }
-    .card-weight{ font-size: .74rem; color: var(--muted); }
-
-    /* Terpenes */
-    .terp-row { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 3px; }
-    .terp {
-      font-size: .65rem; background: #f0fdf4; color: var(--brand);
-      border: 1px solid #bbf7d0; padding: 1px 6px; border-radius: 10px;
-    }
-
-    /* Effects */
-    .effects-row { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 2px; }
-    .effect {
-      font-size: .65rem; background: #eff6ff; color: #3b82f6;
-      border: 1px solid #bfdbfe; padding: 1px 6px; border-radius: 10px;
-    }
-
-    /* Price section */
-    .price-section { margin-top: auto; padding-top: 10px; }
-    .price-single { font-size: 1rem; font-weight: 700; color: var(--brand); }
-    .price-tiers  { display: flex; gap: 5px; flex-wrap: wrap; }
-    .tier {
-      font-size: .7rem; font-weight: 500;
-      border: 1px solid var(--border); border-radius: 5px;
-      padding: 3px 7px; color: var(--text);
-      background: #fafafa;
-    }
-    .tier span { display: block; font-size: .62rem; color: var(--muted); }
-
-    /* ── Legend ── */
-    .legend {
-      display: flex; gap: 14px; flex-wrap: wrap; align-items: center;
-      padding: 10px 24px;
-      background: var(--white); border-bottom: 1px solid var(--border);
-      font-size: .74rem; color: var(--muted);
-    }
-    .legend-item { display: flex; align-items: center; gap: 5px; }
-
-    /* ── Footer ── */
-    footer {
-      text-align: center; padding: 20px;
-      font-size: .72rem; color: var(--muted);
-      border-top: 1px solid var(--border);
-      background: var(--white);
-    }
-
-    .hidden { display: none !important; }
-
-    /* ── Loading / error ── */
-    .status { padding: 60px 0; text-align: center; color: var(--muted); font-size: .9rem; }
-    .status.err { color: #dc2626; }
-
-    @media (max-width: 640px) {
-      header { padding: 0 14px; }
-      .tabs { padding: 0 14px; }
-      main  { padding: 18px 14px 50px; }
-      .legend { padding: 10px 14px; }
-      .grid { grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 12px; }
-      .card-img { height: 140px; }
+    body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px}
+    .top-bar{background:var(--brand);color:#fff;text-align:center;font-size:.75rem;padding:6px;letter-spacing:.3px}
+    header{background:var(--white);border-bottom:1px solid var(--border);padding:0 24px;position:sticky;top:0;z-index:30}
+    .header-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:20px;height:64px}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.05rem;color:var(--brand);text-decoration:none;white-space:nowrap}
+    .logo-leaf{width:34px;height:34px;background:var(--brand);border-radius:50% 50% 50% 0;display:flex;align-items:center;justify-content:center;font-size:1rem;color:#fff;flex-shrink:0}
+    .header-meta{margin-left:auto;text-align:right;font-size:.75rem;color:var(--muted);line-height:1.5}
+    .header-meta strong{color:var(--brand)}
+    .tabs-wrap{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:64px;z-index:20}
+    .tabs{max-width:1400px;margin:0 auto;display:flex;gap:2px;overflow-x:auto;padding:0 24px;scrollbar-width:none}
+    .tabs::-webkit-scrollbar{display:none}
+    .tab{flex-shrink:0;padding:12px 16px;border:none;background:none;font-family:inherit;font-size:.82rem;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap}
+    .tab:hover{color:var(--brand)}
+    .tab.on{color:var(--brand);border-bottom-color:var(--brand)}
+    .legend{display:flex;gap:14px;flex-wrap:wrap;align-items:center;padding:10px 24px;background:var(--white);border-bottom:1px solid var(--border);font-size:.74rem;color:var(--muted)}
+    .legend-item{display:flex;align-items:center;gap:5px}
+    main{max-width:1400px;margin:0 auto;padding:28px 24px 60px}
+    .section{margin-bottom:44px}
+    .section-head{display:flex;align-items:baseline;gap:10px;margin-bottom:18px}
+    .section-title{font-size:1.1rem;font-weight:700}
+    .section-count{font-size:.8rem;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+    .card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .15s,transform .15s}
+    .card:hover{box-shadow:0 4px 16px rgba(0,0,0,.10);transform:translateY(-2px)}
+    .card-img{position:relative;background:#f9fafb;border-bottom:1px solid var(--border);height:170px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+    .card-img img{width:100%;height:100%;object-fit:cover;display:block}
+    .no-img{font-size:3.2rem;color:#d1d5db}
+    .badges{position:absolute;top:8px;left:8px;display:flex;flex-direction:column;gap:4px}
+    .strain-badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:.66rem;font-weight:700;letter-spacing:.3px;text-transform:uppercase;color:#fff}
+    .strain-indica{background:var(--indica)}.strain-sativa{background:var(--sativa)}
+    .strain-hybrid{background:var(--hybrid)}.strain-cbd{background:var(--cbd)}
+    .strain-cbg{background:var(--cbg)}.strain-default{background:#6b7280}
+    .new-badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:.66rem;font-weight:700;letter-spacing:.3px;text-transform:uppercase;background:var(--new);color:#fff}
+    .recent-badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:.66rem;font-weight:700;letter-spacing:.3px;text-transform:uppercase;background:#f59e0b;color:#fff}
+    .potency-row{position:absolute;bottom:8px;right:8px;display:flex;gap:4px}
+    .potency-pill{background:rgba(0,0,0,.65);color:#fff;font-size:.67rem;font-weight:600;padding:2px 6px;border-radius:4px}
+    .potency-pill.thc{background:rgba(22,163,74,.85)}.potency-pill.cbd{background:rgba(37,99,235,.85)}
+    .card-body{padding:12px 13px 14px;flex:1;display:flex;flex-direction:column;gap:4px}
+    .card-brand{font-size:.72rem;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.3px}
+    .card-name{font-size:.9rem;font-weight:600;line-height:1.3;color:var(--text)}
+    .card-weight{font-size:.74rem;color:var(--muted)}
+    .terp-row{display:flex;gap:4px;flex-wrap:wrap;margin-top:3px}
+    .terp{font-size:.65rem;background:#f0fdf4;color:var(--brand);border:1px solid #bbf7d0;padding:1px 6px;border-radius:10px}
+    .effects-row{display:flex;gap:4px;flex-wrap:wrap;margin-top:2px}
+    .effect{font-size:.65rem;background:#eff6ff;color:#3b82f6;border:1px solid #bfdbfe;padding:1px 6px;border-radius:10px}
+    .price-section{margin-top:auto;padding-top:10px}
+    .price-single{font-size:1rem;font-weight:700;color:var(--brand)}
+    .price-tiers{display:flex;gap:5px;flex-wrap:wrap}
+    .tier{font-size:.7rem;font-weight:500;border:1px solid var(--border);border-radius:5px;padding:3px 7px;color:var(--text);background:#fafafa}
+    .tier span{display:block;font-size:.62rem;color:var(--muted)}
+    footer{text-align:center;padding:20px;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);background:var(--white)}
+    .hidden{display:none!important}
+    @media(max-width:640px){
+      header{padding:0 14px}.tabs{padding:0 14px}main{padding:18px 14px 50px}.legend{padding:10px 14px}
+      .grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px}.card-img{height:140px}
     }
   </style>
 </head>
 <body>
-
-<div class="top-bar">
-  🌿 MN Legit Cannabis · South Metro · Menu updated daily at 4:30 PM CST
-</div>
-
+<div class="top-bar">🌿 MN Legit Cannabis · South Metro · Updated daily at 4:30 PM CST</div>
 <header>
   <div class="header-inner">
     <a class="logo" href="#">
       <div class="logo-leaf">🌿</div>
-      <div>
-        <div>Legit Cannabis</div>
-        <div style="font-size:.7rem;font-weight:400;color:var(--muted)">South Metro</div>
-      </div>
+      <div><div>Legit Cannabis</div><div style="font-size:.7rem;font-weight:400;color:var(--muted)">South Metro</div></div>
     </a>
     <div class="header-meta">
-      <div>Last updated: <strong id="ts">—</strong></div>
-      <div id="cnt" style="color:var(--muted)">Loading…</div>
+      <div>Last updated: <strong>Thu, May 21 2026 — 07:22 PM CST</strong></div>
+      <div>12 products in stock</div>
     </div>
   </div>
 </header>
-
 <div class="legend">
   <div class="legend-item"><span class="strain-badge strain-indica">Indica</span></div>
   <div class="legend-item"><span class="strain-badge strain-sativa">Sativa</span></div>
   <div class="legend-item"><span class="strain-badge strain-hybrid">Hybrid</span></div>
   <div class="legend-item"><span class="strain-badge strain-cbd">CBD</span></div>
   <div class="legend-item"><span class="new-badge">New Today</span> Added today</div>
-  <div class="legend-item"><span class="recent-badge">New (2d)</span> Added within 3 days</div>
+  <div class="legend-item"><span class="recent-badge">New (2d)</span> Within 3 days</div>
 </div>
-
-<div class="tabs-wrap">
-  <div class="tabs" id="tabs">
-    <button class="tab on" data-cat="all">All Products</button>
-  </div>
-</div>
-
-<main id="main">
-  <div class="status">Loading menu…</div>
-</main>
-
-<footer>
-  Auto-updated daily at 4:30 PM CST &nbsp;·&nbsp; MN Legit Cannabis South Metro &nbsp;·&nbsp;
-  <a href="products.json" style="color:var(--brand)">Raw data</a>
-</footer>
-
-<script>
-const CST_OFF = -6 * 60, NEW_DAYS = 3;
-const nowCST  = () => { const d = new Date(); return new Date(d.getTime() + d.getTimezoneOffset()*60000 + CST_OFF*60000); };
-const ageDays = s => { try { return Math.floor((nowCST() - new Date(s)) / 86400000); } catch { return 999; } };
-
-// Category display names & icons
-const CAT_ICONS = {
-  flower:'🌿', 'pre-roll':'🚬', pre_roll:'🚬', preroll:'🚬',
-  edible:'🍬', edibles:'🍬',
-  concentrate:'💎', concentrates:'💎',
-  vape:'💨', vapes:'💨', cartridge:'💨', cartridges:'💨',
-  tincture:'💧', tinctures:'💧',
-  topical:'🧴', topicals:'🧴',
-  capsule:'💊', capsules:'💊',
-  accessory:'🛠️', accessories:'🛠️',
-  beverage:'🥤', beverages:'🥤',
-  gear:'🛒',
-};
-const catIcon = c => CAT_ICONS[(c||'').toLowerCase().trim()] || '🌱';
-
-// Strain type → CSS class
-function strainClass(s) {
-  const t = (s||'').toLowerCase();
-  if (t.includes('indica')) return 'strain-indica';
-  if (t.includes('sativa')) return 'strain-sativa';
-  if (t.includes('hybrid')) return 'strain-hybrid';
-  if (t.includes('cbd'))    return 'strain-cbd';
-  if (t.includes('cbg'))    return 'strain-cbg';
-  return 'strain-default';
-}
-
-// New / recent badge HTML
-function newBadge(firstSeen) {
-  const d = ageDays(firstSeen);
-  if (d === 0) return '<span class="new-badge">New Today</span>';
-  if (d <= NEW_DAYS) return `<span class="recent-badge">New (${d}d)</span>`;
-  return '';
-}
-
-// Tier labels
-const TIER_LABELS = {
-  gram:'1g', two_gram:'2g', eighth:'⅛ oz',
-  quarter:'¼ oz', half_ounce:'½ oz', ounce:'1 oz', unit:'Unit'
-};
-
-function buildCard(p) {
-  // Image
-  const imgHtml = p.image
-    ? `<img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>'+catIcon(p.category||'')+'</div>'">`
-    : `<div class="no-img">${catIcon(p.category)}</div>`;
-
-  // Badges on image
-  const strainBadge = p.strain_type
-    ? `<span class="strain-badge ${strainClass(p.strain_type)}">${p.strain_type}</span>` : '';
-  const ageBadge = newBadge(p.first_seen);
-  const badgesHtml = (strainBadge || ageBadge)
-    ? `<div class="badges">${ageBadge}${strainBadge}</div>` : '';
-
-  // THC/CBD on image
-  const thcPill = p.thc ? `<span class="potency-pill thc">THC ${p.thc}</span>` : '';
-  const cbdPill = p.cbd ? `<span class="potency-pill cbd">CBD ${p.cbd}</span>` : '';
-  const potencyHtml = (thcPill||cbdPill) ? `<div class="potency-row">${thcPill}${cbdPill}</div>` : '';
-
-  // Terpenes (max 3)
-  const terps = (p.terpenes||[]).slice(0,3).map(t => `<span class="terp">${t}</span>`).join('');
-  const terpsHtml = terps ? `<div class="terp-row">${terps}</div>` : '';
-
-  // Effects (max 3)
-  const efx = (p.effects||[]).slice(0,3).map(e => `<span class="effect">${e}</span>`).join('');
-  const efxHtml = efx ? `<div class="effects-row">${efx}</div>` : '';
-
-  // Price
-  const tiers = p.price_tiers || {};
-  const tierKeys = Object.keys(tiers);
-  let priceHtml = '';
-  if (tierKeys.length > 0) {
-    const tierChips = tierKeys.map(k =>
-      `<div class="tier">${tiers[k]}<span>${TIER_LABELS[k]||k}</span></div>`
-    ).join('');
-    priceHtml = `<div class="price-tiers">${tierChips}</div>`;
-  } else if (p.price) {
-    priceHtml = `<div class="price-single">${p.price}</div>`;
-  }
-
-  const weightHtml = p.weight ? `<div class="card-weight">${p.weight}</div>` : '';
-
-  // CBG / CBN line
-  const minors = [p.cbg && `CBG ${p.cbg}`, p.cbn && `CBN ${p.cbn}`].filter(Boolean).join(' · ');
-  const minorsHtml = minors ? `<div style="font-size:.68rem;color:var(--muted);margin-top:2px">${minors}</div>` : '';
-
-  return `
+<div class="tabs-wrap"><div class="tabs" id="tabs"><button class="tab on" data-cat="all" onclick="filterCat(this)">All Products</button>
+<button class="tab" data-cat="concentrates" onclick="filterCat(this)">💎 Concentrates</button>
+<button class="tab" data-cat="edibles" onclick="filterCat(this)">🍬 Edibles</button>
+<button class="tab" data-cat="flower" onclick="filterCat(this)">🌿 Flower</button>
+<button class="tab" data-cat="pre-roll" onclick="filterCat(this)">🚬 Pre-Roll</button>
+<button class="tab" data-cat="tinctures" onclick="filterCat(this)">💧 Tinctures</button>
+<button class="tab" data-cat="topicals" onclick="filterCat(this)">🧴 Topicals</button>
+<button class="tab" data-cat="vapes" onclick="filterCat(this)">💨 Vapes</button></div></div>
+<main>
+    <section class="section" data-cat="concentrates">
+      <div class="section-head">
+        <span class="section-title">💎 Concentrates</span>
+        <span class="section-count">1 product</span>
+      </div>
+      <div class="grid">
     <div class="card">
-      <div class="card-img">
-        ${imgHtml}
-        ${badgesHtml}
-        ${potencyHtml}
-      </div>
+      <div class="card-img"><div class="no-img">💎</div><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-indica">Indica</span></div><div class="potency-row"><span class="potency-pill thc">THC 74.2%</span><span class="potency-pill cbd">CBD 0.3%</span></div></div>
       <div class="card-body">
-        ${p.brand ? `<div class="card-brand">${p.brand}</div>` : ''}
-        <div class="card-name">${p.name}</div>
-        ${weightHtml}
-        ${minorsHtml}
-        ${terpsHtml}
-        ${efxHtml}
-        <div class="price-section">${priceHtml}</div>
+        <div class="card-brand">Panacea</div>
+        <div class="card-name">Banana OG Badder</div>
+        <div class="card-weight">1g</div><div style="font-size:.68rem;color:var(--muted);margin-top:2px">CBG 2.1%</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Caryophyllene</span><span class="terp">Linalool</span></div><div class="effects-row"><span class="effect">Relaxed</span><span class="effect">Sleepy</span><span class="effect">Euphoric</span></div>
+        <div class="price-section"><div class="price-single">$40.00</div></div>
       </div>
-    </div>`;
+    </div></div>
+    </section>
+    <section class="section" data-cat="edibles">
+      <div class="section-head">
+        <span class="section-title">🍬 Edibles</span>
+        <span class="section-count">2 products</span>
+      </div>
+      <div class="grid">
+    <div class="card">
+      <div class="card-img"><div class="no-img">🍬</div><div class="badges"><span class="recent-badge">New (-1d ago)</span><span class="strain-badge strain-sativa">Sativa</span></div><div class="potency-row"><span class="potency-pill thc">THC 5mg/piece</span><span class="potency-pill cbd">CBD 5mg/piece</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Wana</div>
+        <div class="card-name">Watermelon Lemonade Gummies 5mg</div>
+        <div class="card-weight">20 pieces</div><div class="effects-row"><span class="effect">Happy</span><span class="effect">Uplifted</span><span class="effect">Energetic</span></div>
+        <div class="price-section"><div class="price-single">$25.00</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img"><div class="no-img">🍬</div><div class="badges"><span class="recent-badge">New (1d ago)</span><span class="strain-badge strain-indica">Indica</span></div><div class="potency-row"><span class="potency-pill thc">THC 10mg/piece</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Wana</div>
+        <div class="card-name">Strawberry Gummies 10mg</div>
+        <div class="card-weight">10 pieces</div><div class="effects-row"><span class="effect">Relaxed</span><span class="effect">Sleepy</span><span class="effect">Happy</span></div>
+        <div class="price-section"><div class="price-single">$22.00</div></div>
+      </div>
+    </div></div>
+    </section>
+    <section class="section" data-cat="flower">
+      <div class="section-head">
+        <span class="section-title">🌿 Flower</span>
+        <span class="section-count">3 products</span>
+      </div>
+      <div class="grid">
+    <div class="card">
+      <div class="card-img"><div class="no-img">🌿</div><div class="badges"><span class="recent-badge">New (-1d ago)</span><span class="strain-badge strain-sativa">Sativa</span></div><div class="potency-row"><span class="potency-pill thc">THC 22.4%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Old Pal</div>
+        <div class="card-name">Mimosa</div>
+        <div class="card-weight">3.5g</div><div class="terp-row"><span class="terp">Terpinolene</span><span class="terp">Myrcene</span><span class="terp">Ocimene</span></div><div class="effects-row"><span class="effect">Energetic</span><span class="effect">Happy</span><span class="effect">Creative</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$12.00<span>1g</span></div><div class="tier">$38.00<span>⅛ oz</span></div><div class="tier">$70.00<span>¼ oz</span></div><div class="tier">$130.00<span>½ oz</span></div><div class="tier">$240.00<span>1 oz</span></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img"><div class="no-img">🌿</div><div class="badges"><span class="recent-badge">New (1d ago)</span><span class="strain-badge strain-indica">Hybrid (Indica)</span></div><div class="potency-row"><span class="potency-pill thc">THC 26.1%</span><span class="potency-pill cbd">CBD 0.2%</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Ascend</div>
+        <div class="card-name">Wedding Cake</div>
+        <div class="card-weight">3.5g</div><div style="font-size:.68rem;color:var(--muted);margin-top:2px">CBG 1.1%</div><div class="terp-row"><span class="terp">Caryophyllene</span><span class="terp">Limonene</span><span class="terp">Myrcene</span></div><div class="effects-row"><span class="effect">Relaxed</span><span class="effect">Happy</span><span class="effect">Euphoric</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$13.00<span>1g</span></div><div class="tier">$42.00<span>⅛ oz</span></div><div class="tier">$78.00<span>¼ oz</span></div><div class="tier">$145.00<span>½ oz</span></div><div class="tier">$270.00<span>1 oz</span></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img"><div class="no-img">🌿</div><div class="badges"><span class="strain-badge strain-sativa">Hybrid (Sativa)</span></div><div class="potency-row"><span class="potency-pill thc">THC 18.5%</span><span class="potency-pill cbd">CBD 0.5%</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Leafly Select</div>
+        <div class="card-name">Blue Dream</div>
+        <div class="card-weight">3.5g</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Caryophyllene</span><span class="terp">Pinene</span></div><div class="effects-row"><span class="effect">Happy</span><span class="effect">Relaxed</span><span class="effect">Creative</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$10.00<span>1g</span></div><div class="tier">$32.00<span>⅛ oz</span></div><div class="tier">$60.00<span>¼ oz</span></div><div class="tier">$110.00<span>½ oz</span></div><div class="tier">$200.00<span>1 oz</span></div></div></div>
+      </div>
+    </div></div>
+    </section>
+    <section class="section" data-cat="pre-roll">
+      <div class="section-head">
+        <span class="section-title">🚬 Pre-Roll</span>
+        <span class="section-count">2 products</span>
+      </div>
+      <div class="grid">
+    <div class="card">
+      <div class="card-img"><div class="no-img">🚬</div><div class="badges"><span class="recent-badge">New (-1d ago)</span><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 20.0%</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Legit House</div>
+        <div class="card-name">OG Kush Pre-Roll</div>
+        <div class="card-weight">1g</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Limonene</span><span class="terp">Caryophyllene</span></div><div class="effects-row"><span class="effect">Relaxed</span><span class="effect">Euphoric</span><span class="effect">Sleepy</span></div>
+        <div class="price-section"><div class="price-single">$8.00</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img"><div class="no-img">🚬</div><div class="badges"><span class="strain-badge strain-sativa">Sativa</span></div><div class="potency-row"><span class="potency-pill thc">THC 19.3%</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Legit House</div>
+        <div class="card-name">Sour Diesel Pre-Roll 5-Pack</div>
+        <div class="card-weight">5 × 0.5g</div><div class="terp-row"><span class="terp">Caryophyllene</span><span class="terp">Myrcene</span><span class="terp">Terpinolene</span></div><div class="effects-row"><span class="effect">Energetic</span><span class="effect">Uplifted</span><span class="effect">Happy</span></div>
+        <div class="price-section"><div class="price-single">$28.00</div></div>
+      </div>
+    </div></div>
+    </section>
+    <section class="section" data-cat="tinctures">
+      <div class="section-head">
+        <span class="section-title">💧 Tinctures</span>
+        <span class="section-count">1 product</span>
+      </div>
+      <div class="grid">
+    <div class="card">
+      <div class="card-img"><div class="no-img">💧</div><div class="badges"><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 1000mg total</span><span class="potency-pill cbd">CBD 200mg total</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Green Goods</div>
+        <div class="card-name">Full-Spectrum Tincture 1000mg</div>
+        <div class="card-weight">30ml</div><div style="font-size:.68rem;color:var(--muted);margin-top:2px">CBN 50mg total</div><div class="effects-row"><span class="effect">Relaxed</span><span class="effect">Happy</span></div>
+        <div class="price-section"><div class="price-single">$55.00</div></div>
+      </div>
+    </div></div>
+    </section>
+    <section class="section" data-cat="topicals">
+      <div class="section-head">
+        <span class="section-title">🧴 Topicals</span>
+        <span class="section-count">1 product</span>
+      </div>
+      <div class="grid">
+    <div class="card">
+      <div class="card-img"><div class="no-img">🧴</div><div class="badges"><span class="strain-badge strain-cbd">CBD</span></div><div class="potency-row"><span class="potency-pill cbd">CBD 250mg</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Mary's Medicinals</div>
+        <div class="card-name">Relief Topical Cream</div>
+        <div class="card-weight">2oz</div><div class="effects-row"><span class="effect">Pain Relief</span><span class="effect">Anti-Inflammatory</span></div>
+        <div class="price-section"><div class="price-single">$40.00</div></div>
+      </div>
+    </div></div>
+    </section>
+    <section class="section" data-cat="vapes">
+      <div class="section-head">
+        <span class="section-title">💨 Vapes</span>
+        <span class="section-count">2 products</span>
+      </div>
+      <div class="grid">
+    <div class="card">
+      <div class="card-img"><div class="no-img">💨</div><div class="badges"><span class="recent-badge">New (-1d ago)</span><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 85.0%</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Rove</div>
+        <div class="card-name">Gelato Live Resin Cartridge</div>
+        <div class="card-weight">0.5g</div><div class="terp-row"><span class="terp">Caryophyllene</span><span class="terp">Limonene</span><span class="terp">Linalool</span></div><div class="effects-row"><span class="effect">Happy</span><span class="effect">Relaxed</span><span class="effect">Euphoric</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$45.00<span>Unit</span></div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img"><div class="no-img">💨</div><div class="badges"><span class="strain-badge strain-indica">Hybrid (Indica)</span></div><div class="potency-row"><span class="potency-pill thc">THC 90.0%</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Heavy Hitters</div>
+        <div class="card-name">Watermelon Zkittlez Disposable</div>
+        <div class="card-weight">0.5g</div><div class="terp-row"><span class="terp">Linalool</span><span class="terp">Myrcene</span><span class="terp">Caryophyllene</span></div><div class="effects-row"><span class="effect">Relaxed</span><span class="effect">Happy</span><span class="effect">Sleepy</span></div>
+        <div class="price-section"><div class="price-single">$35.00</div></div>
+      </div>
+    </div></div>
+    </section></main>
+<footer>Auto-updated daily at 4:30 PM CST &nbsp;·&nbsp; MN Legit Cannabis South Metro</footer>
+<script>
+function filterCat(btn) {
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  const sel = btn.dataset.cat;
+  document.querySelectorAll('.section').forEach(s => {
+    s.classList.toggle('hidden', sel !== 'all' && s.dataset.cat !== sel);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
 }
-
-function catIcon(c) { return CAT_ICONS[(c||'').toLowerCase().trim()] || '🌱'; }
-
-async function load() {
-  try {
-    const resp = await fetch('products.json?_=' + Date.now());
-    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-    const db = await resp.json();
-
-    // Timestamp
-    const now = nowCST();
-    document.getElementById('ts').textContent =
-      now.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric'}) +
-      ', ' + now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'}) + ' CST';
-
-    // Filter in-stock
-    const all = Object.values(db.products||{}).filter(p => p.in_stock !== false);
-    document.getElementById('cnt').textContent = `${all.length} products in stock`;
-
-    // Sort: newest first, then alpha
-    all.sort((a,b)=>{
-      const da = ageDays(a.first_seen||''), db2 = ageDays(b.first_seen||'');
-      return da !== db2 ? da - db2 : (a.name||'').localeCompare(b.name||'');
-    });
-
-    // Group by category
-    const cats = {};
-    all.forEach(p => { const c = p.category||'Other'; (cats[c]=cats[c]||[]).push(p); });
-
-    // Build tab buttons
-    const tabsEl = document.getElementById('tabs');
-    Object.keys(cats).sort().forEach(c => {
-      const btn = document.createElement('button');
-      btn.className = 'tab';
-      btn.dataset.cat = c.toLowerCase();
-      btn.textContent = `${catIcon(c)} ${c}`;
-      tabsEl.appendChild(btn);
-    });
-
-    tabsEl.addEventListener('click', e => {
-      const btn = e.target.closest('.tab');
-      if (!btn) return;
-      tabsEl.querySelectorAll('.tab').forEach(b => b.classList.remove('on'));
-      btn.classList.add('on');
-      const sel = btn.dataset.cat;
-      document.querySelectorAll('.section').forEach(s => {
-        s.classList.toggle('hidden', sel !== 'all' && s.dataset.cat !== sel);
-      });
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // Build product sections
-    const main = document.getElementById('main');
-    main.innerHTML = '';
-
-    if (all.length === 0) {
-      main.innerHTML = '<div class="status">No products found. Run the scraper to populate the menu.</div>';
-      return;
-    }
-
-    Object.entries(cats).sort().forEach(([cat, items]) => {
-      const sec = document.createElement('section');
-      sec.className = 'section';
-      sec.dataset.cat = cat.toLowerCase();
-      sec.innerHTML = `
-        <div class="section-head">
-          <span class="section-title">${catIcon(cat)} ${cat}</span>
-          <span class="section-count">${items.length} product${items.length!==1?'s':''}</span>
-        </div>
-        <div class="grid">${items.map(buildCard).join('')}</div>`;
-      main.appendChild(sec);
-    });
-
-  } catch(err) {
-    document.getElementById('main').innerHTML =
-      `<div class="status err">Could not load menu data: ${err.message}</div>`;
-  }
-}
-
-load();
 </script>
 </body>
 </html>
