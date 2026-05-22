@@ -333,15 +333,18 @@ def try_sweed_list_api() -> list[dict]:
         params = {"page": page, "pageSize": PAGE_SIZE}
         try:
             r = session.get(base_url, params=params, timeout=15)
+            log(f"  Sweed List API GET page {page}: HTTP {r.status_code}")
             if r.status_code not in (200, 201):
                 r = session.post(base_url, json=params, timeout=15)
+                log(f"  Sweed List API POST page {page}: HTTP {r.status_code}")
             if r.status_code not in (200, 201):
-                log(f"  Sweed List API page {page}: HTTP {r.status_code}")
+                _save_debug(f"{base_url}?page={page}&error={r.status_code}", {"status": r.status_code, "body": r.text[:500]})
                 break
             data  = r.json()
             _save_debug(f"{base_url}?page={page}", data)
             items = data.get("list") or []
             total = data.get("total") or 0
+            log(f"  Sweed List API page {page}: {len(items)} items (total={total}), keys={list(data.keys())[:8]}")
             if not items:
                 break
             log(f"  Sweed List API page {page}: {len(items)} items (total={total})")
