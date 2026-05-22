@@ -2,10 +2,10 @@
 Menu scraper for MN Legit Cannabis – South Metro (Sweed POS platform).
 
 Strategy (in order):
-  1. Sweed API      – direct call to known Sweed/Prime API endpoints
-  2. Algolia API    – extract app/key from page JS, query index directly
-  3. Playwright     – full browser, intercept every XHR/fetch response for JSON products
-  4. DOM fallback   – parse visible card HTML, infer category/strain from name
+  1. Sweed /_api   – direct call to /_api/Products/GetProductList (richest data)
+  2. Sweed API     – legacy guessed endpoints
+  3. Algolia API   – extract app/key from page JS
+  4. Playwright    – full browser with JSON interception + DOM fallback
 """
 
 import hashlib
@@ -202,6 +202,157 @@ def normalize(raw: dict) -> dict:
         "image":       _img(raw),
         "description": _str(raw.get("description") or raw.get("desc") or ""),
     }
+
+
+# ── Sweed /_api/Products/GetProductList normalizer + fetcher ─────────────────
+
+SWEED_CAT_MAP = {
+    "pre-rolls":"Pre-Roll","pre-roll":"Pre-Roll","preroll":"Pre-Roll",
+    "flower":"Flower",
+    "vapes":"Vapes","vape":"Vapes","disposables":"Vapes","cartridges":"Vapes",
+    "edibles":"Edibles","edible":"Edibles",
+}
+SWEED_STRAIN_MAP = {
+    "indica dominant":"Indica","indica-dominant":"Indica",
+    "sativa dominant":"Sativa","sativa-dominant":"Sativa",
+    "balanced hybrid":"Hybrid","hybrid":"Hybrid",
+    "indica":"Indica","sativa":"Sativa","cbd":"CBD","cbg":"CBG",
+}
+SWEED_WEIGHT_TIERS = {
+    "1":"gram","1.0":"gram",
+    "2":"two_gram","2.0":"two_gram",
+    "3.5":"eighth",
+    "7":"quarter","7.0":"quarter",
+    "14":"half_ounce","14.0":"half_ounce",
+    "28":"ounce","28.0":"ounce",
+}
+
+def _lab_pct(lab: dict, key: str) -> str:
+    obj = (lab or {}).get(key)
+    if not isinstance(obj, dict): return ""
+    vals = obj.get("value") or []
+    unit = obj.get("unitAbbr", "")
+    if vals:
+        return f"{vals[0]:.1f}%" if unit == "%" else f"{vals[0]}{unit}"
+    return ""
+
+def normalize_sweed_product(raw: dict) -> dict:
+    name = _str(raw.get("name", "")).rstrip("-").strip()
+
+    cat_obj   = raw.get("category") or {}
+    cat_raw   = _str(cat_obj.get("name") if isinstance(cat_obj, dict) else "").lower().strip()
+    category  = SWEED_CAT_MAP.get(cat_raw, cat_raw.title())
+
+    brand_obj = raw.get("brand") or {}
+    brand     = _str(brand_obj.get("name") if isinstance(brand_obj, dict) else "")
+
+    strain_obj  = raw.get("strain") or {}
+    prev_obj    = strain_obj.get("prevalence") or {}
+    strain_raw  = _str(prev_obj.get("name") if isinstance(prev_obj, dict) else "").lower()
+    strain_type = SWEED_STRAIN_MAP.get(strain_raw, "")
+    if not strain_type:
+        for t in (raw.get("tags") or []):
+            tk = _str(t.get("name") if isinstance(t, dict) else "").lower()
+            if tk in SWEED_STRAIN_MAP:
+                strain_type = SWEED_STRAIN_MAP[tk]
+                break
+
+    terpenes = [t["name"] for t in (strain_obj.get("terpenes") or []) if isinstance(t, dict) and t.get("name")]
+    flavors  = [f["name"] for f in (strain_obj.get("flavors")  or []) if isinstance(f, dict) and f.get("name")]
+    effects  = [e["name"] for e in (raw.get("effects")         or []) if isinstance(e, dict) and e.get("name")]
+
+    images = raw.get("images") or []
+    image  = _str(images[0]) if images else ""
+
+    variants  = [v for v in (raw.get("variants") or []) if isinstance(v, dict)]
+    thc = cbd = ""
+    weight = price = ""
+    price_tiers: dict = {}
+    in_stock = False
+
+    for v in variants:
+        qty    = v.get("availableQty") or 0
+        reason = ((v.get("orderingAvailability") or {}).get("reason") or "")
+        if qty > 0 or reason == "Available":
+            in_stock = True
+
+        lab = v.get("labTests") or {}
+        if lab and not thc:
+            thc = _lab_pct(lab, "thc")
+            cbd = _lab_pct(lab, "cbd")
+
+        us  = v.get("unitSize") or {}
+        val = us.get("value")
+        abbr = (us.get("unitAbbr") or "").upper()
+        if val is not None:
+            w_str = f"{val:g}{abbr}"
+            if not weight:
+                weight = w_str
+            tier_key = SWEED_WEIGHT_TIERS.get(str(val)) or SWEED_WEIGHT_TIERS.get(f"{val:.1f}")
+            if not tier_key:
+                tier_key = re.sub(r"[^a-z0-9]", "_", (v.get("name") or w_str).lower())
+            if v.get("price"):
+                price_tiers[tier_key] = f"${v['price']:.2f}"
+        elif v.get("price") and not price:
+            price = f"${v['price']:.2f}"
+
+    if len(price_tiers) == 1:
+        price = list(price_tiers.values())[0]
+        price_tiers = {}
+
+    return {
+        "name": name, "brand": brand, "category": category,
+        "strain_type": strain_type, "thc": thc, "cbd": cbd, "cbg": "", "cbn": "",
+        "terpenes": terpenes, "effects": effects, "flavors": flavors,
+        "weight": weight, "price": price, "price_tiers": price_tiers,
+        "in_stock": in_stock, "image": image,
+        "description": _str(raw.get("description", "")),
+    }
+
+
+def try_sweed_list_api() -> list[dict]:
+    """Call /_api/Products/GetProductList directly — returns brand, strain, THC, prices."""
+    base_url = f"https://{STORE_DOMAIN}/_api/Products/GetProductList"
+    session  = requests.Session()
+    session.headers.update({
+        **HEADERS,
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Referer": MENU_URL,
+        "Origin": f"https://{STORE_DOMAIN}",
+    })
+
+    all_products: list[dict] = []
+    page = 1
+    PAGE_SIZE = 100
+
+    while True:
+        params = {"page": page, "pageSize": PAGE_SIZE}
+        try:
+            r = session.get(base_url, params=params, timeout=15)
+            if r.status_code not in (200, 201):
+                r = session.post(base_url, json=params, timeout=15)
+            if r.status_code not in (200, 201):
+                log(f"  Sweed List API page {page}: HTTP {r.status_code}")
+                break
+            data  = r.json()
+            _save_debug(f"{base_url}?page={page}", data)
+            items = data.get("list") or []
+            total = data.get("total") or 0
+            if not items:
+                break
+            log(f"  Sweed List API page {page}: {len(items)} items (total={total})")
+            all_products.extend(normalize_sweed_product(i) for i in items)
+            if len(all_products) >= total or len(items) < PAGE_SIZE:
+                break
+            page += 1
+        except Exception as e:
+            log(f"  Sweed List API error page {page}: {e}")
+            break
+
+    if all_products:
+        log(f"Sweed List API total: {len(all_products)} products")
+    return all_products
 
 
 # ── Find product arrays buried in any JSON blob ───────────────────────────────
@@ -696,7 +847,12 @@ def run():
     log("=" * 56)
     log(f"Scraping {MENU_URL}")
 
-    products = try_sweed_api()
+    log("Trying Sweed /_api/Products/GetProductList...")
+    products = try_sweed_list_api()
+
+    if not products:
+        log("Sweed List API found nothing — trying legacy Sweed endpoints...")
+        products = try_sweed_api()
 
     if not products:
         log("Sweed API found nothing — trying Algolia...")
