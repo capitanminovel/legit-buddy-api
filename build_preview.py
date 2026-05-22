@@ -102,7 +102,9 @@ def build():
 
     now     = datetime.now(CST)
     ts      = now.strftime("%a, %b %d %Y — %I:%M %p CST")
-    all_p   = [(k,v) for k,v in db["products"].items() if v.get("in_stock", True)]
+    TARGET = ("flower", "pre-roll", "vapes", "edibles")
+    all_p  = [(k,v) for k,v in db["products"].items()
+              if v.get("in_stock", True) and (v.get("category","").lower() in TARGET)]
 
     # Sort: newest first, then alpha
     all_p.sort(key=lambda x: (age_days(x[1].get("first_seen","")), x[1].get("name","")))

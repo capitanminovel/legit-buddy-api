@@ -21,10 +21,43 @@ from bs4 import BeautifulSoup
 STORE_SLUG   = "south-metro"
 STORE_DOMAIN = "shop.mnlegitcannabis.com"
 MENU_URL     = f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu"
-# Sweed POS CDN prefix confirms the platform
 SWEED_CDN    = "media-prime.sweedpos.com"
-DATA_FILE  = Path(__file__).parent / "docs" / "products.json"
-CST        = timezone(timedelta(hours=-6))
+DATA_FILE    = Path(__file__).parent / "docs" / "products.json"
+CST          = timezone(timedelta(hours=-6))
+
+# Only scrape and display these 4 categories
+TARGET_CATS = ("flower", "pre-roll", "vapes", "edibles")
+
+# Sweed category URL slugs to try for each target category
+CATEGORY_URLS = [
+    # Flower
+    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu/flower",
+    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu?category=flower",
+    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu?type=flower",
+    # Pre-Roll
+    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu/pre-rolls",
+    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu/pre-roll",
+    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu?category=pre-roll",
+    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu?type=pre_roll",
+    # Vapes
+    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu/vapes",
+    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu/vape-pens",
+    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu?category=vapes",
+    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu?type=vape",
+    # Edibles
+    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu/edibles",
+    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu?category=edibles",
+    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu?type=edible",
+]
+
+# Paginated base menu pages
+PAGINATED_URLS = [
+    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu",
+    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu?page=2",
+    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu?page=3",
+    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu?page=4",
+    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu?page=5",
+]
 
 HEADERS = {
     "User-Agent": (
@@ -292,13 +325,89 @@ def try_algolia(page_html: str = "") -> list[dict]:
     return []
 
 
-# ── Strategy 3: Playwright full browser ──────────────────────────────────────
+# ── Strategy 3: Playwright — scrapes every category page + paginates ─────────
+
+CARD_SELS = (
+    "[data-testid='product-card']", "[data-testid='menu-product-card']",
+    ".product-card", "[class*='ProductCard']", "[class*='product_card']",
+    "[class*='MenuCard']", ".menu-item",
+)
+
+
+def _dom_scrape_page(page) -> list[dict]:
+    """Extract all product cards visible on the current page."""
+    found = []
+    for sel in CARD_SELS:
+        cards = page.query_selector_all(sel)
+        if not cards:
+            continue
+        for card in cards:
+            p: dict = {}
+            for ns in ["h2", "h3", "[class*='name']", "[class*='title']"]:
+                el = card.query_selector(ns)
+                if el: p["name"] = el.inner_text().strip(); break
+            for bs in ["[class*='brand']"]:
+                el = card.query_selector(bs)
+                if el: p["brand"] = el.inner_text().strip(); break
+            for cs in ["[class*='strain']", "[class*='kind']", "[class*='category']"]:
+                el = card.query_selector(cs)
+                if el: p["category"] = el.inner_text().strip(); break
+            for ps in ["[class*='price']"]:
+                el = card.query_selector(ps)
+                if el: p["price"] = el.inner_text().strip(); break
+            for ts in ["[class*='thc']", "[class*='potency']"]:
+                el = card.query_selector(ts)
+                if el: p["thc"] = el.inner_text().strip(); break
+            for cs2 in ["[class*='cbd']"]:
+                el = card.query_selector(cs2)
+                if el: p["cbd"] = el.inner_text().strip(); break
+            img = card.query_selector("img")
+            if img:
+                p["image"] = (img.get_attribute("src") or
+                              img.get_attribute("data-src") or
+                              img.get_attribute("data-lazy-src") or "")
+            if p.get("name"):
+                raw = normalize(p)
+                if not raw["category"]:    raw["category"]    = _guess_category(raw["name"])
+                if not raw["strain_type"]: raw["strain_type"] = _guess_strain(raw["name"])
+                raw["name"] = _clean_name(raw["name"])
+                # Only keep target categories
+                if raw["category"].lower() in TARGET_CATS:
+                    found.append(raw)
+        if found:
+            break
+    return found
+
+
+def _load_page(page, url, label=""):
+    """Navigate and scroll to fully load a menu page."""
+    from playwright.sync_api import TimeoutError as PwTimeout
+    log(f"  → {label or url}")
+    try:
+        page.goto(url, wait_until="networkidle", timeout=45000)
+    except PwTimeout:
+        try:
+            page.goto(url, wait_until="domcontentloaded", timeout=25000)
+            time.sleep(6)
+        except Exception:
+            return
+    # Scroll down to trigger infinite-scroll / lazy loads
+    for _ in range(8):
+        prev_h = page.evaluate("document.body.scrollHeight")
+        page.evaluate("window.scrollBy(0, window.innerHeight * 2)")
+        time.sleep(1.0)
+        new_h = page.evaluate("document.body.scrollHeight")
+        if new_h == prev_h:
+            break   # no more content loaded
+    page.evaluate("window.scrollTo(0,0)")
+    time.sleep(0.5)
+
 
 def try_playwright() -> list[dict]:
     from playwright.sync_api import sync_playwright, TimeoutError as PwTimeout
 
-    captured: list[tuple[str, dict]] = []   # (url, body)
-    products: list[dict] = []
+    all_products: dict[str, dict] = {}   # keyed by product_key to deduplicate
+    captured: list[tuple[str, dict]] = []
 
     with sync_playwright() as pw:
         browser = pw.chromium.launch(headless=True)
@@ -309,7 +418,6 @@ def try_playwright() -> list[dict]:
         )
         page = ctx.new_page()
 
-        # Capture EVERY JSON response — don't filter by URL keyword
         def on_response(resp):
             ct = resp.headers.get("content-type", "")
             if "json" in ct:
@@ -321,99 +429,61 @@ def try_playwright() -> list[dict]:
 
         page.on("response", on_response)
 
-        log(f"Playwright → {MENU_URL}")
-        try:
-            page.goto(MENU_URL, wait_until="networkidle", timeout=60000)
-        except PwTimeout:
-            try:
-                page.goto(MENU_URL, wait_until="domcontentloaded", timeout=35000)
-                time.sleep(10)
-            except Exception:
-                pass
+        # ── Pass 1: paginated base menu pages ─────────────────────────────────
+        log("Playwright: scraping paginated menu pages...")
+        for url in PAGINATED_URLS:
+            captured.clear()
+            _load_page(page, url, f"page {PAGINATED_URLS.index(url)+1}")
 
-        # Scroll to trigger lazy loads
-        for _ in range(6):
-            page.evaluate("window.scrollBy(0, window.innerHeight * 1.5)")
-            time.sleep(1.2)
-        page.evaluate("window.scrollTo(0,0)")
-        time.sleep(2)
-
-        # --- 3a. Mine captured JSON responses (largest first = most products)
-        captured.sort(key=lambda x: len(str(x[1])), reverse=True)
-        log(f"Playwright: captured {len(captured)} JSON responses")
-        for url, body in captured:
-            found = find_products(body)
-            if found:
-                products = found
-                log(f"  ✓ {len(found)} products from {url[:80]}")
-                break
-
-        # --- 3b. Try extracting Algolia creds from rendered page source
-        if not products:
-            html = page.content()
-            products = try_algolia(html)
-
-        # --- 3c. __NEXT_DATA__
-        if not products:
-            try:
-                nd    = page.evaluate("()=>JSON.parse(document.getElementById('__NEXT_DATA__').textContent)")
-                found = find_products(nd)
-                if found:
-                    products = found
-                    log(f"Playwright/__NEXT_DATA__: {len(found)} products")
-            except Exception:
-                pass
-
-        # --- 3d. DOM card scraping with image extraction
-        if not products:
-            log("Playwright: DOM card fallback")
-            CARD_SELS = (
-                "[data-testid='product-card']", "[data-testid='menu-product-card']",
-                ".product-card", "[class*='ProductCard']", "[class*='product_card']",
-                "[class*='MenuCard']", ".menu-item",
-            )
-            for sel in CARD_SELS:
-                cards = page.query_selector_all(sel)
-                if not cards: continue
-                for card in cards:
-                    p: dict = {}
-                    for ns in ["h2","h3","[class*='name']","[class*='title']"]:
-                        el = card.query_selector(ns)
-                        if el: p["name"] = el.inner_text().strip(); break
-                    for bs in ["[class*='brand']"]:
-                        el = card.query_selector(bs)
-                        if el: p["brand"] = el.inner_text().strip(); break
-                    for cs in ["[class*='strain']","[class*='kind']","[class*='category']"]:
-                        el = card.query_selector(cs)
-                        if el: p["category"] = el.inner_text().strip(); break
-                    for ps in ["[class*='price']"]:
-                        el = card.query_selector(ps)
-                        if el: p["price"] = el.inner_text().strip(); break
-                    for ts in ["[class*='thc']","[class*='potency']"]:
-                        el = card.query_selector(ts)
-                        if el: p["thc"] = el.inner_text().strip(); break
-                    for cs2 in ["[class*='cbd']"]:
-                        el = card.query_selector(cs2)
-                        if el: p["cbd"] = el.inner_text().strip(); break
-                    img = card.query_selector("img")
-                    if img:
-                        p["image"] = (img.get_attribute("src") or
-                                      img.get_attribute("data-src") or
-                                      img.get_attribute("data-lazy-src") or "")
-                    if p.get("name"):
-                        raw = normalize(p)
-                        # Fill missing fields from name inference
-                        if not raw["category"]:
-                            raw["category"]    = _guess_category(raw["name"])
-                        if not raw["strain_type"]:
-                            raw["strain_type"] = _guess_strain(raw["name"])
-                        raw["name"] = _clean_name(raw["name"])
-                        products.append(raw)
-                if products:
-                    log(f"DOM cards: {len(products)} products")
+            # Try JSON first
+            captured.sort(key=lambda x: len(str(x[1])), reverse=True)
+            found_json = []
+            for api_url, body in captured:
+                found_json = find_products(body)
+                if found_json:
+                    log(f"    JSON: {len(found_json)} products from {api_url[:70]}")
                     break
 
+            items = found_json or _dom_scrape_page(page)
+            if not items:
+                log(f"    No products on page — stopping pagination")
+                break
+            for p in items:
+                all_products[product_key(p)] = p
+            log(f"    Got {len(items)} products (total so far: {len(all_products)})")
+
+        # ── Pass 2: individual category URLs ──────────────────────────────────
+        log("Playwright: scraping category-specific pages...")
+        for url in CATEGORY_URLS:
+            captured.clear()
+            _load_page(page, url)
+
+            found_json = []
+            for api_url, body in captured:
+                found_json = find_products(body)
+                if found_json:
+                    break
+
+            items = found_json or _dom_scrape_page(page)
+            if items:
+                before = len(all_products)
+                for p in items:
+                    all_products[product_key(p)] = p
+                new = len(all_products) - before
+                if new:
+                    log(f"    +{new} new products from {url}")
+
+        # ── Pass 3: try Algolia from rendered source ───────────────────────────
+        if not all_products:
+            html  = page.content()
+            found = try_algolia(html)
+            for p in found:
+                all_products[product_key(p)] = p
+
         browser.close()
+
+    products = list(all_products.values())
+    log(f"Playwright total: {len(products)} unique products across all pages")
     return products
 
 
@@ -476,6 +546,10 @@ def run():
         db = load_db()
         save_db(db)
         return db
+
+    # Keep only the 4 target categories
+    products = [p for p in products if p.get("category","").lower() in TARGET_CATS]
+    log(f"After category filter: {len(products)} products")
 
     db = load_db()
     db = merge(db, products)
