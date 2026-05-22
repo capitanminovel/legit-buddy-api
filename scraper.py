@@ -715,12 +715,20 @@ def try_playwright() -> list[dict]:
 
         def on_response(resp):
             ct = resp.headers.get("content-type", "")
-            if "json" in ct:
-                try:
-                    body = resp.json()
-                    captured.append((resp.url, body))
-                except Exception:
-                    pass
+            if "json" not in ct:
+                return
+            try:
+                body = resp.json()
+                captured.append((resp.url, body))
+                # Directly process Sweed's product list API (uses "list" key, not in PROD_KEYS)
+                if "GetProductList" in resp.url and isinstance(body.get("list"), list):
+                    for item in body["list"]:
+                        p = normalize_sweed_product(item)
+                        if p.get("name"):
+                            all_products[product_key(p)] = p
+                    log(f"    Intercepted GetProductList: {len(body['list'])} items (total={body.get('total')})")
+            except Exception:
+                pass
 
         page.on("response", on_response)
 
