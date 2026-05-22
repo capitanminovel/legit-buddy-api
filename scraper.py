@@ -1,11 +1,16 @@
 """
-Menu scraper for MN Legit Cannabis – South Metro.
-Targets shop.mnlegitcannabis.com (Jane / iHeartJane platform).
-Captures: strain type, THC/CBD %, terpenes, effects, price tiers, images.
+Menu scraper for MN Legit Cannabis – South Metro (Jane / iHeartJane platform).
+
+Strategy (in order):
+  1. Jane REST API  – direct call to api.iheartjane.com using store slug
+  2. Algolia API    – extract app/key from page JS, query index directly
+  3. Playwright     – full browser, intercept every XHR/fetch response for JSON products
+  4. DOM fallback   – parse visible product card HTML
 """
 
 import hashlib
 import json
+import re
 import time
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
@@ -13,9 +18,10 @@ from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
 
-MENU_URL  = "https://shop.mnlegitcannabis.com/south-metro/menu"
-DATA_FILE = Path(__file__).parent / "docs" / "products.json"
-CST       = timezone(timedelta(hours=-6))
+STORE_SLUG = "south-metro"
+MENU_URL   = f"https://shop.mnlegitcannabis.com/{STORE_SLUG}/menu"
+DATA_FILE  = Path(__file__).parent / "docs" / "products.json"
+CST        = timezone(timedelta(hours=-6))
 
 HEADERS = {
     "User-Agent": (
@@ -23,16 +29,9 @@ HEADERS = {
         "AppleWebKit/537.36 (KHTML, like Gecko) "
         "Chrome/124.0.0.0 Safari/537.36"
     ),
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-    "Accept-Language": "en-US,en;q=0.5",
+    "Accept": "application/json, text/html, */*",
+    "Accept-Language": "en-US,en;q=0.9",
     "Referer": "https://shop.mnlegitcannabis.com/",
-}
-
-# Jane platform Algolia app/index (common across Jane stores)
-ALGOLIA_HEADERS = {
-    "User-Agent": HEADERS["User-Agent"],
-    "Accept": "application/json",
-    "Content-Type": "application/json",
 }
 
 
@@ -42,112 +41,82 @@ def log(msg: str):
     print(f"[{datetime.now(CST).strftime('%Y-%m-%d %H:%M:%S CST')}] {msg}", flush=True)
 
 
-# ── Normalise raw product dict to our schema ──────────────────────────────────
-
-def _str(v) -> str:
-    if v is None:
-        return ""
-    if isinstance(v, (int, float)):
-        return str(v)
-    return str(v).strip()
-
+# ── Normalise any raw product dict → our schema ───────────────────────────────
 
 def _pct(v) -> str:
-    """Format a percentage value like 22.4 → '22.4%'"""
-    if not v:
-        return ""
-    s = _str(v).replace("%", "").strip()
-    try:
-        return f"{float(s):.1f}%"
-    except ValueError:
-        return s
+    if not v: return ""
+    s = str(v).replace("%", "").strip()
+    try:    return f"{float(s):.1f}%"
+    except: return str(v).strip()
 
-
-def _list(v) -> list:
-    if isinstance(v, list):
-        return [_str(i) for i in v if i]
-    if isinstance(v, str) and v:
-        return [v]
+def _lst(v) -> list:
+    if isinstance(v, list): return [str(i).strip() for i in v if i]
+    if isinstance(v, str) and v: return [v]
     return []
+
+def _str(v) -> str:
+    return "" if v is None else str(v).strip()
+
+def _price(v) -> str:
+    if not v: return ""
+    if isinstance(v, (int, float)): return f"${v:.2f}"
+    return str(v).strip()
+
+def _img(raw: dict) -> str:
+    """Extract best image URL from a Jane product dict."""
+    # Jane stores images in photos[].url or photos[].original_url
+    photos = raw.get("photos") or []
+    if isinstance(photos, list) and photos:
+        p0 = photos[0]
+        if isinstance(p0, dict):
+            return _str(p0.get("original_url") or p0.get("url") or p0.get("thumbnail_url") or "")
+        return _str(p0)
+    # Fallback fields
+    for key in ("image_url", "image", "photo", "thumbnail", "featured_image"):
+        v = raw.get(key)
+        if v: return _str(v)
+    return ""
 
 
 def normalize(raw: dict) -> dict:
-    # ── Identity
     name     = _str(raw.get("name") or raw.get("title") or "Unknown")
     brand    = _str(raw.get("brand") or raw.get("brand_name") or raw.get("brandName") or "")
     category = _str(raw.get("category") or raw.get("kind") or raw.get("type") or raw.get("root_type") or "")
 
-    # ── Strain type  (Jane uses "strain_type", fallbacks vary)
-    strain = _str(
-        raw.get("strain_type") or raw.get("strainType") or
-        raw.get("lineage") or raw.get("strain") or ""
-    ).strip().title()
-    # Normalise common values
-    _strain_map = {
-        "Indica": "Indica", "Sativa": "Sativa",
-        "Hybrid": "Hybrid", "Hybrid Indica": "Hybrid (Indica)",
-        "Hybrid Sativa": "Hybrid (Sativa)", "Cbd": "CBD",
-        "Cbg": "CBG", "Not Applicable": "",
-    }
-    strain = _strain_map.get(strain, strain)
+    # strain_type: Jane uses "strain_type" key
+    strain = _str(raw.get("strain_type") or raw.get("strainType") or raw.get("lineage") or "").title()
+    _map = {"Indica":"Indica","Sativa":"Sativa","Hybrid":"Hybrid",
+            "Hybrid Indica":"Hybrid (Indica)","Hybrid Sativa":"Hybrid (Sativa)",
+            "Cbd":"CBD","Cbg":"CBG","Not Applicable":"","N/A":"","":""}
+    strain = _map.get(strain, strain)
 
-    # ── Potency
-    thc = _pct(raw.get("percent_thc") or raw.get("thc") or raw.get("thc_content") or
-               raw.get("thcContent") or raw.get("thcPercent") or "")
-    cbd = _pct(raw.get("percent_cbd") or raw.get("cbd") or raw.get("cbd_content") or
-               raw.get("cbdContent") or raw.get("cbdPercent") or "")
+    thc = _pct(raw.get("percent_thc") or raw.get("thc") or raw.get("thc_content") or raw.get("thcContent") or "")
+    cbd = _pct(raw.get("percent_cbd") or raw.get("cbd") or raw.get("cbd_content") or raw.get("cbdContent") or "")
     cbg = _pct(raw.get("percent_cbg") or raw.get("cbg") or "")
     cbn = _pct(raw.get("percent_cbn") or raw.get("cbn") or "")
 
-    # ── Terpenes  (array or comma string)
-    terpenes_raw = raw.get("terpenes") or raw.get("dominant_terpene") or []
-    if isinstance(terpenes_raw, str) and terpenes_raw:
-        terpenes = [t.strip() for t in terpenes_raw.split(",") if t.strip()]
-    else:
-        terpenes = _list(terpenes_raw)
+    # Terpenes
+    t_raw = raw.get("terpenes") or raw.get("dominant_terpene") or []
+    terpenes = ([x.strip() for x in t_raw.split(",") if x.strip()]
+                if isinstance(t_raw, str) else _lst(t_raw))
 
-    # ── Effects / flavors
-    effects  = _list(raw.get("effects")  or raw.get("effect")  or [])
-    flavors  = _list(raw.get("flavors")  or raw.get("flavor")  or [])
-
-    # ── Weight / unit
-    weight = _str(raw.get("weight") or raw.get("size") or raw.get("net_weight") or "")
-
-    # ── Pricing  – single price + per-weight tiers
-    price_each = raw.get("price_each") or raw.get("price") or ""
-    if isinstance(price_each, (int, float)):
-        price_each = f"${price_each:.2f}"
-    else:
-        price_each = _str(price_each)
-
-    raw_prices = raw.get("prices") or {}
+    # Price tiers — Jane key names
+    raw_p = raw.get("prices") or {}
     tiers = {}
-    tier_keys = [
-        ("gram",       ["gram",       "1g",  "one_gram"]),
+    for label, keys in [
+        ("gram",       ["gram",       "one_gram",    "1g"]),
         ("two_gram",   ["two_gram",   "2g"]),
-        ("eighth",     ["eighth",     "3.5g","eighth_ounce"]),
-        ("quarter",    ["quarter",    "7g",  "quarter_ounce"]),
-        ("half_ounce", ["half_ounce", "14g", "half"]),
-        ("ounce",      ["ounce",      "28g", "oz"]),
-        ("unit",       ["unit",       "each","piece"]),
-    ]
-    for label, keys in tier_keys:
+        ("eighth",     ["eighth",     "eighth_ounce","3.5g"]),
+        ("quarter",    ["quarter",    "quarter_ounce","7g"]),
+        ("half_ounce", ["half_ounce", "half",        "14g"]),
+        ("ounce",      ["ounce",      "28g",         "oz"]),
+        ("unit",       ["unit",       "each"]),
+    ]:
         for k in keys:
-            v = raw_prices.get(k) or raw.get(k)
+            v = raw_p.get(k) or raw.get(k)
             if v:
-                tiers[label] = f"${float(v):.2f}" if isinstance(v, (int, float)) else _str(v)
+                tiers[label] = _price(v)
                 break
-
-    # ── Images
-    photos = raw.get("photos") or []
-    if isinstance(photos, list) and photos:
-        photo = _str(photos[0].get("url") or photos[0]) if isinstance(photos[0], dict) else _str(photos[0])
-    else:
-        photo = _str(raw.get("image") or raw.get("image_url") or raw.get("photo") or
-                     raw.get("thumbnail") or "")
-
-    # ── Description
-    description = _str(raw.get("description") or raw.get("desc") or "")
 
     return {
         "name":        name,
@@ -159,119 +128,145 @@ def normalize(raw: dict) -> dict:
         "cbg":         cbg,
         "cbn":         cbn,
         "terpenes":    terpenes,
-        "effects":     effects,
-        "flavors":     flavors,
-        "weight":      weight,
-        "price":       price_each,
+        "effects":     _lst(raw.get("effects") or raw.get("effect") or []),
+        "flavors":     _lst(raw.get("flavors") or raw.get("flavor") or []),
+        "weight":      _str(raw.get("weight") or raw.get("size") or raw.get("net_weight") or ""),
+        "price":       _price(raw.get("price_each") or raw.get("price") or ""),
         "price_tiers": tiers,
         "in_stock":    bool(raw.get("in_stock", True)),
-        "image":       photo,
-        "description": description,
+        "image":       _img(raw),
+        "description": _str(raw.get("description") or raw.get("desc") or ""),
     }
 
 
-# ── JSON / API extraction ─────────────────────────────────────────────────────
+# ── Find product arrays buried in any JSON blob ───────────────────────────────
 
-PRODUCT_KEYS = ("products", "items", "menu_items", "menuItems", "hits", "data")
+PROD_KEYS = ("products", "items", "menu_items", "menuItems", "hits", "data", "results")
 
-def extract_nested(data, depth=0) -> list[dict]:
-    if depth > 12:
-        return []
+def find_products(data, depth=0) -> list[dict]:
+    if depth > 12: return []
     if isinstance(data, dict):
-        for key in PRODUCT_KEYS:
-            if key in data and isinstance(data[key], list) and data[key]:
-                sample = data[key][0]
-                if isinstance(sample, dict) and any(
-                    k in sample for k in ("name", "price", "category", "percent_thc")
+        for k in PROD_KEYS:
+            if k in data and isinstance(data[k], list) and data[k]:
+                s = data[k][0]
+                if isinstance(s, dict) and any(
+                    x in s for x in ("name","price","category","percent_thc","strain_type","photos")
                 ):
-                    return [normalize(p) for p in data[key]]
+                    return [normalize(p) for p in data[k]]
         for v in data.values():
-            r = extract_nested(v, depth + 1)
-            if r:
-                return r
+            r = find_products(v, depth+1)
+            if r: return r
     elif isinstance(data, list):
         for item in data:
-            r = extract_nested(item, depth + 1)
-            if r:
-                return r
+            r = find_products(item, depth+1)
+            if r: return r
     return []
 
 
-# ── Requests (lightweight) scraper ────────────────────────────────────────────
+# ── Strategy 1: Jane REST API ─────────────────────────────────────────────────
 
-def scrape_requests() -> list[dict]:
+def try_jane_api() -> list[dict]:
+    """Hit known Jane API endpoints directly."""
+    endpoints = [
+        f"https://api.iheartjane.com/v1/stores/{STORE_SLUG}/menu",
+        f"https://api.iheartjane.com/v2/stores/{STORE_SLUG}/menu",
+        f"https://api.iheartjane.com/v1/stores/{STORE_SLUG}/products",
+        f"https://shop.mnlegitcannabis.com/api/menu",
+        f"https://shop.mnlegitcannabis.com/api/products",
+        f"https://shop.mnlegitcannabis.com/{STORE_SLUG}/api/menu",
+    ]
     session = requests.Session()
-    session.headers.update(HEADERS)
-    try:
-        r = session.get(MENU_URL, timeout=25)
-        r.raise_for_status()
-        soup = BeautifulSoup(r.text, "lxml")
-
-        # Next.js __NEXT_DATA__ (Jane stores often embed full product list here)
-        for tag in soup.find_all("script", {"id": "__NEXT_DATA__"}):
-            try:
-                data  = json.loads(tag.string)
-                found = extract_nested(data)
+    session.headers.update({**HEADERS, "Accept": "application/json"})
+    for url in endpoints:
+        try:
+            r = session.get(url, timeout=15)
+            if r.status_code == 200:
+                data = r.json()
+                found = find_products(data)
                 if found:
-                    log(f"requests/__NEXT_DATA__: {len(found)} products")
+                    log(f"Jane API ({url}): {len(found)} products")
                     return found
-            except Exception:
-                pass
-
-        # window.__PRELOADED_STATE__ or similar inline JSON
-        for tag in soup.find_all("script"):
-            src = tag.string or ""
-            for marker in ("__PRELOADED_STATE__", "__INITIAL_STATE__", "window.__STATE__"):
-                if marker in src:
-                    try:
-                        start = src.index("{", src.index(marker))
-                        # find matching brace
-                        depth, end = 0, start
-                        for i, ch in enumerate(src[start:], start):
-                            if ch == "{":
-                                depth += 1
-                            elif ch == "}":
-                                depth -= 1
-                                if depth == 0:
-                                    end = i + 1
-                                    break
-                        data  = json.loads(src[start:end])
-                        found = extract_nested(data)
-                        if found:
-                            log(f"requests/{marker}: {len(found)} products")
-                            return found
-                    except Exception:
-                        pass
-
-    except requests.RequestException as e:
-        log(f"requests error: {e}")
+        except Exception:
+            pass
     return []
 
 
-# ── Playwright (JS-rendered) scraper ──────────────────────────────────────────
+# ── Strategy 2: Algolia direct query ─────────────────────────────────────────
 
-def scrape_playwright() -> list[dict]:
+def try_algolia(page_html: str = "") -> list[dict]:
+    """
+    Jane embeds Algolia app ID + API key + index name in page JS.
+    Extract them and query Algolia directly — gets full product data + images.
+    """
+    if not page_html:
+        try:
+            r = requests.get(MENU_URL, headers=HEADERS, timeout=20)
+            page_html = r.text
+        except Exception:
+            return []
+
+    # Patterns seen in Jane-powered sites
+    app_id  = re.search(r'"?applicationId"?\s*:\s*"([A-Z0-9]{10})"', page_html)
+    api_key = re.search(r'"?apiKey"?\s*:\s*"([a-f0-9]{32})"', page_html)
+    index   = re.search(r'"?indexName"?\s*:\s*"([^"]+menu[^"]*)"', page_html, re.I)
+
+    # Also try env-style variables
+    if not app_id:
+        app_id = re.search(r'ALGOLIA_APP_ID["\s:=]+([A-Z0-9]{10})', page_html)
+    if not api_key:
+        api_key = re.search(r'ALGOLIA_API_KEY["\s:=]+([a-f0-9]{32})', page_html)
+
+    if not (app_id and api_key):
+        log("Algolia: credentials not found in page source")
+        return []
+
+    app  = app_id.group(1)
+    key  = api_key.group(1)
+    idx  = index.group(1) if index else f"menu_{STORE_SLUG}"
+
+    log(f"Algolia: app={app} index={idx}")
+    url  = f"https://{app}-dsn.algolia.net/1/indexes/{idx}/query"
+    body = {"hitsPerPage": 500, "attributesToRetrieve": ["*"]}
+    try:
+        r = requests.post(url, json=body,
+                          headers={"X-Algolia-Application-Id": app,
+                                   "X-Algolia-API-Key": key,
+                                   "Content-Type": "application/json"},
+                          timeout=15)
+        data  = r.json()
+        found = find_products(data)
+        if found:
+            log(f"Algolia: {len(found)} products")
+            return found
+    except Exception as e:
+        log(f"Algolia query failed: {e}")
+    return []
+
+
+# ── Strategy 3: Playwright full browser ──────────────────────────────────────
+
+def try_playwright() -> list[dict]:
     from playwright.sync_api import sync_playwright, TimeoutError as PwTimeout
 
-    products    = []
-    intercepted = []   # (url, body) tuples
+    captured: list[tuple[str, dict]] = []   # (url, body)
+    products: list[dict] = []
 
     with sync_playwright() as pw:
         browser = pw.chromium.launch(headless=True)
         ctx = browser.new_context(
             user_agent=HEADERS["User-Agent"],
             viewport={"width": 1440, "height": 900},
+            extra_http_headers={"Accept-Language": "en-US,en;q=0.9"},
         )
         page = ctx.new_page()
 
+        # Capture EVERY JSON response — don't filter by URL keyword
         def on_response(resp):
-            url = resp.url.lower()
-            # Jane API calls: /api/menu, /products, Algolia, etc.
-            if any(k in url for k in ("menu", "products", "items", "inventory",
-                                       "algolia", "search", "catalog")):
+            ct = resp.headers.get("content-type", "")
+            if "json" in ct:
                 try:
                     body = resp.json()
-                    intercepted.append((resp.url, body))
+                    captured.append((resp.url, body))
                 except Exception:
                     pass
 
@@ -279,113 +274,87 @@ def scrape_playwright() -> list[dict]:
 
         log(f"Playwright → {MENU_URL}")
         try:
-            page.goto(MENU_URL, wait_until="networkidle", timeout=50000)
+            page.goto(MENU_URL, wait_until="networkidle", timeout=60000)
         except PwTimeout:
             try:
-                page.goto(MENU_URL, wait_until="domcontentloaded", timeout=30000)
-                time.sleep(8)
+                page.goto(MENU_URL, wait_until="domcontentloaded", timeout=35000)
+                time.sleep(10)
             except Exception:
                 pass
 
-        # Wait for product cards
-        CARD_SELS = (
-            "[data-testid='product-card']",
-            "[data-testid='menu-product-card']",
-            ".product-card",
-            "[class*='ProductCard']",
-            "[class*='product_card']",
-            ".menu-item",
-            "[class*='MenuCard']",
-        )
-        for sel in CARD_SELS:
-            try:
-                page.wait_for_selector(sel, timeout=8000)
-                log(f"Cards found: {sel}")
-                break
-            except PwTimeout:
-                continue
+        # Scroll to trigger lazy loads
+        for _ in range(6):
+            page.evaluate("window.scrollBy(0, window.innerHeight * 1.5)")
+            time.sleep(1.2)
+        page.evaluate("window.scrollTo(0,0)")
+        time.sleep(2)
 
-        # Scroll to load lazy products
-        for _ in range(5):
-            page.evaluate("window.scrollBy(0, window.innerHeight)")
-            time.sleep(1)
-        page.evaluate("window.scrollTo(0, 0)")
-        time.sleep(1)
-
-        # 1. Best source: intercepted API/Algolia JSON
-        # Sort by response size descending (bigger = more products)
-        intercepted.sort(key=lambda x: len(str(x[1])), reverse=True)
-        for url, body in intercepted:
-            found = extract_nested(body)
+        # --- 3a. Mine captured JSON responses (largest first = most products)
+        captured.sort(key=lambda x: len(str(x[1])), reverse=True)
+        log(f"Playwright: captured {len(captured)} JSON responses")
+        for url, body in captured:
+            found = find_products(body)
             if found:
                 products = found
-                log(f"Playwright/API ({url[:60]}): {len(found)} products")
+                log(f"  ✓ {len(found)} products from {url[:80]}")
                 break
 
-        # 2. __NEXT_DATA__
+        # --- 3b. Try extracting Algolia creds from rendered page source
+        if not products:
+            html = page.content()
+            products = try_algolia(html)
+
+        # --- 3c. __NEXT_DATA__
         if not products:
             try:
-                nd    = page.evaluate("() => JSON.parse(document.getElementById('__NEXT_DATA__').textContent)")
-                found = extract_nested(nd)
+                nd    = page.evaluate("()=>JSON.parse(document.getElementById('__NEXT_DATA__').textContent)")
+                found = find_products(nd)
                 if found:
                     products = found
                     log(f"Playwright/__NEXT_DATA__: {len(found)} products")
             except Exception:
                 pass
 
-        # 3. DOM scraping — richer field extraction per card
+        # --- 3d. DOM card scraping with image extraction
         if not products:
-            log("Playwright: DOM card extraction")
+            log("Playwright: DOM card fallback")
+            CARD_SELS = (
+                "[data-testid='product-card']", "[data-testid='menu-product-card']",
+                ".product-card", "[class*='ProductCard']", "[class*='product_card']",
+                "[class*='MenuCard']", ".menu-item",
+            )
             for sel in CARD_SELS:
                 cards = page.query_selector_all(sel)
-                if not cards:
-                    continue
+                if not cards: continue
                 for card in cards:
-                    p = {}
-                    # name
-                    for ns in ["h2", "h3", "[class*='name']", "[class*='title']"]:
+                    p: dict = {}
+                    for ns in ["h2","h3","[class*='name']","[class*='title']"]:
                         el = card.query_selector(ns)
-                        if el:
-                            p["name"] = el.inner_text().strip()
-                            break
-                    # brand
-                    for bs in ["[class*='brand']", "[class*='Brand']"]:
+                        if el: p["name"] = el.inner_text().strip(); break
+                    for bs in ["[class*='brand']"]:
                         el = card.query_selector(bs)
-                        if el:
-                            p["brand"] = el.inner_text().strip()
-                            break
-                    # category / strain
-                    for cs in ["[class*='category']", "[class*='kind']", "[class*='strain']", "[class*='type']"]:
+                        if el: p["brand"] = el.inner_text().strip(); break
+                    for cs in ["[class*='strain']","[class*='kind']","[class*='category']"]:
                         el = card.query_selector(cs)
-                        if el:
-                            p["category"] = el.inner_text().strip()
-                            break
-                    # price
-                    for ps in ["[class*='price']", "[class*='Price']"]:
+                        if el: p["category"] = el.inner_text().strip(); break
+                    for ps in ["[class*='price']"]:
                         el = card.query_selector(ps)
-                        if el:
-                            p["price"] = el.inner_text().strip()
-                            break
-                    # THC
-                    for ts in ["[class*='thc']", "[class*='THC']", "[class*='potency']"]:
+                        if el: p["price"] = el.inner_text().strip(); break
+                    for ts in ["[class*='thc']","[class*='potency']"]:
                         el = card.query_selector(ts)
-                        if el:
-                            p["thc"] = el.inner_text().strip()
-                            break
-                    # CBD
-                    for cs2 in ["[class*='cbd']", "[class*='CBD']"]:
+                        if el: p["thc"] = el.inner_text().strip(); break
+                    for cs2 in ["[class*='cbd']"]:
                         el = card.query_selector(cs2)
-                        if el:
-                            p["cbd"] = el.inner_text().strip()
-                            break
-                    # image
+                        if el: p["cbd"] = el.inner_text().strip(); break
                     img = card.query_selector("img")
                     if img:
-                        p["image"] = img.get_attribute("src") or img.get_attribute("data-src") or ""
+                        p["image"] = (img.get_attribute("src") or
+                                      img.get_attribute("data-src") or
+                                      img.get_attribute("data-lazy-src") or "")
                     if p.get("name"):
                         products.append(normalize(p))
                 if products:
-                    log(f"Playwright/DOM: {len(products)} products")
+                    log(f"DOM cards: {len(products)} products")
                     break
 
         browser.close()
@@ -398,30 +367,24 @@ def product_key(p: dict) -> str:
     key = f"{p.get('name','').lower().strip()}-{p.get('brand','').lower().strip()}"
     return hashlib.md5(key.encode()).hexdigest()[:12]
 
-
 def load_db() -> dict:
     if DATA_FILE.exists():
-        with open(DATA_FILE) as f:
-            return json.load(f)
+        with open(DATA_FILE) as f: return json.load(f)
     return {"products": {}, "last_updated": None, "store": "South Metro"}
-
 
 def save_db(db: dict):
     db["last_updated"] = datetime.now(CST).isoformat()
     DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
-    with open(DATA_FILE, "w") as f:
-        json.dump(db, f, indent=2)
+    with open(DATA_FILE, "w") as f: json.dump(db, f, indent=2)
     log(f"Saved → {DATA_FILE}")
-
 
 def merge(db: dict, fresh: list[dict]) -> dict:
     now  = datetime.now(CST).isoformat()
     data = db.get("products", {})
-
-    fresh_ids = set()
+    seen = set()
     for p in fresh:
         pid = product_key(p)
-        fresh_ids.add(pid)
+        seen.add(pid)
         if pid not in data:
             p["first_seen"] = now
             log(f"  NEW: {p['name']}")
@@ -429,11 +392,9 @@ def merge(db: dict, fresh: list[dict]) -> dict:
             p["first_seen"] = data[pid]["first_seen"]
         p["last_seen"] = now
         data[pid] = p
-
     for pid, p in data.items():
-        if pid not in fresh_ids:
+        if pid not in seen:
             p["in_stock"] = False
-
     db["products"] = data
     return db
 
@@ -444,13 +405,18 @@ def run():
     log("=" * 56)
     log(f"Scraping {MENU_URL}")
 
-    products = scrape_requests()
-    if not products:
-        log("Falling back to Playwright...")
-        products = scrape_playwright()
+    products = try_jane_api()
 
     if not products:
-        log("WARNING: 0 products — site may need cookies/auth.")
+        log("Jane API found nothing — trying Algolia...")
+        products = try_algolia()
+
+    if not products:
+        log("Algolia found nothing — launching Playwright...")
+        products = try_playwright()
+
+    if not products:
+        log("WARNING: 0 products scraped. Keeping existing data unchanged.")
         db = load_db()
         save_db(db)
         return db
@@ -458,7 +424,6 @@ def run():
     db = load_db()
     db = merge(db, products)
     save_db(db)
-
     in_stock = sum(1 for p in db["products"].values() if p.get("in_stock", True))
     log(f"Done — {len(products)} scraped, {in_stock} total in stock")
     return db
