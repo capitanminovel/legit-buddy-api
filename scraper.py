@@ -674,7 +674,10 @@ def _dom_scrape_page(page) -> list[dict]:
 
 def _load_page(page, url, label=""):
     """Navigate and scroll to fully load a menu page."""
-    from playwright.sync_api import TimeoutError as PwTimeout
+    try:
+        from playwright.sync_api import TimeoutError as PwTimeout
+    except ImportError:
+        return
     log(f"  → {label or url}")
     try:
         page.goto(url, wait_until="networkidle", timeout=45000)
@@ -697,7 +700,11 @@ def _load_page(page, url, label=""):
 
 
 def try_playwright() -> list[dict]:
-    from playwright.sync_api import sync_playwright, TimeoutError as PwTimeout
+    try:
+        from playwright.sync_api import sync_playwright, TimeoutError as PwTimeout
+    except ImportError:
+        log("Playwright not installed — skipping browser fallback")
+        return []
 
     all_products: dict[str, dict] = {}   # keyed by product_key to deduplicate
     captured: list[tuple[str, dict]] = []
