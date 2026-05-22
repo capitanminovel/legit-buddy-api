@@ -713,6 +713,8 @@ def try_playwright() -> list[dict]:
         )
         page = ctx.new_page()
 
+        api_total: list[int] = []   # mutable so closure can write it
+
         def on_response(resp):
             ct = resp.headers.get("content-type", "")
             if "json" not in ct:
@@ -720,99 +722,41 @@ def try_playwright() -> list[dict]:
             try:
                 body = resp.json()
                 captured.append((resp.url, body))
-                # Directly process Sweed's product list API (uses "list" key, not in PROD_KEYS)
                 if "GetProductList" in resp.url and isinstance(body.get("list"), list):
                     for item in body["list"]:
                         p = normalize_sweed_product(item)
                         if p.get("name"):
                             all_products[product_key(p)] = p
-                    log(f"    Intercepted GetProductList: {len(body['list'])} items (total={body.get('total')})")
+                    total = body.get("total", 0)
+                    if not api_total:
+                        api_total.append(total)
+                    log(f"    Intercepted GetProductList: {len(body['list'])} items (total={total}, have={len(all_products)})")
             except Exception:
                 pass
 
         page.on("response", on_response)
 
-        # ── Pass 1: paginated base menu pages ─────────────────────────────────
-        log("Playwright: scraping paginated menu pages...")
-        for url in PAGINATED_URLS:
-            captured.clear()
-            _load_page(page, url, f"page {PAGINATED_URLS.index(url)+1}")
+        # ── Single page load + scroll until all API products captured ─────────
+        log("Playwright: loading menu and scrolling for all products...")
+        _load_page(page, MENU_URL, "main menu")
 
-            # Try JSON first
-            captured.sort(key=lambda x: len(str(x[1])), reverse=True)
-            found_json = []
-            for api_url, body in captured:
-                found_json = find_products(body)
-                if found_json:
-                    log(f"    JSON: {len(found_json)} products from {api_url[:70]}")
-                    break
-
-            items = found_json or _dom_scrape_page(page)
-            if not items:
-                log(f"    No products on page — stopping pagination")
+        # Keep scrolling until we have all products reported by the API
+        for attempt in range(12):
+            expected = api_total[0] if api_total else 0
+            if expected and len(all_products) >= expected:
+                log(f"  All {expected} products captured — done scrolling")
                 break
-            for p in items:
-                all_products[product_key(p)] = p
-            log(f"    Got {len(items)} products (total so far: {len(all_products)})")
+            prev_count = len(all_products)
+            page.evaluate("window.scrollBy(0, window.innerHeight * 3)")
+            time.sleep(2)
+            if len(all_products) == prev_count and attempt > 3:
+                log(f"  No new products after scroll (have {len(all_products)}/{expected}) — stopping")
+                break
 
-        # ── Pass 2: individual category URLs ──────────────────────────────────
-        log("Playwright: scraping category-specific pages...")
-        for url in CATEGORY_URLS:
-            captured.clear()
-            _load_page(page, url)
-
-            found_json = []
-            for api_url, body in captured:
-                found_json = find_products(body)
-                if found_json:
-                    break
-
-            items = found_json or _dom_scrape_page(page)
-            if items:
-                before = len(all_products)
-                for p in items:
-                    all_products[product_key(p)] = p
-                new = len(all_products) - before
-                if new:
-                    log(f"    +{new} new products from {url}")
-
-        # ── Pass 3: __NEXT_DATA__ embedded JSON (Next.js SSR) ─────────────────
+        # DOM fallback if API interception got nothing
         if not all_products:
-            html = page.content()
-            m = re.search(r'<script id="__NEXT_DATA__"[^>]*>(.+?)</script>', html, re.DOTALL)
-            if m:
-                try:
-                    next_data = json.loads(m.group(1))
-                    _save_debug("__NEXT_DATA__", next_data)
-                    found = find_products(next_data)
-                    if found:
-                        log(f"__NEXT_DATA__: {len(found)} products")
-                        for p in found:
-                            all_products[product_key(p)] = p
-                except Exception as e:
-                    log(f"__NEXT_DATA__ parse error: {e}")
-
-        # ── Pass 4: window.__STORE_DATA__ / hydration globals ─────────────────
-        if not all_products:
-            for var in ("__NEXT_DATA__", "__STORE_STATE__", "__INITIAL_STATE__",
-                        "__PRELOADED_STATE__", "__APP_DATA__"):
-                try:
-                    val = page.evaluate(f"() => window.{var}")
-                    if val:
-                        _save_debug(f"window.{var}", val)
-                        found = find_products(val)
-                        if found:
-                            log(f"window.{var}: {len(found)} products")
-                            for p in found:
-                                all_products[product_key(p)] = p
-                            break
-                except Exception:
-                    pass
-
-        # ── Pass 5: try Algolia from rendered source ───────────────────────────
-        if not all_products:
-            found = try_algolia(html)
-            for p in found:
+            log("  API interception got nothing — falling back to DOM scrape")
+            for p in _dom_scrape_page(page):
                 all_products[product_key(p)] = p
 
         # Save largest captured JSON blobs + page HTML snippet for inspection
