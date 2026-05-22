@@ -1,6 +1,6 @@
 {
   "store": "South Metro",
-  "last_updated": "2026-05-21T19:44:47.179224-06:00",
+  "last_updated": "2026-05-22T12:34:40.252780-06:00",
   "products": {
     "a1b2c3d4e5f6": {
       "name": "Mimosa",
@@ -685,7 +685,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1773944462_1a0c4a01-b1ac-4733-80be-866be7bff9cb.png?width=384",
       "description": "",
       "first_seen": "2026-05-20T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "39bed837fa2e": {
       "name": "Sour Diesel Disposable Vape",
@@ -706,7 +706,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779112605_e574c853-d097-46bc-a7e6-08bd5f8fd21f.png?width=384",
       "description": "",
       "first_seen": "2026-05-20T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "b685ee1dbbfd": {
       "name": "Grape Canyon Zkittlez",
@@ -765,11 +765,11 @@
       "weight": "",
       "price": "",
       "price_tiers": {},
-      "in_stock": false,
+      "in_stock": true,
       "image": "https://media-prime.sweedpos.com/store/prime/1773950240_1b7e8aeb-89f0-48e1-9098-3dc84a3a60e6.webp?width=384",
       "description": "",
       "first_seen": "2026-05-21T19:32:33.653506-06:00",
-      "last_seen": "2026-05-21T19:44:47.178711-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "8565b6f15dc6": {
       "name": "White Widow Vape Cartridge",
@@ -790,7 +790,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779116263_8a1f5316-858b-4eeb-b769-5a61d7e2f4e3.png?width=384",
       "description": "",
       "first_seen": "2026-05-20T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "29d4a4d160b2": {
       "name": "Sour Diesel Vape Cartridge",
@@ -811,7 +811,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779116328_9d34b3b0-fd82-4b8a-a50d-56952e19e596.png?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "e3c12ab126a2": {
       "name": "Girl Scout Cookies Vape Cartridge",
@@ -832,7 +832,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779115251_9ccbeed8-d575-4921-a4fa-285692bfd445.png?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "0aa6c3f512bd": {
       "name": "Raspberry Gummy",
@@ -853,7 +853,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779112271_bbd8e29e-4e91-4329-8ac1-eb6d80946b98.avif?width=384",
       "description": "",
       "first_seen": "2026-05-20T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "eab05da939b8": {
       "name": "Lullaberry - Indica Gummy",
@@ -874,7 +874,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1773946297_70f75a05-5bcf-46f1-9a14-8a5efe2c02a6.png?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "5f0eb3e216b6": {
       "name": "Peach Gummy",
@@ -895,7 +895,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779112173_f3bb173e-3f58-4ae6-a5b6-6e4a980e50a5.avif?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "e7f49bf81901": {
       "name": "Blueberry Muffin Mini Pre-rolls",
@@ -916,7 +916,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1777923983_e9646ae8-6186-4f0f-aa6f-ecd2df9b9772.avif?width=384",
       "description": "",
       "first_seen": "2026-05-20T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "68bd4e4a7ff6": {
       "name": "Cap Junky",
@@ -937,7 +937,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1776125748_1967fee6-b134-46df-be58-112f3ed44b4f.jpg?width=384",
       "description": "",
       "first_seen": "2026-05-20T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "ed121dae5050": {
       "name": "Fight Club",
@@ -958,7 +958,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1774281040_b505596f-d02f-4ca3-b4a5-e3d47eff38eb.jpg?width=384",
       "description": "",
       "first_seen": "2026-05-20T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "1184818b3834": {
       "name": "LIT OG",
@@ -979,7 +979,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1773943792_1b7d4c4a-39c2-4b4a-b498-91a3d875f9fd.jpg?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "b8e9da33ce9a": {
       "name": "Blueberry Muffin",
@@ -1000,7 +1000,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1776206164_512e1557-5093-470c-8843-89df37bf4a54.png?width=384",
       "description": "",
       "first_seen": "2026-05-20T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "23c08fbe6ddc": {
       "name": "MAC Stomper",
@@ -1021,7 +1021,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1778186539_91a7c6a0-6f99-41cb-864b-fe98dca78366.png?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "bd91aaea24ee": {
       "name": "Purple Octane",
@@ -1042,7 +1042,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1773943932_5dac97fa-c50f-4d32-93a3-c8dfb3ecf6f7.jpg?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "019560c32ee4": {
       "name": "Soap",
@@ -1063,7 +1063,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1773944011_bc3cb393-9400-4292-b412-c37d2c16c57a.jpg?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "aaa92869ffff": {
       "name": "Egg Roll",
@@ -1084,7 +1084,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1777924111_4d78cb84-5256-4312-a666-8ff152bf85ed.png?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "541c56342993": {
       "name": "Runtz",
@@ -1105,7 +1105,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1773943973_9ae0f93f-376c-47c1-b89f-17173456bf06.jpg?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "5c57fd95e47f": {
       "name": "Donny Burger",
@@ -1126,7 +1126,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1773943731_a20cf591-6ef1-47a8-9e00-81bbe7f2291e.jpg?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "c391671d2216": {
       "name": "Super Boof",
@@ -1147,7 +1147,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1773940146_1c76466a-a2b2-4518-83b3-82d3b0943359.jpg?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "a7cf4f102564": {
       "name": "Glue 31",
@@ -1168,7 +1168,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1774807612_c63f0d75-8a83-4723-808b-42f8b615f110.jpg?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "ebf839200f55": {
       "name": "Grape Canyon Zkittlez",
@@ -1189,7 +1189,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1778183669_9fbb60c5-1369-4fa6-a0e1-2117536cbbe2.png?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "807093f47a3e": {
       "name": "GG4",
@@ -1210,7 +1210,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1773943908_278d723b-507c-4f64-9b9f-d46292839916.png?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "31a79413b0ff": {
       "name": "Sour Apple Vape Cartridge",
@@ -1231,7 +1231,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779116328_9d34b3b0-fd82-4b8a-a50d-56952e19e596.png?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "606a058fd290": {
       "name": "Peach of a Day Gummy",
@@ -1252,7 +1252,7 @@
       "image": "",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "0f129ab10f8f": {
       "name": "Halle Berry",
@@ -1273,7 +1273,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779044053_8430cacf-b295-4967-9090-dbb1dcf0ceb4.png?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "dfd3e7035a96": {
       "name": "Midwest Sunset MN Mango Gummy",
@@ -1294,7 +1294,7 @@
       "image": "",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "cb1325e760a6": {
       "name": "Jelly Breath",
@@ -1315,7 +1315,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779044062_227604c4-164e-4a3f-949d-0dde0b3707b2.png?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "3e803ff1735c": {
       "name": "Pear - Refresh Gummy",
@@ -1336,7 +1336,7 @@
       "image": "",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "27f0a41d71c9": {
       "name": "Sour Cherry - Mellow Gummy",
@@ -1357,7 +1357,7 @@
       "image": "",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "5befc4060147": {
       "name": "Slurricane",
@@ -1378,7 +1378,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779044091_a9b368fd-b066-43ec-a557-a549914a04a0.png?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "e272103e592b": {
       "name": "St. Croix Tropical Sunrise Gummy",
@@ -1399,7 +1399,7 @@
       "image": "",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "e1582b7d4106": {
       "name": "Kabetogama Kiwi Watermelon Gummy",
@@ -1420,7 +1420,7 @@
       "image": "",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "dd07ebaba5a0": {
       "name": "Original HIGHBERNATE Gummy",
@@ -1441,7 +1441,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1773076332_ec1a1642-b32d-4dec-93be-d5255e2d477b.webp?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "7240c3ac8c9b": {
       "name": "Blood Orange - Bliss Gummy",
@@ -1462,7 +1462,7 @@
       "image": "",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "59e4eedf6157": {
       "name": "Elderberry - Sleep Gummy",
@@ -1483,7 +1483,7 @@
       "image": "",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "6a949ced9993": {
       "name": "Mango - Hybrid Gummy",
@@ -1504,7 +1504,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1773946320_cfbb6d9e-861c-4b2c-b27e-b008c0c07140.png?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "6a81b9453e51": {
       "name": "Boysenberry - Dream Gummy",
@@ -1525,7 +1525,7 @@
       "image": "",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "70b9340afb45": {
       "name": "Highbernate 2.0 Gummy",
@@ -1546,7 +1546,7 @@
       "image": "",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "c653695d246e": {
       "name": "Strawberry: Indica Gummy",
@@ -1567,7 +1567,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1773076120_7a2853e0-3af7-4e7e-9edc-76d4088b722a.jpg?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "bca06f9118e3": {
       "name": "Marionberry - Mellow Gummy",
@@ -1588,7 +1588,7 @@
       "image": "",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "296d27d82e8f": {
       "name": "Aurora Borealis Beary Bliss Gummy",
@@ -1609,7 +1609,7 @@
       "image": "",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "92bc0156e933": {
       "name": "Snooze Beary HIGHBERNATE Gummy",
@@ -1630,7 +1630,7 @@
       "image": "",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "90aff81c83ae": {
       "name": "Huckleberry - Playful Gummy",
@@ -1651,7 +1651,7 @@
       "image": "",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "5b2f01be8385": {
       "name": "Sky High Watermelon Gummy",
@@ -1672,7 +1672,7 @@
       "image": "",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "77612c34aeab": {
       "name": "Boundary Waters Bluebeary Gummy",
@@ -1693,7 +1693,7 @@
       "image": "",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "2f0dc2757e0b": {
       "name": "La Cegua",
@@ -1714,7 +1714,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779044081_6845a45a-ad2d-494d-9f90-91addc5a3fe5.png?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "f3255128a804": {
       "name": "Caramel Apple Alien Abduction Gummy",
@@ -1735,7 +1735,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1773076321_dc42c21d-9ca3-42ad-9cd5-dc9a39869876.webp?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "1b4e58402320": {
       "name": "Early Lemon Berry",
@@ -1756,7 +1756,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779044042_5f078370-a9c0-4760-aaf4-210ff000abd0.png?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "fcc51738fffd": {
       "name": "Gelato 45",
@@ -1777,7 +1777,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779114569_497c70f5-9901-4f96-a16e-d251d3ee1792.jpg?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "b6f8c0b6e0de": {
       "name": "Pomegranate - Restore Gummy",
@@ -1798,7 +1798,7 @@
       "image": "",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "589d46d8d370": {
       "name": "Purple Milk",
@@ -1819,7 +1819,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779280279_da578528-38f6-4506-95a5-aaab6013c968.png?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     },
     "d4428615fe8d": {
       "name": "Black Cherry Fizz Disposable Vape",
@@ -1837,10 +1837,10 @@
       "price": "",
       "price_tiers": {},
       "in_stock": true,
-      "image": "",
+      "image": "https://media-prime.sweedpos.com/store/prime/1779415518_23b77c03-5ee9-4925-9eff-c61daa998410.png?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-21T19:50:02.365840-06:00"
+      "last_seen": "2026-05-22T12:34:40.252589-06:00"
     }
   }
 }
