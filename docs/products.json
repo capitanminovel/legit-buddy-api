@@ -765,7 +765,7 @@
       "weight": "",
       "price": "",
       "price_tiers": {},
-      "in_stock": true,
+      "in_stock": false,
       "image": "https://media-prime.sweedpos.com/store/prime/1773950240_1b7e8aeb-89f0-48e1-9098-3dc84a3a60e6.webp?width=384",
       "description": "",
       "first_seen": "2026-05-21T19:32:33.653506-06:00",
