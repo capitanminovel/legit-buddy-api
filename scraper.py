@@ -255,14 +255,19 @@ def try_sweed_api() -> list[dict]:
     for url in endpoints:
         try:
             r = session.get(url, timeout=12)
+            log(f"  Sweed API {r.status_code}: {url}")
             if r.status_code == 200:
                 data = r.json()
+                # Save raw response for inspection
+                _save_debug(url, data)
                 found = find_products(data)
                 if found:
                     log(f"Sweed API ({url}): {len(found)} products")
                     return found
-        except Exception:
-            pass
+                else:
+                    log(f"  → 200 but find_products found nothing. Top keys: {list(data.keys()) if isinstance(data, dict) else type(data).__name__}")
+        except Exception as e:
+            log(f"  Sweed API error {url}: {e}")
     return []
 
 
@@ -345,10 +350,16 @@ def try_algolia(page_html: str = "") -> list[dict]:
                                    "Content-Type": "application/json"},
                           timeout=15)
         data  = r.json()
+        _save_debug(url, data)
         found = find_products(data)
         if found:
             log(f"Algolia: {len(found)} products")
+            if found:
+                sample = found[0]
+                log(f"  Sample fields: {[k for k,v in sample.items() if v]}")
             return found
+        else:
+            log(f"  Algolia 200 but no products found. Top keys: {list(data.keys()) if isinstance(data, dict) else type(data).__name__}")
     except Exception as e:
         log(f"Algolia query failed: {e}")
     return []
@@ -356,7 +367,16 @@ def try_algolia(page_html: str = "") -> list[dict]:
 
 # ── Sweed per-product detail enrichment ──────────────────────────────────────
 
-DEBUG_FILE = Path(__file__).parent / "docs" / "sweed_raw.json"
+DEBUG_FILE  = Path(__file__).parent / "docs" / "sweed_raw.json"
+_debug_blobs: list = []
+
+def _save_debug(url: str, data):
+    """Accumulate raw API responses; flush to DEBUG_FILE at end of run."""
+    _debug_blobs.append({"url": url, "data": data})
+    try:
+        DEBUG_FILE.write_text(json.dumps(_debug_blobs, indent=2, default=str))
+    except Exception:
+        pass
 
 def sweed_product_id(image_url: str) -> str:
     """Extract numeric Sweed product ID from CDN image URL."""
@@ -582,12 +602,9 @@ def try_playwright() -> list[dict]:
         # Save largest captured JSON blobs for field inspection
         if captured:
             captured.sort(key=lambda x: len(str(x[1])), reverse=True)
-            debug_blobs = [{"url": u, "data": d} for u, d in captured[:5]]
-            try:
-                DEBUG_FILE.write_text(json.dumps(debug_blobs, indent=2, default=str))
-                log(f"Raw API responses saved → {DEBUG_FILE}")
-            except Exception:
-                pass
+            for u, d in captured[:5]:
+                _save_debug(u, d)
+            log(f"Raw API responses saved → {DEBUG_FILE}")
 
         browser.close()
 
