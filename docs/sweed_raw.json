@@ -3,7 +3,7 @@
     "url": "https://shop.mnlegitcannabis.com/_api/Products/GetProductList?page=1&error=400",
     "data": {
       "status": 400,
-      "body": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"storeId\":[\"The storeId field is required.\"]},\"traceId\":\"00-935119b5696ad4015e4dfcd8b739c582-cda2c608144a3fcb-01\"}"
+      "body": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"storeId\":[\"The storeId field is required.\"]},\"traceId\":\"00-2428f2e11ef7fa9dae5bc207a4a27220-86ffdf9311f83e27-01\"}"
     }
   },
   {
