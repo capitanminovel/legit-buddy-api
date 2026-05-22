@@ -257,8 +257,10 @@ def try_sweed_api() -> list[dict]:
             r = session.get(url, timeout=12)
             log(f"  Sweed API {r.status_code}: {url}")
             if r.status_code == 200:
-                data = r.json()
-                # Save raw response for inspection
+                try:
+                    data = r.json()
+                except Exception:
+                    data = {"raw_text": r.text[:500]}
                 _save_debug(url, data)
                 found = find_products(data)
                 if found:
@@ -592,19 +594,56 @@ def try_playwright() -> list[dict]:
                 if new:
                     log(f"    +{new} new products from {url}")
 
-        # ── Pass 3: try Algolia from rendered source ───────────────────────────
+        # ── Pass 3: __NEXT_DATA__ embedded JSON (Next.js SSR) ─────────────────
         if not all_products:
-            html  = page.content()
+            html = page.content()
+            m = re.search(r'<script id="__NEXT_DATA__"[^>]*>(.+?)</script>', html, re.DOTALL)
+            if m:
+                try:
+                    next_data = json.loads(m.group(1))
+                    _save_debug("__NEXT_DATA__", next_data)
+                    found = find_products(next_data)
+                    if found:
+                        log(f"__NEXT_DATA__: {len(found)} products")
+                        for p in found:
+                            all_products[product_key(p)] = p
+                except Exception as e:
+                    log(f"__NEXT_DATA__ parse error: {e}")
+
+        # ── Pass 4: window.__STORE_DATA__ / hydration globals ─────────────────
+        if not all_products:
+            for var in ("__NEXT_DATA__", "__STORE_STATE__", "__INITIAL_STATE__",
+                        "__PRELOADED_STATE__", "__APP_DATA__"):
+                try:
+                    val = page.evaluate(f"() => window.{var}")
+                    if val:
+                        _save_debug(f"window.{var}", val)
+                        found = find_products(val)
+                        if found:
+                            log(f"window.{var}: {len(found)} products")
+                            for p in found:
+                                all_products[product_key(p)] = p
+                            break
+                except Exception:
+                    pass
+
+        # ── Pass 5: try Algolia from rendered source ───────────────────────────
+        if not all_products:
             found = try_algolia(html)
             for p in found:
                 all_products[product_key(p)] = p
 
-        # Save largest captured JSON blobs for field inspection
-        if captured:
-            captured.sort(key=lambda x: len(str(x[1])), reverse=True)
-            for u, d in captured[:5]:
-                _save_debug(u, d)
-            log(f"Raw API responses saved → {DEBUG_FILE}")
+        # Save largest captured JSON blobs + page HTML snippet for inspection
+        captured.sort(key=lambda x: len(str(x[1])), reverse=True)
+        for u, d in captured[:5]:
+            _save_debug(u, d)
+        # Also save a snippet of the raw page HTML for selector debugging
+        try:
+            snippet = page.content()[:8000]
+            _save_debug("__PAGE_HTML_SNIPPET__", {"html": snippet})
+        except Exception:
+            pass
+        log(f"Raw API responses saved → {DEBUG_FILE}  ({len(captured)} blobs captured)")
 
         browser.close()
 
