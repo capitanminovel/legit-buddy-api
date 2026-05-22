@@ -1,5 +1,12 @@
 [
   {
+    "url": "https://shop.mnlegitcannabis.com/_api/Products/GetProductList?page=1&error=400",
+    "data": {
+      "status": 400,
+      "body": "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"storeId\":[\"The storeId field is required.\"]},\"traceId\":\"00-819e25b9474888168561501d9d0c47df-8d6bed310f4e7ab1-01\"}"
+    }
+  },
+  {
     "url": "https://shop.mnlegitcannabis.com/south-metro/api/menu",
     "data": {
       "raw_text": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=3, interactive-widget=resizes-content\"/><link rel=\"preload\" as=\"image\" href=\"https://media-prime.sweedpos.com/store/prime/1769915040_5e90938a-6a3f-488a-b435-0f5800778a3d.png\"/><link rel=\"preload\" as=\"image\" href=\"https://media-prime.sweedpos.com/store/prime/1777923983_e9646ae8-6186-4f0f-aa6f-ecd2df9b9772.avif?width=384\"/><link rel=\"preload"
