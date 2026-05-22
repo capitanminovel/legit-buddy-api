@@ -115,6 +115,22 @@ def build():
     for _, p in all_p:
         cats[p.get("category") or "Other"].append(p)
 
+    # New arrivals (within NEW_DAYS)
+    new_items = [p for _, p in all_p if age_days(p.get("first_seen","")) <= NEW_DAYS]
+
+    new_section = ""
+    if new_items:
+        new_cards = "".join(build_card(p) for p in new_items)
+        new_section = f"""
+    <section class="section new-arrivals-section" data-cat="all">
+      <div class="new-arrivals-head">
+        <span class="new-arrivals-title">✨ New in the Last 3 Days</span>
+        <span class="new-arrivals-count">{len(new_items)} product{"s" if len(new_items)!=1 else ""}</span>
+      </div>
+      <div class="grid">{new_cards}</div>
+    </section>
+    <div class="section-divider" data-cat="all"></div>"""
+
     # Tab buttons
     tab_btns = '<button class="tab on" data-cat="all" onclick="filterCat(this)">All Products</button>\n'
     tab_btns += "\n".join(
@@ -122,7 +138,7 @@ def build():
         for c in sorted(cats)
     )
 
-    # Sections
+    # Category sections
     sections = ""
     for cat in sorted(cats):
         items   = cats[cat]
@@ -204,6 +220,11 @@ def build():
     .tier{{font-size:.7rem;font-weight:500;border:1px solid var(--border);border-radius:5px;padding:3px 7px;color:var(--text);background:#fafafa}}
     .tier span{{display:block;font-size:.62rem;color:var(--muted)}}
     footer{{text-align:center;padding:20px;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);background:var(--white)}}
+    .new-arrivals-section{{background:linear-gradient(135deg,#f0fdf4,#ecfdf5);border:2px solid #86efac;border-radius:12px;padding:20px;margin-bottom:32px}}
+    .new-arrivals-head{{display:flex;align-items:baseline;gap:10px;margin-bottom:18px}}
+    .new-arrivals-title{{font-size:1.15rem;font-weight:700;color:var(--new)}}
+    .new-arrivals-count{{font-size:.8rem;color:var(--muted)}}
+    .section-divider{{height:2px;background:linear-gradient(90deg,var(--brand-lt),transparent);margin:0 0 36px;border-radius:1px}}
     .hidden{{display:none!important}}
     @media(max-width:640px){{
       header{{padding:0 14px}}.tabs{{padding:0 14px}}main{{padding:18px 14px 50px}}.legend{{padding:10px 14px}}
@@ -234,7 +255,7 @@ def build():
   <div class="legend-item"><span class="recent-badge">New (2d)</span> Within 3 days</div>
 </div>
 <div class="tabs-wrap"><div class="tabs" id="tabs">{tab_btns}</div></div>
-<main>{sections}</main>
+<main>{new_section}{sections}</main>
 <footer>Auto-updated daily at 4:30 PM CST &nbsp;·&nbsp; MN Legit Cannabis South Metro</footer>
 <script>
 function filterCat(btn) {{
