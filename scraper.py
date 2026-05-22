@@ -316,9 +316,19 @@ def normalize_sweed_product(raw: dict) -> dict:
 def try_sweed_list_api() -> list[dict]:
     """Call /_api/Products/GetProductList directly — returns brand, strain, THC, prices."""
     base_url = f"https://{STORE_DOMAIN}/_api/Products/GetProductList"
-    session  = requests.Session()
+    STORE_ID  = 434  # from /_api/Store/GetStoreInfo
+
+    session = requests.Session()
+    session.headers.update({**HEADERS, "Accept": "application/json, text/html, */*"})
+
+    # Warm up session — site requires cookies set during initial page load
+    try:
+        warm = session.get(MENU_URL, timeout=15)
+        log(f"  Sweed session warmup: HTTP {warm.status_code} cookies={list(session.cookies.keys())}")
+    except Exception as e:
+        log(f"  Sweed session warmup failed: {e}")
+
     session.headers.update({
-        **HEADERS,
         "Accept": "application/json",
         "Content-Type": "application/json",
         "Referer": MENU_URL,
@@ -328,15 +338,15 @@ def try_sweed_list_api() -> list[dict]:
     all_products: list[dict] = []
     page = 1
     PAGE_SIZE = 100
-    STORE_ID  = 434  # from /_api/Store/GetStoreInfo
 
     while True:
-        params = {"storeId": STORE_ID, "page": page, "pageSize": PAGE_SIZE}
+        payload = {"storeId": STORE_ID, "page": page, "pageSize": PAGE_SIZE}
         try:
-            r = session.get(base_url, params=params, timeout=15)
+            # Try GET first (query string), then POST (JSON body)
+            r = session.get(base_url, params=payload, timeout=15)
             log(f"  Sweed List API GET page {page}: HTTP {r.status_code}")
             if r.status_code not in (200, 201):
-                r = session.post(base_url, json=params, timeout=15)
+                r = session.post(base_url, json=payload, timeout=15)
                 log(f"  Sweed List API POST page {page}: HTTP {r.status_code}")
             if r.status_code not in (200, 201):
                 _save_debug(f"{base_url}?page={page}&error={r.status_code}", {"status": r.status_code, "body": r.text[:500]})
@@ -345,10 +355,9 @@ def try_sweed_list_api() -> list[dict]:
             _save_debug(f"{base_url}?page={page}", data)
             items = data.get("list") or []
             total = data.get("total") or 0
-            log(f"  Sweed List API page {page}: {len(items)} items (total={total}), keys={list(data.keys())[:8]}")
+            log(f"  Sweed List API page {page}: {len(items)} items (total={total})")
             if not items:
                 break
-            log(f"  Sweed List API page {page}: {len(items)} items (total={total})")
             all_products.extend(normalize_sweed_product(i) for i in items)
             if len(all_products) >= total or len(items) < PAGE_SIZE:
                 break
