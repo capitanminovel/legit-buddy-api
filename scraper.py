@@ -1,11 +1,11 @@
 """
-Menu scraper for MN Legit Cannabis – South Metro (Jane / iHeartJane platform).
+Menu scraper for MN Legit Cannabis – South Metro (Sweed POS platform).
 
 Strategy (in order):
-  1. Jane REST API  – direct call to api.iheartjane.com using store slug
+  1. Sweed API      – direct call to known Sweed/Prime API endpoints
   2. Algolia API    – extract app/key from page JS, query index directly
   3. Playwright     – full browser, intercept every XHR/fetch response for JSON products
-  4. DOM fallback   – parse visible product card HTML
+  4. DOM fallback   – parse visible card HTML, infer category/strain from name
 """
 
 import hashlib
@@ -18,8 +18,11 @@ from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
 
-STORE_SLUG = "south-metro"
-MENU_URL   = f"https://shop.mnlegitcannabis.com/{STORE_SLUG}/menu"
+STORE_SLUG   = "south-metro"
+STORE_DOMAIN = "shop.mnlegitcannabis.com"
+MENU_URL     = f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu"
+# Sweed POS CDN prefix confirms the platform
+SWEED_CDN    = "media-prime.sweedpos.com"
 DATA_FILE  = Path(__file__).parent / "docs" / "products.json"
 CST        = timezone(timedelta(hours=-6))
 
@@ -163,32 +166,78 @@ def find_products(data, depth=0) -> list[dict]:
     return []
 
 
-# ── Strategy 1: Jane REST API ─────────────────────────────────────────────────
+# ── Strategy 1: Sweed POS API ─────────────────────────────────────────────────
 
-def try_jane_api() -> list[dict]:
-    """Hit known Jane API endpoints directly."""
+def try_sweed_api() -> list[dict]:
+    """
+    Hit known Sweed POS / Prime API endpoints.
+    Image CDN = media-prime.sweedpos.com → API likely at prime.sweedpos.com
+    """
     endpoints = [
-        f"https://api.iheartjane.com/v1/stores/{STORE_SLUG}/menu",
-        f"https://api.iheartjane.com/v2/stores/{STORE_SLUG}/menu",
-        f"https://api.iheartjane.com/v1/stores/{STORE_SLUG}/products",
-        f"https://shop.mnlegitcannabis.com/api/menu",
-        f"https://shop.mnlegitcannabis.com/api/products",
-        f"https://shop.mnlegitcannabis.com/{STORE_SLUG}/api/menu",
+        # Sweed Prime storefront API patterns
+        f"https://prime.sweedpos.com/api/stores/{STORE_SLUG}/products",
+        f"https://prime.sweedpos.com/api/stores/{STORE_SLUG}/menu",
+        f"https://api.sweedpos.com/v1/stores/{STORE_SLUG}/products",
+        f"https://api.sweedpos.com/v1/menu/{STORE_SLUG}",
+        # Store-hosted endpoints
+        f"https://{STORE_DOMAIN}/api/menu",
+        f"https://{STORE_DOMAIN}/api/products",
+        f"https://{STORE_DOMAIN}/{STORE_SLUG}/api/products",
+        f"https://{STORE_DOMAIN}/{STORE_SLUG}/api/menu",
+        # Common SPA data endpoints
+        f"https://{STORE_DOMAIN}/api/v1/menu",
+        f"https://{STORE_DOMAIN}/api/v2/menu",
     ]
     session = requests.Session()
     session.headers.update({**HEADERS, "Accept": "application/json"})
     for url in endpoints:
         try:
-            r = session.get(url, timeout=15)
+            r = session.get(url, timeout=12)
             if r.status_code == 200:
                 data = r.json()
                 found = find_products(data)
                 if found:
-                    log(f"Jane API ({url}): {len(found)} products")
+                    log(f"Sweed API ({url}): {len(found)} products")
                     return found
         except Exception:
             pass
     return []
+
+
+# ── Category / strain inference (fallback when API fields are missing) ────────
+
+def _guess_category(name: str) -> str:
+    n = name.lower()
+    if any(x in n for x in ("pre-roll","preroll","pre roll")): return "Pre-Roll"
+    if any(x in n for x in ("disposable",)):                   return "Vapes"
+    if any(x in n for x in ("cartridge","cart","vape")):       return "Vapes"
+    if any(x in n for x in ("battery","spinner","pipe","grinder","accessory")): return "Accessories"
+    if any(x in n for x in ("gummy","gummies","edible","chocolate","cookie","brownie","beverage","drink")): return "Edibles"
+    if any(x in n for x in ("tincture","oil","sublingual")):   return "Tinctures"
+    if any(x in n for x in ("topical","cream","lotion","balm","patch")): return "Topicals"
+    if any(x in n for x in ("concentrate","wax","shatter","badder","rosin","hash","live resin","distillate","sauce")): return "Concentrates"
+    if "flower" in n:                                           return "Flower"
+    return ""
+
+def _guess_strain(name: str) -> str:
+    n = name.lower()
+    if "indica" in n: return "Indica"
+    if "sativa" in n: return "Sativa"
+    if "hybrid" in n: return "Hybrid"
+    if "cbd"    in n: return "CBD"
+    return ""
+
+def _clean_name(name: str) -> str:
+    """Remove trailing category keywords already visible in the category badge."""
+    patterns = [
+        r'\s*[-–]\s*PRE-?ROLL\s*$',
+        r'\s*[-–]\s*FLOWER\s*$',
+        r'\s*\bFlower\b\s*$',
+        r'\s*\bPRE-?ROLL\b\s*$',
+    ]
+    for pat in patterns:
+        name = re.sub(pat, '', name, flags=re.I).strip()
+    return name
 
 
 # ── Strategy 2: Algolia direct query ─────────────────────────────────────────
@@ -352,7 +401,14 @@ def try_playwright() -> list[dict]:
                                       img.get_attribute("data-src") or
                                       img.get_attribute("data-lazy-src") or "")
                     if p.get("name"):
-                        products.append(normalize(p))
+                        raw = normalize(p)
+                        # Fill missing fields from name inference
+                        if not raw["category"]:
+                            raw["category"]    = _guess_category(raw["name"])
+                        if not raw["strain_type"]:
+                            raw["strain_type"] = _guess_strain(raw["name"])
+                        raw["name"] = _clean_name(raw["name"])
+                        products.append(raw)
                 if products:
                     log(f"DOM cards: {len(products)} products")
                     break
@@ -405,10 +461,10 @@ def run():
     log("=" * 56)
     log(f"Scraping {MENU_URL}")
 
-    products = try_jane_api()
+    products = try_sweed_api()
 
     if not products:
-        log("Jane API found nothing — trying Algolia...")
+        log("Sweed API found nothing — trying Algolia...")
         products = try_algolia()
 
     if not products:
