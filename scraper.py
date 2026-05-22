@@ -333,49 +333,98 @@ CARD_SELS = (
     "[class*='MenuCard']", ".menu-item",
 )
 
+# Sweed POS: map href slug prefixes to strain types
+_HREF_STRAIN = {"hybrid": "Hybrid", "indica": "Indica", "sativa": "Sativa",
+                "cbd": "CBD", "cbg": "CBG"}
+
 
 def _dom_scrape_page(page) -> list[dict]:
-    """Extract all product cards visible on the current page."""
+    """Extract all product cards visible on the current Sweed POS page.
+
+    Sweed renders each product as <a id="product-XXXXX" aria-label="Name, Cat. Wt - $Price">.
+    Class names are CSS-module hashes and change on every deploy, so we rely on:
+      - aria-label  → name, category, weight, price
+      - href slug   → category + strain type
+      - inner_text  → THC/CBD percentages via regex
+      - "X by Brand" text pattern → brand name
+    """
     found = []
-    for sel in CARD_SELS:
-        cards = page.query_selector_all(sel)
-        if not cards:
+
+    # Primary: Sweed product link elements
+    cards = page.query_selector_all("[id^='product-']")
+
+    if not cards:
+        # Generic fallback for other platforms
+        for sel in CARD_SELS:
+            cards = page.query_selector_all(sel)
+            if cards:
+                break
+
+    for card in cards:
+        p: dict = {}
+
+        # aria-label="Cap Junky Flower, Flower. 4g - $55.00"
+        aria = card.get_attribute("aria-label") or ""
+        aria_m = re.match(r'^(.+?),\s*(.+?)\.\s*([^\s]+(?:\s+[^\s-][^\s]*)?)\s+-\s+(\$[\d.]+)', aria)
+        if aria_m:
+            p["name"]     = aria_m.group(1).strip()
+            p["category"] = aria_m.group(2).strip()
+            p["weight"]   = aria_m.group(3).strip()
+            p["price"]    = aria_m.group(4).strip()
+
+        # href="/south-metro/menu/flower-5221/hybrid-cap-junky-flower-4g-383073"
+        href = card.get_attribute("href") or ""
+        href_m = re.search(r'/menu/([a-z-]+?)-\d+/([a-z]+)-', href)
+        if href_m:
+            if not p.get("category"):
+                p["category"] = href_m.group(1).replace("-", " ").title()
+            strain_slug = href_m.group(2)
+            if strain_slug in _HREF_STRAIN:
+                p["strain_type"] = _HREF_STRAIN[strain_slug]
+
+        # Full visible text for regex extraction (resilient to class name changes)
+        text = card.inner_text()
+
+        # "THC: 29%"  /  "CBD: 0.08%"
+        thc_m = re.search(r'THC:\s*([\d.]+\s*%)', text)
+        cbd_m = re.search(r'CBD:\s*([\d.]+\s*%)', text)
+        if thc_m: p["thc"] = thc_m.group(1).replace(" ", "")
+        if cbd_m: p["cbd"] = cbd_m.group(1).replace(" ", "")
+
+        # Strain type from visible text if href didn't give it
+        if not p.get("strain_type"):
+            for s in ("Hybrid (Indica)", "Hybrid (Sativa)", "Hybrid", "Indica", "Sativa", "CBD"):
+                if s in text:
+                    p["strain_type"] = s
+                    break
+
+        # "Flower by Campfire Cannabis" → brand = "Campfire Cannabis"
+        brand_m = re.search(r'(?:Flower|Pre-?Roll|Vapes?|Edible|Concentrate)\s+by\s+([^\n]+)', text)
+        if brand_m:
+            p["brand"] = brand_m.group(1).strip()
+
+        # Name from h2 if aria-label parse failed
+        if not p.get("name"):
+            el = card.query_selector("h2")
+            if el: p["name"] = el.inner_text().strip()
+
+        # Image
+        img = card.query_selector("img")
+        if img:
+            p["image"] = (img.get_attribute("src") or
+                          img.get_attribute("data-src") or
+                          img.get_attribute("data-lazy-src") or "")
+
+        if not p.get("name"):
             continue
-        for card in cards:
-            p: dict = {}
-            for ns in ["h2", "h3", "[class*='name']", "[class*='title']"]:
-                el = card.query_selector(ns)
-                if el: p["name"] = el.inner_text().strip(); break
-            for bs in ["[class*='brand']"]:
-                el = card.query_selector(bs)
-                if el: p["brand"] = el.inner_text().strip(); break
-            for cs in ["[class*='strain']", "[class*='kind']", "[class*='category']"]:
-                el = card.query_selector(cs)
-                if el: p["category"] = el.inner_text().strip(); break
-            for ps in ["[class*='price']"]:
-                el = card.query_selector(ps)
-                if el: p["price"] = el.inner_text().strip(); break
-            for ts in ["[class*='thc']", "[class*='potency']"]:
-                el = card.query_selector(ts)
-                if el: p["thc"] = el.inner_text().strip(); break
-            for cs2 in ["[class*='cbd']"]:
-                el = card.query_selector(cs2)
-                if el: p["cbd"] = el.inner_text().strip(); break
-            img = card.query_selector("img")
-            if img:
-                p["image"] = (img.get_attribute("src") or
-                              img.get_attribute("data-src") or
-                              img.get_attribute("data-lazy-src") or "")
-            if p.get("name"):
-                raw = normalize(p)
-                if not raw["category"]:    raw["category"]    = _guess_category(raw["name"])
-                if not raw["strain_type"]: raw["strain_type"] = _guess_strain(raw["name"])
-                raw["name"] = _clean_name(raw["name"])
-                # Only keep target categories
-                if raw["category"].lower() in TARGET_CATS:
-                    found.append(raw)
-        if found:
-            break
+
+        raw = normalize(p)
+        if not raw["category"]:    raw["category"]    = _guess_category(raw["name"])
+        if not raw["strain_type"]: raw["strain_type"] = _guess_strain(raw["name"])
+        raw["name"] = _clean_name(raw["name"])
+        if raw["category"].lower() in TARGET_CATS:
+            found.append(raw)
+
     return found
 
 
