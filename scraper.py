@@ -314,7 +314,7 @@ def normalize_sweed_product(raw: dict) -> dict:
 
 
 def try_sweed_list_api() -> list[dict]:
-    """Call /_api/Products/GetProductList with category filters — returns brand, strain, THC, prices."""
+    """Call /_api/Products/GetProductList directly — returns brand, strain, THC, prices."""
     base_url = f"https://{STORE_DOMAIN}/_api/Products/GetProductList"
     session  = requests.Session()
     session.headers.update({
@@ -326,54 +326,36 @@ def try_sweed_list_api() -> list[dict]:
     })
 
     all_products: list[dict] = []
+    page = 1
     PAGE_SIZE = 100
 
-    # Try each target category individually first, then fall back to fetching all
-    cat_sets: list[tuple[str, list]] = [
-        ("filtered", TARGET_CAT_IDS),  # all 4 categories in one call
-        ("all",      []),               # fallback: no filter
-    ]
-
-    for label, cat_ids in cat_sets:
-        all_products = []
-        page = 1
-        success = False
-
-        while True:
-            # Build payload — category filter mirrors the URL pattern ?filters={"category":[5221,...]}
-            payload: dict = {"page": page, "pageSize": PAGE_SIZE}
-            if cat_ids:
-                payload["filters"] = {"category": cat_ids}
-
-            try:
-                # Sweed seems to accept POST with JSON body
-                r = session.post(base_url, json=payload, timeout=15)
-                if r.status_code not in (200, 201):
-                    r = session.get(base_url, params={"page": page, "pageSize": PAGE_SIZE}, timeout=15)
-                if r.status_code not in (200, 201):
-                    log(f"  Sweed List API [{label}] page {page}: HTTP {r.status_code}")
-                    break
-                data  = r.json()
-                _save_debug(f"{base_url}?page={page}&label={label}", data)
-                items = data.get("list") or []
-                total = data.get("total") or 0
-                if not items:
-                    break
-                log(f"  Sweed List API [{label}] page {page}: {len(items)} items (total={total})")
-                all_products.extend(normalize_sweed_product(i) for i in items)
-                success = True
-                if len(all_products) >= total or len(items) < PAGE_SIZE:
-                    break
-                page += 1
-            except Exception as e:
-                log(f"  Sweed List API [{label}] error page {page}: {e}")
+    while True:
+        params = {"page": page, "pageSize": PAGE_SIZE}
+        try:
+            r = session.get(base_url, params=params, timeout=15)
+            if r.status_code not in (200, 201):
+                r = session.post(base_url, json=params, timeout=15)
+            if r.status_code not in (200, 201):
+                log(f"  Sweed List API page {page}: HTTP {r.status_code}")
                 break
+            data  = r.json()
+            _save_debug(f"{base_url}?page={page}", data)
+            items = data.get("list") or []
+            total = data.get("total") or 0
+            if not items:
+                break
+            log(f"  Sweed List API page {page}: {len(items)} items (total={total})")
+            all_products.extend(normalize_sweed_product(i) for i in items)
+            if len(all_products) >= total or len(items) < PAGE_SIZE:
+                break
+            page += 1
+        except Exception as e:
+            log(f"  Sweed List API error page {page}: {e}")
+            break
 
-        if success and all_products:
-            log(f"Sweed List API [{label}] total: {len(all_products)} products")
-            return all_products
-
-    return []
+    if all_products:
+        log(f"Sweed List API total: {len(all_products)} products")
+    return all_products
 
 
 # ── Find product arrays buried in any JSON blob ───────────────────────────────
