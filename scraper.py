@@ -99,37 +99,66 @@ def _price(v) -> str:
     return str(v).strip()
 
 def _img(raw: dict) -> str:
-    """Extract best image URL from a Jane product dict."""
-    # Jane stores images in photos[].url or photos[].original_url
-    photos = raw.get("photos") or []
+    for key in ("image_url", "image", "photo", "thumbnail", "featured_image", "imageUrl", "thumbnailUrl"):
+        v = raw.get(key)
+        if v: return _str(v)
+    photos = raw.get("photos") or raw.get("images") or []
     if isinstance(photos, list) and photos:
         p0 = photos[0]
         if isinstance(p0, dict):
             return _str(p0.get("original_url") or p0.get("url") or p0.get("thumbnail_url") or "")
         return _str(p0)
-    # Fallback fields
-    for key in ("image_url", "image", "photo", "thumbnail", "featured_image"):
-        v = raw.get(key)
-        if v: return _str(v)
     return ""
 
+def _nested_cannabinoid(raw: dict, key: str) -> str:
+    """Extract from nested structures like cannabinoids:{thc:{value:22.4}} or lab_results:{thc:'22.4%'}."""
+    for parent in ("cannabinoids", "lab_results", "test_results", "potency"):
+        obj = raw.get(parent)
+        if isinstance(obj, dict):
+            v = obj.get(key) or obj.get(key.upper())
+            if v:
+                if isinstance(v, dict):
+                    return str(v.get("value") or v.get("amount") or v.get("percentage") or "")
+                return str(v)
+    return ""
 
 def normalize(raw: dict) -> dict:
-    name     = _str(raw.get("name") or raw.get("title") or "Unknown")
-    brand    = _str(raw.get("brand") or raw.get("brand_name") or raw.get("brandName") or "")
-    category = _str(raw.get("category") or raw.get("kind") or raw.get("type") or raw.get("root_type") or "")
+    name     = _str(raw.get("name") or raw.get("title") or raw.get("product_name") or "Unknown")
+    brand    = _str(raw.get("brand") or raw.get("brand_name") or raw.get("brandName")
+                   or raw.get("manufacturer") or raw.get("producer") or raw.get("vendor")
+                   or raw.get("supplier") or "")
+    category = _str(raw.get("category") or raw.get("category_name") or raw.get("categoryName")
+                   or raw.get("product_type") or raw.get("productType")
+                   or raw.get("root_type") or raw.get("type") or "")
 
-    # strain_type: Jane uses "strain_type" key
-    strain = _str(raw.get("strain_type") or raw.get("strainType") or raw.get("lineage") or "").title()
-    _map = {"Indica":"Indica","Sativa":"Sativa","Hybrid":"Hybrid",
-            "Hybrid Indica":"Hybrid (Indica)","Hybrid Sativa":"Hybrid (Sativa)",
-            "Cbd":"CBD","Cbg":"CBG","Not Applicable":"","N/A":"","":""}
+    # strain_type: try every known field name across Sweed, Jane, Leafly, etc.
+    strain = _str(
+        raw.get("strain_type") or raw.get("strainType")
+        or raw.get("cannabis_type") or raw.get("cannabisType")
+        or raw.get("lineage") or raw.get("lineage_type") or raw.get("lineageType")
+        or raw.get("kind") or raw.get("classification")
+        or raw.get("type_name") or raw.get("typeName") or ""
+    ).title()
+    _map = {
+        "Indica":"Indica","Sativa":"Sativa","Hybrid":"Hybrid",
+        "Hybrid Indica":"Hybrid (Indica)","Hybrid Sativa":"Hybrid (Sativa)",
+        "Indica-Dominant Hybrid":"Hybrid (Indica)","Sativa-Dominant Hybrid":"Hybrid (Sativa)",
+        "Cbd":"CBD","Cbg":"CBG","Not Applicable":"","N/A":"","":"",
+    }
     strain = _map.get(strain, strain)
 
-    thc = _pct(raw.get("percent_thc") or raw.get("thc") or raw.get("thc_content") or raw.get("thcContent") or "")
-    cbd = _pct(raw.get("percent_cbd") or raw.get("cbd") or raw.get("cbd_content") or raw.get("cbdContent") or "")
-    cbg = _pct(raw.get("percent_cbg") or raw.get("cbg") or "")
-    cbn = _pct(raw.get("percent_cbn") or raw.get("cbn") or "")
+    thc = _pct(
+        raw.get("percent_thc") or raw.get("thc") or raw.get("thc_content") or raw.get("thcContent")
+        or raw.get("thc_percentage") or raw.get("thcPercentage") or raw.get("thc_percent")
+        or _nested_cannabinoid(raw, "thc") or ""
+    )
+    cbd = _pct(
+        raw.get("percent_cbd") or raw.get("cbd") or raw.get("cbd_content") or raw.get("cbdContent")
+        or raw.get("cbd_percentage") or raw.get("cbdPercentage")
+        or _nested_cannabinoid(raw, "cbd") or ""
+    )
+    cbg = _pct(raw.get("percent_cbg") or raw.get("cbg") or _nested_cannabinoid(raw, "cbg") or "")
+    cbn = _pct(raw.get("percent_cbn") or raw.get("cbn") or _nested_cannabinoid(raw, "cbn") or "")
 
     # Terpenes
     t_raw = raw.get("terpenes") or raw.get("dominant_terpene") or []
@@ -325,6 +354,66 @@ def try_algolia(page_html: str = "") -> list[dict]:
     return []
 
 
+# ── Sweed per-product detail enrichment ──────────────────────────────────────
+
+DEBUG_FILE = Path(__file__).parent / "docs" / "sweed_raw.json"
+
+def sweed_product_id(image_url: str) -> str:
+    """Extract numeric Sweed product ID from CDN image URL."""
+    m = re.search(r'/(\d+)_[a-f0-9-]+\.(png|jpg|avif|webp)', image_url or "")
+    return m.group(1) if m else ""
+
+def try_sweed_detail(pid: str, session: requests.Session) -> dict:
+    """Try to fetch full product record from Sweed's storefront API using its numeric ID."""
+    endpoints = [
+        f"https://{STORE_DOMAIN}/api/products/{pid}",
+        f"https://{STORE_DOMAIN}/{STORE_SLUG}/api/products/{pid}",
+        f"https://{STORE_DOMAIN}/api/menu-products/{pid}",
+        f"https://prime.sweedpos.com/api/v1/products/{pid}",
+        f"https://prime.sweedpos.com/api/products/{pid}",
+        f"https://api.sweedpos.com/v1/products/{pid}",
+        f"https://api.sweedpos.com/v2/products/{pid}",
+    ]
+    for url in endpoints:
+        try:
+            r = session.get(url, timeout=8)
+            if r.status_code == 200:
+                data = r.json()
+                if isinstance(data, dict) and (data.get("name") or data.get("id")):
+                    log(f"    Sweed detail API hit: {url}")
+                    return data
+        except Exception:
+            pass
+    return {}
+
+def enrich_products(products: list[dict]) -> list[dict]:
+    """Attempt to enrich each product with full details from Sweed's per-product API."""
+    session = requests.Session()
+    session.headers.update({**HEADERS, "Accept": "application/json"})
+    enriched_count = 0
+    result = []
+    for p in products:
+        pid = sweed_product_id(p.get("image", ""))
+        if pid:
+            raw = try_sweed_detail(pid, session)
+            if raw:
+                merged = normalize(raw)
+                # Preserve fields we already have
+                merged["image"]      = p.get("image") or merged.get("image", "")
+                merged["first_seen"] = p.get("first_seen", "")
+                merged["last_seen"]  = p.get("last_seen", "")
+                merged["in_stock"]   = p.get("in_stock", True)
+                if not merged.get("category"):
+                    merged["category"] = p.get("category", "")
+                enriched_count += 1
+                result.append(merged)
+                continue
+        result.append(p)
+    if enriched_count:
+        log(f"Enriched {enriched_count}/{len(products)} products via Sweed detail API")
+    return result
+
+
 # ── Strategy 3: Playwright — scrapes every category page + paginates ─────────
 
 CARD_SELS = (
@@ -349,18 +438,28 @@ def _dom_scrape_page(page) -> list[dict]:
             for bs in ["[class*='brand']"]:
                 el = card.query_selector(bs)
                 if el: p["brand"] = el.inner_text().strip(); break
-            for cs in ["[class*='strain']", "[class*='kind']", "[class*='category']"]:
+            for ss in ["[class*='strain']", "[class*='lineage']", "[class*='cannabis-type']",
+                       "[class*='cannabisType']", "[data-strain]", "[data-lineage]"]:
+                el = card.query_selector(ss)
+                if el:
+                    p["strain_type"] = el.inner_text().strip()
+                    break
+            for cs in ["[class*='category']", "[class*='product-type']", "[data-category]"]:
                 el = card.query_selector(cs)
                 if el: p["category"] = el.inner_text().strip(); break
-            for ps in ["[class*='price']"]:
+            for ps in ["[class*='price']", "[class*='Price']", "[data-price]"]:
                 el = card.query_selector(ps)
                 if el: p["price"] = el.inner_text().strip(); break
-            for ts in ["[class*='thc']", "[class*='potency']"]:
+            for ts in ["[class*='thc']", "[class*='THC']", "[class*='potency']",
+                       "[class*='Potency']", "[data-thc]"]:
                 el = card.query_selector(ts)
                 if el: p["thc"] = el.inner_text().strip(); break
-            for cs2 in ["[class*='cbd']"]:
+            for cs2 in ["[class*='cbd']", "[class*='CBD']", "[data-cbd]"]:
                 el = card.query_selector(cs2)
                 if el: p["cbd"] = el.inner_text().strip(); break
+            for ws in ["[class*='weight']", "[class*='size']", "[class*='net-weight']", "[data-weight]"]:
+                el = card.query_selector(ws)
+                if el: p["weight"] = el.inner_text().strip(); break
             img = card.query_selector("img")
             if img:
                 p["image"] = (img.get_attribute("src") or
@@ -480,6 +579,16 @@ def try_playwright() -> list[dict]:
             for p in found:
                 all_products[product_key(p)] = p
 
+        # Save largest captured JSON blobs for field inspection
+        if captured:
+            captured.sort(key=lambda x: len(str(x[1])), reverse=True)
+            debug_blobs = [{"url": u, "data": d} for u, d in captured[:5]]
+            try:
+                DEBUG_FILE.write_text(json.dumps(debug_blobs, indent=2, default=str))
+                log(f"Raw API responses saved → {DEBUG_FILE}")
+            except Exception:
+                pass
+
         browser.close()
 
     products = list(all_products.values())
@@ -550,6 +659,10 @@ def run():
     # Keep only the 4 target categories
     products = [p for p in products if p.get("category","").lower() in TARGET_CATS]
     log(f"After category filter: {len(products)} products")
+
+    # Attempt per-product enrichment via Sweed detail API
+    log("Trying per-product detail enrichment...")
+    products = enrich_products(products)
 
     db = load_db()
     db = merge(db, products)
