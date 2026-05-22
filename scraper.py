@@ -328,9 +328,10 @@ def try_sweed_list_api() -> list[dict]:
     all_products: list[dict] = []
     page = 1
     PAGE_SIZE = 100
+    STORE_ID  = 434  # from /_api/Store/GetStoreInfo
 
     while True:
-        params = {"page": page, "pageSize": PAGE_SIZE}
+        params = {"storeId": STORE_ID, "page": page, "pageSize": PAGE_SIZE}
         try:
             r = session.get(base_url, params=params, timeout=15)
             log(f"  Sweed List API GET page {page}: HTTP {r.status_code}")
