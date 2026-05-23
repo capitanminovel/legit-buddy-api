@@ -378,51 +378,67 @@ def fetch_all_sweed_via_browser(page) -> list[dict]:
     import json as _json
 
     def _browser_post(page_size: int, page_num: int) -> list[dict]:
-        body = _json.dumps(_sweed_post_body(page_num, page_size))
+        body_str = _json.dumps(_sweed_post_body(page_num, page_size))
+        # Pass body as a JS variable to avoid any template-escaping issues
         js = f"""
         async () => {{
-            const r = await fetch('{SWEED_API_PATH}', {{
-                method: 'POST',
-                headers: {{'Content-Type': 'application/json', 'Accept': 'application/json'}},
-                body: {_json.dumps(body)}
-            }});
-            if (!r.ok) return null;
-            return await r.json();
+            let result = null;
+            try {{
+                const resp = await fetch('{SWEED_API_PATH}', {{
+                    method: 'POST',
+                    headers: {{
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }},
+                    body: '{body_str.replace(chr(39), chr(92)+chr(39))}'
+                }});
+                if (!resp.ok) {{
+                    return {{ __error: 'HTTP ' + resp.status }};
+                }}
+                result = await resp.json();
+            }} catch (e) {{
+                return {{ __error: e.toString() }};
+            }}
+            return result;
         }}
         """
         try:
             data = page.evaluate(js)
+            if isinstance(data, dict) and "__error" in data:
+                log(f"  browser fetch error (page={page_num}, size={page_size}): {data['__error']}")
+                return []
             return _parse_sweed_response(data) if data else []
         except Exception as e:
-            log(f"  browser fetch error (page={page_num}, size={page_size}): {e}")
+            log(f"  browser fetch exception (page={page_num}, size={page_size}): {e}")
             return []
 
     # Try large pageSize — if the API respects it we're done in one call
-    for page_size in (500, 200):
+    all_products: dict[str, dict] = {}
+    for page_size in (500, 200, 100):
         products = _browser_post(page_size, 1)
         if products:
             log(f"Sweed browser API (pageSize={page_size}): {len(products)} products")
+            for p in products:
+                all_products[product_key(p)] = p
             if len(products) < page_size:
-                return products   # got everything
-            break   # hit the cap, need to paginate with this size
+                log(f"Got all products in one call ({len(all_products)} total)")
+                return list(all_products.values())
+            # Hit the cap — paginate with this page_size
+            log(f"Hit pageSize cap, paginating with pageSize={page_size}...")
+            page_num = 2
+            while True:
+                found = _browser_post(page_size, page_num)
+                if not found:
+                    break
+                for p in found:
+                    all_products[product_key(p)] = p
+                log(f"  page {page_num}: {len(found)} products (total: {len(all_products)})")
+                if len(found) < page_size:
+                    break
+                page_num += 1
+            return list(all_products.values())
 
-    # Paginate with the last working page_size (or default 24)
-    page_size = 24
-    all_products: dict[str, dict] = {}
-    page_num = 1
-    while True:
-        found = _browser_post(page_size, page_num)
-        if not found:
-            break
-        for p in found:
-            all_products[product_key(p)] = p
-        log(f"  Sweed browser page {page_num}: {len(found)} products "
-            f"(total: {len(all_products)})")
-        if len(found) < page_size:
-            break
-        page_num += 1
-
-    return list(all_products.values())
+    return []  # all page sizes failed
 
 
 # ── Category / strain inference (fallback when API fields are missing) ────────
