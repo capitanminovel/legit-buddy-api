@@ -293,9 +293,9 @@ def try_sweed_api() -> list[dict]:
 
 # ── Strategy 2: Playwright browser (page.evaluate fetch — true browser request) ─
 
-def _sweed_fetch_all(page) -> list[dict]:
+def _sweed_fetch_all(page, store_id) -> list[dict]:
     """POST per category using page.evaluate() so fetch runs inside Chromium.
-    This shares all browser cookies/fingerprint and bypasses WAF completely."""
+    Requires store_id captured from the page's own live API requests."""
     PAGE_SIZE    = 24
     all_products: dict[str, dict] = {}
 
@@ -304,6 +304,8 @@ def _sweed_fetch_all(page) -> list[dict]:
         page_num = 1
         while True:
             try:
+                payload = _sweed_post_body(page_num, PAGE_SIZE, cat_id)
+                payload["storeId"] = store_id
                 result = page.evaluate("""async (args) => {
                     try {
                         const resp = await fetch(args.url, {
@@ -324,7 +326,7 @@ def _sweed_fetch_all(page) -> list[dict]:
                     } catch(e) {
                         return {__error: String(e)};
                     }
-                }""", {"url": SWEED_API_URL, "payload": _sweed_post_body(page_num, PAGE_SIZE, cat_id)})
+                }""", {"url": SWEED_API_URL, "payload": payload})
 
                 if not isinstance(result, dict) or "__error" in result:
                     log(f"    page {page_num} → error: {result}")
@@ -479,8 +481,37 @@ def try_playwright() -> list[dict]:
         )
         page = ctx.new_page()
 
-        # Load menu page to establish session cookies
-        log("Loading menu page (session init)...")
+        # Intercept the real API requests to extract storeId and capture responses
+        store_id: list = []        # list so closure can write to it
+        intercepted: dict[str, dict] = {}
+
+        def on_request(request):
+            if "GetProductList" in request.url and request.method == "POST":
+                try:
+                    body = json.loads(request.post_data or "{}")
+                    sid = body.get("storeId")
+                    if sid and not store_id:
+                        store_id.append(sid)
+                        log(f"  Captured storeId={sid} from live request")
+                except Exception:
+                    pass
+
+        def on_response(response):
+            if "GetProductList" in response.url and response.status == 200:
+                try:
+                    data = response.json()
+                    found = _parse_sweed_response(data)
+                    for p in found:
+                        intercepted[product_key(p)] = p
+                    log(f"  Intercepted {len(found)} products (total: {len(intercepted)})")
+                    _write_debug("intercepted", len(intercepted), data)
+                except Exception as e:
+                    log(f"  Intercept parse error: {e}")
+
+        page.on("request",  on_request)
+        page.on("response", on_response)
+
+        log("Loading menu page...")
         try:
             page.goto(MENU_URL, wait_until="networkidle", timeout=45000)
         except PwTimeout:
@@ -490,11 +521,18 @@ def try_playwright() -> list[dict]:
             except Exception:
                 pass
 
-        current_url = page.url
-        log(f"Page URL after load: {current_url}")
-        # Primary: POST per category via page.evaluate() (true in-browser fetch)
-        log("Calling Sweed API via in-browser fetch...")
-        api_products = _sweed_fetch_all(page)
+        log(f"Page URL: {page.url}  storeId found: {store_id}")
+
+        if store_id:
+            # We have the real storeId — fetch all categories via in-browser fetch
+            log("Calling Sweed API via in-browser fetch (with storeId)...")
+            api_products = _sweed_fetch_all(page, store_id[0])
+        elif intercepted:
+            # Got products from interception on page load — use those
+            api_products = list(intercepted.values())
+            log(f"Using {len(api_products)} intercepted products from page load")
+        else:
+            api_products = []
 
         if api_products:
             for p in api_products:
