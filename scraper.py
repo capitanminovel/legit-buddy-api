@@ -41,6 +41,37 @@ HEADERS = {
 def log(msg: str):
     print(f"[{datetime.now(CST).strftime('%Y-%m-%d %H:%M:%S CST')}] {msg}", flush=True)
 
+_debug_log: list = []
+
+def _write_debug(cat_name: str, page_num: int, raw):
+    """Append response structure info to docs/debug_api.json for inspection."""
+    entry = {"category": cat_name, "page": page_num}
+    if isinstance(raw, list):
+        entry["top_level"] = f"list[{len(raw)}]"
+        entry["first_item_keys"] = list(raw[0].keys()) if raw else []
+    elif isinstance(raw, dict):
+        entry["top_level"] = "dict"
+        entry["keys"] = list(raw.keys())
+        for k, v in raw.items():
+            if isinstance(v, list) and v and isinstance(v[0], dict):
+                entry["list_key"] = k
+                entry["list_len"] = len(v)
+                entry["item_keys"] = list(v[0].keys())
+                break
+            if isinstance(v, dict):
+                for k2, v2 in v.items():
+                    if isinstance(v2, list) and v2 and isinstance(v2[0], dict):
+                        entry["nested_list_key"] = f"{k}.{k2}"
+                        entry["list_len"] = len(v2)
+                        entry["item_keys"] = list(v2[0].keys())
+                        break
+    else:
+        entry["top_level"] = type(raw).__name__
+    _debug_log.append(entry)
+    debug_path = Path(__file__).parent / "docs" / "debug_api.json"
+    with open(debug_path, "w") as f:
+        json.dump(_debug_log, f, indent=2)
+
 
 # ── Utility formatters ────────────────────────────────────────────────────────
 
@@ -279,8 +310,12 @@ def _sweed_fetch_all(ctx_request) -> list[dict]:
                 )
                 log(f"    page {page_num} → HTTP {resp.status}")
                 if not resp.ok:
+                    log(f"    response body: {resp.text()[:300]}")
                     break
-                found = _parse_sweed_response(resp.json(), force_category=cat_name)
+                raw = resp.json()
+                # Write raw structure to debug file so we can inspect it
+                _write_debug(cat_name, page_num, raw)
+                found = _parse_sweed_response(raw, force_category=cat_name)
                 if not found:
                     log(f"    0 products in response")
                     break
