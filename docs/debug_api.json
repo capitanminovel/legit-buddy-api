@@ -6,7 +6,7 @@
     "keys": [
       "__error"
     ],
-    "__error": "{'__error': 'HTTP 400'}"
+    "__error": "{'__error': 'HTTP 400: {\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"storeId\":[\"The storeId field is required.\"]},\"traceId\":\"00-4c85fd0f76f5a5434c4db1daf1f7f214-33c9d7af912d9d33-01\"}'}"
   },
   {
     "category": "pre-roll",
@@ -15,7 +15,7 @@
     "keys": [
       "__error"
     ],
-    "__error": "{'__error': 'HTTP 400'}"
+    "__error": "{'__error': 'HTTP 400: {\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"storeId\":[\"The storeId field is required.\"]},\"traceId\":\"00-dede99caf0bcd9bbcf8d58b74d04f1e4-e0369225103d58de-01\"}'}"
   },
   {
     "category": "edibles",
@@ -24,7 +24,7 @@
     "keys": [
       "__error"
     ],
-    "__error": "{'__error': 'HTTP 400'}"
+    "__error": "{'__error': 'HTTP 400: {\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"storeId\":[\"The storeId field is required.\"]},\"traceId\":\"00-1ade3fbac9c30eb305df15b39852701d-9f144b3453e810d6-01\"}'}"
   },
   {
     "category": "vapes",
@@ -33,6 +33,6 @@
     "keys": [
       "__error"
     ],
-    "__error": "{'__error': 'HTTP 400'}"
+    "__error": "{'__error': 'HTTP 400: {\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"storeId\":[\"The storeId field is required.\"]},\"traceId\":\"00-06b5a0997d0f7427d66a5c6e1bb4ec2b-36323f7f2015567a-01\"}'}"
   }
 ]
