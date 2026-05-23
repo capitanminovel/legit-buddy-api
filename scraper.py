@@ -171,8 +171,12 @@ def _normalize_sweed_product(raw: dict) -> dict | None:
     }
 
 
-def _parse_sweed_response(data) -> list[dict]:
-    """Extract and normalize products from a GetProductList API response."""
+def _parse_sweed_response(data, force_category: str = "") -> list[dict]:
+    """Extract and normalize products from a GetProductList API response.
+
+    force_category: when set, override the API's category name with this value
+    (avoids filtering failures when the API uses unexpected category names).
+    """
     candidates: list = []
     if isinstance(data, list):
         candidates = data
@@ -199,7 +203,11 @@ def _parse_sweed_response(data) -> list[dict]:
     results = []
     for item in candidates:
         p = _normalize_sweed_product(item)
-        if p and p["category"].lower() in TARGET_CATS:
+        if not p:
+            continue
+        if force_category:
+            p["category"] = force_category
+        if p["category"].lower() in TARGET_CATS:
             results.append(p)
     return results
 
@@ -222,7 +230,7 @@ def try_sweed_api() -> list[dict]:
                                  timeout=15)
                 if r.status_code != 200:
                     break
-                found = _parse_sweed_response(r.json())
+                found = _parse_sweed_response(r.json(), force_category=cat_name)
                 if not found:
                     break
                 any_success = True
@@ -263,8 +271,9 @@ def _sweed_fetch_all(ctx_request) -> list[dict]:
                 log(f"    page {page_num} → HTTP {resp.status}")
                 if not resp.ok:
                     break
-                found = _parse_sweed_response(resp.json())
+                found = _parse_sweed_response(resp.json(), force_category=cat_name)
                 if not found:
+                    log(f"    0 products in response")
                     break
                 for p in found:
                     all_products[product_key(p)] = p
