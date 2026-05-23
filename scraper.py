@@ -289,10 +289,11 @@ def try_sweed_api() -> list[dict]:
     return []
 
 
-# ── Strategy 2: Playwright browser (shares session cookies, bypasses WAF) ─────
+# ── Strategy 2: Playwright browser (page.evaluate fetch — true browser request) ─
 
-def _sweed_fetch_all(ctx_request) -> list[dict]:
-    """POST per category via Playwright's request context, paginating each."""
+def _sweed_fetch_all(page) -> list[dict]:
+    """POST per category using page.evaluate() so fetch runs inside Chromium.
+    This shares all browser cookies/fingerprint and bypasses WAF completely."""
     PAGE_SIZE    = 24
     all_products: dict[str, dict] = {}
 
@@ -301,19 +302,31 @@ def _sweed_fetch_all(ctx_request) -> list[dict]:
         page_num = 1
         while True:
             try:
-                resp = ctx_request.post(
-                    SWEED_API_URL,
-                    data=json.dumps(_sweed_post_body(page_num, PAGE_SIZE, cat_id)),
-                    headers={"Content-Type": "application/json",
-                             "Accept": "application/json",
-                             "Referer": MENU_URL},
-                )
-                log(f"    page {page_num} → HTTP {resp.status}")
-                if not resp.ok:
-                    log(f"    response body: {resp.text()[:300]}")
+                body = json.dumps(_sweed_post_body(page_num, PAGE_SIZE, cat_id))
+                result = page.evaluate("""async (args) => {
+                    try {
+                        const resp = await fetch(args.url, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            },
+                            body: args.body
+                        });
+                        if (!resp.ok) return {__error: 'HTTP ' + resp.status};
+                        const data = await resp.json();
+                        return {__status: resp.status, __data: data};
+                    } catch(e) {
+                        return {__error: String(e)};
+                    }
+                }""", {"url": SWEED_API_URL, "body": body})
+
+                if not isinstance(result, dict) or "__error" in result:
+                    log(f"    page {page_num} → error: {result}")
                     break
-                raw = resp.json()
-                # Write raw structure to debug file so we can inspect it
+
+                log(f"    page {page_num} → HTTP {result.get('__status')}")
+                raw = result.get("__data")
                 _write_debug(cat_name, page_num, raw)
                 found = _parse_sweed_response(raw, force_category=cat_name)
                 if not found:
@@ -471,9 +484,9 @@ def try_playwright() -> list[dict]:
             except Exception:
                 pass
 
-        # Primary: POST per category via Playwright's request context
-        log("Calling Sweed API via browser request context...")
-        api_products = _sweed_fetch_all(ctx.request)
+        # Primary: POST per category via page.evaluate() (true in-browser fetch)
+        log("Calling Sweed API via in-browser fetch...")
+        api_products = _sweed_fetch_all(page)
 
         if api_products:
             for p in api_products:
