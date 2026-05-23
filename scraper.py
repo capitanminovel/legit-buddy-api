@@ -312,12 +312,20 @@ def find_products(data, depth=0) -> list[dict]:
 
 # ── Strategy 1: Sweed POS API ─────────────────────────────────────────────────
 
-SWEED_API_URL  = f"https://{STORE_DOMAIN}/_api/Products/GetProductList"
-SWEED_API_PATH = "/_api/Products/GetProductList"  # relative for in-browser fetch
+SWEED_API_URL = f"https://{STORE_DOMAIN}/_api/Products/GetProductList"
 
-def _sweed_post_body(page_num: int, page_size: int) -> dict:
+# Confirmed category IDs from browser Network tab payloads
+SWEED_CATEGORIES = {
+    "flower":   5221,
+    "pre-roll": 5222,
+    "edibles":  5223,
+    "vapes":    5684,
+}
+
+def _sweed_post_body(page_num: int, page_size: int, category_id: int | None = None) -> dict:
+    filters = {"category": [category_id]} if category_id else {}
     return {
-        "filters": {}, "page": page_num, "pageSize": page_size,
+        "filters": filters, "page": page_num, "pageSize": page_size,
         "sortingMethodId": 7, "searchTerm": "", "platformOs": "web", "sourcePage": 1,
     }
 
@@ -330,101 +338,81 @@ def try_sweed_api() -> list[dict]:
     session = requests.Session()
     session.headers.update({**HEADERS, "Accept": "application/json",
                             "Content-Type": "application/json"})
-    for page_size in (500, 100, 24):
-        try:
-            r = session.post(SWEED_API_URL, json=_sweed_post_body(1, page_size), timeout=15)
-            if r.status_code == 200:
-                data  = r.json()
-                found = _parse_sweed_response(data)
-                if found:
-                    log(f"Sweed direct API (pageSize={page_size}): {len(found)} products")
-                    # If we got a full page, keep paginating
-                    if len(found) >= page_size:
-                        found = _sweed_paginate_requests(session, page_size, found)
-                    return found
-        except Exception:
-            pass
+    all_products: dict[str, dict] = {}
+    any_success = False
+    for cat_name, cat_id in SWEED_CATEGORIES.items():
+        page_num = 1
+        while True:
+            try:
+                r = session.post(SWEED_API_URL,
+                                 json=_sweed_post_body(page_num, 24, cat_id),
+                                 timeout=15)
+                if r.status_code != 200:
+                    break
+                found = _parse_sweed_response(r.json())
+                if not found:
+                    break
+                any_success = True
+                for p in found:
+                    all_products[product_key(p)] = p
+                log(f"Sweed direct API [{cat_name}] page {page_num}: {len(found)} products")
+                if len(found) < 24:
+                    break
+                page_num += 1
+            except Exception:
+                break
+    if any_success:
+        log(f"Sweed direct API total: {len(all_products)} products")
+        return list(all_products.values())
     return []
-
-def _sweed_paginate_requests(session, page_size: int, first_page: list) -> list[dict]:
-    """Continue paginating via direct HTTP after a successful first page."""
-    all_products = {product_key(p): p for p in first_page}
-    page_num = 2
-    while True:
-        try:
-            r = session.post(SWEED_API_URL, json=_sweed_post_body(page_num, page_size), timeout=15)
-            if r.status_code != 200:
-                break
-            found = _parse_sweed_response(r.json())
-            if not found:
-                break
-            for p in found:
-                all_products[product_key(p)] = p
-            log(f"  Sweed API page {page_num}: {len(found)} products")
-            if len(found) < page_size:
-                break
-            page_num += 1
-        except Exception:
-            break
-    return list(all_products.values())
 
 
 def fetch_all_sweed_via_browser(page) -> list[dict]:
     """
     POST to /_api/Products/GetProductList using Playwright's request API.
     page.context.request shares the browser's cookies (set by visiting the menu),
-    so this bypasses the WAF cleanly without any JS embedding.
+    bypassing the WAF. Fetches each of the 4 target categories by ID with
+    pagination so we never miss products beyond the first page.
     """
     import json as _json
 
     ctx_request = page.context.request
+    PAGE_SIZE   = 24  # match what the site uses natively
 
-    def _ctx_post(page_size: int, page_num: int) -> list[dict]:
+    def _ctx_post(cat_name: str, cat_id: int, page_num: int) -> list[dict]:
         try:
             resp = ctx_request.post(
                 SWEED_API_URL,
-                data=_json.dumps(_sweed_post_body(page_num, page_size)),
+                data=_json.dumps(_sweed_post_body(page_num, PAGE_SIZE, cat_id)),
                 headers={"Content-Type": "application/json",
                          "Accept": "application/json",
                          "Referer": MENU_URL},
             )
-            log(f"  API POST page={page_num} size={page_size} → HTTP {resp.status}")
+            log(f"  [{cat_name}] page {page_num} → HTTP {resp.status}")
             if not resp.ok:
                 return []
-            data = resp.json()
-            return _parse_sweed_response(data)
+            return _parse_sweed_response(resp.json())
         except Exception as e:
-            log(f"  API POST error (page={page_num}, size={page_size}): {e}")
+            log(f"  [{cat_name}] page {page_num} error: {e}")
             return []
 
     all_products: dict[str, dict] = {}
 
-    # Try large pageSize first — get everything in one shot
-    for page_size in (500, 200, 100):
-        products = _ctx_post(page_size, 1)
-        if products:
-            for p in products:
+    for cat_name, cat_id in SWEED_CATEGORIES.items():
+        log(f"Fetching category: {cat_name} (id={cat_id})")
+        page_num = 1
+        while True:
+            found = _ctx_post(cat_name, cat_id, page_num)
+            if not found:
+                break
+            for p in found:
                 all_products[product_key(p)] = p
-            log(f"Sweed browser API (pageSize={page_size}): {len(products)} products")
-            if len(products) < page_size:
-                log(f"Got all products in one call ({len(all_products)} total)")
-                return list(all_products.values())
-            # Server capped us — paginate with this size
-            log(f"Hit cap at pageSize={page_size}, paginating...")
-            page_num = 2
-            while True:
-                found = _ctx_post(page_size, page_num)
-                if not found:
-                    break
-                for p in found:
-                    all_products[product_key(p)] = p
-                log(f"  page {page_num}: {len(found)} (total: {len(all_products)})")
-                if len(found) < page_size:
-                    break
-                page_num += 1
-            return list(all_products.values())
+            log(f"    +{len(found)} products (running total: {len(all_products)})")
+            if len(found) < PAGE_SIZE:
+                break   # last page
+            page_num += 1
 
-    return []  # all attempts failed
+    return list(all_products.values())
 
 
 # ── Category / strain inference (fallback when API fields are missing) ────────
