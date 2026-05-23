@@ -323,6 +323,7 @@ def _sweed_fetch_all(page) -> list[dict]:
 
                 if not isinstance(result, dict) or "__error" in result:
                     log(f"    page {page_num} → error: {result}")
+                    _write_debug(cat_name, page_num, {"__error": str(result)})
                     break
 
                 log(f"    page {page_num} → HTTP {result.get('__status')}")
@@ -484,6 +485,8 @@ def try_playwright() -> list[dict]:
             except Exception:
                 pass
 
+        current_url = page.url
+        log(f"Page URL after load: {current_url}")
         # Primary: POST per category via page.evaluate() (true in-browser fetch)
         log("Calling Sweed API via in-browser fetch...")
         api_products = _sweed_fetch_all(page)
