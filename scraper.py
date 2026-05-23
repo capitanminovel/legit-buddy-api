@@ -312,49 +312,117 @@ def find_products(data, depth=0) -> list[dict]:
 
 # ── Strategy 1: Sweed POS API ─────────────────────────────────────────────────
 
-SWEED_API_URL = f"https://{STORE_DOMAIN}/_api/Products/GetProductList"
+SWEED_API_URL  = f"https://{STORE_DOMAIN}/_api/Products/GetProductList"
+SWEED_API_PATH = "/_api/Products/GetProductList"  # relative for in-browser fetch
+
+def _sweed_post_body(page_num: int, page_size: int) -> dict:
+    return {
+        "filters": {}, "page": page_num, "pageSize": page_size,
+        "sortingMethodId": 7, "searchTerm": "", "platformOs": "web", "sourcePage": 1,
+    }
 
 def try_sweed_api() -> list[dict]:
     """
-    Hit the confirmed Sweed storefront API endpoint directly.
-    Falls back to guessed Sweed/Prime API patterns if the main one is blocked.
+    POST to the confirmed Sweed storefront API.
+    The WAF typically blocks server-side requests; Playwright is the real path.
+    This runs first as a quick optimistic attempt.
     """
     session = requests.Session()
-    session.headers.update({**HEADERS, "Accept": "application/json"})
-
-    # Try the confirmed endpoint first (GET and POST)
-    for method in ("GET", "POST"):
+    session.headers.update({**HEADERS, "Accept": "application/json",
+                            "Content-Type": "application/json"})
+    for page_size in (500, 100, 24):
         try:
-            r = session.request(method, SWEED_API_URL, timeout=15)
+            r = session.post(SWEED_API_URL, json=_sweed_post_body(1, page_size), timeout=15)
             if r.status_code == 200:
                 data  = r.json()
                 found = _parse_sweed_response(data)
                 if found:
-                    log(f"Sweed native API ({method} {SWEED_API_URL}): {len(found)} products")
-                    return found
-        except Exception:
-            pass
-
-    # Fallback guesses (Sweed Prime / old patterns)
-    endpoints = [
-        f"https://prime.sweedpos.com/api/stores/{STORE_SLUG}/products",
-        f"https://prime.sweedpos.com/api/stores/{STORE_SLUG}/menu",
-        f"https://api.sweedpos.com/v1/stores/{STORE_SLUG}/products",
-        f"https://{STORE_DOMAIN}/api/menu",
-        f"https://{STORE_DOMAIN}/api/products",
-    ]
-    for url in endpoints:
-        try:
-            r = session.get(url, timeout=12)
-            if r.status_code == 200:
-                data  = r.json()
-                found = _parse_sweed_response(data) or find_products(data)
-                if found:
-                    log(f"Sweed API ({url}): {len(found)} products")
+                    log(f"Sweed direct API (pageSize={page_size}): {len(found)} products")
+                    # If we got a full page, keep paginating
+                    if len(found) >= page_size:
+                        found = _sweed_paginate_requests(session, page_size, found)
                     return found
         except Exception:
             pass
     return []
+
+def _sweed_paginate_requests(session, page_size: int, first_page: list) -> list[dict]:
+    """Continue paginating via direct HTTP after a successful first page."""
+    all_products = {product_key(p): p for p in first_page}
+    page_num = 2
+    while True:
+        try:
+            r = session.post(SWEED_API_URL, json=_sweed_post_body(page_num, page_size), timeout=15)
+            if r.status_code != 200:
+                break
+            found = _parse_sweed_response(r.json())
+            if not found:
+                break
+            for p in found:
+                all_products[product_key(p)] = p
+            log(f"  Sweed API page {page_num}: {len(found)} products")
+            if len(found) < page_size:
+                break
+            page_num += 1
+        except Exception:
+            break
+    return list(all_products.values())
+
+
+def fetch_all_sweed_via_browser(page) -> list[dict]:
+    """
+    Call /_api/Products/GetProductList from inside the Playwright browser context.
+    The browser already has the site's session cookies, bypassing the WAF.
+    Tries a large pageSize first; falls back to page-by-page if capped.
+    """
+    import json as _json
+
+    def _browser_post(page_size: int, page_num: int) -> list[dict]:
+        body = _json.dumps(_sweed_post_body(page_num, page_size))
+        js = f"""
+        async () => {{
+            const r = await fetch('{SWEED_API_PATH}', {{
+                method: 'POST',
+                headers: {{'Content-Type': 'application/json', 'Accept': 'application/json'}},
+                body: {_json.dumps(body)}
+            }});
+            if (!r.ok) return null;
+            return await r.json();
+        }}
+        """
+        try:
+            data = page.evaluate(js)
+            return _parse_sweed_response(data) if data else []
+        except Exception as e:
+            log(f"  browser fetch error (page={page_num}, size={page_size}): {e}")
+            return []
+
+    # Try large pageSize — if the API respects it we're done in one call
+    for page_size in (500, 200):
+        products = _browser_post(page_size, 1)
+        if products:
+            log(f"Sweed browser API (pageSize={page_size}): {len(products)} products")
+            if len(products) < page_size:
+                return products   # got everything
+            break   # hit the cap, need to paginate with this size
+
+    # Paginate with the last working page_size (or default 24)
+    page_size = 24
+    all_products: dict[str, dict] = {}
+    page_num = 1
+    while True:
+        found = _browser_post(page_size, page_num)
+        if not found:
+            break
+        for p in found:
+            all_products[product_key(p)] = p
+        log(f"  Sweed browser page {page_num}: {len(found)} products "
+            f"(total: {len(all_products)})")
+        if len(found) < page_size:
+            break
+        page_num += 1
+
+    return list(all_products.values())
 
 
 # ── Category / strain inference (fallback when API fields are missing) ────────
@@ -598,49 +666,61 @@ def try_playwright() -> list[dict]:
 
         page.on("response", on_response)
 
-        # ── Pass 1: paginated base menu pages ─────────────────────────────────
-        log("Playwright: scraping paginated menu pages...")
-        for url in PAGINATED_URLS:
-            captured.clear()
-            _load_page(page, url, f"page {PAGINATED_URLS.index(url)+1}")
+        # ── Pass 0: load menu page then call API directly from browser context ─
+        # This bypasses the WAF (browser has session cookies) and fetches ALL
+        # products in one shot using the confirmed POST endpoint with pagination.
+        log("Playwright: loading menu to establish session...")
+        _load_page(page, MENU_URL, "menu (session init)")
 
-            # Try JSON — prefer Sweed native API response over generic parser
-            captured.sort(key=lambda x: len(str(x[1])), reverse=True)
-            found_json = []
-            for api_url, body in captured:
-                found_json = _parse_sweed_response(body) or find_products(body)
-                if found_json:
-                    log(f"    JSON: {len(found_json)} products from {api_url[:70]}")
-                    break
-
-            items = found_json or _dom_scrape_page(page)
-            if not items:
-                log(f"    No products on page — stopping pagination")
-                break
-            for p in items:
+        log("Playwright: fetching all products via browser API call...")
+        api_products = fetch_all_sweed_via_browser(page)
+        if api_products:
+            for p in api_products:
                 all_products[product_key(p)] = p
-            log(f"    Got {len(items)} products (total so far: {len(all_products)})")
+            log(f"Browser API: {len(all_products)} total products — skipping DOM scrape")
+        else:
+            # ── Pass 1: fall back to intercepting per-page XHR + DOM scraping ─
+            log("Browser API failed — falling back to page-by-page scraping...")
+            for url in PAGINATED_URLS:
+                captured.clear()
+                _load_page(page, url, f"page {PAGINATED_URLS.index(url)+1}")
 
-        # ── Pass 2: individual category URLs ──────────────────────────────────
-        log("Playwright: scraping category-specific pages...")
-        for url in CATEGORY_URLS:
-            captured.clear()
-            _load_page(page, url)
+                captured.sort(key=lambda x: len(str(x[1])), reverse=True)
+                found_json = []
+                for api_url, body in captured:
+                    found_json = _parse_sweed_response(body) or find_products(body)
+                    if found_json:
+                        log(f"    JSON: {len(found_json)} products from {api_url[:70]}")
+                        break
 
-            found_json = []
-            for api_url, body in captured:
-                found_json = _parse_sweed_response(body) or find_products(body)
-                if found_json:
+                items = found_json or _dom_scrape_page(page)
+                if not items:
+                    log("    No products on page — stopping pagination")
                     break
-
-            items = found_json or _dom_scrape_page(page)
-            if items:
-                before = len(all_products)
                 for p in items:
                     all_products[product_key(p)] = p
-                new = len(all_products) - before
-                if new:
-                    log(f"    +{new} new products from {url}")
+                log(f"    Got {len(items)} products (total so far: {len(all_products)})")
+
+            # ── Pass 2: individual category URLs ──────────────────────────────
+            log("Playwright: scraping category-specific pages...")
+            for url in CATEGORY_URLS:
+                captured.clear()
+                _load_page(page, url)
+
+                found_json = []
+                for api_url, body in captured:
+                    found_json = _parse_sweed_response(body) or find_products(body)
+                    if found_json:
+                        break
+
+                items = found_json or _dom_scrape_page(page)
+                if items:
+                    before = len(all_products)
+                    for p in items:
+                        all_products[product_key(p)] = p
+                    new = len(all_products) - before
+                    if new:
+                        log(f"    +{new} new products from {url}")
 
         # ── Pass 3: try Algolia from rendered source ───────────────────────────
         if not all_products:
