@@ -53,12 +53,14 @@ def _write_debug(cat_name: str, page_num: int, raw):
         entry["top_level"] = "dict"
         entry["keys"] = list(raw.keys())
         for k, v in raw.items():
-            if isinstance(v, list) and v and isinstance(v[0], dict):
+            if isinstance(v, str):
+                entry[k] = v[:300]  # capture string values (errors, etc.)
+            elif isinstance(v, list) and v and isinstance(v[0], dict):
                 entry["list_key"] = k
                 entry["list_len"] = len(v)
                 entry["item_keys"] = list(v[0].keys())
                 break
-            if isinstance(v, dict):
+            elif isinstance(v, dict):
                 for k2, v2 in v.items():
                     if isinstance(v2, list) and v2 and isinstance(v2[0], dict):
                         entry["nested_list_key"] = f"{k}.{k2}"
