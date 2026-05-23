@@ -304,24 +304,27 @@ def _sweed_fetch_all(page) -> list[dict]:
         page_num = 1
         while True:
             try:
-                body = json.dumps(_sweed_post_body(page_num, PAGE_SIZE, cat_id))
                 result = page.evaluate("""async (args) => {
                     try {
                         const resp = await fetch(args.url, {
                             method: 'POST',
+                            credentials: 'include',
                             headers: {
                                 'Content-Type': 'application/json',
                                 'Accept': 'application/json'
                             },
-                            body: args.body
+                            body: JSON.stringify(args.payload)
                         });
-                        if (!resp.ok) return {__error: 'HTTP ' + resp.status};
+                        if (!resp.ok) {
+                            const body = await resp.text();
+                            return {__error: 'HTTP ' + resp.status + ': ' + body.substring(0, 300)};
+                        }
                         const data = await resp.json();
                         return {__status: resp.status, __data: data};
                     } catch(e) {
                         return {__error: String(e)};
                     }
-                }""", {"url": SWEED_API_URL, "body": body})
+                }""", {"url": SWEED_API_URL, "payload": _sweed_post_body(page_num, PAGE_SIZE, cat_id)})
 
                 if not isinstance(result, dict) or "__error" in result:
                     log(f"    page {page_num} → error: {result}")
