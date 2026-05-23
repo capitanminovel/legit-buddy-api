@@ -1,1 +1,34 @@
-[]
+[
+  {
+    "category": "flower",
+    "page": 1,
+    "top_level": "dict",
+    "keys": [
+      "__error"
+    ]
+  },
+  {
+    "category": "pre-roll",
+    "page": 1,
+    "top_level": "dict",
+    "keys": [
+      "__error"
+    ]
+  },
+  {
+    "category": "edibles",
+    "page": 1,
+    "top_level": "dict",
+    "keys": [
+      "__error"
+    ]
+  },
+  {
+    "category": "vapes",
+    "page": 1,
+    "top_level": "dict",
+    "keys": [
+      "__error"
+    ]
+  }
+]
