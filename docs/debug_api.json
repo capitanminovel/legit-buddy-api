@@ -5,7 +5,8 @@
     "top_level": "dict",
     "keys": [
       "__error"
-    ]
+    ],
+    "__error": "{'__error': 'HTTP 400'}"
   },
   {
     "category": "pre-roll",
@@ -13,7 +14,8 @@
     "top_level": "dict",
     "keys": [
       "__error"
-    ]
+    ],
+    "__error": "{'__error': 'HTTP 400'}"
   },
   {
     "category": "edibles",
@@ -21,7 +23,8 @@
     "top_level": "dict",
     "keys": [
       "__error"
-    ]
+    ],
+    "__error": "{'__error': 'HTTP 400'}"
   },
   {
     "category": "vapes",
@@ -29,6 +32,7 @@
     "top_level": "dict",
     "keys": [
       "__error"
-    ]
+    ],
+    "__error": "{'__error': 'HTTP 400'}"
   }
 ]
