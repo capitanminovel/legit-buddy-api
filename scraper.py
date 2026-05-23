@@ -467,6 +467,15 @@ def _clean_name(name: str) -> str:
 
 # ── Playwright orchestrator ───────────────────────────────────────────────────
 
+# Category page URL slugs (from Sweed's URL structure: /menu/<slug>-<id>)
+CATEGORY_PAGE_URLS = {
+    "flower":   f"{MENU_URL}/flower-{SWEED_CATEGORIES['flower']}",
+    "pre-roll": f"{MENU_URL}/pre-rolls-{SWEED_CATEGORIES['pre-roll']}",
+    "edibles":  f"{MENU_URL}/edibles-{SWEED_CATEGORIES['edibles']}",
+    "vapes":    f"{MENU_URL}/vapes-{SWEED_CATEGORIES['vapes']}",
+}
+
+
 def try_playwright() -> list[dict]:
     from playwright.sync_api import sync_playwright, TimeoutError as PwTimeout
 
@@ -481,71 +490,48 @@ def try_playwright() -> list[dict]:
         )
         page = ctx.new_page()
 
-        # Intercept the real API requests to extract storeId and capture responses
-        store_id: list = []        # list so closure can write to it
-        intercepted: dict[str, dict] = {}
-
-        def on_request(request):
-            if "GetProductList" in request.url and request.method == "POST":
-                try:
-                    body = json.loads(request.post_data or "{}")
-                    sid = body.get("storeId")
-                    if sid and not store_id:
-                        store_id.append(sid)
-                        log(f"  Captured storeId={sid} from live request")
-                        # Write to debug so we can verify it's the right store
-                        _debug_log.append({"storeId_captured": sid, "full_body": body})
-                        debug_path = Path(__file__).parent / "docs" / "debug_api.json"
-                        with open(debug_path, "w") as f:
-                            json.dump(_debug_log, f, indent=2)
-                except Exception:
-                    pass
+        # Intercept GetProductList API responses triggered by the page itself
+        pending: list = []
 
         def on_response(response):
             if "GetProductList" in response.url and response.status == 200:
                 try:
-                    data = response.json()
-                    found = _parse_sweed_response(data)
-                    for p in found:
-                        intercepted[product_key(p)] = p
-                    log(f"  Intercepted {len(found)} products (total: {len(intercepted)})")
-                    _write_debug("intercepted", len(intercepted), data)
-                except Exception as e:
-                    log(f"  Intercept parse error: {e}")
+                    pending.append(response.json())
+                except Exception:
+                    pass
 
-        page.on("request",  on_request)
         page.on("response", on_response)
 
-        log("Loading menu page...")
-        try:
-            page.goto(MENU_URL, wait_until="networkidle", timeout=45000)
-        except PwTimeout:
+        # Navigate to each category page — the browser makes its own API calls
+        for cat_name, cat_url in CATEGORY_PAGE_URLS.items():
+            log(f"  Loading [{cat_name}] → {cat_url}")
+            before = len(pending)
             try:
-                page.goto(MENU_URL, wait_until="domcontentloaded", timeout=25000)
-                time.sleep(4)
-            except Exception:
-                pass
+                page.goto(cat_url, wait_until="networkidle", timeout=40000)
+            except PwTimeout:
+                try:
+                    page.goto(cat_url, wait_until="domcontentloaded", timeout=20000)
+                    time.sleep(3)
+                except Exception as e:
+                    log(f"    load error: {e}")
+                    continue
 
-        log(f"Page URL: {page.url}  storeId found: {store_id}")
+            new_responses = pending[before:]
+            cat_products = 0
+            for data in new_responses:
+                found = _parse_sweed_response(data, force_category=cat_name)
+                for p in found:
+                    all_products[product_key(p)] = p
+                cat_products += len(found)
+                _write_debug(cat_name, len(all_products), data)
+            log(f"    {len(new_responses)} API response(s), {cat_products} products")
 
-        if store_id:
-            # We have the real storeId — fetch all categories via in-browser fetch
-            log("Calling Sweed API via in-browser fetch (with storeId)...")
-            api_products = _sweed_fetch_all(page, store_id[0])
-        elif intercepted:
-            # Got products from interception on page load — use those
-            api_products = list(intercepted.values())
-            log(f"Using {len(api_products)} intercepted products from page load")
-        else:
-            api_products = []
+        log(f"Navigation scrape: {len(all_products)} products")
 
-        if api_products:
-            for p in api_products:
-                all_products[product_key(p)] = p
-            log(f"Browser API: {len(all_products)} products")
-        else:
-            # Fallback: scrape the visible DOM on the menu page
-            log("Browser API failed — falling back to DOM scrape...")
+        # DOM fallback only if we got nothing at all
+        if not all_products:
+            log("Falling back to DOM scrape on main menu page...")
+            page.goto(MENU_URL, wait_until="domcontentloaded", timeout=30000)
             time.sleep(3)
             dom_products = _dom_scrape_page(page)
             for p in dom_products:
