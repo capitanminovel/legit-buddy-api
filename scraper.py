@@ -493,6 +493,11 @@ def try_playwright() -> list[dict]:
                     if sid and not store_id:
                         store_id.append(sid)
                         log(f"  Captured storeId={sid} from live request")
+                        # Write to debug so we can verify it's the right store
+                        _debug_log.append({"storeId_captured": sid, "full_body": body})
+                        debug_path = Path(__file__).parent / "docs" / "debug_api.json"
+                        with open(debug_path, "w") as f:
+                            json.dump(_debug_log, f, indent=2)
                 except Exception:
                     pass
 
