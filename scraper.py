@@ -85,6 +85,8 @@ _WEIGHT_TO_TIER = {
 _STRAIN_MAP = {
     "Indica": "Indica", "Sativa": "Sativa", "Hybrid": "Hybrid",
     "Hybrid Indica": "Hybrid (Indica)", "Hybrid Sativa": "Hybrid (Sativa)",
+    "Indica Dominant": "Hybrid (Indica)", "Sativa Dominant": "Hybrid (Sativa)",
+    "Indica-Dominant": "Hybrid (Indica)", "Sativa-Dominant": "Hybrid (Sativa)",
     "Cbd": "CBD", "Cbg": "CBG",
 }
 
@@ -123,6 +125,13 @@ def _normalize_sweed_product(raw: dict) -> dict | None:
     strain_info = raw.get("strain") or {}
     strain_raw  = _str((strain_info.get("prevalence") or {}).get("name") or "").title()
     strain_type = _STRAIN_MAP.get(strain_raw, strain_raw)
+    if not strain_type:
+        # fall back to tags array (e.g. [{"name": "Indica"}, {"name": "Hybrid"}])
+        tag_names = [t["name"] for t in (raw.get("tags") or []) if t.get("name")]
+        for tag in tag_names:
+            if tag.title() in _STRAIN_MAP:
+                strain_type = _STRAIN_MAP[tag.title()]
+                break
 
     terpenes = [t["name"] for t in (strain_info.get("terpenes") or []) if t.get("name")]
     flavors  = [f["name"] for f in (strain_info.get("flavors")  or []) if f.get("name")]
