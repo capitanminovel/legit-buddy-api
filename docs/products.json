@@ -1,6 +1,6 @@
 {
   "store": "South Metro",
-  "last_updated": "2026-05-22T22:49:01.469569-06:00",
+  "last_updated": "2026-05-22T22:55:04.340150-06:00",
   "products": {
     "a1b2c3d4e5f6": {
       "name": "Mimosa",
@@ -853,7 +853,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779112271_bbd8e29e-4e91-4329-8ac1-eb6d80946b98.avif?width=384",
       "description": "",
       "first_seen": "2026-05-20T19:50:02.365840-06:00",
-      "last_seen": "2026-05-22T22:49:01.469030-06:00"
+      "last_seen": "2026-05-22T22:55:04.340064-06:00"
     },
     "eab05da939b8": {
       "name": "Lullaberry - Indica Gummy",
@@ -895,7 +895,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779112173_f3bb173e-3f58-4ae6-a5b6-6e4a980e50a5.avif?width=384",
       "description": "",
       "first_seen": "2026-05-16T19:50:02.365840-06:00",
-      "last_seen": "2026-05-22T22:49:01.469030-06:00"
+      "last_seen": "2026-05-22T22:55:04.340064-06:00"
     },
     "e7f49bf81901": {
       "name": "Blueberry Muffin Mini Pre-rolls",
@@ -1861,7 +1861,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1776125748_1967fee6-b134-46df-be58-112f3ed44b4f.jpg?width=384",
       "description": "",
       "first_seen": "2026-05-22T22:49:01.469030-06:00",
-      "last_seen": "2026-05-22T22:49:01.469030-06:00"
+      "last_seen": "2026-05-22T22:55:04.340064-06:00"
     },
     "c7bc9b6b18c2": {
       "name": "Fight Club",
@@ -1882,7 +1882,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1774281040_b505596f-d02f-4ca3-b4a5-e3d47eff38eb.jpg?width=384",
       "description": "",
       "first_seen": "2026-05-22T22:49:01.469030-06:00",
-      "last_seen": "2026-05-22T22:49:01.469030-06:00"
+      "last_seen": "2026-05-22T22:55:04.340064-06:00"
     },
     "2223f6ee76a3": {
       "name": "LIT OG",
@@ -1903,7 +1903,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1773943792_1b7d4c4a-39c2-4b4a-b498-91a3d875f9fd.jpg?width=384",
       "description": "",
       "first_seen": "2026-05-22T22:49:01.469030-06:00",
-      "last_seen": "2026-05-22T22:49:01.469030-06:00"
+      "last_seen": "2026-05-22T22:55:04.340064-06:00"
     },
     "f9a02875b44a": {
       "name": "MAC Stomper",
@@ -1924,7 +1924,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1778186539_91a7c6a0-6f99-41cb-864b-fe98dca78366.png?width=384",
       "description": "",
       "first_seen": "2026-05-22T22:49:01.469030-06:00",
-      "last_seen": "2026-05-22T22:49:01.469030-06:00"
+      "last_seen": "2026-05-22T22:55:04.340064-06:00"
     },
     "d024338fee18": {
       "name": "Soap",
@@ -1945,7 +1945,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1773944011_bc3cb393-9400-4292-b412-c37d2c16c57a.jpg?width=384",
       "description": "",
       "first_seen": "2026-05-22T22:49:01.469030-06:00",
-      "last_seen": "2026-05-22T22:49:01.469030-06:00"
+      "last_seen": "2026-05-22T22:55:04.340064-06:00"
     },
     "1ff4b7efe819": {
       "name": "Purple Octane",
@@ -1966,7 +1966,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1773943932_5dac97fa-c50f-4d32-93a3-c8dfb3ecf6f7.jpg?width=384",
       "description": "",
       "first_seen": "2026-05-22T22:49:01.469030-06:00",
-      "last_seen": "2026-05-22T22:49:01.469030-06:00"
+      "last_seen": "2026-05-22T22:55:04.340064-06:00"
     },
     "265b210f94fe": {
       "name": "Runtz",
@@ -1987,7 +1987,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1773943973_9ae0f93f-376c-47c1-b89f-17173456bf06.jpg?width=384",
       "description": "",
       "first_seen": "2026-05-22T22:49:01.469030-06:00",
-      "last_seen": "2026-05-22T22:49:01.469030-06:00"
+      "last_seen": "2026-05-22T22:55:04.340064-06:00"
     },
     "99326fcf9900": {
       "name": "Donny Burger",
@@ -2008,7 +2008,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1773943731_a20cf591-6ef1-47a8-9e00-81bbe7f2291e.jpg?width=384",
       "description": "",
       "first_seen": "2026-05-22T22:49:01.469030-06:00",
-      "last_seen": "2026-05-22T22:49:01.469030-06:00"
+      "last_seen": "2026-05-22T22:55:04.340064-06:00"
     },
     "6a06396da757": {
       "name": "Super Boof",
@@ -2029,7 +2029,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1773940146_1c76466a-a2b2-4518-83b3-82d3b0943359.jpg?width=384",
       "description": "",
       "first_seen": "2026-05-22T22:49:01.469030-06:00",
-      "last_seen": "2026-05-22T22:49:01.469030-06:00"
+      "last_seen": "2026-05-22T22:55:04.340064-06:00"
     },
     "4b794faff189": {
       "name": "Glue 31",
@@ -2050,7 +2050,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1774807612_c63f0d75-8a83-4723-808b-42f8b615f110.jpg?width=384",
       "description": "",
       "first_seen": "2026-05-22T22:49:01.469030-06:00",
-      "last_seen": "2026-05-22T22:49:01.469030-06:00"
+      "last_seen": "2026-05-22T22:55:04.340064-06:00"
     },
     "9cbb8b6d4a76": {
       "name": "Sour Diesel Disposable Vape",
@@ -2071,7 +2071,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779112605_e574c853-d097-46bc-a7e6-08bd5f8fd21f.png?width=384",
       "description": "",
       "first_seen": "2026-05-22T22:49:01.469030-06:00",
-      "last_seen": "2026-05-22T22:49:01.469030-06:00"
+      "last_seen": "2026-05-22T22:55:04.340064-06:00"
     },
     "184eb9c71846": {
       "name": "Grape Canyon Zkittlez",
@@ -2092,7 +2092,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1778183669_9fbb60c5-1369-4fa6-a0e1-2117536cbbe2.png?width=384",
       "description": "",
       "first_seen": "2026-05-22T22:49:01.469030-06:00",
-      "last_seen": "2026-05-22T22:49:01.469030-06:00"
+      "last_seen": "2026-05-22T22:55:04.340064-06:00"
     },
     "38b0e956af40": {
       "name": "Girl Scout Cookies Vape Cartridge",
@@ -2113,7 +2113,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779115251_9ccbeed8-d575-4921-a4fa-285692bfd445.png?width=384",
       "description": "",
       "first_seen": "2026-05-22T22:49:01.469030-06:00",
-      "last_seen": "2026-05-22T22:49:01.469030-06:00"
+      "last_seen": "2026-05-22T22:55:04.340064-06:00"
     },
     "224556092bb8": {
       "name": "White Widow Vape Cartridge",
@@ -2134,7 +2134,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779116263_8a1f5316-858b-4eeb-b769-5a61d7e2f4e3.png?width=384",
       "description": "",
       "first_seen": "2026-05-22T22:49:01.469030-06:00",
-      "last_seen": "2026-05-22T22:49:01.469030-06:00"
+      "last_seen": "2026-05-22T22:55:04.340064-06:00"
     },
     "7950a35269f6": {
       "name": "Sour Diesel Vape Cartridge",
@@ -2155,7 +2155,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779116328_9d34b3b0-fd82-4b8a-a50d-56952e19e596.png?width=384",
       "description": "",
       "first_seen": "2026-05-22T22:49:01.469030-06:00",
-      "last_seen": "2026-05-22T22:49:01.469030-06:00"
+      "last_seen": "2026-05-22T22:55:04.340064-06:00"
     },
     "3f9c768ad3ef": {
       "name": "GG4",
@@ -2176,7 +2176,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1773943908_278d723b-507c-4f64-9b9f-d46292839916.png?width=384",
       "description": "",
       "first_seen": "2026-05-22T22:49:01.469030-06:00",
-      "last_seen": "2026-05-22T22:49:01.469030-06:00"
+      "last_seen": "2026-05-22T22:55:04.340064-06:00"
     },
     "21b806d8f863": {
       "name": "Black Cherry Fizz Disposable Vape",
@@ -2197,7 +2197,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779415518_23b77c03-5ee9-4925-9eff-c61daa998410.png?width=384",
       "description": "",
       "first_seen": "2026-05-22T22:49:01.469030-06:00",
-      "last_seen": "2026-05-22T22:49:01.469030-06:00"
+      "last_seen": "2026-05-22T22:55:04.340064-06:00"
     },
     "66815fbcc0c4": {
       "name": "Sour Apple Vape Cartridge",
@@ -2218,7 +2218,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779116328_9d34b3b0-fd82-4b8a-a50d-56952e19e596.png?width=384",
       "description": "",
       "first_seen": "2026-05-22T22:49:01.469030-06:00",
-      "last_seen": "2026-05-22T22:49:01.469030-06:00"
+      "last_seen": "2026-05-22T22:55:04.340064-06:00"
     },
     "d6623d889658": {
       "name": "Grape Cream Cake",
@@ -2239,7 +2239,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779280535_72cf67dd-fac5-41af-8a38-f2ff7e0b2c89.png?width=384",
       "description": "",
       "first_seen": "2026-05-22T22:49:01.469030-06:00",
-      "last_seen": "2026-05-22T22:49:01.469030-06:00"
+      "last_seen": "2026-05-22T22:55:04.340064-06:00"
     },
     "7f7ffa3551e7": {
       "name": "Gelato 45",
@@ -2260,7 +2260,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779114569_497c70f5-9901-4f96-a16e-d251d3ee1792.jpg?width=384",
       "description": "",
       "first_seen": "2026-05-22T22:49:01.469030-06:00",
-      "last_seen": "2026-05-22T22:49:01.469030-06:00"
+      "last_seen": "2026-05-22T22:55:04.340064-06:00"
     }
   }
 }
