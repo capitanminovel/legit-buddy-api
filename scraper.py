@@ -537,6 +537,11 @@ def merge(db: dict, fresh: list[dict]) -> dict:
 def run():
     log("=" * 56)
     log(f"Scraping {MENU_URL}")
+    # Always initialise debug file so git add never fails on missing path
+    debug_path = Path(__file__).parent / "docs" / "debug_api.json"
+    debug_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(debug_path, "w") as f:
+        json.dump([], f)
 
     products = try_sweed_api()
 
