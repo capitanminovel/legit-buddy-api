@@ -88,6 +88,19 @@ _STRAIN_MAP = {
     "Cbd": "CBD", "Cbg": "CBG",
 }
 
+_CAT_NORM = {
+    "flower": "flower",
+    "pre-roll": "pre-roll", "pre-rolls": "pre-roll", "preroll": "pre-roll",
+    "prerolls": "pre-roll", "pre roll": "pre-roll", "pre rolls": "pre-roll",
+    "vape": "vapes", "vapes": "vapes", "vape cartridge": "vapes",
+    "vape cartridges": "vapes", "cartridge": "vapes", "cartridges": "vapes",
+    "disposable": "vapes", "disposables": "vapes",
+    "edible": "edibles", "edibles": "edibles",
+}
+
+def _norm_category(raw_cat: str) -> str:
+    return _CAT_NORM.get(raw_cat.lower().strip(), raw_cat)
+
 
 def _sweed_post_body(page_num: int, page_size: int, category_id: int) -> dict:
     return {
@@ -104,8 +117,8 @@ def _normalize_sweed_product(raw: dict) -> dict | None:
         return None
 
     brand    = _str((raw.get("brand") or {}).get("name") or "")
-    category = _str((raw.get("category") or {}).get("name") or
-                    (raw.get("productType") or {}).get("name") or "")
+    category = _norm_category(_str((raw.get("category") or {}).get("name") or
+                                   (raw.get("productType") or {}).get("name") or ""))
 
     strain_info = raw.get("strain") or {}
     strain_raw  = _str((strain_info.get("prevalence") or {}).get("name") or "").title()
