@@ -371,74 +371,60 @@ def _sweed_paginate_requests(session, page_size: int, first_page: list) -> list[
 
 def fetch_all_sweed_via_browser(page) -> list[dict]:
     """
-    Call /_api/Products/GetProductList from inside the Playwright browser context.
-    The browser already has the site's session cookies, bypassing the WAF.
-    Tries a large pageSize first; falls back to page-by-page if capped.
+    POST to /_api/Products/GetProductList using Playwright's request API.
+    page.context.request shares the browser's cookies (set by visiting the menu),
+    so this bypasses the WAF cleanly without any JS embedding.
     """
     import json as _json
 
-    def _browser_post(page_size: int, page_num: int) -> list[dict]:
-        body_str = _json.dumps(_sweed_post_body(page_num, page_size))
-        # Pass body as a JS variable to avoid any template-escaping issues
-        js = f"""
-        async () => {{
-            let result = null;
-            try {{
-                const resp = await fetch('{SWEED_API_PATH}', {{
-                    method: 'POST',
-                    headers: {{
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    }},
-                    body: '{body_str.replace(chr(39), chr(92)+chr(39))}'
-                }});
-                if (!resp.ok) {{
-                    return {{ __error: 'HTTP ' + resp.status }};
-                }}
-                result = await resp.json();
-            }} catch (e) {{
-                return {{ __error: e.toString() }};
-            }}
-            return result;
-        }}
-        """
+    ctx_request = page.context.request
+
+    def _ctx_post(page_size: int, page_num: int) -> list[dict]:
         try:
-            data = page.evaluate(js)
-            if isinstance(data, dict) and "__error" in data:
-                log(f"  browser fetch error (page={page_num}, size={page_size}): {data['__error']}")
+            resp = ctx_request.post(
+                SWEED_API_URL,
+                data=_json.dumps(_sweed_post_body(page_num, page_size)),
+                headers={"Content-Type": "application/json",
+                         "Accept": "application/json",
+                         "Referer": MENU_URL},
+            )
+            log(f"  API POST page={page_num} size={page_size} → HTTP {resp.status}")
+            if not resp.ok:
                 return []
-            return _parse_sweed_response(data) if data else []
+            data = resp.json()
+            return _parse_sweed_response(data)
         except Exception as e:
-            log(f"  browser fetch exception (page={page_num}, size={page_size}): {e}")
+            log(f"  API POST error (page={page_num}, size={page_size}): {e}")
             return []
 
-    # Try large pageSize — if the API respects it we're done in one call
     all_products: dict[str, dict] = {}
+
+    # Try large pageSize first — get everything in one shot
     for page_size in (500, 200, 100):
-        products = _browser_post(page_size, 1)
+        products = _ctx_post(page_size, 1)
         if products:
-            log(f"Sweed browser API (pageSize={page_size}): {len(products)} products")
             for p in products:
                 all_products[product_key(p)] = p
+            log(f"Sweed browser API (pageSize={page_size}): {len(products)} products")
             if len(products) < page_size:
                 log(f"Got all products in one call ({len(all_products)} total)")
                 return list(all_products.values())
-            # Hit the cap — paginate with this page_size
-            log(f"Hit pageSize cap, paginating with pageSize={page_size}...")
+            # Server capped us — paginate with this size
+            log(f"Hit cap at pageSize={page_size}, paginating...")
             page_num = 2
             while True:
-                found = _browser_post(page_size, page_num)
+                found = _ctx_post(page_size, page_num)
                 if not found:
                     break
                 for p in found:
                     all_products[product_key(p)] = p
-                log(f"  page {page_num}: {len(found)} products (total: {len(all_products)})")
+                log(f"  page {page_num}: {len(found)} (total: {len(all_products)})")
                 if len(found) < page_size:
                     break
                 page_num += 1
             return list(all_products.values())
 
-    return []  # all page sizes failed
+    return []  # all attempts failed
 
 
 # ── Category / strain inference (fallback when API fields are missing) ────────
