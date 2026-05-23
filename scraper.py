@@ -2,10 +2,9 @@
 Menu scraper for MN Legit Cannabis – South Metro (Sweed POS platform).
 
 Strategy (in order):
-  1. Sweed API      – direct call to known Sweed/Prime API endpoints
-  2. Algolia API    – extract app/key from page JS, query index directly
-  3. Playwright     – full browser, intercept every XHR/fetch response for JSON products
-  4. DOM fallback   – parse visible card HTML, infer category/strain from name
+  1. Direct API  – POST to /_api/Products/GetProductList per category (fast; WAF often blocks)
+  2. Browser API – same POST via Playwright's request context (shares session cookies, bypasses WAF)
+  3. DOM fallback – parse visible product cards if both API paths fail
 """
 
 import hashlib
@@ -16,48 +15,14 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 import requests
-from bs4 import BeautifulSoup
 
 STORE_SLUG   = "south-metro"
 STORE_DOMAIN = "shop.mnlegitcannabis.com"
 MENU_URL     = f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu"
-SWEED_CDN    = "media-prime.sweedpos.com"
 DATA_FILE    = Path(__file__).parent / "docs" / "products.json"
 CST          = timezone(timedelta(hours=-6))
 
-# Only scrape and display these 4 categories
-TARGET_CATS = ("flower", "pre-roll", "vapes", "edibles")
-
-# Sweed category URL slugs to try for each target category
-CATEGORY_URLS = [
-    # Flower
-    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu/flower",
-    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu?category=flower",
-    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu?type=flower",
-    # Pre-Roll
-    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu/pre-rolls",
-    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu/pre-roll",
-    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu?category=pre-roll",
-    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu?type=pre_roll",
-    # Vapes
-    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu/vapes",
-    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu/vape-pens",
-    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu?category=vapes",
-    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu?type=vape",
-    # Edibles
-    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu/edibles",
-    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu?category=edibles",
-    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu?type=edible",
-]
-
-# Paginated base menu pages
-PAGINATED_URLS = [
-    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu",
-    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu?page=2",
-    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu?page=3",
-    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu?page=4",
-    f"https://{STORE_DOMAIN}/{STORE_SLUG}/menu?page=5",
-]
+TARGET_CATS  = ("flower", "pre-roll", "vapes", "edibles")
 
 HEADERS = {
     "User-Agent": (
@@ -67,7 +32,7 @@ HEADERS = {
     ),
     "Accept": "application/json, text/html, */*",
     "Accept-Language": "en-US,en;q=0.9",
-    "Referer": "https://shop.mnlegitcannabis.com/",
+    "Referer": f"https://{STORE_DOMAIN}/",
 }
 
 
@@ -77,18 +42,13 @@ def log(msg: str):
     print(f"[{datetime.now(CST).strftime('%Y-%m-%d %H:%M:%S CST')}] {msg}", flush=True)
 
 
-# ── Normalise any raw product dict → our schema ───────────────────────────────
+# ── Utility formatters ────────────────────────────────────────────────────────
 
 def _pct(v) -> str:
     if not v: return ""
     s = str(v).replace("%", "").strip()
     try:    return f"{float(s):.1f}%"
     except: return str(v).strip()
-
-def _lst(v) -> list:
-    if isinstance(v, list): return [str(i).strip() for i in v if i]
-    if isinstance(v, str) and v: return [v]
-    return []
 
 def _str(v) -> str:
     return "" if v is None else str(v).strip()
@@ -98,158 +58,310 @@ def _price(v) -> str:
     if isinstance(v, (int, float)): return f"${v:.2f}"
     return str(v).strip()
 
-def _img(raw: dict) -> str:
-    """Extract best image URL from a Jane product dict."""
-    # Jane stores images in photos[].url or photos[].original_url
-    photos = raw.get("photos") or []
-    if isinstance(photos, list) and photos:
-        p0 = photos[0]
-        if isinstance(p0, dict):
-            return _str(p0.get("original_url") or p0.get("url") or p0.get("thumbnail_url") or "")
-        return _str(p0)
-    # Fallback fields
-    for key in ("image_url", "image", "photo", "thumbnail", "featured_image"):
-        v = raw.get(key)
-        if v: return _str(v)
-    return ""
+def _lst(v) -> list:
+    if isinstance(v, list): return [str(i).strip() for i in v if i]
+    if isinstance(v, str) and v: return [v]
+    return []
 
 
-def normalize(raw: dict) -> dict:
-    name     = _str(raw.get("name") or raw.get("title") or "Unknown")
-    brand    = _str(raw.get("brand") or raw.get("brand_name") or raw.get("brandName") or "")
-    category = _str(raw.get("category") or raw.get("kind") or raw.get("type") or raw.get("root_type") or "")
+# ── Sweed POS API normalizer ──────────────────────────────────────────────────
+# Endpoint: https://shop.mnlegitcannabis.com/_api/Products/GetProductList
+# Confirmed category IDs from browser Network tab
 
-    # strain_type: Jane uses "strain_type" key
-    strain = _str(raw.get("strain_type") or raw.get("strainType") or raw.get("lineage") or "").title()
-    _map = {"Indica":"Indica","Sativa":"Sativa","Hybrid":"Hybrid",
-            "Hybrid Indica":"Hybrid (Indica)","Hybrid Sativa":"Hybrid (Sativa)",
-            "Cbd":"CBD","Cbg":"CBG","Not Applicable":"","N/A":"","":""}
-    strain = _map.get(strain, strain)
+SWEED_API_URL = f"https://{STORE_DOMAIN}/_api/Products/GetProductList"
 
-    thc = _pct(raw.get("percent_thc") or raw.get("thc") or raw.get("thc_content") or raw.get("thcContent") or "")
-    cbd = _pct(raw.get("percent_cbd") or raw.get("cbd") or raw.get("cbd_content") or raw.get("cbdContent") or "")
-    cbg = _pct(raw.get("percent_cbg") or raw.get("cbg") or "")
-    cbn = _pct(raw.get("percent_cbn") or raw.get("cbn") or "")
+SWEED_CATEGORIES = {
+    "flower":   5221,
+    "pre-roll": 5222,
+    "edibles":  5223,
+    "vapes":    5684,
+}
 
-    # Terpenes
-    t_raw = raw.get("terpenes") or raw.get("dominant_terpene") or []
-    terpenes = ([x.strip() for x in t_raw.split(",") if x.strip()]
-                if isinstance(t_raw, str) else _lst(t_raw))
+_WEIGHT_TO_TIER = {
+    "1g": "gram", "2g": "two_gram", "3.5g": "eighth",
+    "7g": "quarter", "14g": "half_ounce", "28g": "ounce",
+}
 
-    # Price tiers — Jane key names
-    raw_p = raw.get("prices") or {}
-    tiers = {}
-    for label, keys in [
-        ("gram",       ["gram",       "one_gram",    "1g"]),
-        ("two_gram",   ["two_gram",   "2g"]),
-        ("eighth",     ["eighth",     "eighth_ounce","3.5g"]),
-        ("quarter",    ["quarter",    "quarter_ounce","7g"]),
-        ("half_ounce", ["half_ounce", "half",        "14g"]),
-        ("ounce",      ["ounce",      "28g",         "oz"]),
-        ("unit",       ["unit",       "each"]),
-    ]:
-        for k in keys:
-            v = raw_p.get(k) or raw.get(k)
-            if v:
-                tiers[label] = _price(v)
-                break
+_STRAIN_MAP = {
+    "Indica": "Indica", "Sativa": "Sativa", "Hybrid": "Hybrid",
+    "Hybrid Indica": "Hybrid (Indica)", "Hybrid Sativa": "Hybrid (Sativa)",
+    "Cbd": "CBD", "Cbg": "CBG",
+}
 
+
+def _sweed_post_body(page_num: int, page_size: int, category_id: int) -> dict:
     return {
-        "name":        name,
-        "brand":       brand,
-        "category":    category,
-        "strain_type": strain,
-        "thc":         thc,
-        "cbd":         cbd,
-        "cbg":         cbg,
-        "cbn":         cbn,
-        "terpenes":    terpenes,
-        "effects":     _lst(raw.get("effects") or raw.get("effect") or []),
-        "flavors":     _lst(raw.get("flavors") or raw.get("flavor") or []),
-        "weight":      _str(raw.get("weight") or raw.get("size") or raw.get("net_weight") or ""),
-        "price":       _price(raw.get("price_each") or raw.get("price") or ""),
-        "price_tiers": tiers,
-        "in_stock":    bool(raw.get("in_stock", True)),
-        "image":       _img(raw),
-        "description": _str(raw.get("description") or raw.get("desc") or ""),
+        "filters": {"category": [category_id]},
+        "page": page_num, "pageSize": page_size,
+        "sortingMethodId": 7, "searchTerm": "",
+        "platformOs": "web", "sourcePage": 1,
     }
 
 
-# ── Find product arrays buried in any JSON blob ───────────────────────────────
+def _normalize_sweed_product(raw: dict) -> dict | None:
+    name = _str(raw.get("name") or "")
+    if not name:
+        return None
 
-PROD_KEYS = ("products", "items", "menu_items", "menuItems", "hits", "data", "results")
+    brand    = _str((raw.get("brand") or {}).get("name") or "")
+    category = _str((raw.get("category") or {}).get("name") or
+                    (raw.get("productType") or {}).get("name") or "")
 
-def find_products(data, depth=0) -> list[dict]:
-    if depth > 12: return []
-    if isinstance(data, dict):
-        for k in PROD_KEYS:
-            if k in data and isinstance(data[k], list) and data[k]:
-                s = data[k][0]
-                if isinstance(s, dict) and any(
-                    x in s for x in ("name","price","category","percent_thc","strain_type","photos")
-                ):
-                    return [normalize(p) for p in data[k]]
-        for v in data.values():
-            r = find_products(v, depth+1)
-            if r: return r
-    elif isinstance(data, list):
-        for item in data:
-            r = find_products(item, depth+1)
-            if r: return r
-    return []
+    strain_info = raw.get("strain") or {}
+    strain_raw  = _str((strain_info.get("prevalence") or {}).get("name") or "").title()
+    strain_type = _STRAIN_MAP.get(strain_raw, strain_raw)
+
+    terpenes = [t["name"] for t in (strain_info.get("terpenes") or []) if t.get("name")]
+    flavors  = [f["name"] for f in (strain_info.get("flavors")  or []) if f.get("name")]
+    effects  = [e["name"] for e in (raw.get("effects")          or []) if e.get("name")]
+
+    images = raw.get("images") or []
+    image  = _str(images[0]) if images else ""
+
+    variants    = raw.get("variants") or []
+    thc = cbd   = ""
+    price = weight = ""
+    price_tiers: dict = {}
+    in_stock    = False
+
+    for v in variants:
+        avail   = (v.get("orderingAvailability") or {}).get("reason", "")
+        v_stock = avail == "Available" and (v.get("availableQty") or 0) > 0
+        if v_stock:
+            in_stock = True
+
+        v_price = v.get("price") or 0
+        v_name  = _str(v.get("name") or "")
+
+        lab = v.get("labTests") or {}
+        if not thc and (lab.get("thc") or {}).get("value"):
+            thc = _pct(str(lab["thc"]["value"][0]))
+        if not cbd and (lab.get("cbd") or {}).get("value"):
+            cbd = _pct(str(lab["cbd"]["value"][0]))
+
+        if v_price:
+            key = _WEIGHT_TO_TIER.get(v_name.lower().replace(" ", ""),
+                                      v_name.lower().replace(" ", "_").replace(".", "_"))
+            price_tiers[key] = _price(v_price)
+            if not price or v_stock:
+                price  = _price(v_price)
+                weight = v_name
+
+    return {
+        "name": name, "brand": brand, "category": category,
+        "strain_type": strain_type, "thc": thc, "cbd": cbd,
+        "cbg": "", "cbn": "",
+        "terpenes": terpenes, "effects": effects, "flavors": flavors,
+        "weight": weight, "price": price, "price_tiers": price_tiers,
+        "in_stock": in_stock, "image": image,
+        "description": _str(raw.get("description") or ""),
+    }
 
 
-# ── Strategy 1: Sweed POS API ─────────────────────────────────────────────────
+def _parse_sweed_response(data) -> list[dict]:
+    """Extract and normalize products from a GetProductList API response."""
+    candidates: list = []
+    if isinstance(data, list):
+        candidates = data
+    elif isinstance(data, dict):
+        for key in ("items", "products", "data", "result", "results"):
+            v = data.get(key)
+            if isinstance(v, list) and v:
+                candidates = v
+                break
+            if isinstance(v, dict):
+                for key2 in ("items", "products"):
+                    v2 = v.get(key2)
+                    if isinstance(v2, list) and v2:
+                        candidates = v2
+                        break
+                if candidates:
+                    break
+
+    if not candidates or not isinstance(candidates[0], dict):
+        return []
+    if "variants" not in candidates[0] and "strain" not in candidates[0]:
+        return []
+
+    results = []
+    for item in candidates:
+        p = _normalize_sweed_product(item)
+        if p and p["category"].lower() in TARGET_CATS:
+            results.append(p)
+    return results
+
+
+# ── Strategy 1: Direct HTTP POST (fast, WAF often blocks outside browser) ─────
 
 def try_sweed_api() -> list[dict]:
-    """
-    Hit known Sweed POS / Prime API endpoints.
-    Image CDN = media-prime.sweedpos.com → API likely at prime.sweedpos.com
-    """
-    endpoints = [
-        # Sweed Prime storefront API patterns
-        f"https://prime.sweedpos.com/api/stores/{STORE_SLUG}/products",
-        f"https://prime.sweedpos.com/api/stores/{STORE_SLUG}/menu",
-        f"https://api.sweedpos.com/v1/stores/{STORE_SLUG}/products",
-        f"https://api.sweedpos.com/v1/menu/{STORE_SLUG}",
-        # Store-hosted endpoints
-        f"https://{STORE_DOMAIN}/api/menu",
-        f"https://{STORE_DOMAIN}/api/products",
-        f"https://{STORE_DOMAIN}/{STORE_SLUG}/api/products",
-        f"https://{STORE_DOMAIN}/{STORE_SLUG}/api/menu",
-        # Common SPA data endpoints
-        f"https://{STORE_DOMAIN}/api/v1/menu",
-        f"https://{STORE_DOMAIN}/api/v2/menu",
-    ]
     session = requests.Session()
-    session.headers.update({**HEADERS, "Accept": "application/json"})
-    for url in endpoints:
-        try:
-            r = session.get(url, timeout=12)
-            if r.status_code == 200:
-                data = r.json()
-                found = find_products(data)
-                if found:
-                    log(f"Sweed API ({url}): {len(found)} products")
-                    return found
-        except Exception:
-            pass
+    session.headers.update({**HEADERS, "Accept": "application/json",
+                             "Content-Type": "application/json"})
+    all_products: dict[str, dict] = {}
+    any_success = False
+
+    for cat_name, cat_id in SWEED_CATEGORIES.items():
+        page_num = 1
+        while True:
+            try:
+                r = session.post(SWEED_API_URL,
+                                 json=_sweed_post_body(page_num, 24, cat_id),
+                                 timeout=15)
+                if r.status_code != 200:
+                    break
+                found = _parse_sweed_response(r.json())
+                if not found:
+                    break
+                any_success = True
+                for p in found:
+                    all_products[product_key(p)] = p
+                log(f"Direct API [{cat_name}] page {page_num}: {len(found)} products")
+                if len(found) < 24:
+                    break
+                page_num += 1
+            except Exception:
+                break
+
+    if any_success:
+        log(f"Direct API total: {len(all_products)} products")
+        return list(all_products.values())
     return []
 
 
-# ── Category / strain inference (fallback when API fields are missing) ────────
+# ── Strategy 2: Playwright browser (shares session cookies, bypasses WAF) ─────
+
+def _sweed_fetch_all(ctx_request) -> list[dict]:
+    """POST per category via Playwright's request context, paginating each."""
+    PAGE_SIZE    = 24
+    all_products: dict[str, dict] = {}
+
+    for cat_name, cat_id in SWEED_CATEGORIES.items():
+        log(f"  Fetching [{cat_name}] (id={cat_id})")
+        page_num = 1
+        while True:
+            try:
+                resp = ctx_request.post(
+                    SWEED_API_URL,
+                    data=json.dumps(_sweed_post_body(page_num, PAGE_SIZE, cat_id)),
+                    headers={"Content-Type": "application/json",
+                             "Accept": "application/json",
+                             "Referer": MENU_URL},
+                )
+                log(f"    page {page_num} → HTTP {resp.status}")
+                if not resp.ok:
+                    break
+                found = _parse_sweed_response(resp.json())
+                if not found:
+                    break
+                for p in found:
+                    all_products[product_key(p)] = p
+                log(f"    +{len(found)} products (total: {len(all_products)})")
+                if len(found) < PAGE_SIZE:
+                    break
+                page_num += 1
+            except Exception as e:
+                log(f"    error: {e}")
+                break
+
+    return list(all_products.values())
+
+
+# ── DOM fallback (Sweed card structure) ───────────────────────────────────────
+
+_HREF_STRAIN = {"hybrid": "Hybrid", "indica": "Indica", "sativa": "Sativa",
+                "cbd": "CBD", "cbg": "CBG"}
+
+
+def _dom_scrape_page(page) -> list[dict]:
+    """Parse visible product cards. Uses aria-label, href slug, and text regex —
+    all stable signals that don't depend on CSS module class names."""
+    found = []
+    cards = page.query_selector_all("[id^='product-']")
+
+    for card in cards:
+        p: dict = {}
+
+        # aria-label="Cap Junky Flower, Flower. 4g - $55.00"
+        aria  = card.get_attribute("aria-label") or ""
+        aria_m = re.match(r'^(.+?),\s*(.+?)\.\s*([^\s]+(?:\s+[^\s-][^\s]*)?)\s+-\s+(\$[\d.]+)', aria)
+        if aria_m:
+            p["name"]     = aria_m.group(1).strip()
+            p["category"] = aria_m.group(2).strip()
+            p["weight"]   = aria_m.group(3).strip()
+            p["price"]    = aria_m.group(4).strip()
+
+        # href="/south-metro/menu/flower-5221/hybrid-cap-junky-flower-4g-383073"
+        href  = card.get_attribute("href") or ""
+        href_m = re.search(r'/menu/([a-z-]+?)-\d+/([a-z]+)-', href)
+        if href_m:
+            if not p.get("category"):
+                p["category"] = href_m.group(1).replace("-", " ").title()
+            slug = href_m.group(2)
+            if slug in _HREF_STRAIN:
+                p["strain_type"] = _HREF_STRAIN[slug]
+
+        text = card.inner_text()
+
+        thc_m = re.search(r'THC:\s*([\d.]+\s*%)', text)
+        cbd_m = re.search(r'CBD:\s*([\d.]+\s*%)', text)
+        if thc_m: p["thc"] = thc_m.group(1).replace(" ", "")
+        if cbd_m: p["cbd"] = cbd_m.group(1).replace(" ", "")
+
+        if not p.get("strain_type"):
+            for s in ("Hybrid (Indica)", "Hybrid (Sativa)", "Hybrid", "Indica", "Sativa", "CBD"):
+                if s in text:
+                    p["strain_type"] = s
+                    break
+
+        brand_m = re.search(r'(?:Flower|Pre-?Roll|Vapes?|Edible|Concentrate)\s+by\s+([^\n]+)', text)
+        if brand_m:
+            p["brand"] = brand_m.group(1).strip()
+
+        if not p.get("name"):
+            el = card.query_selector("h2")
+            if el: p["name"] = el.inner_text().strip()
+
+        img = card.query_selector("img")
+        if img:
+            p["image"] = (img.get_attribute("src") or
+                          img.get_attribute("data-src") or "")
+
+        if not p.get("name"):
+            continue
+
+        # Normalise into output schema
+        name     = _str(p.get("name", ""))
+        category = _str(p.get("category", ""))
+        if not category:
+            category = _guess_category(name)
+
+        strain = _str(p.get("strain_type", "")) or _guess_strain(name)
+        name   = _clean_name(name)
+
+        if category.lower() not in TARGET_CATS:
+            continue
+
+        found.append({
+            "name": name, "brand": _str(p.get("brand", "")),
+            "category": category, "strain_type": strain,
+            "thc": _str(p.get("thc", "")), "cbd": _str(p.get("cbd", "")),
+            "cbg": "", "cbn": "",
+            "terpenes": [], "effects": [], "flavors": [],
+            "weight": _str(p.get("weight", "")),
+            "price": _str(p.get("price", "")), "price_tiers": {},
+            "in_stock": True,
+            "image": _str(p.get("image", "")), "description": "",
+        })
+
+    return found
+
 
 def _guess_category(name: str) -> str:
     n = name.lower()
-    if any(x in n for x in ("pre-roll","preroll","pre roll")): return "Pre-Roll"
-    if any(x in n for x in ("disposable",)):                   return "Vapes"
-    if any(x in n for x in ("cartridge","cart","vape")):       return "Vapes"
-    if any(x in n for x in ("battery","spinner","pipe","grinder","accessory")): return "Accessories"
-    if any(x in n for x in ("gummy","gummies","edible","chocolate","cookie","brownie","beverage","drink")): return "Edibles"
-    if any(x in n for x in ("tincture","oil","sublingual")):   return "Tinctures"
-    if any(x in n for x in ("topical","cream","lotion","balm","patch")): return "Topicals"
-    if any(x in n for x in ("concentrate","wax","shatter","badder","rosin","hash","live resin","distillate","sauce")): return "Concentrates"
-    if "flower" in n:                                           return "Flower"
+    if any(x in n for x in ("pre-roll", "preroll", "pre roll")): return "Pre-Roll"
+    if any(x in n for x in ("disposable", "cartridge", "cart", "vape")): return "Vapes"
+    if any(x in n for x in ("gummy", "gummies", "edible", "chocolate", "brownie")): return "Edibles"
+    if "flower" in n: return "Flower"
     return ""
 
 def _guess_strain(name: str) -> str:
@@ -257,157 +369,21 @@ def _guess_strain(name: str) -> str:
     if "indica" in n: return "Indica"
     if "sativa" in n: return "Sativa"
     if "hybrid" in n: return "Hybrid"
-    if "cbd"    in n: return "CBD"
     return ""
 
 def _clean_name(name: str) -> str:
-    """Remove trailing category keywords already visible in the category badge."""
-    patterns = [
-        r'\s*[-–]\s*PRE-?ROLL\s*$',
-        r'\s*[-–]\s*FLOWER\s*$',
-        r'\s*\bFlower\b\s*$',
-        r'\s*\bPRE-?ROLL\b\s*$',
-    ]
-    for pat in patterns:
+    for pat in (r'\s*[-–]\s*PRE-?ROLL\s*$', r'\s*[-–]\s*FLOWER\s*$',
+                r'\s*\bFlower\b\s*$', r'\s*\bPRE-?ROLL\b\s*$'):
         name = re.sub(pat, '', name, flags=re.I).strip()
     return name
 
 
-# ── Strategy 2: Algolia direct query ─────────────────────────────────────────
-
-def try_algolia(page_html: str = "") -> list[dict]:
-    """
-    Jane embeds Algolia app ID + API key + index name in page JS.
-    Extract them and query Algolia directly — gets full product data + images.
-    """
-    if not page_html:
-        try:
-            r = requests.get(MENU_URL, headers=HEADERS, timeout=20)
-            page_html = r.text
-        except Exception:
-            return []
-
-    # Patterns seen in Jane-powered sites
-    app_id  = re.search(r'"?applicationId"?\s*:\s*"([A-Z0-9]{10})"', page_html)
-    api_key = re.search(r'"?apiKey"?\s*:\s*"([a-f0-9]{32})"', page_html)
-    index   = re.search(r'"?indexName"?\s*:\s*"([^"]+menu[^"]*)"', page_html, re.I)
-
-    # Also try env-style variables
-    if not app_id:
-        app_id = re.search(r'ALGOLIA_APP_ID["\s:=]+([A-Z0-9]{10})', page_html)
-    if not api_key:
-        api_key = re.search(r'ALGOLIA_API_KEY["\s:=]+([a-f0-9]{32})', page_html)
-
-    if not (app_id and api_key):
-        log("Algolia: credentials not found in page source")
-        return []
-
-    app  = app_id.group(1)
-    key  = api_key.group(1)
-    idx  = index.group(1) if index else f"menu_{STORE_SLUG}"
-
-    log(f"Algolia: app={app} index={idx}")
-    url  = f"https://{app}-dsn.algolia.net/1/indexes/{idx}/query"
-    body = {"hitsPerPage": 500, "attributesToRetrieve": ["*"]}
-    try:
-        r = requests.post(url, json=body,
-                          headers={"X-Algolia-Application-Id": app,
-                                   "X-Algolia-API-Key": key,
-                                   "Content-Type": "application/json"},
-                          timeout=15)
-        data  = r.json()
-        found = find_products(data)
-        if found:
-            log(f"Algolia: {len(found)} products")
-            return found
-    except Exception as e:
-        log(f"Algolia query failed: {e}")
-    return []
-
-
-# ── Strategy 3: Playwright — scrapes every category page + paginates ─────────
-
-CARD_SELS = (
-    "[data-testid='product-card']", "[data-testid='menu-product-card']",
-    ".product-card", "[class*='ProductCard']", "[class*='product_card']",
-    "[class*='MenuCard']", ".menu-item",
-)
-
-
-def _dom_scrape_page(page) -> list[dict]:
-    """Extract all product cards visible on the current page."""
-    found = []
-    for sel in CARD_SELS:
-        cards = page.query_selector_all(sel)
-        if not cards:
-            continue
-        for card in cards:
-            p: dict = {}
-            for ns in ["h2", "h3", "[class*='name']", "[class*='title']"]:
-                el = card.query_selector(ns)
-                if el: p["name"] = el.inner_text().strip(); break
-            for bs in ["[class*='brand']"]:
-                el = card.query_selector(bs)
-                if el: p["brand"] = el.inner_text().strip(); break
-            for cs in ["[class*='strain']", "[class*='kind']", "[class*='category']"]:
-                el = card.query_selector(cs)
-                if el: p["category"] = el.inner_text().strip(); break
-            for ps in ["[class*='price']"]:
-                el = card.query_selector(ps)
-                if el: p["price"] = el.inner_text().strip(); break
-            for ts in ["[class*='thc']", "[class*='potency']"]:
-                el = card.query_selector(ts)
-                if el: p["thc"] = el.inner_text().strip(); break
-            for cs2 in ["[class*='cbd']"]:
-                el = card.query_selector(cs2)
-                if el: p["cbd"] = el.inner_text().strip(); break
-            img = card.query_selector("img")
-            if img:
-                p["image"] = (img.get_attribute("src") or
-                              img.get_attribute("data-src") or
-                              img.get_attribute("data-lazy-src") or "")
-            if p.get("name"):
-                raw = normalize(p)
-                if not raw["category"]:    raw["category"]    = _guess_category(raw["name"])
-                if not raw["strain_type"]: raw["strain_type"] = _guess_strain(raw["name"])
-                raw["name"] = _clean_name(raw["name"])
-                # Only keep target categories
-                if raw["category"].lower() in TARGET_CATS:
-                    found.append(raw)
-        if found:
-            break
-    return found
-
-
-def _load_page(page, url, label=""):
-    """Navigate and scroll to fully load a menu page."""
-    from playwright.sync_api import TimeoutError as PwTimeout
-    log(f"  → {label or url}")
-    try:
-        page.goto(url, wait_until="networkidle", timeout=45000)
-    except PwTimeout:
-        try:
-            page.goto(url, wait_until="domcontentloaded", timeout=25000)
-            time.sleep(6)
-        except Exception:
-            return
-    # Scroll down to trigger infinite-scroll / lazy loads
-    for _ in range(8):
-        prev_h = page.evaluate("document.body.scrollHeight")
-        page.evaluate("window.scrollBy(0, window.innerHeight * 2)")
-        time.sleep(1.0)
-        new_h = page.evaluate("document.body.scrollHeight")
-        if new_h == prev_h:
-            break   # no more content loaded
-    page.evaluate("window.scrollTo(0,0)")
-    time.sleep(0.5)
-
+# ── Playwright orchestrator ───────────────────────────────────────────────────
 
 def try_playwright() -> list[dict]:
     from playwright.sync_api import sync_playwright, TimeoutError as PwTimeout
 
-    all_products: dict[str, dict] = {}   # keyed by product_key to deduplicate
-    captured: list[tuple[str, dict]] = []
+    all_products: dict[str, dict] = {}
 
     with sync_playwright() as pw:
         browser = pw.chromium.launch(headless=True)
@@ -418,73 +394,38 @@ def try_playwright() -> list[dict]:
         )
         page = ctx.new_page()
 
-        def on_response(resp):
-            ct = resp.headers.get("content-type", "")
-            if "json" in ct:
-                try:
-                    body = resp.json()
-                    captured.append((resp.url, body))
-                except Exception:
-                    pass
+        # Load menu page to establish session cookies
+        log("Loading menu page (session init)...")
+        try:
+            page.goto(MENU_URL, wait_until="networkidle", timeout=45000)
+        except PwTimeout:
+            try:
+                page.goto(MENU_URL, wait_until="domcontentloaded", timeout=25000)
+                time.sleep(4)
+            except Exception:
+                pass
 
-        page.on("response", on_response)
+        # Primary: POST per category via Playwright's request context
+        log("Calling Sweed API via browser request context...")
+        api_products = _sweed_fetch_all(ctx.request)
 
-        # ── Pass 1: paginated base menu pages ─────────────────────────────────
-        log("Playwright: scraping paginated menu pages...")
-        for url in PAGINATED_URLS:
-            captured.clear()
-            _load_page(page, url, f"page {PAGINATED_URLS.index(url)+1}")
-
-            # Try JSON first
-            captured.sort(key=lambda x: len(str(x[1])), reverse=True)
-            found_json = []
-            for api_url, body in captured:
-                found_json = find_products(body)
-                if found_json:
-                    log(f"    JSON: {len(found_json)} products from {api_url[:70]}")
-                    break
-
-            items = found_json or _dom_scrape_page(page)
-            if not items:
-                log(f"    No products on page — stopping pagination")
-                break
-            for p in items:
+        if api_products:
+            for p in api_products:
                 all_products[product_key(p)] = p
-            log(f"    Got {len(items)} products (total so far: {len(all_products)})")
-
-        # ── Pass 2: individual category URLs ──────────────────────────────────
-        log("Playwright: scraping category-specific pages...")
-        for url in CATEGORY_URLS:
-            captured.clear()
-            _load_page(page, url)
-
-            found_json = []
-            for api_url, body in captured:
-                found_json = find_products(body)
-                if found_json:
-                    break
-
-            items = found_json or _dom_scrape_page(page)
-            if items:
-                before = len(all_products)
-                for p in items:
-                    all_products[product_key(p)] = p
-                new = len(all_products) - before
-                if new:
-                    log(f"    +{new} new products from {url}")
-
-        # ── Pass 3: try Algolia from rendered source ───────────────────────────
-        if not all_products:
-            html  = page.content()
-            found = try_algolia(html)
-            for p in found:
+            log(f"Browser API: {len(all_products)} products")
+        else:
+            # Fallback: scrape the visible DOM on the menu page
+            log("Browser API failed — falling back to DOM scrape...")
+            time.sleep(3)
+            dom_products = _dom_scrape_page(page)
+            for p in dom_products:
                 all_products[product_key(p)] = p
+            log(f"DOM scrape: {len(all_products)} products")
 
         browser.close()
 
-    products = list(all_products.values())
-    log(f"Playwright total: {len(products)} unique products across all pages")
-    return products
+    log(f"Playwright total: {len(all_products)} unique products")
+    return list(all_products.values())
 
 
 # ── Database helpers ──────────────────────────────────────────────────────────
@@ -534,28 +475,23 @@ def run():
     products = try_sweed_api()
 
     if not products:
-        log("Sweed API found nothing — trying Algolia...")
-        products = try_algolia()
-
-    if not products:
-        log("Algolia found nothing — launching Playwright...")
+        log("Direct API blocked — launching Playwright...")
         products = try_playwright()
 
     if not products:
-        log("WARNING: 0 products scraped. Keeping existing data unchanged.")
+        log("WARNING: 0 products scraped. Keeping existing data.")
         db = load_db()
         save_db(db)
         return db
 
-    # Keep only the 4 target categories
-    products = [p for p in products if p.get("category","").lower() in TARGET_CATS]
+    products = [p for p in products if p.get("category", "").lower() in TARGET_CATS]
     log(f"After category filter: {len(products)} products")
 
     db = load_db()
     db = merge(db, products)
     save_db(db)
     in_stock = sum(1 for p in db["products"].values() if p.get("in_stock", True))
-    log(f"Done — {len(products)} scraped, {in_stock} total in stock")
+    log(f"Done — {len(products)} scraped, {in_stock} in stock")
     return db
 
 
