@@ -175,6 +175,117 @@ def normalize(raw: dict) -> dict:
     }
 
 
+# ── Sweed POS native API normalizer ──────────────────────────────────────────
+# Endpoint confirmed: https://shop.mnlegitcannabis.com/_api/Products/GetProductList
+# Each product has nested category/brand/strain objects and a variants array.
+
+_WEIGHT_TO_TIER = {
+    "1g": "gram",  "2g": "two_gram",  "3.5g": "eighth",
+    "7g": "quarter", "14g": "half_ounce", "28g": "ounce",
+}
+
+def _normalize_sweed_product(raw: dict) -> dict | None:
+    name = _str(raw.get("name") or "")
+    if not name:
+        return None
+
+    brand    = _str((raw.get("brand") or {}).get("name") or "")
+    category = _str((raw.get("category") or {}).get("name") or
+                    (raw.get("productType") or {}).get("name") or "")
+
+    strain_info = raw.get("strain") or {}
+    prevalence  = strain_info.get("prevalence") or {}
+    strain_raw  = _str(prevalence.get("name") or "").title()
+    _smap = {"Indica": "Indica", "Sativa": "Sativa", "Hybrid": "Hybrid",
+             "Hybrid Indica": "Hybrid (Indica)", "Hybrid Sativa": "Hybrid (Sativa)",
+             "Cbd": "CBD", "Cbg": "CBG"}
+    strain_type = _smap.get(strain_raw, strain_raw)
+
+    flavors  = [f["name"] for f in (strain_info.get("flavors")  or []) if f.get("name")]
+    terpenes = [t["name"] for t in (strain_info.get("terpenes") or []) if t.get("name")]
+    effects  = [e["name"] for e in (raw.get("effects")          or []) if e.get("name")]
+
+    images = raw.get("images") or []
+    image  = _str(images[0]) if images else ""
+
+    description = _str(raw.get("description") or "")
+
+    # Variants → price tiers, THC/CBD, stock status
+    variants   = raw.get("variants") or []
+    thc = cbd  = ""
+    price = weight = ""
+    price_tiers: dict = {}
+    in_stock    = False
+
+    for v in variants:
+        avail    = (v.get("orderingAvailability") or {}).get("reason", "")
+        v_stock  = avail == "Available" and (v.get("availableQty") or 0) > 0
+        if v_stock:
+            in_stock = True
+
+        v_price = v.get("price") or 0
+        v_name  = _str(v.get("name") or "")  # "4g", "3.5g", "1 Pack", etc.
+
+        lab      = v.get("labTests") or {}
+        thc_info = lab.get("thc") or {}
+        cbd_info = lab.get("cbd") or {}
+
+        if not thc and thc_info.get("value"):
+            thc = _pct(str(thc_info["value"][0]))
+        if not cbd and cbd_info.get("value"):
+            cbd = _pct(str(cbd_info["value"][0]))
+
+        if v_price:
+            key = _WEIGHT_TO_TIER.get(v_name.lower().replace(" ", ""),
+                                      v_name.lower().replace(" ", "_").replace(".", "_"))
+            price_tiers[key] = _price(v_price)
+            if not price or v_stock:
+                price  = _price(v_price)
+                weight = v_name
+
+    return {
+        "name": name, "brand": brand, "category": category,
+        "strain_type": strain_type, "thc": thc, "cbd": cbd,
+        "cbg": "", "cbn": "",
+        "terpenes": terpenes, "effects": effects, "flavors": flavors,
+        "weight": weight, "price": price, "price_tiers": price_tiers,
+        "in_stock": in_stock, "image": image, "description": description,
+    }
+
+
+def _parse_sweed_response(data) -> list[dict]:
+    """Extract products from a /_api/Products/GetProductList response."""
+    candidates: list = []
+    if isinstance(data, list):
+        candidates = data
+    elif isinstance(data, dict):
+        for key in ("items", "products", "data", "result", "results"):
+            v = data.get(key)
+            if isinstance(v, list) and v:
+                candidates = v
+                break
+            if isinstance(v, dict):
+                for key2 in ("items", "products"):
+                    v2 = v.get(key2)
+                    if isinstance(v2, list) and v2:
+                        candidates = v2
+                        break
+                if candidates:
+                    break
+
+    if not candidates or not isinstance(candidates[0], dict):
+        return []
+    if "variants" not in candidates[0] and "strain" not in candidates[0]:
+        return []
+
+    results = []
+    for item in candidates:
+        p = _normalize_sweed_product(item)
+        if p and p["category"].lower() in TARGET_CATS:
+            results.append(p)
+    return results
+
+
 # ── Find product arrays buried in any JSON blob ───────────────────────────────
 
 PROD_KEYS = ("products", "items", "menu_items", "menuItems", "hits", "data", "results")
@@ -201,34 +312,43 @@ def find_products(data, depth=0) -> list[dict]:
 
 # ── Strategy 1: Sweed POS API ─────────────────────────────────────────────────
 
+SWEED_API_URL = f"https://{STORE_DOMAIN}/_api/Products/GetProductList"
+
 def try_sweed_api() -> list[dict]:
     """
-    Hit known Sweed POS / Prime API endpoints.
-    Image CDN = media-prime.sweedpos.com → API likely at prime.sweedpos.com
+    Hit the confirmed Sweed storefront API endpoint directly.
+    Falls back to guessed Sweed/Prime API patterns if the main one is blocked.
     """
+    session = requests.Session()
+    session.headers.update({**HEADERS, "Accept": "application/json"})
+
+    # Try the confirmed endpoint first (GET and POST)
+    for method in ("GET", "POST"):
+        try:
+            r = session.request(method, SWEED_API_URL, timeout=15)
+            if r.status_code == 200:
+                data  = r.json()
+                found = _parse_sweed_response(data)
+                if found:
+                    log(f"Sweed native API ({method} {SWEED_API_URL}): {len(found)} products")
+                    return found
+        except Exception:
+            pass
+
+    # Fallback guesses (Sweed Prime / old patterns)
     endpoints = [
-        # Sweed Prime storefront API patterns
         f"https://prime.sweedpos.com/api/stores/{STORE_SLUG}/products",
         f"https://prime.sweedpos.com/api/stores/{STORE_SLUG}/menu",
         f"https://api.sweedpos.com/v1/stores/{STORE_SLUG}/products",
-        f"https://api.sweedpos.com/v1/menu/{STORE_SLUG}",
-        # Store-hosted endpoints
         f"https://{STORE_DOMAIN}/api/menu",
         f"https://{STORE_DOMAIN}/api/products",
-        f"https://{STORE_DOMAIN}/{STORE_SLUG}/api/products",
-        f"https://{STORE_DOMAIN}/{STORE_SLUG}/api/menu",
-        # Common SPA data endpoints
-        f"https://{STORE_DOMAIN}/api/v1/menu",
-        f"https://{STORE_DOMAIN}/api/v2/menu",
     ]
-    session = requests.Session()
-    session.headers.update({**HEADERS, "Accept": "application/json"})
     for url in endpoints:
         try:
             r = session.get(url, timeout=12)
             if r.status_code == 200:
-                data = r.json()
-                found = find_products(data)
+                data  = r.json()
+                found = _parse_sweed_response(data) or find_products(data)
                 if found:
                     log(f"Sweed API ({url}): {len(found)} products")
                     return found
@@ -484,11 +604,11 @@ def try_playwright() -> list[dict]:
             captured.clear()
             _load_page(page, url, f"page {PAGINATED_URLS.index(url)+1}")
 
-            # Try JSON first
+            # Try JSON — prefer Sweed native API response over generic parser
             captured.sort(key=lambda x: len(str(x[1])), reverse=True)
             found_json = []
             for api_url, body in captured:
-                found_json = find_products(body)
+                found_json = _parse_sweed_response(body) or find_products(body)
                 if found_json:
                     log(f"    JSON: {len(found_json)} products from {api_url[:70]}")
                     break
@@ -509,7 +629,7 @@ def try_playwright() -> list[dict]:
 
             found_json = []
             for api_url, body in captured:
-                found_json = find_products(body)
+                found_json = _parse_sweed_response(body) or find_products(body)
                 if found_json:
                     break
 
