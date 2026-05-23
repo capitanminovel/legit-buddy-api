@@ -190,13 +190,13 @@ def _parse_sweed_response(data, force_category: str = "") -> list[dict]:
     if isinstance(data, list):
         candidates = data
     elif isinstance(data, dict):
-        for key in ("items", "products", "data", "result", "results"):
+        for key in ("items", "products", "list", "data", "result", "results"):
             v = data.get(key)
             if isinstance(v, list) and v:
                 candidates = v
                 break
             if isinstance(v, dict):
-                for key2 in ("items", "products"):
+                for key2 in ("items", "products", "list"):
                     v2 = v.get(key2)
                     if isinstance(v2, list) and v2:
                         candidates = v2
