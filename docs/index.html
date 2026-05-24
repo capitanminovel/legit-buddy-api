@@ -6,7 +6,7 @@
   <title>MN Legit Cannabis – South Metro Menu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
@@ -14,13 +14,46 @@
       --border:#e5e7eb;--bg:#f3f4f6;--white:#ffffff;
       --indica:#7c3aed;--sativa:#d97706;--hybrid:#0891b2;--cbd:#2563eb;--cbg:#6366f1;
       --new:#16a34a;--radius:10px;
+      --sg-green:#3d5c2e;--sg-pink:#e88fa2;--sg-cream:#f5f0e8;
+      --sg-dark:#2a3f1f;--sg-border:#4a7030;
     }
+    body.dark{
+      --brand:#4ade80;--brand-lt:#14261e;--text:#e2e8f0;--muted:#94a3b8;
+      --border:#2d3f32;--bg:#0d1a11;--white:#132019;
+      --indica:#a78bfa;--sativa:#fbbf24;--hybrid:#38bdf8;--cbd:#60a5fa;--cbg:#818cf8;
+      --new:#4ade80;
+    }
+    body.dark header,body.dark .tabs-wrap,body.dark .legend,body.dark footer{background:var(--white);border-color:var(--border)}
+    body.dark .card{background:#1a2d20;border-color:var(--border)}
+    body.dark .mood-bar{background:#1a2d20;border-color:var(--border)}
+    body.dark .mood-chip{background:#132019;color:var(--text);border-color:var(--border)}
+    body.dark .mood-chip:hover{background:#1e3826;border-color:var(--brand)}
+    body.dark .search-input{background:#132019;color:var(--text);border-color:var(--border)}
+    body.dark .search-input:focus{background:#1a2d20;border-color:var(--brand)}
+    body.dark .new-arrivals-section{background:linear-gradient(135deg,#132019,#0d1f14);border-color:#2d4a35}
+    body.dark .terp{background:#0d2015;color:#4ade80;border-color:#1e4a2a}
+    body.dark .tier{background:#132019;border-color:var(--border)}
+    body.dark .card.match-strong{border-left:5px solid #4ade80;box-shadow:-2px 0 10px rgba(74,222,128,.3)}
+    body.dark .card.match-good{border-left:5px solid #fbbf24;box-shadow:none}
+    body.dark .card.match-weak{border-left:5px solid #475569;box-shadow:none}
+    body.dark .top-bar{background:#0d2015}
+    body.dark .modal-box,.dark .profile-box{background:#1a2d20}
+    body.dark .sg-card{background:#1e3826;border-color:#3a6040}
+    body.dark .sg-name,.dark .sg-row strong{color:#c8f5d4}
+    body.dark .sg-row{color:#b2c9b8}
+    body.dark .profile-box{background:#132019}
+    body.dark .profile-header{background:#132019;border-color:#2d4a35}
     body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px}
     .top-bar{background:var(--brand);color:#fff;text-align:center;font-size:.75rem;padding:6px;letter-spacing:.3px}
     header{background:var(--white);border-bottom:1px solid var(--border);padding:0 24px;position:sticky;top:0;z-index:30}
     .header-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:20px;height:64px}
     .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.05rem;color:var(--brand);text-decoration:none;white-space:nowrap}
     .logo-leaf{width:34px;height:34px;background:var(--brand);border-radius:50% 50% 50% 0;display:flex;align-items:center;justify-content:center;font-size:1rem;color:#fff;flex-shrink:0}
+    .mascot-wrap{flex-shrink:0;cursor:default;user-select:none;display:flex;align-items:center}
+    .mascot-wrap img{height:52px;width:auto;display:block}
+    .mascot-flip{transform:scaleX(-1)}
+    .dark-toggle{margin-left:auto;background:none;border:1.5px solid var(--border);border-radius:20px;padding:5px 12px;font-size:.78rem;font-weight:600;cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s;white-space:nowrap;flex-shrink:0}
+    .dark-toggle:hover{border-color:var(--brand);color:var(--brand)}
     .header-meta{margin-left:auto;text-align:right;font-size:.75rem;color:var(--muted);line-height:1.5}
     .header-meta strong{color:var(--brand)}
     .tabs-wrap{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:64px;z-index:20}
@@ -31,14 +64,16 @@
     .tab.on{color:var(--brand);border-bottom-color:var(--brand)}
     .legend{display:flex;gap:14px;flex-wrap:wrap;align-items:center;padding:10px 24px;background:var(--white);border-bottom:1px solid var(--border);font-size:.74rem;color:var(--muted)}
     .legend-item{display:flex;align-items:center;gap:5px}
-    main{max-width:1400px;margin:0 auto;padding:28px 24px 60px}
+    main{max-width:1400px;margin:0 auto;padding:28px 24px 100px}
     .section{margin-bottom:44px}
     .section-head{display:flex;align-items:baseline;gap:10px;margin-bottom:18px}
     .section-title{font-size:1.1rem;font-weight:700}
     .section-count{font-size:.8rem;color:var(--muted)}
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
-    .card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .15s,transform .15s}
-    .card:hover{box-shadow:0 4px 16px rgba(0,0,0,.10);transform:translateY(-2px)}
+    .card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .15s,transform .15s;cursor:pointer}
+    .card:hover{box-shadow:0 4px 16px rgba(0,0,0,.12);transform:translateY(-2px)}
+    .card:hover .card-detail-hint{opacity:1}
+    .card-detail-hint{font-size:.67rem;color:var(--brand);font-weight:600;text-align:center;padding:4px 0 0;opacity:0;transition:opacity .15s;letter-spacing:.2px}
     .card-img{position:relative;background:#f9fafb;border-bottom:1px solid var(--border);height:170px;overflow:hidden;display:flex;align-items:center;justify-content:center}
     .card-img img{width:100%;height:100%;object-fit:cover;display:block}
     .no-img{font-size:3.2rem;color:#d1d5db}
@@ -65,16 +100,102 @@
     .price-tiers{display:flex;gap:5px;flex-wrap:wrap}
     .tier{font-size:.7rem;font-weight:500;border:1px solid var(--border);border-radius:5px;padding:3px 7px;color:var(--text);background:#fafafa}
     .tier span{display:block;font-size:.62rem;color:var(--muted)}
-    footer{text-align:center;padding:20px;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);background:var(--white)}
+    footer{text-align:center;padding:16px 20px 80px;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);background:var(--white)}
+    .footer-sticky{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--border);padding:8px 16px;display:flex;justify-content:space-between;align-items:center;font-size:.72rem;color:var(--muted);z-index:200;box-shadow:0 -2px 8px rgba(0,0,0,.06)}
+    .footer-sticky .fs-stock{font-weight:700;color:var(--brand)}
+    .footer-sticky .fs-updated{font-size:.68rem}
+    @media(min-width:768px){.footer-sticky{display:none}}
     .new-arrivals-section{background:linear-gradient(135deg,#f0fdf4,#ecfdf5);border:2px solid #86efac;border-radius:12px;padding:20px;margin-bottom:32px}
     .new-arrivals-head{display:flex;align-items:baseline;gap:10px;margin-bottom:18px}
     .new-arrivals-title{font-size:1.15rem;font-weight:700;color:var(--new)}
     .new-arrivals-count{font-size:.8rem;color:var(--muted)}
     .section-divider{height:2px;background:linear-gradient(90deg,var(--brand-lt),transparent);margin:0 0 36px;border-radius:1px}
     .hidden{display:none!important}
+
+    /* ── Mood / Effect filter bar ── */
+    .mood-bar{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin-bottom:24px;display:flex;flex-direction:column;gap:10px}
+    .mood-bar-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .mood-bar-label{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;white-space:nowrap}
+    .mood-chips{display:flex;gap:7px;flex-wrap:wrap;flex:1}
+    .mood-chip{border:1.5px solid var(--border);background:var(--bg);color:var(--text);border-radius:20px;padding:6px 13px;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .15s;white-space:nowrap;font-family:inherit}
+    .mood-chip:hover{border-color:var(--sg-green);color:var(--sg-green);background:#f0fdf4}
+    .mood-chip.on{background:var(--sg-green);color:var(--sg-pink);border-color:var(--sg-green);font-weight:700}
+    .mood-clear{border:none;background:none;color:var(--muted);font-size:.78rem;font-weight:600;cursor:pointer;padding:6px 8px;border-radius:20px;white-space:nowrap;font-family:inherit}
+    .mood-clear:hover{color:#e53e3e}
+    .mood-status{font-size:.78rem;color:var(--sg-green);font-weight:500;padding:2px 0 0;line-height:1.45}
+    .mood-status strong{font-weight:700}
+    .mood-zero{font-size:.85rem;color:var(--muted);text-align:center;padding:32px 0;font-weight:500}
+    .card.match-strong{border-left:5px solid #16a34a;box-shadow:-2px 0 10px rgba(22,163,74,.2)}
+    .card.match-good{border-left:5px solid #d97706}
+    .card.match-weak{border-left:5px solid #94a3b8}
+
+    /* ── Text search ── */
+    .search-row{display:flex;align-items:center;gap:8px}
+    .search-wrap{position:relative;flex:1;max-width:520px}
+    .search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:.85rem;pointer-events:none}
+    .search-input{width:100%;border:1.5px solid var(--border);border-radius:24px;padding:8px 36px 8px 32px;font-size:.82rem;font-family:inherit;outline:none;background:var(--bg);color:var(--text);transition:border-color .15s}
+    .search-input:focus{border-color:var(--sg-green);background:#fff}
+    .search-input::placeholder{color:#aaa}
+    .search-clear{position:absolute;right:10px;top:50%;transform:translateY(-50%);border:none;background:none;color:#aaa;font-size:1rem;cursor:pointer;padding:2px;line-height:1}
+    .search-clear:hover{color:#e53e3e}
+
     @media(max-width:640px){
-      header{padding:0 14px}.tabs{padding:0 14px}main{padding:18px 14px 50px}.legend{padding:10px 14px}
+      header{padding:0 14px}.tabs{padding:0 14px}main{padding:18px 14px 100px}.legend{padding:10px 14px}
       .grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px}.card-img{height:140px}
+      .mood-bar{padding:12px 14px}.mood-chips{gap:5px}.mood-chip{font-size:.73rem;padding:5px 10px}
+    }
+
+    /* ── Modal overlay ── */
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .2s}
+    .modal-overlay.open{opacity:1;pointer-events:all}
+    .modal-box{background:#e8e0d0;border-radius:18px;max-width:620px;width:100%;max-height:90vh;overflow-y:auto;position:relative;transform:scale(.95);transition:transform .2s;font-family:'Nunito Sans',sans-serif}
+    .modal-overlay.open .modal-box{transform:scale(1)}
+    .modal-close{position:sticky;top:12px;float:right;margin:12px 16px 0 0;background:var(--sg-green);color:var(--sg-pink);border:none;border-radius:50%;width:32px;height:32px;font-size:1.1rem;cursor:pointer;font-weight:900;line-height:32px;text-align:center;z-index:10;flex-shrink:0}
+    .modal-close:hover{background:var(--sg-dark)}
+    .modal-inner{padding:16px 22px 22px;clear:both}
+
+    /* ── Strain card (inside modal) — matches legit_strain_guide.html ── */
+    .sg-card{background:white;border:3px solid var(--sg-border);border-radius:16px;padding:18px 22px;margin-bottom:14px}
+    .sg-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;text-align:center;text-transform:uppercase;letter-spacing:.05em;color:var(--sg-dark);margin-bottom:2px}
+    .sg-type{text-align:center;font-size:12.5px;font-weight:700;color:#555;margin-bottom:4px}
+    .sg-supplier{display:block;background:var(--sg-green);color:var(--sg-pink);font-family:'Nunito',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;border-radius:20px;padding:3px 10px;width:fit-content;margin:0 auto 10px}
+    .sg-divider{border:none;border-top:2px solid var(--sg-border);margin:8px 0 12px}
+    .sg-row{font-size:12.5px;line-height:1.55;margin-bottom:4px;color:#222}
+    .sg-row strong{font-weight:700;color:var(--sg-dark);font-family:'Nunito',sans-serif;font-size:12.5px}
+    .sg-thc-cbd{display:flex;gap:8px;justify-content:center;margin-bottom:8px;flex-wrap:wrap}
+    .sg-pill{font-size:11px;font-weight:700;padding:2px 10px;border-radius:20px;font-family:'Nunito',sans-serif}
+    .sg-pill.thc{background:#16a34a;color:#fff}.sg-pill.cbd{background:#2563eb;color:#fff}
+    .sg-price{text-align:center;font-size:13px;font-weight:700;color:var(--sg-dark);margin-bottom:6px}
+    .modal-actions{display:flex;gap:10px;margin-top:16px;justify-content:center;flex-wrap:wrap}
+    .btn-add-profile{background:var(--sg-green);color:var(--sg-pink);border:none;border-radius:24px;padding:10px 22px;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;transition:background .15s}
+    .btn-add-profile:hover{background:var(--sg-dark)}
+    .btn-add-profile.added{background:#6b7280;color:#fff}
+    .btn-close-modal{background:transparent;color:var(--sg-green);border:2px solid var(--sg-green);border-radius:24px;padding:10px 22px;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}
+
+    /* ── Profile floating button ── */
+    .profile-fab{position:fixed;bottom:28px;right:24px;background:var(--sg-green);color:var(--sg-pink);border:none;border-radius:30px;padding:12px 20px;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.25);z-index:500;display:none;align-items:center;gap:8px;transition:background .15s,transform .1s}
+    .profile-fab:hover{background:var(--sg-dark);transform:scale(1.04)}
+    .profile-fab-count{background:var(--sg-pink);color:var(--sg-dark);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:900}
+
+    /* ── Profile drawer ── */
+    .profile-drawer{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1100;display:none;align-items:flex-end;justify-content:center}
+    .profile-drawer.open{display:flex}
+    .profile-box{background:#e8e0d0;width:100%;max-width:680px;max-height:85vh;border-radius:18px 18px 0 0;overflow-y:auto;padding:0 0 30px}
+    .profile-header{display:flex;align-items:center;justify-content:space-between;padding:18px 22px 14px;background:#e8e0d0;position:sticky;top:0;border-bottom:2px solid var(--sg-border)}
+    .profile-header-title{font-family:'Nunito',sans-serif;font-weight:900;font-size:18px;color:var(--sg-dark);text-transform:uppercase;letter-spacing:.05em}
+    .profile-header-actions{display:flex;gap:8px;flex-wrap:wrap}
+    .btn-export{background:var(--sg-green);color:var(--sg-pink);border:none;border-radius:20px;padding:8px 16px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}
+    .btn-export:hover{background:var(--sg-dark)}
+    .btn-clear{background:transparent;color:#888;border:1px solid #ccc;border-radius:20px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;cursor:pointer}
+    .btn-close-drawer{background:transparent;color:var(--sg-green);border:2px solid var(--sg-green);border-radius:20px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;text-transform:uppercase;cursor:pointer}
+    .profile-cards{padding:16px 18px 0}
+    .profile-empty{text-align:center;padding:40px;color:#888;font-family:'Nunito',sans-serif;font-weight:700;font-size:14px}
+    .profile-item-remove{position:absolute;top:10px;right:12px;background:transparent;border:none;color:#aaa;font-size:18px;cursor:pointer;font-weight:700;line-height:1}
+    .profile-item-remove:hover{color:#e53e3e}
+    @media(max-width:640px){
+      .modal-box{max-height:95vh;border-radius:14px}
+      .profile-box{max-height:92vh}
+      .modal-inner{padding:12px 14px 18px}
     }
   </style>
 </head>
@@ -82,13 +203,19 @@
 <div class="top-bar">🌿 MN Legit Cannabis · South Metro · Updated daily at 4:30 PM CST</div>
 <header>
   <div class="header-inner">
+    <div class="mascot-wrap">
+      <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExb216bXVxcmVpMm1zNTR3NWxob3hoeXloYWFlbWswcW13NnZ3MnlsMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/5C29m5sRSYch78Ko3B/giphy.gif" alt="" loading="lazy">
+    </div>
     <a class="logo" href="#">
-      <div class="logo-leaf">🌿</div>
       <div><div>Legit Cannabis</div><div style="font-size:.7rem;font-weight:400;color:var(--muted)">South Metro</div></div>
     </a>
+    <div class="mascot-wrap">
+      <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHAxcXpnaHdqN3QyaGtmaDM5azkyd2hlZndvNHZocncwamd6Y2Z5aSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VRvFAP4CXxUQw/giphy.gif" alt="" loading="lazy">
+    </div>
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDark()">🌙 Dark</button>
     <div class="header-meta">
-      <div>Last updated: <strong>Fri, May 22 2026 — 11:19 PM CST</strong></div>
-      <div>19 products in stock</div>
+      <div>Last updated: <strong>Sun, May 24 2026 — 01:10 PM CST</strong></div>
+      <div>33 products in stock</div>
     </div>
   </div>
 </header>
@@ -99,394 +226,922 @@
   <div class="legend-item"><span class="strain-badge strain-cbd">CBD</span></div>
   <div class="legend-item"><span class="new-badge">New Today</span> Added today</div>
   <div class="legend-item"><span class="recent-badge">New (2d)</span> Within 3 days</div>
+  <div class="legend-item" style="margin-left:auto;color:var(--brand);font-weight:600">Tap any product for strain guide →</div>
 </div>
 <div class="tabs-wrap"><div class="tabs" id="tabs"><button class="tab on" data-cat="all" onclick="filterCat(this)">All Products</button>
-<button class="tab" data-cat="edibles" onclick="filterCat(this)">🍬 Edibles</button>
-<button class="tab" data-cat="flower" onclick="filterCat(this)">🌿 Flower</button>
-<button class="tab" data-cat="vapes" onclick="filterCat(this)">💨 Vapes</button></div></div>
+<button class="tab" data-cat="edibles" onclick="filterCat(this)">🍬 edibles</button>
+<button class="tab" data-cat="flower" onclick="filterCat(this)">🌿 flower</button>
+<button class="tab" data-cat="pre-roll" onclick="filterCat(this)">🚬 pre-roll</button>
+<button class="tab" data-cat="vapes" onclick="filterCat(this)">💨 vapes</button></div></div>
 <main>
+  <div class="mood-bar" id="moodBar">
+    <div class="mood-bar-top">
+      <span class="mood-bar-label">Find your vibe</span>
+      <div class="mood-chips" id="moodChips">
+        <button class="mood-chip" data-mood="wind-down"      onclick="filterMood(this)" title="Myrcene + Linalool — muscle relaxation, sedation, GABAergic calm (Russo 2011)">😴 Wind Down</button>
+        <button class="mood-chip" data-mood="anxiety-relief" onclick="filterMood(this)" title="Caryophyllene + Linalool + Limonene — the Kamal anxiolytic chemotype (Kamal et al. 2018, Front Neurosci)">🧘 Anxiety Relief</button>
+        <button class="mood-chip" data-mood="lift-up"        onclick="filterMood(this)" title="Limonene + Terpinolene + Ocimene — mood elevation, citrus-forward uplift">⬆ Lift Up</button>
+        <button class="mood-chip" data-mood="get-creative"   onclick="filterMood(this)" title="Pinene + Terpinolene — AChE inhibition sharpens focus; terpinolene drives cerebral creativity">🎨 Get Creative</button>
+        <button class="mood-chip" data-mood="get-social"     onclick="filterMood(this)" title="Limonene + Terpinolene — euphoria, giggles, sociability without heavy sedation">😄 Get Social</button>
+        <button class="mood-chip" data-mood="pain-body"      onclick="filterMood(this)" title="Caryophyllene (CB2 agonist) + Myrcene + Humulene — anti-inflammatory, analgesic, muscle relaxant">💆 Pain &amp; Body</button>
+        <button class="mood-chip" data-mood="just-happy"     onclick="filterMood(this)" title="Limonene + Linalool — balanced euphoria and body warmth">✨ Just Happy</button>
+      </div>
+      <button class="mood-clear hidden" id="moodClear" onclick="clearMood()">✕ Mood</button>
+    </div>
+    <div class="search-row">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" class="search-input"
+               placeholder="Search: anxiety, PTSD, sleep, pain, creative, Myrcene…"
+               oninput="handleSearch(this.value)">
+        <button class="search-clear hidden" id="searchClear" onclick="clearSearch()">✕</button>
+      </div>
+    </div>
+    <div class="mood-status hidden" id="moodStatus"></div>
+  </div>
+  
     <section class="section new-arrivals-section" data-cat="all">
       <div class="new-arrivals-head">
         <span class="new-arrivals-title">✨ New in the Last 3 Days</span>
-        <span class="new-arrivals-count">19 products</span>
+        <span class="new-arrivals-count" data-total="3">3 products</span>
       </div>
       <div class="grid">
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779415518_23b77c03-5ee9-4925-9eff-c61daa998410.png?width=384" alt="Black Cherry Fizz Disposable Vape" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>💨</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-cbd">CBD</span></div><div class="potency-row"><span class="potency-pill thc">THC 82.9%</span><span class="potency-pill cbd">CBD 0.69%</span></div></div>
+    <div class="card" data-key="7b052b7dd4f2" data-terpenes="Myrcene,Limonene,Terpinene" onclick="openModal('7b052b7dd4f2')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779045231_bbdbe5cc-61c4-4a49-ad04-b3aa64e0492d.png" alt="Frodo Sqeeze" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-sativa">Hybrid (Sativa)</span></div><div class="potency-row"><span class="potency-pill thc">THC 16.6%</span><span class="potency-pill cbd">CBD 0.2%</span></div></div>
       <div class="card-body">
-        <div class="card-brand">Stargaze</div>
-        <div class="card-name">Black Cherry Fizz Disposable Vape</div>
-        <div class="card-weight">1 G</div>
-        <div class="price-section"><div class="price-single">$70.00</div></div>
+        <div class="card-brand">Avion</div>
+        <div class="card-name">Frodo Sqeeze</div>
+        <div class="card-weight">1 G</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Limonene</span><span class="terp">Terpinene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$18.00<span>1g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1776125748_1967fee6-b134-46df-be58-112f3ed44b4f.jpg?width=384" alt="Cap Junky" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 29%</span><span class="potency-pill cbd">CBD 0.08%</span></div></div>
+    <div class="card" data-key="e2b95f79aa58" data-terpenes="Myrcene,Limonene,Caryophyllene" onclick="openModal('e2b95f79aa58')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779044973_efa87939-7c8f-4e49-a299-3894fae52ba8.png" alt="Froot by the Foot" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-indica">Hybrid (Indica)</span></div><div class="potency-row"><span class="potency-pill thc">THC 10.3%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
       <div class="card-body">
-        <div class="card-brand">Campfire Cannabis</div>
-        <div class="card-name">Cap Junky</div>
-        <div class="card-weight">4g</div>
-        <div class="price-section"><div class="price-single">$55.00</div></div>
+        <div class="card-brand">Avion</div>
+        <div class="card-name">Froot by the Foot</div>
+        <div class="card-weight">1 G</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Limonene</span><span class="terp">Caryophyllene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$18.00<span>1g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1773943731_a20cf591-6ef1-47a8-9e00-81bbe7f2291e.jpg?width=384" alt="Donny Burger" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-indica">Indica</span></div><div class="potency-row"><span class="potency-pill thc">THC 25.5%</span><span class="potency-pill cbd">CBD 0.07%</span></div></div>
+    <div class="card" data-key="03df98cc7bf8" data-terpenes="Myrcene,Limonene,Caryophyllene" onclick="openModal('03df98cc7bf8')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779044713_09d2b1db-2789-4def-87c4-c5f17f6fb77b.png" alt="Zesty Parm" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-sativa">Hybrid (Sativa)</span></div><div class="potency-row"><span class="potency-pill thc">THC 18.8%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
       <div class="card-body">
-        <div class="card-brand">Campfire Cannabis</div>
-        <div class="card-name">Donny Burger</div>
-        <div class="card-weight">4g</div>
-        <div class="price-section"><div class="price-single">$48.00</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1774281040_b505596f-d02f-4ca3-b4a5-e3d47eff38eb.jpg?width=384" alt="Fight Club" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-sativa">Sativa</span></div><div class="potency-row"><span class="potency-pill thc">THC 22.3%</span><span class="potency-pill cbd">CBD 0.06%</span></div></div>
-      <div class="card-body">
-        <div class="card-brand">Campfire Cannabis</div>
-        <div class="card-name">Fight Club</div>
-        <div class="card-weight">4g</div>
-        <div class="price-section"><div class="price-single">$48.00</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1773943908_278d723b-507c-4f64-9b9f-d46292839916.png?width=384" alt="GG4" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-indica">Indica</span></div><div class="potency-row"><span class="potency-pill thc">THC 21.3%</span><span class="potency-pill cbd">CBD 0.08%</span></div></div>
-      <div class="card-body">
-        <div class="card-brand">Campfire Cannabis</div>
-        <div class="card-name">GG4</div>
-        <div class="card-weight">4g</div>
-        <div class="price-section"><div class="price-single">$48.00</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779115251_9ccbeed8-d575-4921-a4fa-285692bfd445.png?width=384" alt="Girl Scout Cookies Vape Cartridge" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>💨</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 80.48%</span><span class="potency-pill cbd">CBD 0.18%</span></div></div>
-      <div class="card-body">
-        <div class="card-brand">Grasslandz</div>
-        <div class="card-name">Girl Scout Cookies Vape Cartridge</div>
-        <div class="card-weight">1 G</div>
-        <div class="price-section"><div class="price-single">$65.00</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1774807612_c63f0d75-8a83-4723-808b-42f8b615f110.jpg?width=384" alt="Glue 31" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 22.28%</span><span class="potency-pill cbd">CBD 0.09%</span></div></div>
-      <div class="card-body">
-        <div class="card-brand">Grasslandz</div>
-        <div class="card-name">Glue 31</div>
-        <div class="card-weight">3.5g</div>
-        <div class="price-section"><div class="price-single">$54.00</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1778183669_9fbb60c5-1369-4fa6-a0e1-2117536cbbe2.png?width=384" alt="Grape Canyon Zkittlez" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-indica">Indica</span></div><div class="potency-row"><span class="potency-pill thc">THC 21.3%</span><span class="potency-pill cbd">CBD 0.07%</span></div></div>
-      <div class="card-body">
-        <div class="card-brand">Campfire Cannabis</div>
-        <div class="card-name">Grape Canyon Zkittlez</div>
-        <div class="card-weight">4g</div>
-        <div class="price-section"><div class="price-single">$48.00</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1773943792_1b7d4c4a-39c2-4b4a-b498-91a3d875f9fd.jpg?width=384" alt="LIT OG" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-indica">Indica</span></div><div class="potency-row"><span class="potency-pill thc">THC 27.7%</span><span class="potency-pill cbd">CBD 0.08%</span></div></div>
-      <div class="card-body">
-        <div class="card-brand">Campfire Cannabis</div>
-        <div class="card-name">LIT OG</div>
-        <div class="card-weight">4g</div>
-        <div class="price-section"><div class="price-single">$55.00</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1778186539_91a7c6a0-6f99-41cb-864b-fe98dca78366.png?width=384" alt="MAC Stomper" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 26.1%</span><span class="potency-pill cbd">CBD 0.08%</span></div></div>
-      <div class="card-body">
-        <div class="card-brand">Campfire Cannabis</div>
-        <div class="card-name">MAC Stomper</div>
-        
-        <div class="price-section"></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779112173_f3bb173e-3f58-4ae6-a5b6-6e4a980e50a5.avif?width=384" alt="Peach Gummy" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🍬</div>'"><div class="badges"><span class="new-badge">New Today</span></div></div>
-      <div class="card-body">
-        
-        <div class="card-name">Peach Gummy</div>
-        <div class="card-weight">100 MG</div>
-        <div class="price-section"><div class="price-single">$32.00</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1773943932_5dac97fa-c50f-4d32-93a3-c8dfb3ecf6f7.jpg?width=384" alt="Purple Octane" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-indica">Indica</span></div><div class="potency-row"><span class="potency-pill thc">THC 18.6%</span><span class="potency-pill cbd">CBD 0.12%</span></div></div>
-      <div class="card-body">
-        <div class="card-brand">Campfire Cannabis</div>
-        <div class="card-name">Purple Octane</div>
-        <div class="card-weight">4g</div>
-        <div class="price-section"><div class="price-single">$48.00</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779112271_bbd8e29e-4e91-4329-8ac1-eb6d80946b98.avif?width=384" alt="Raspberry Gummy" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🍬</div>'"><div class="badges"><span class="new-badge">New Today</span></div></div>
-      <div class="card-body">
-        
-        <div class="card-name">Raspberry Gummy</div>
-        <div class="card-weight">100 MG</div>
-        <div class="price-section"><div class="price-single">$32.00</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1773943973_9ae0f93f-376c-47c1-b89f-17173456bf06.jpg?width=384" alt="Runtz" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 19.5%</span><span class="potency-pill cbd">CBD 0.06%</span></div></div>
-      <div class="card-body">
-        <div class="card-brand">Campfire Cannabis</div>
-        <div class="card-name">Runtz</div>
-        <div class="card-weight">4g</div>
-        <div class="price-section"><div class="price-single">$48.00</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1773944011_bc3cb393-9400-4292-b412-c37d2c16c57a.jpg?width=384" alt="Soap" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-sativa">Sativa</span></div><div class="potency-row"><span class="potency-pill thc">THC 22.8%</span><span class="potency-pill cbd">CBD 0.06%</span></div></div>
-      <div class="card-body">
-        <div class="card-brand">Campfire Cannabis</div>
-        <div class="card-name">Soap</div>
-        <div class="card-weight">4g</div>
-        <div class="price-section"><div class="price-single">$51.00</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779112605_e574c853-d097-46bc-a7e6-08bd5f8fd21f.png?width=384" alt="Sour Diesel Disposable Vape" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>💨</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-sativa">Sativa</span></div></div>
-      <div class="card-body">
-        <div class="card-brand">Grasslandz</div>
-        <div class="card-name">Sour Diesel Disposable Vape</div>
-        <div class="card-weight">1 G</div>
-        <div class="price-section"><div class="price-single">$70.00</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779116328_9d34b3b0-fd82-4b8a-a50d-56952e19e596.png?width=384" alt="Sour Diesel Vape Cartridge" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>💨</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-sativa">Sativa</span></div><div class="potency-row"><span class="potency-pill thc">THC 80.3%</span><span class="potency-pill cbd">CBD 0.25%</span></div></div>
-      <div class="card-body">
-        <div class="card-brand">Grasslandz</div>
-        <div class="card-name">Sour Diesel Vape Cartridge</div>
-        <div class="card-weight">1 G</div>
-        <div class="price-section"><div class="price-single">$65.00</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1773940146_1c76466a-a2b2-4518-83b3-82d3b0943359.jpg?width=384" alt="Super Boof" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-hybrid">Hybrid</span></div></div>
-      <div class="card-body">
-        <div class="card-brand">Grasslandz</div>
-        <div class="card-name">Super Boof</div>
-        <div class="card-weight">3.5g</div>
-        <div class="price-section"><div class="price-single">$54.00</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779116263_8a1f5316-858b-4eeb-b769-5a61d7e2f4e3.png?width=384" alt="White Widow Vape Cartridge" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>💨</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 81%</span><span class="potency-pill cbd">CBD 0.18%</span></div></div>
-      <div class="card-body">
-        <div class="card-brand">Grasslandz</div>
-        <div class="card-name">White Widow Vape Cartridge</div>
-        <div class="card-weight">1 G</div>
-        <div class="price-section"><div class="price-single">$65.00</div></div>
+        <div class="card-brand">Avion</div>
+        <div class="card-name">Zesty Parm</div>
+        <div class="card-weight">1 G</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Limonene</span><span class="terp">Caryophyllene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$18.00<span>1g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
     </div></div>
     </section>
     <div class="section-divider" data-cat="all"></div>
     <section class="section" data-cat="edibles">
       <div class="section-head">
-        <span class="section-title">🍬 Edibles</span>
-        <span class="section-count">2 products</span>
+        <span class="section-title">🍬 edibles</span>
+        <span class="section-count" data-total="2">2 products</span>
       </div>
       <div class="grid">
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779112173_f3bb173e-3f58-4ae6-a5b6-6e4a980e50a5.avif?width=384" alt="Peach Gummy" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🍬</div>'"><div class="badges"><span class="new-badge">New Today</span></div></div>
+    <div class="card" data-key="961994b89518" data-terpenes="" onclick="openModal('961994b89518')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779112173_f3bb173e-3f58-4ae6-a5b6-6e4a980e50a5.avif" alt="Peach" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🍬</div>'"><div class="badges"><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 100.0%</span></div></div>
       <div class="card-body">
-        
-        <div class="card-name">Peach Gummy</div>
+        <div class="card-brand">Grasslandz</div>
+        <div class="card-name">Peach</div>
         <div class="card-weight">100 MG</div>
-        <div class="price-section"><div class="price-single">$32.00</div></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$32.00<span>100_mg</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779112271_bbd8e29e-4e91-4329-8ac1-eb6d80946b98.avif?width=384" alt="Raspberry Gummy" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🍬</div>'"><div class="badges"><span class="new-badge">New Today</span></div></div>
+    <div class="card" data-key="9934b135c2db" data-terpenes="" onclick="openModal('9934b135c2db')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779112271_bbd8e29e-4e91-4329-8ac1-eb6d80946b98.avif" alt="Raspberry" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🍬</div>'"><div class="badges"><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 100.0%</span></div></div>
       <div class="card-body">
-        
-        <div class="card-name">Raspberry Gummy</div>
+        <div class="card-brand">Grasslandz</div>
+        <div class="card-name">Raspberry</div>
         <div class="card-weight">100 MG</div>
-        <div class="price-section"><div class="price-single">$32.00</div></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$32.00<span>100_mg</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
     </div></div>
     </section>
     <section class="section" data-cat="flower">
       <div class="section-head">
-        <span class="section-title">🌿 Flower</span>
-        <span class="section-count">12 products</span>
+        <span class="section-title">🌿 flower</span>
+        <span class="section-count" data-total="14">14 products</span>
       </div>
       <div class="grid">
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1776125748_1967fee6-b134-46df-be58-112f3ed44b4f.jpg?width=384" alt="Cap Junky" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 29%</span><span class="potency-pill cbd">CBD 0.08%</span></div></div>
+    <div class="card" data-key="9bd115b860af" data-terpenes="Linalool,Limonene,Caryophyllene" onclick="openModal('9bd115b860af')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1776125748_1967fee6-b134-46df-be58-112f3ed44b4f.jpg" alt="Cap Junky" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 29.0%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
       <div class="card-body">
         <div class="card-brand">Campfire Cannabis</div>
         <div class="card-name">Cap Junky</div>
-        <div class="card-weight">4g</div>
-        <div class="price-section"><div class="price-single">$55.00</div></div>
+        <div class="card-weight">4g</div><div class="terp-row"><span class="terp">Linalool</span><span class="terp">Limonene</span><span class="terp">Caryophyllene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$55.00<span>4g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1773943731_a20cf591-6ef1-47a8-9e00-81bbe7f2291e.jpg?width=384" alt="Donny Burger" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-indica">Indica</span></div><div class="potency-row"><span class="potency-pill thc">THC 25.5%</span><span class="potency-pill cbd">CBD 0.07%</span></div></div>
+    <div class="card" data-key="99326fcf9900" data-terpenes="Myrcene,Pinene,Limonene,Caryophyllene" onclick="openModal('99326fcf9900')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1773943731_a20cf591-6ef1-47a8-9e00-81bbe7f2291e.jpg" alt="Donny Burger" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="strain-badge strain-indica">Indica</span></div><div class="potency-row"><span class="potency-pill thc">THC 25.5%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
       <div class="card-body">
         <div class="card-brand">Campfire Cannabis</div>
         <div class="card-name">Donny Burger</div>
-        <div class="card-weight">4g</div>
-        <div class="price-section"><div class="price-single">$48.00</div></div>
+        <div class="card-weight">4g</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Pinene</span><span class="terp">Limonene</span><span class="terp">Caryophyllene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$48.00<span>4g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1774281040_b505596f-d02f-4ca3-b4a5-e3d47eff38eb.jpg?width=384" alt="Fight Club" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-sativa">Sativa</span></div><div class="potency-row"><span class="potency-pill thc">THC 22.3%</span><span class="potency-pill cbd">CBD 0.06%</span></div></div>
+    <div class="card" data-key="c7bc9b6b18c2" data-terpenes="Myrcene,Pinene,Limonene,Caryophyllene,Ocimene,Terpinolene" onclick="openModal('c7bc9b6b18c2')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1774281040_b505596f-d02f-4ca3-b4a5-e3d47eff38eb.jpg" alt="Fight Club" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="strain-badge strain-sativa">Hybrid (Sativa)</span></div><div class="potency-row"><span class="potency-pill thc">THC 22.3%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
       <div class="card-body">
         <div class="card-brand">Campfire Cannabis</div>
         <div class="card-name">Fight Club</div>
-        <div class="card-weight">4g</div>
-        <div class="price-section"><div class="price-single">$48.00</div></div>
+        <div class="card-weight">4g</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Pinene</span><span class="terp">Limonene</span><span class="terp">Caryophyllene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$48.00<span>4g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1773943908_278d723b-507c-4f64-9b9f-d46292839916.png?width=384" alt="GG4" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-indica">Indica</span></div><div class="potency-row"><span class="potency-pill thc">THC 21.3%</span><span class="potency-pill cbd">CBD 0.08%</span></div></div>
+    <div class="card" data-key="3f9c768ad3ef" data-terpenes="Myrcene,Limonene,Caryophyllene" onclick="openModal('3f9c768ad3ef')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1773943908_278d723b-507c-4f64-9b9f-d46292839916.png" alt="GG4" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="strain-badge strain-indica">Hybrid (Indica)</span></div><div class="potency-row"><span class="potency-pill thc">THC 21.3%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
       <div class="card-body">
         <div class="card-brand">Campfire Cannabis</div>
         <div class="card-name">GG4</div>
-        <div class="card-weight">4g</div>
-        <div class="price-section"><div class="price-single">$48.00</div></div>
+        <div class="card-weight">4g</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Limonene</span><span class="terp">Caryophyllene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$48.00<span>4g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1774807612_c63f0d75-8a83-4723-808b-42f8b615f110.jpg?width=384" alt="Glue 31" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 22.28%</span><span class="potency-pill cbd">CBD 0.09%</span></div></div>
+    <div class="card" data-key="7f7ffa3551e7" data-terpenes="Limonene,Caryophyllene,Humulene" onclick="openModal('7f7ffa3551e7')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779114569_497c70f5-9901-4f96-a16e-d251d3ee1792.jpg" alt="Gelato 45" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 17.0%</span><span class="potency-pill cbd">CBD 1.1%</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Grasslandz</div>
+        <div class="card-name">Gelato 45</div>
+        <div class="card-weight">3.5g</div><div class="terp-row"><span class="terp">Limonene</span><span class="terp">Caryophyllene</span><span class="terp">Humulene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$52.00<span>⅛ oz</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
+      </div>
+    </div>
+    <div class="card" data-key="4b794faff189" data-terpenes="Linalool,Caryophyllene,Terpinolene,Geraniol,Valencene,Bisabolol" onclick="openModal('4b794faff189')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1774807612_c63f0d75-8a83-4723-808b-42f8b615f110.jpg" alt="Glue 31" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 22.3%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
       <div class="card-body">
         <div class="card-brand">Grasslandz</div>
         <div class="card-name">Glue 31</div>
-        <div class="card-weight">3.5g</div>
-        <div class="price-section"><div class="price-single">$54.00</div></div>
+        <div class="card-weight">3.5g</div><div class="terp-row"><span class="terp">Linalool</span><span class="terp">Caryophyllene</span><span class="terp">Terpinolene</span><span class="terp">Geraniol</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$54.00<span>⅛ oz</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1778183669_9fbb60c5-1369-4fa6-a0e1-2117536cbbe2.png?width=384" alt="Grape Canyon Zkittlez" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-indica">Indica</span></div><div class="potency-row"><span class="potency-pill thc">THC 21.3%</span><span class="potency-pill cbd">CBD 0.07%</span></div></div>
+    <div class="card" data-key="184eb9c71846" data-terpenes="Myrcene,Linalool,Limonene,Caryophyllene,Humulene" onclick="openModal('184eb9c71846')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1778183669_9fbb60c5-1369-4fa6-a0e1-2117536cbbe2.png" alt="Grape Canyon Zkittlez" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="strain-badge strain-indica">Hybrid (Indica)</span></div><div class="potency-row"><span class="potency-pill thc">THC 21.3%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
       <div class="card-body">
         <div class="card-brand">Campfire Cannabis</div>
         <div class="card-name">Grape Canyon Zkittlez</div>
-        <div class="card-weight">4g</div>
-        <div class="price-section"><div class="price-single">$48.00</div></div>
+        <div class="card-weight">4g</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Linalool</span><span class="terp">Limonene</span><span class="terp">Caryophyllene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$48.00<span>4g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1773943792_1b7d4c4a-39c2-4b4a-b498-91a3d875f9fd.jpg?width=384" alt="LIT OG" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-indica">Indica</span></div><div class="potency-row"><span class="potency-pill thc">THC 27.7%</span><span class="potency-pill cbd">CBD 0.08%</span></div></div>
+    <div class="card" data-key="d6623d889658" data-terpenes="Myrcene,Linalool,Caryophyllene" onclick="openModal('d6623d889658')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779280535_72cf67dd-fac5-41af-8a38-f2ff7e0b2c89.png" alt="Grape Cream Cake" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="strain-badge strain-indica">Hybrid (Indica)</span></div><div class="potency-row"><span class="potency-pill thc">THC 23.5%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Campfire Cannabis</div>
+        <div class="card-name">Grape Cream Cake</div>
+        <div class="card-weight">4g</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Linalool</span><span class="terp">Caryophyllene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$48.00<span>4g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
+      </div>
+    </div>
+    <div class="card" data-key="2223f6ee76a3" data-terpenes="Linalool,Ocimene,Terpinolene,Geraniol,Bisabolol" onclick="openModal('2223f6ee76a3')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1773943792_1b7d4c4a-39c2-4b4a-b498-91a3d875f9fd.jpg" alt="LIT OG" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="strain-badge strain-indica">Hybrid (Indica)</span></div><div class="potency-row"><span class="potency-pill thc">THC 27.7%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
       <div class="card-body">
         <div class="card-brand">Campfire Cannabis</div>
         <div class="card-name">LIT OG</div>
-        <div class="card-weight">4g</div>
-        <div class="price-section"><div class="price-single">$55.00</div></div>
+        <div class="card-weight">4g</div><div class="terp-row"><span class="terp">Linalool</span><span class="terp">Ocimene</span><span class="terp">Terpinolene</span><span class="terp">Geraniol</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$55.00<span>4g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1778186539_91a7c6a0-6f99-41cb-864b-fe98dca78366.png?width=384" alt="MAC Stomper" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 26.1%</span><span class="potency-pill cbd">CBD 0.08%</span></div></div>
+    <div class="card" data-key="f9a02875b44a" data-terpenes="Myrcene,Linalool,Pinene,Caryophyllene" onclick="openModal('f9a02875b44a')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1778186508_a53d0273-21f7-4b73-92b5-7cad326a68c3.png" alt="MAC Stomper" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 26.1%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
       <div class="card-body">
         <div class="card-brand">Campfire Cannabis</div>
         <div class="card-name">MAC Stomper</div>
-        
-        <div class="price-section"></div>
+        <div class="card-weight">14g</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Linalool</span><span class="terp">Pinene</span><span class="terp">Caryophyllene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$55.00<span>4g</span></div><div class="tier">$160.00<span>½ oz</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1773943932_5dac97fa-c50f-4d32-93a3-c8dfb3ecf6f7.jpg?width=384" alt="Purple Octane" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-indica">Indica</span></div><div class="potency-row"><span class="potency-pill thc">THC 18.6%</span><span class="potency-pill cbd">CBD 0.12%</span></div></div>
+    <div class="card" data-key="1ff4b7efe819" data-terpenes="Caryophyllene" onclick="openModal('1ff4b7efe819')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1773943932_5dac97fa-c50f-4d32-93a3-c8dfb3ecf6f7.jpg" alt="Purple Octane" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="strain-badge strain-indica">Hybrid (Indica)</span></div><div class="potency-row"><span class="potency-pill thc">THC 18.6%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
       <div class="card-body">
         <div class="card-brand">Campfire Cannabis</div>
         <div class="card-name">Purple Octane</div>
-        <div class="card-weight">4g</div>
-        <div class="price-section"><div class="price-single">$48.00</div></div>
+        <div class="card-weight">4g</div><div class="terp-row"><span class="terp">Caryophyllene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$48.00<span>4g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1773943973_9ae0f93f-376c-47c1-b89f-17173456bf06.jpg?width=384" alt="Runtz" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 19.5%</span><span class="potency-pill cbd">CBD 0.06%</span></div></div>
+    <div class="card" data-key="265b210f94fe" data-terpenes="Myrcene,Limonene,Caryophyllene" onclick="openModal('265b210f94fe')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1773943973_9ae0f93f-376c-47c1-b89f-17173456bf06.jpg" alt="Runtz" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 19.5%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
       <div class="card-body">
         <div class="card-brand">Campfire Cannabis</div>
         <div class="card-name">Runtz</div>
-        <div class="card-weight">4g</div>
-        <div class="price-section"><div class="price-single">$48.00</div></div>
+        <div class="card-weight">4g</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Limonene</span><span class="terp">Caryophyllene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$48.00<span>4g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1773944011_bc3cb393-9400-4292-b412-c37d2c16c57a.jpg?width=384" alt="Soap" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-sativa">Sativa</span></div><div class="potency-row"><span class="potency-pill thc">THC 22.8%</span><span class="potency-pill cbd">CBD 0.06%</span></div></div>
+    <div class="card" data-key="d024338fee18" data-terpenes="Linalool,Limonene,Caryophyllene,Humulene" onclick="openModal('d024338fee18')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1773944011_bc3cb393-9400-4292-b412-c37d2c16c57a.jpg" alt="Soap" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="strain-badge strain-sativa">Hybrid (Sativa)</span></div><div class="potency-row"><span class="potency-pill thc">THC 22.8%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
       <div class="card-body">
         <div class="card-brand">Campfire Cannabis</div>
         <div class="card-name">Soap</div>
-        <div class="card-weight">4g</div>
-        <div class="price-section"><div class="price-single">$51.00</div></div>
+        <div class="card-weight">4g</div><div class="terp-row"><span class="terp">Linalool</span><span class="terp">Limonene</span><span class="terp">Caryophyllene</span><span class="terp">Humulene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$51.00<span>4g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1773940146_1c76466a-a2b2-4518-83b3-82d3b0943359.jpg?width=384" alt="Super Boof" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-hybrid">Hybrid</span></div></div>
+    <div class="card" data-key="6a06396da757" data-terpenes="Myrcene,Limonene,Caryophyllene" onclick="openModal('6a06396da757')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1773940146_1c76466a-a2b2-4518-83b3-82d3b0943359.jpg" alt="Super Boof" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🌿</div>'"><div class="badges"><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 19.4%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
       <div class="card-body">
         <div class="card-brand">Grasslandz</div>
         <div class="card-name">Super Boof</div>
-        <div class="card-weight">3.5g</div>
-        <div class="price-section"><div class="price-single">$54.00</div></div>
+        <div class="card-weight">3.5g</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Limonene</span><span class="terp">Caryophyllene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$54.00<span>⅛ oz</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
+      </div>
+    </div></div>
+    </section>
+    <section class="section" data-cat="pre-roll">
+      <div class="section-head">
+        <span class="section-title">🚬 pre-roll</span>
+        <span class="section-count" data-total="13">13 products</span>
+      </div>
+      <div class="grid">
+    <div class="card" data-key="7b052b7dd4f2" data-terpenes="Myrcene,Limonene,Terpinene" onclick="openModal('7b052b7dd4f2')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779045231_bbdbe5cc-61c4-4a49-ad04-b3aa64e0492d.png" alt="Frodo Sqeeze" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-sativa">Hybrid (Sativa)</span></div><div class="potency-row"><span class="potency-pill thc">THC 16.6%</span><span class="potency-pill cbd">CBD 0.2%</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Avion</div>
+        <div class="card-name">Frodo Sqeeze</div>
+        <div class="card-weight">1 G</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Limonene</span><span class="terp">Terpinene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$18.00<span>1g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
+      </div>
+    </div>
+    <div class="card" data-key="e2b95f79aa58" data-terpenes="Myrcene,Limonene,Caryophyllene" onclick="openModal('e2b95f79aa58')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779044973_efa87939-7c8f-4e49-a299-3894fae52ba8.png" alt="Froot by the Foot" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-indica">Hybrid (Indica)</span></div><div class="potency-row"><span class="potency-pill thc">THC 10.3%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Avion</div>
+        <div class="card-name">Froot by the Foot</div>
+        <div class="card-weight">1 G</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Limonene</span><span class="terp">Caryophyllene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$18.00<span>1g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
+      </div>
+    </div>
+    <div class="card" data-key="03df98cc7bf8" data-terpenes="Myrcene,Limonene,Caryophyllene" onclick="openModal('03df98cc7bf8')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779044713_09d2b1db-2789-4def-87c4-c5f17f6fb77b.png" alt="Zesty Parm" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-sativa">Hybrid (Sativa)</span></div><div class="potency-row"><span class="potency-pill thc">THC 18.8%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Avion</div>
+        <div class="card-name">Zesty Parm</div>
+        <div class="card-weight">1 G</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Limonene</span><span class="terp">Caryophyllene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$18.00<span>1g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
+      </div>
+    </div>
+    <div class="card" data-key="8ddb5a864d39" data-terpenes="Myrcene,Limonene,Caryophyllene" onclick="openModal('8ddb5a864d39')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1776206164_512e1557-5093-470c-8843-89df37bf4a54.png" alt="Blueberry Muffin" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="strain-badge strain-indica">Hybrid (Indica)</span></div><div class="potency-row"><span class="potency-pill thc">THC 17.9%</span><span class="potency-pill cbd">CBD 0.3%</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Grasslandz</div>
+        <div class="card-name">Blueberry Muffin</div>
+        <div class="card-weight">1 G</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Limonene</span><span class="terp">Caryophyllene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$18.00<span>1g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
+      </div>
+    </div>
+    <div class="card" data-key="d16c07bc5b91" data-terpenes="Myrcene,Linalool,Pinene,Limonene,Caryophyllene,Humulene,B Pinene" onclick="openModal('d16c07bc5b91')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1777923983_e9646ae8-6186-4f0f-aa6f-ecd2df9b9772.avif" alt="Blueberry Muffin Mini Pre-rolls-" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="strain-badge strain-indica">Hybrid (Indica)</span></div><div class="potency-row"><span class="potency-pill thc">THC 21.8%</span><span class="potency-pill cbd">CBD 0.0%</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Lifted North</div>
+        <div class="card-name">Blueberry Muffin Mini Pre-rolls-</div>
+        <div class="card-weight">5PK of 0.5g pre-rolls</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Linalool</span><span class="terp">Pinene</span><span class="terp">Limonene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$30.00<span>5pk_of_0_5g_pre-rolls</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
+      </div>
+    </div>
+    <div class="card" data-key="ae8b04d10a31" data-terpenes="Linalool,Limonene,Caryophyllene" onclick="openModal('ae8b04d10a31')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779044027_95a5edd4-7115-4e9a-91f9-5e69868e1432.png" alt="Cap Junky" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 16.3%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Redwood County Weed Co</div>
+        <div class="card-name">Cap Junky</div>
+        <div class="card-weight">1 G</div><div class="terp-row"><span class="terp">Linalool</span><span class="terp">Limonene</span><span class="terp">Caryophyllene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$15.00<span>1g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
+      </div>
+    </div>
+    <div class="card" data-key="57a8dde82c12" data-terpenes="Pinene,Caryophyllene,Humulene" onclick="openModal('57a8dde82c12')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779044042_5f078370-a9c0-4760-aaf4-210ff000abd0.png" alt="Early Lemon Berry" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 13.6%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Redwood County Weed Co</div>
+        <div class="card-name">Early Lemon Berry</div>
+        <div class="card-weight">1 G</div><div class="terp-row"><span class="terp">Pinene</span><span class="terp">Caryophyllene</span><span class="terp">Humulene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$15.00<span>1g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
+      </div>
+    </div>
+    <div class="card" data-key="6ba39e627a58" data-terpenes="" onclick="openModal('6ba39e627a58')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1777924111_4d78cb84-5256-4312-a666-8ff152bf85ed.png" alt="Egg Roll" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="strain-badge strain-indica">Hybrid (Indica)</span></div><div class="potency-row"><span class="potency-pill thc">THC 19.2%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Campfire Cannabis</div>
+        <div class="card-name">Egg Roll</div>
+        <div class="card-weight">1 G</div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$18.00<span>1g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
+      </div>
+    </div>
+    <div class="card" data-key="dbcb7ab15506" data-terpenes="Myrcene,Linalool,Limonene,Caryophyllene" onclick="openModal('dbcb7ab15506')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779044053_8430cacf-b295-4967-9090-dbb1dcf0ceb4.png" alt="Halle Berry" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="strain-badge strain-sativa">Hybrid (Sativa)</span></div><div class="potency-row"><span class="potency-pill thc">THC 16.1%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Redwood County Weed Co</div>
+        <div class="card-name">Halle Berry</div>
+        <div class="card-weight">1 G</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Linalool</span><span class="terp">Limonene</span><span class="terp">Caryophyllene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$15.00<span>1g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
+      </div>
+    </div>
+    <div class="card" data-key="c697f763d6e1" data-terpenes="Myrcene,Limonene,Caryophyllene" onclick="openModal('c697f763d6e1')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779044062_227604c4-164e-4a3f-949d-0dde0b3707b2.png" alt="Jelly Breath" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="strain-badge strain-indica">Hybrid (Indica)</span></div><div class="potency-row"><span class="potency-pill thc">THC 15.9%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Redwood County Weed Co</div>
+        <div class="card-name">Jelly Breath</div>
+        <div class="card-weight">1 G</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Limonene</span><span class="terp">Caryophyllene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$15.00<span>1g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
+      </div>
+    </div>
+    <div class="card" data-key="aadbe36acb08" data-terpenes="Myrcene,Limonene,Caryophyllene" onclick="openModal('aadbe36acb08')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779044081_6845a45a-ad2d-494d-9f90-91addc5a3fe5.png" alt="La Cegua" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="strain-badge strain-sativa">Hybrid (Sativa)</span></div><div class="potency-row"><span class="potency-pill thc">THC 16.9%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Redwood County Weed Co</div>
+        <div class="card-name">La Cegua</div>
+        <div class="card-weight">1 G</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Limonene</span><span class="terp">Caryophyllene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$15.00<span>1g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
+      </div>
+    </div>
+    <div class="card" data-key="baa51ab3ca78" data-terpenes="Limonene,Caryophyllene,Humulene" onclick="openModal('baa51ab3ca78')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779280279_da578528-38f6-4506-95a5-aaab6013c968.png" alt="Purple Milk" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="strain-badge strain-sativa">Hybrid (Sativa)</span></div><div class="potency-row"><span class="potency-pill thc">THC 16.8%</span><span class="potency-pill cbd">CBD 0.1%</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Campfire Cannabis</div>
+        <div class="card-name">Purple Milk</div>
+        <div class="card-weight">1 G</div><div class="terp-row"><span class="terp">Limonene</span><span class="terp">Caryophyllene</span><span class="terp">Humulene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$18.00<span>1g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
+      </div>
+    </div>
+    <div class="card" data-key="32de19b6f29e" data-terpenes="Myrcene,Limonene,Caryophyllene" onclick="openModal('32de19b6f29e')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779044091_a9b368fd-b066-43ec-a557-a549914a04a0.png" alt="Slurricane" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="strain-badge strain-indica">Hybrid (Indica)</span></div><div class="potency-row"><span class="potency-pill thc">THC 10.5%</span><span class="potency-pill cbd">CBD 0.0%</span></div></div>
+      <div class="card-body">
+        <div class="card-brand">Redwood County Weed Co</div>
+        <div class="card-name">Slurricane</div>
+        <div class="card-weight">1 G</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Limonene</span><span class="terp">Caryophyllene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$12.00<span>1g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
     </div></div>
     </section>
     <section class="section" data-cat="vapes">
       <div class="section-head">
-        <span class="section-title">💨 Vapes</span>
-        <span class="section-count">5 products</span>
+        <span class="section-title">💨 vapes</span>
+        <span class="section-count" data-total="4">4 products</span>
       </div>
       <div class="grid">
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779415518_23b77c03-5ee9-4925-9eff-c61daa998410.png?width=384" alt="Black Cherry Fizz Disposable Vape" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>💨</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-cbd">CBD</span></div><div class="potency-row"><span class="potency-pill thc">THC 82.9%</span><span class="potency-pill cbd">CBD 0.69%</span></div></div>
-      <div class="card-body">
-        <div class="card-brand">Stargaze</div>
-        <div class="card-name">Black Cherry Fizz Disposable Vape</div>
-        <div class="card-weight">1 G</div>
-        <div class="price-section"><div class="price-single">$70.00</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779115251_9ccbeed8-d575-4921-a4fa-285692bfd445.png?width=384" alt="Girl Scout Cookies Vape Cartridge" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>💨</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 80.48%</span><span class="potency-pill cbd">CBD 0.18%</span></div></div>
+    <div class="card" data-key="b0990993b588" data-terpenes="Myrcene,Limonene,Caryophyllene" onclick="openModal('b0990993b588')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779115251_9ccbeed8-d575-4921-a4fa-285692bfd445.png" alt="Girl Scout Cookies" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>💨</div>'"><div class="badges"><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 80.5%</span><span class="potency-pill cbd">CBD 0.2%</span></div></div>
       <div class="card-body">
         <div class="card-brand">Grasslandz</div>
-        <div class="card-name">Girl Scout Cookies Vape Cartridge</div>
-        <div class="card-weight">1 G</div>
-        <div class="price-section"><div class="price-single">$65.00</div></div>
+        <div class="card-name">Girl Scout Cookies</div>
+        <div class="card-weight">1 G</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Limonene</span><span class="terp">Caryophyllene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$65.00<span>1g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779112605_e574c853-d097-46bc-a7e6-08bd5f8fd21f.png?width=384" alt="Sour Diesel Disposable Vape" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>💨</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-sativa">Sativa</span></div></div>
+    <div class="card" data-key="b07cb1ec42ba" data-terpenes="Myrcene,Pinene,Caryophyllene" onclick="openModal('b07cb1ec42ba')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779116328_9d34b3b0-fd82-4b8a-a50d-56952e19e596.png" alt="Sour Apple" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>💨</div>'"><div class="badges"><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 76.8%</span><span class="potency-pill cbd">CBD 0.2%</span></div></div>
       <div class="card-body">
         <div class="card-brand">Grasslandz</div>
-        <div class="card-name">Sour Diesel Disposable Vape</div>
-        <div class="card-weight">1 G</div>
-        <div class="price-section"><div class="price-single">$70.00</div></div>
+        <div class="card-name">Sour Apple</div>
+        <div class="card-weight">1 G</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Pinene</span><span class="terp">Caryophyllene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$65.00<span>1g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779116328_9d34b3b0-fd82-4b8a-a50d-56952e19e596.png?width=384" alt="Sour Diesel Vape Cartridge" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>💨</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-sativa">Sativa</span></div><div class="potency-row"><span class="potency-pill thc">THC 80.3%</span><span class="potency-pill cbd">CBD 0.25%</span></div></div>
+    <div class="card" data-key="e1138882d6cd" data-terpenes="Myrcene,Limonene,Caryophyllene" onclick="openModal('e1138882d6cd')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779116328_9d34b3b0-fd82-4b8a-a50d-56952e19e596.png" alt="Sour Diesel" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>💨</div>'"><div class="badges"><span class="strain-badge strain-sativa">Hybrid (Sativa)</span></div><div class="potency-row"><span class="potency-pill thc">THC 80.3%</span><span class="potency-pill cbd">CBD 0.2%</span></div></div>
       <div class="card-body">
         <div class="card-brand">Grasslandz</div>
-        <div class="card-name">Sour Diesel Vape Cartridge</div>
-        <div class="card-weight">1 G</div>
-        <div class="price-section"><div class="price-single">$65.00</div></div>
+        <div class="card-name">Sour Diesel</div>
+        <div class="card-weight">1 G</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Limonene</span><span class="terp">Caryophyllene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$65.00<span>1g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779116263_8a1f5316-858b-4eeb-b769-5a61d7e2f4e3.png?width=384" alt="White Widow Vape Cartridge" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>💨</div>'"><div class="badges"><span class="new-badge">New Today</span><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 81%</span><span class="potency-pill cbd">CBD 0.18%</span></div></div>
+    <div class="card" data-key="a64e2855f46b" data-terpenes="Myrcene,Pinene,Caryophyllene" onclick="openModal('a64e2855f46b')">
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779116263_8a1f5316-858b-4eeb-b769-5a61d7e2f4e3.png" alt="White Widow" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>💨</div>'"><div class="badges"><span class="strain-badge strain-hybrid">Hybrid</span></div><div class="potency-row"><span class="potency-pill thc">THC 81.0%</span><span class="potency-pill cbd">CBD 0.2%</span></div></div>
       <div class="card-body">
         <div class="card-brand">Grasslandz</div>
-        <div class="card-name">White Widow Vape Cartridge</div>
-        <div class="card-weight">1 G</div>
-        <div class="price-section"><div class="price-single">$65.00</div></div>
+        <div class="card-name">White Widow</div>
+        <div class="card-weight">1 G</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Pinene</span><span class="terp">Caryophyllene</span></div>
+        <div class="price-section"><div class="price-tiers"><div class="tier">$65.00<span>1g</span></div></div></div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
     </div></div>
-    </section></main>
-<footer>Auto-updated daily at 4:30 PM CST &nbsp;·&nbsp; MN Legit Cannabis South Metro</footer>
+    </section>
+  <div class="mood-zero hidden" id="moodZero">No products match this vibe right now — try another filter.</div>
+</main>
+<footer>
+  Last updated: Sun, May 24 2026 — 01:10 PM CST &nbsp;·&nbsp; 33 products in stock &nbsp;·&nbsp; MN Legit Cannabis South Metro
+</footer>
+<div class="footer-sticky">
+  <span class="fs-stock">33 products in stock</span>
+  <span class="fs-updated">Updated Sun, May 24 2026 — 01:10 PM CST</span>
+</div>
+
+<!-- Strain modal -->
+<div class="modal-overlay" id="strainModal" onclick="closeModalOutside(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-inner">
+      <div id="modalCard"></div>
+      <div class="modal-actions">
+        <button class="btn-add-profile" id="btnAddProfile" onclick="toggleProfile()">＋ Add to Profile</button>
+        <button class="btn-close-modal" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Profile drawer -->
+<div class="profile-drawer" id="profileDrawer">
+  <div class="profile-box">
+    <div class="profile-header">
+      <div class="profile-header-title">📋 Strain Profile</div>
+      <div class="profile-header-actions">
+        <button class="btn-export" onclick="exportGuide()">⬇ Download Strain Guide</button>
+        <button class="btn-clear" onclick="clearProfile()">Clear All</button>
+        <button class="btn-close-drawer" onclick="closeDrawer()">Close</button>
+      </div>
+    </div>
+    <div class="profile-cards" id="profileCards">
+      <div class="profile-empty" id="profileEmpty">No strains added yet.<br>Tap any product card, then "Add to Profile."</div>
+    </div>
+  </div>
+</div>
+
+<!-- Floating profile button -->
+<button class="profile-fab" id="profileFab" onclick="openDrawer()">
+  📋 My Profile <span class="profile-fab-count" id="fabCount">0</span>
+</button>
+
 <script>
+const PRODUCTS = {"d16c07bc5b91": {"name": "Blueberry Muffin Mini Pre-rolls-", "brand": "Lifted North", "category": "pre-roll", "strain_type": "Hybrid (Indica)", "thc": "21.8%", "cbd": "0.0%", "cbg": "", "cbn": "", "terpenes": ["Myrcene", "Linalool", "Pinene", "Limonene", "Caryophyllene", "Humulene", "B Pinene"], "effects": ["Body High", "Focused", "Relaxing", "Tingly", "Happy"], "flavors": ["Blueberry", "Herbal", "Sweet", "Vanilla", "Butter", "Nutty"], "weight": "5PK of 0.5g pre-rolls", "price": "$30.00", "price_tiers": {"5pk_of_0_5g_pre-rolls": "$30.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1777923983_e9646ae8-6186-4f0f-aa6f-ecd2df9b9772.avif", "description": "Blueberry x Purple Panty Dropper.", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "9bd115b860af": {"name": "Cap Junky", "brand": "Campfire Cannabis", "category": "flower", "strain_type": "Hybrid", "thc": "29.0%", "cbd": "0.1%", "cbg": "", "cbn": "", "terpenes": ["Linalool", "Limonene", "Caryophyllene"], "effects": ["Euphoric", "Relaxing", "Giggly", "Uplifting", "Social", "Hungry", "Tingly", "Happy"], "flavors": ["Fruity", "Diesel", "Pine", "Spice", "Sweet", "Woody", "Menthol"], "weight": "4g", "price": "$55.00", "price_tiers": {"4g": "$55.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1776125748_1967fee6-b134-46df-be58-112f3ed44b4f.jpg", "description": "Kush Mintz x Alien Cookies", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "c7bc9b6b18c2": {"name": "Fight Club", "brand": "Campfire Cannabis", "category": "flower", "strain_type": "Hybrid (Sativa)", "thc": "22.3%", "cbd": "0.1%", "cbg": "", "cbn": "", "terpenes": ["Myrcene", "Pinene", "Limonene", "Caryophyllene", "Ocimene", "Terpinolene"], "effects": ["Focused", "Euphoric", "Relaxing", "Cerebral", "Creative", "Uplifting", "Happy"], "flavors": ["Fruity", "Berry", "Citrus", "Diesel", "Earthy", "Pine", "Sweet", "Woody"], "weight": "4g", "price": "$48.00", "price_tiers": {"4g": "$48.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1774281040_b505596f-d02f-4ca3-b4a5-e3d47eff38eb.jpg", "description": "The Soap x Velvet Runtz.", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "2223f6ee76a3": {"name": "LIT OG", "brand": "Campfire Cannabis", "category": "flower", "strain_type": "Hybrid (Indica)", "thc": "27.7%", "cbd": "0.1%", "cbg": "", "cbn": "", "terpenes": ["Linalool", "Ocimene", "Terpinolene", "Geraniol", "Bisabolol"], "effects": ["Sleepy", "Calming", "Focused", "Euphoric", "Relaxing", "Uplifting", "Happy"], "flavors": ["Citrus", "Creamy", "Fruity", "Pine", "Sweet", "Tropical", "Woody"], "weight": "4g", "price": "$55.00", "price_tiers": {"4g": "$55.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1773943792_1b7d4c4a-39c2-4b4a-b498-91a3d875f9fd.jpg", "description": "Tahoe OG x Runtz.", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "f9a02875b44a": {"name": "MAC Stomper", "brand": "Campfire Cannabis", "category": "flower", "strain_type": "Hybrid", "thc": "26.1%", "cbd": "0.1%", "cbg": "", "cbn": "", "terpenes": ["Myrcene", "Linalool", "Pinene", "Caryophyllene"], "effects": ["Sleepy", "Aroused", "Euphoric", "Relaxing", "Giggly", "Uplifting", "Happy"], "flavors": ["Fruity", "Berry", "Citrus", "Apple", "Sweet", "Sour", "Grape"], "weight": "14g", "price": "$160.00", "price_tiers": {"4g": "$55.00", "half_ounce": "$160.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1778186508_a53d0273-21f7-4b73-92b5-7cad326a68c3.png", "description": "MAC x Grape Stomper.", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "8ddb5a864d39": {"name": "Blueberry Muffin", "brand": "Grasslandz", "category": "pre-roll", "strain_type": "Hybrid (Indica)", "thc": "17.9%", "cbd": "0.3%", "cbg": "", "cbn": "", "terpenes": ["Myrcene", "Limonene", "Caryophyllene"], "effects": [], "flavors": ["Blueberry", "Herbal", "Sweet", "Vanilla", "Butter", "Nutty"], "weight": "1 G", "price": "$18.00", "price_tiers": {"gram": "$18.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1776206164_512e1557-5093-470c-8843-89df37bf4a54.png", "description": "Purple Panty Dropper x Blueberry.", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "d024338fee18": {"name": "Soap", "brand": "Campfire Cannabis", "category": "flower", "strain_type": "Hybrid (Sativa)", "thc": "22.8%", "cbd": "0.1%", "cbg": "", "cbn": "", "terpenes": ["Linalool", "Limonene", "Caryophyllene", "Humulene"], "effects": ["Energetic", "Calming", "Focused", "Aroused", "Euphoric", "Creative", "Uplifting", "Tingly"], "flavors": ["Cheese", "Citrus", "Mint", "Pine", "Rose", "Sour", "Sweet", "Tea"], "weight": "4g", "price": "$51.00", "price_tiers": {"4g": "$51.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1773944011_bc3cb393-9400-4292-b412-c37d2c16c57a.jpg", "description": "Animal Mints x Kush Mints.", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "1ff4b7efe819": {"name": "Purple Octane", "brand": "Campfire Cannabis", "category": "flower", "strain_type": "Hybrid (Indica)", "thc": "18.6%", "cbd": "0.1%", "cbg": "", "cbn": "", "terpenes": ["Caryophyllene"], "effects": ["Sleepy", "Euphoric", "Relaxing", "Uplifting", "Tingly", "Unbothered"], "flavors": ["Fruity", "Berry", "Chemical", "Diesel", "Sweet", "Grape"], "weight": "4g", "price": "$48.00", "price_tiers": {"4g": "$48.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1773943932_5dac97fa-c50f-4d32-93a3-c8dfb3ecf6f7.jpg", "description": "(Biscotti x Sherb BX1) x Jealousy F2.", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "6ba39e627a58": {"name": "Egg Roll", "brand": "Campfire Cannabis", "category": "pre-roll", "strain_type": "Hybrid (Indica)", "thc": "19.2%", "cbd": "0.1%", "cbg": "", "cbn": "", "terpenes": [], "effects": ["Body High", "Euphoric", "Giggly", "Uplifting", "Social", "Hungry", "Tingly", "Talkative"], "flavors": ["Fruity", "Herbal", "Spice", "Sweet", "Plum"], "weight": "1 G", "price": "$18.00", "price_tiers": {"gram": "$18.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1777924111_4d78cb84-5256-4312-a666-8ff152bf85ed.png", "description": "Chem Dawg x Biscotti", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "265b210f94fe": {"name": "Runtz", "brand": "Campfire Cannabis", "category": "flower", "strain_type": "Hybrid", "thc": "19.5%", "cbd": "0.1%", "cbg": "", "cbn": "", "terpenes": ["Myrcene", "Limonene", "Caryophyllene"], "effects": ["Sleepy", "Calming", "Euphoric", "Relaxing", "Giggly", "Uplifting", "Social", "Hungry", "Talkative"], "flavors": ["Fruity", "Citrus", "Spice", "Sweet", "Tropical", "Pineapple", "Apricot"], "weight": "4g", "price": "$48.00", "price_tiers": {"4g": "$48.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1773943973_9ae0f93f-376c-47c1-b89f-17173456bf06.jpg", "description": "Zkittles x Gelato.", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "99326fcf9900": {"name": "Donny Burger", "brand": "Campfire Cannabis", "category": "flower", "strain_type": "Indica", "thc": "25.5%", "cbd": "0.1%", "cbg": "", "cbn": "", "terpenes": ["Myrcene", "Pinene", "Limonene", "Caryophyllene"], "effects": ["Body High", "Aroused", "Euphoric", "Relaxing", "Giggly", "Creative", "Uplifting", "Social", "Hungry", "Tingly", "Happy"], "flavors": ["Ammonia", "Lemon", "Pepper", "Spice", "Sweet", "Pungent", "Rubber", "Cheese"], "weight": "4g", "price": "$48.00", "price_tiers": {"4g": "$48.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1773943731_a20cf591-6ef1-47a8-9e00-81bbe7f2291e.jpg", "description": "GMO x Han-Solo Burger.", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "6a06396da757": {"name": "Super Boof", "brand": "Grasslandz", "category": "flower", "strain_type": "Hybrid", "thc": "19.4%", "cbd": "0.1%", "cbg": "", "cbn": "", "terpenes": ["Myrcene", "Limonene", "Caryophyllene"], "effects": ["Focused", "Euphoric", "Relaxing", "Giggly", "Creative", "Uplifting", "Social"], "flavors": ["Citrus", "Earthy", "Sweet", "Grapefruit", "Orange", "Sour", "Cherry"], "weight": "3.5g", "price": "$54.00", "price_tiers": {"eighth": "$54.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1773940146_1c76466a-a2b2-4518-83b3-82d3b0943359.jpg", "description": "Black Cherry Punch x Tropicana Cookies.", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "4b794faff189": {"name": "Glue 31", "brand": "Grasslandz", "category": "flower", "strain_type": "Hybrid", "thc": "22.3%", "cbd": "0.1%", "cbg": "", "cbn": "", "terpenes": ["Linalool", "Caryophyllene", "Terpinolene", "Geraniol", "Valencene", "Bisabolol"], "effects": ["Blissful", "Euphoric", "Relaxing", "Cerebral", "Creative"], "flavors": ["Fruity", "Diesel", "Earthy", "Gasoline", "Sweet", "Nutty"], "weight": "3.5g", "price": "$54.00", "price_tiers": {"eighth": "$54.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1774807612_c63f0d75-8a83-4723-808b-42f8b615f110.jpg", "description": "GG4 x Jokerz", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "e1138882d6cd": {"name": "Sour Diesel", "brand": "Grasslandz", "category": "vapes", "strain_type": "Hybrid (Sativa)", "thc": "80.3%", "cbd": "0.2%", "cbg": "", "cbn": "", "terpenes": ["Myrcene", "Limonene", "Caryophyllene"], "effects": ["Euphoric", "Creative", "Uplifting", "Happy"], "flavors": ["Citrus", "Diesel", "Skunk", "Sweet", "Candy"], "weight": "1 G", "price": "$65.00", "price_tiers": {"gram": "$65.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1779116328_9d34b3b0-fd82-4b8a-a50d-56952e19e596.png", "description": "Mexican Sativa X Chemdog", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "184eb9c71846": {"name": "Grape Canyon Zkittlez", "brand": "Campfire Cannabis", "category": "flower", "strain_type": "Hybrid (Indica)", "thc": "21.3%", "cbd": "0.1%", "cbg": "", "cbn": "", "terpenes": ["Myrcene", "Linalool", "Limonene", "Caryophyllene", "Humulene"], "effects": ["Euphoric", "Relaxing", "Cerebral", "Social", "Unbothered"], "flavors": ["Fruity", "Berry", "Citrus", "Sweet", "Sour", "Grape"], "weight": "4g", "price": "$48.00", "price_tiers": {"4g": "$48.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1778183669_9fbb60c5-1369-4fa6-a0e1-2117536cbbe2.png", "description": "Grape Ape x Zkittlez (aka Grape Zkittlez)", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "b0990993b588": {"name": "Girl Scout Cookies", "brand": "Grasslandz", "category": "vapes", "strain_type": "Hybrid", "thc": "80.5%", "cbd": "0.2%", "cbg": "", "cbn": "", "terpenes": ["Myrcene", "Limonene", "Caryophyllene"], "effects": ["Euphoric", "Relaxing", "Creative"], "flavors": ["Lemon", "Sweet", "Woody", "Cherry", "Mint"], "weight": "1 G", "price": "$65.00", "price_tiers": {"gram": "$65.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1779115251_9ccbeed8-d575-4921-a4fa-285692bfd445.png", "description": "OG Kush X Durban Poison X F1", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "a64e2855f46b": {"name": "White Widow", "brand": "Grasslandz", "category": "vapes", "strain_type": "Hybrid", "thc": "81.0%", "cbd": "0.2%", "cbg": "", "cbn": "", "terpenes": ["Myrcene", "Pinene", "Caryophyllene"], "effects": ["Euphoric", "Creative", "Uplifting", "Happy"], "flavors": ["Pine", "Spice", "Sweet", "Woody"], "weight": "1 G", "price": "$65.00", "price_tiers": {"gram": "$65.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1779116263_8a1f5316-858b-4eeb-b769-5a61d7e2f4e3.png", "description": "Brazil Sativa X South Indian Indica", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "3f9c768ad3ef": {"name": "GG4", "brand": "Campfire Cannabis", "category": "flower", "strain_type": "Hybrid (Indica)", "thc": "21.3%", "cbd": "0.1%", "cbg": "", "cbn": "", "terpenes": ["Myrcene", "Limonene", "Caryophyllene"], "effects": ["Sleepy", "Body High", "Euphoric", "Relaxing", "Uplifting", "Hungry", "Happy"], "flavors": ["Chemical", "Chocolate", "Coffee", "Diesel", "Pine", "Sweet"], "weight": "4g", "price": "$48.00", "price_tiers": {"4g": "$48.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1773943908_278d723b-507c-4f64-9b9f-d46292839916.png", "description": "Chem's Sister x Sour Dubb x Chocolate Diesel.", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "9934b135c2db": {"name": "Raspberry", "brand": "Grasslandz", "category": "edibles", "strain_type": "Hybrid", "thc": "100.0%", "cbd": "", "cbg": "", "cbn": "", "terpenes": [], "effects": [], "flavors": [], "weight": "100 MG", "price": "$32.00", "price_tiers": {"100_mg": "$32.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1779112271_bbd8e29e-4e91-4329-8ac1-eb6d80946b98.avif", "description": "10mg THC per serving (1 piece)  - 100mg total per package.", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "45e8067b787c": {"name": "Black Cherry Fizz", "brand": "Stargaze", "category": "vapes", "strain_type": "Hybrid", "thc": "82.9%", "cbd": "0.7%", "cbg": "", "cbn": "", "terpenes": [], "effects": [], "flavors": [], "weight": "1 G", "price": "$70.00", "price_tiers": {"gram": "$70.00"}, "in_stock": false, "image": "https://media-prime.sweedpos.com/store/prime/1779415518_23b77c03-5ee9-4925-9eff-c61daa998410.png", "description": "Black Dahlia X Ace of Spades", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-23T08:08:16.596128-06:00"}, "961994b89518": {"name": "Peach", "brand": "Grasslandz", "category": "edibles", "strain_type": "Hybrid", "thc": "100.0%", "cbd": "", "cbg": "", "cbn": "", "terpenes": [], "effects": [], "flavors": [], "weight": "100 MG", "price": "$32.00", "price_tiers": {"100_mg": "$32.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1779112173_f3bb173e-3f58-4ae6-a5b6-6e4a980e50a5.avif", "description": "10mg THC per serving (1 piece)  - 100mg total per package.", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "d6623d889658": {"name": "Grape Cream Cake", "brand": "Campfire Cannabis", "category": "flower", "strain_type": "Hybrid (Indica)", "thc": "23.5%", "cbd": "0.1%", "cbg": "", "cbn": "", "terpenes": ["Myrcene", "Linalool", "Caryophyllene"], "effects": ["Body High", "Calming", "Relaxing", "Uplifting", "Happy"], "flavors": ["Fruity", "Sweet", "Vanilla", "Cherry", "Nutty", "Grape", "Creamy"], "weight": "4g", "price": "$48.00", "price_tiers": {"4g": "$48.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1779280535_72cf67dd-fac5-41af-8a38-f2ff7e0b2c89.png", "description": "Grape Pie x Wedding Crasher", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "7f7ffa3551e7": {"name": "Gelato 45", "brand": "Grasslandz", "category": "flower", "strain_type": "Hybrid", "thc": "17.0%", "cbd": "1.1%", "cbg": "", "cbn": "", "terpenes": ["Limonene", "Caryophyllene", "Humulene"], "effects": ["Calming", "Euphoric", "Giggly", "Uplifting", "Social", "Happy"], "flavors": ["Fruity", "Berry", "Citrus", "Pepper", "Sweet", "Woody", "Sour", "Creamy"], "weight": "3.5g", "price": "$52.00", "price_tiers": {"eighth": "$52.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1779114569_497c70f5-9901-4f96-a16e-d251d3ee1792.jpg", "description": "Girl Scout Cookies X Sherbet", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "dbcb7ab15506": {"name": "Halle Berry", "brand": "Redwood County Weed Co", "category": "pre-roll", "strain_type": "Hybrid (Sativa)", "thc": "16.1%", "cbd": "0.1%", "cbg": "", "cbn": "", "terpenes": ["Myrcene", "Linalool", "Limonene", "Caryophyllene"], "effects": ["Focused", "Aroused", "Euphoric", "Relaxing", "Uplifting", "Social", "Happy"], "flavors": ["Fruity", "Berry", "Citrus", "Earthy", "Sweet", "Orange", "Sour", "Creamy"], "weight": "1 G", "price": "$15.00", "price_tiers": {"gram": "$15.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1779044053_8430cacf-b295-4967-9090-dbb1dcf0ceb4.png", "description": "Ice Cream Cake x Blockberry", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "32de19b6f29e": {"name": "Slurricane", "brand": "Redwood County Weed Co", "category": "pre-roll", "strain_type": "Hybrid (Indica)", "thc": "10.5%", "cbd": "0.0%", "cbg": "", "cbn": "", "terpenes": ["Myrcene", "Limonene", "Caryophyllene"], "effects": ["Body High", "Uplifting", "Hungry", "Tingly"], "flavors": ["Fruity", "Berry", "Herbal", "Spice", "Sweet", "Tropical"], "weight": "1 G", "price": "$12.00", "price_tiers": {"gram": "$12.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1779044091_a9b368fd-b066-43ec-a557-a549914a04a0.png", "description": "Do-Si-Dos x Purple Punch", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "c697f763d6e1": {"name": "Jelly Breath", "brand": "Redwood County Weed Co", "category": "pre-roll", "strain_type": "Hybrid (Indica)", "thc": "15.9%", "cbd": "0.1%", "cbg": "", "cbn": "", "terpenes": ["Myrcene", "Limonene", "Caryophyllene"], "effects": ["Body High", "Euphoric", "Relaxing", "Tingly"], "flavors": ["Fruity", "Berry", "Sweet"], "weight": "1 G", "price": "$15.00", "price_tiers": {"gram": "$15.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1779044062_227604c4-164e-4a3f-949d-0dde0b3707b2.png", "description": "Mendo Breath x Do-Si-Dos", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "aadbe36acb08": {"name": "La Cegua", "brand": "Redwood County Weed Co", "category": "pre-roll", "strain_type": "Hybrid (Sativa)", "thc": "16.9%", "cbd": "0.1%", "cbg": "", "cbn": "", "terpenes": ["Myrcene", "Limonene", "Caryophyllene"], "effects": ["Chill", "Uplifting", "Tingly", "Happy"], "flavors": ["Pine", "Skunk", "Sweet", "Cherry"], "weight": "1 G", "price": "$15.00", "price_tiers": {"gram": "$15.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1779044081_6845a45a-ad2d-494d-9f90-91addc5a3fe5.png", "description": "Black Cherry Punch x Hash Church", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "ae8b04d10a31": {"name": "Cap Junky", "brand": "Redwood County Weed Co", "category": "pre-roll", "strain_type": "Hybrid", "thc": "16.3%", "cbd": "0.1%", "cbg": "", "cbn": "", "terpenes": ["Linalool", "Limonene", "Caryophyllene"], "effects": ["Relaxing", "Giggly", "Uplifting", "Tingly"], "flavors": ["Fruity", "Diesel", "Pine", "Spice", "Sweet", "Woody", "Menthol"], "weight": "1 G", "price": "$15.00", "price_tiers": {"gram": "$15.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1779044027_95a5edd4-7115-4e9a-91f9-5e69868e1432.png", "description": "Alien Cookies x Kush Mints #11", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "57a8dde82c12": {"name": "Early Lemon Berry", "brand": "Redwood County Weed Co", "category": "pre-roll", "strain_type": "Hybrid", "thc": "13.6%", "cbd": "0.1%", "cbg": "", "cbn": "", "terpenes": ["Pinene", "Caryophyllene", "Humulene"], "effects": ["Body High", "Aroused", "Euphoric", "Relaxing", "Uplifting"], "flavors": ["Fruity", "Berry", "Citrus", "Sweet", "Sour"], "weight": "1 G", "price": "$15.00", "price_tiers": {"gram": "$15.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1779044042_5f078370-a9c0-4760-aaf4-210ff000abd0.png", "description": "Las Vegas Lemon Skunk x Member Berry", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "baa51ab3ca78": {"name": "Purple Milk", "brand": "Campfire Cannabis", "category": "pre-roll", "strain_type": "Hybrid (Sativa)", "thc": "16.8%", "cbd": "0.1%", "cbg": "", "cbn": "", "terpenes": ["Limonene", "Caryophyllene", "Humulene"], "effects": ["Euphoric", "Cerebral", "Creative", "Uplifting", "Happy"], "flavors": [], "weight": "1 G", "price": "$18.00", "price_tiers": {"gram": "$18.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1779280279_da578528-38f6-4506-95a5-aaab6013c968.png", "description": "Purple OG Kush x Bubba Kush", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "b07cb1ec42ba": {"name": "Sour Apple", "brand": "Grasslandz", "category": "vapes", "strain_type": "Hybrid", "thc": "76.8%", "cbd": "0.2%", "cbg": "", "cbn": "", "terpenes": ["Myrcene", "Pinene", "Caryophyllene"], "effects": ["Body High", "Relaxing", "Creative", "Social", "Hungry"], "flavors": ["Fruity", "Citrus", "Lemon", "Apple", "Sweet", "Lime", "Pear"], "weight": "1 G", "price": "$65.00", "price_tiers": {"gram": "$65.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1779116328_9d34b3b0-fd82-4b8a-a50d-56952e19e596.png", "description": "Sour Diesel X Cinderella 99", "first_seen": "2026-05-21T08:52:30.945545-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "e2b95f79aa58": {"name": "Froot by the Foot", "brand": "Avion", "category": "pre-roll", "strain_type": "Hybrid (Indica)", "thc": "10.3%", "cbd": "0.1%", "cbg": "", "cbn": "", "terpenes": ["Myrcene", "Limonene", "Caryophyllene"], "effects": ["Body High", "Calming", "Relaxing", "Happy"], "flavors": ["Fruity", "Spice", "Sweet", "Candy"], "weight": "1 G", "price": "$18.00", "price_tiers": {"gram": "$18.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1779044973_efa87939-7c8f-4e49-a299-3894fae52ba8.png", "description": "Mythic OG X Candy Cane", "first_seen": "2026-05-24T08:00:00.000000-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "03df98cc7bf8": {"name": "Zesty Parm", "brand": "Avion", "category": "pre-roll", "strain_type": "Hybrid (Sativa)", "thc": "18.8%", "cbd": "0.1%", "cbg": "", "cbn": "", "terpenes": ["Myrcene", "Limonene", "Caryophyllene"], "effects": ["Calming", "Focused", "Relaxing", "Happy"], "flavors": ["Herbal", "Lemon", "Pepper", "Pine", "Skunk"], "weight": "1 G", "price": "$18.00", "price_tiers": {"gram": "$18.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1779044713_09d2b1db-2789-4def-87c4-c5f17f6fb77b.png", "description": "Cherry Kush x (Lemon Tree Papaya x GMO) x Fro'Do", "first_seen": "2026-05-24T08:00:00.000000-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}, "7b052b7dd4f2": {"name": "Frodo Sqeeze", "brand": "Avion", "category": "pre-roll", "strain_type": "Hybrid (Sativa)", "thc": "16.6%", "cbd": "0.2%", "cbg": "", "cbn": "", "terpenes": ["Myrcene", "Limonene", "Terpinene"], "effects": ["Calming", "Focused", "Relaxing", "Happy"], "flavors": ["Fruity", "Pine", "Spice"], "weight": "1 G", "price": "$18.00", "price_tiers": {"gram": "$18.00"}, "in_stock": true, "image": "https://media-prime.sweedpos.com/store/prime/1779045231_bbdbe5cc-61c4-4a49-ad04-b3aa64e0492d.png", "description": "(Fro’Do x Alaskan Yeti) x LilMissHS", "first_seen": "2026-05-24T08:00:00.000000-06:00", "last_seen": "2026-05-24T08:55:05.822682-06:00"}};
+const STRAINS  = {"d16c07bc5b91": {"lineage": "Blueberry x Purple Panty Dropper (Humboldt Seed Co.)", "therapeutic": "Stress relief, anxiety, mild pain, insomnia, depression", "negative": "Dry mouth, dry eyes, mild couch-lock at higher doses", "aroma": "Sweet fresh blueberries, baked muffin dough, light vanilla cream, subtle herbal earthiness", "misc": "Created by Humboldt Seed Co. THC typically 18–23%. Dense colorful buds with deep purple hues and orange hairs. A crowd-pleasing, beginner-friendly strain known for its approachable flavor and balanced effects. Great intro strain for new consumers."}, "9bd115b860af": {"lineage": "Alien Cookies x Kush Mints #11 (Capulator / Cap Junky Genetics)", "therapeutic": "Stress, anxiety, depression, chronic pain, appetite stimulation", "negative": "Dry mouth, dry eyes, possible paranoia in sensitive users at high doses", "aroma": "Pungent fuel and diesel, sweet pine, cooling menthol, spiced earth, faint fruity finish", "misc": "Bred by renowned breeder Capulator (creator of MAC). Often cited as one of the best modern hybrids. THC 22–30%+. Fast-hitting cerebral rush followed by warm body relaxation. Popular in dispensaries nationwide for consistent potency and terpene expression."}, "c7bc9b6b18c2": {"lineage": "The Soap x Velvet Runtz (Campfire Cannabis in-house cross)", "therapeutic": "Stress, fatigue, depression, mild chronic pain, creative blocks", "negative": "Dry mouth, dry eyes, occasional anxiety at high doses", "aroma": "Clean soapy citrus, sweet mixed berry, light diesel backbone, faint pine and earthy woods", "misc": "House cross by Campfire Cannabis combining The Soap's clean citrus with Velvet Runtz candy sweetness. THC 20–25%. Versatile hybrid — sativa-leaning first hour then settles into relaxed body state. Great for daytime creative work or afternoon social sessions."}, "2223f6ee76a3": {"lineage": "Tahoe OG x Runtz", "therapeutic": "Insomnia, chronic pain, stress, anxiety, muscle tension", "negative": "Dry mouth, dry eyes, heavy sedation — not for daytime use", "aroma": "Earthy OG pine with sweet candy citrus, creamy tropical undertones, classic kush musk base", "misc": "Combines Tahoe OG's heavy-hitting indica body stone with Runtz's sweet candy genetics. THC 25–30%. Dense frosty buds. The OG backbone delivers reliable potency and full-body relaxation while Runtz adds dessert sweetness. Best for evening wind-down or pre-sleep."}, "f9a02875b44a": {"lineage": "MAC (Miracle Alien Cookies) x Grape Stomper (Gage Green Seeds)", "therapeutic": "Chronic pain, stress, insomnia, mood disorders, nausea", "negative": "Dry mouth, dry eyes, couch-lock at high doses", "aroma": "Creamy grape candy, sweet apple, citrus zest, light floral, earthy funk on the finish", "misc": "Cross of two award-winning genetics. MAC contributes creamy citrus and potency; Grape Stomper adds grape and fruit sweetness. THC 24–29%. Available in half-ounce — great value buy. Dense, trichome-heavy flowers with deep purple and green hues. Best for evening use."}, "8ddb5a864d39": {"lineage": "Purple Panty Dropper x Blueberry (Humboldt Seed Co.)", "therapeutic": "Stress, anxiety, mild pain, insomnia, depression, appetite", "negative": "Dry mouth, dry eyes, mild couch-lock at higher doses", "aroma": "Sweet fresh blueberries, baked muffin dough, light vanilla cream, subtle herbal earthiness", "misc": "Humboldt Seed Co. genetics. THC 15–22%. Dense, colorful buds with purple hues. One of the most recognizable and approachable flavor profiles in cannabis — sweet, fruity, and non-offensive. Great recommendation for new consumers or those sensitive to heavy indicas."}, "d024338fee18": {"lineage": "Animal Mints x Kush Mints (Seed Junky Genetics)", "therapeutic": "Depression, fatigue, stress, anxiety, mild chronic pain", "negative": "Dry mouth, dry eyes, possible anxiety at high doses in novice users", "aroma": "Clean floral soap, fresh mint, citrus zest, light cheese notes, pine — one of the most distinctive and refreshing terpene profiles in cannabis", "misc": "Created by Seed Junky Genetics. Famously described as smelling like fresh soap or floral laundry detergent — a truly unique, clean aroma. THC 20–26%. Euphoric and uplifting with a clean, lasting head high. Strong daytime strain for focus and creativity."}, "1ff4b7efe819": {"lineage": "(Biscotti x Sherb BX1) x Jealousy F2 (Compound Genetics / Seed Junky)", "therapeutic": "Insomnia, chronic pain, stress, appetite stimulation, muscle tension", "negative": "Dry mouth, dry eyes, heavy sedation — not for daytime use", "aroma": "Sweet grape diesel, rich berry, creamy dessert notes, faint chemical fuel on exhale", "misc": "Premium cross of high-end genetics. Biscotti x Sherb BX1 provides the creamy dessert foundation; Jealousy F2 adds potency and deep purple coloration. THC 25–30%+. Dense purple-tinted buds with heavy resin coverage. Hard-hitting indica-dominant — reserved for evening or experienced users."}, "6ba39e627a58": {"lineage": "Chemdawg x Biscotti (Campfire Cannabis in-house cross)", "therapeutic": "Stress, depression, appetite stimulation, fatigue, social anxiety", "negative": "Dry mouth, dry eyes, mild paranoia possible at higher doses", "aroma": "Savory earthy spice, herbal diesel, hints of plum and sweet fruit, subtle biscotti dough and vanilla on the finish", "misc": "Campfire Cannabis in-house cross merging Chemdawg's pungent diesel potency with Biscotti's creamy sweetness. THC 18–24%. Social and giggly — great for group settings. Named for its spicy herbal aroma reminiscent of savory cuisine. Best for afternoon or evening social use."}, "265b210f94fe": {"lineage": "Zkittlez x Gelato (Cookies Fam / Runtz brand)", "therapeutic": "Stress, anxiety, depression, chronic pain, appetite stimulation", "negative": "Dry mouth, dry eyes, possible sedation at high doses", "aroma": "Tropical candy sweetness, pineapple citrus, fruity Zkittlez notes, creamy Gelato undertone, light spice on exhale", "misc": "Bred by the Cookies Fam and widely regarded as one of the most influential strains of the 2020s. Named after the candy brand for its intense sweetness. THC 18–25%. Dense colorful buds. Rapid-hitting, well-balanced — euphoric head high paired with full-body relaxation. Nearly universally well-received."}, "99326fcf9900": {"lineage": "GMO (Garlic Cookies) x Han-Solo Burger (Skunk House Genetics)", "therapeutic": "Inflammation, chronic pain, insomnia, stress, appetite stimulation", "negative": "Dry mouth, dry eyes, heavy sedation — not for daytime use. Can be overwhelming for novices.", "aroma": "Pungent gas and diesel, spicy savory garlic notes, sour lemon, hints of cheese and fuel — unmistakably GMO-forward", "misc": "Bred by Skunk House Genetics. Also known as GMO BX. One of the hardest-hitting indicas on the market — THC 25–30%+. Fast-acting, long-lasting body stone. Best reserved for evening or end-of-day use. Not for new consumers."}, "6a06396da757": {"lineage": "Black Cherry Punch x Tropicana Cookies (Franchise Genetics)", "therapeutic": "Stress, depression, fatigue, mild pain, creative blocks", "negative": "Dry mouth, dry eyes, occasional mild anxiety", "aroma": "Fresh orange and grapefruit citrus burst, sweet black cherry, earthy tropical undertones, faint cookie dough base", "misc": "Bred by Franchise Genetics. One of the most vibrant citrus terpene profiles available. Combines Black Cherry Punch's sweet fruitiness with Tropicana Cookies' heavy citrus terps. THC 18–24%. Excellent daytime or social strain — uplifting, creative, mood-enhancing."}, "4b794faff189": {"lineage": "GG4 (Gorilla Glue #4) x Jokerz (Compound Genetics)", "therapeutic": "Chronic pain, stress, inflammation, PTSD, insomnia", "negative": "Dry mouth, dry eyes, couch-lock in higher doses", "aroma": "Heavy diesel and pine resin, earthy fuel, faint sweet fruit undertone, nutty finish with floral accents from Jokerz genetics", "misc": "Combines GG4's legendary resin production and potency with Jokerz' complex terpene structure. THC 20–26%. Heavy-duty sticky flowers. Starts with cerebral creative energy, then melts into full-body relaxation. Named for its extreme stickiness — scissors-clogging resin production."}, "e1138882d6cd": {"lineage": "Mexican Sativa x Chemdawg (origin New York City, popularized 1990s)", "therapeutic": "Depression, fatigue, stress, ADHD, chronic pain", "negative": "Dry mouth, dry eyes, anxiety or racing thoughts in sensitive users", "aroma": "Sharp diesel fuel, pungent lemon citrus, skunk, earthy pine — one of the most recognizable cannabis aromas of the past 30 years", "misc": "A legendary sativa from the 1990s NYC underground. At 80.3% THC in vape form, delivers Sour Diesel's iconic cerebral rush in concentrated form. Fast-acting, energizing, and creative. Perfect for daytime. One of the most culturally significant cannabis strains ever produced."}, "184eb9c71846": {"lineage": "Grape Ape x Zkittlez (also known as Grape Zkittlez)", "therapeutic": "Stress, anxiety, mild pain, mood enhancement, appetite", "negative": "Dry mouth, dry eyes, potential drowsiness at higher doses", "aroma": "Intense grape candy, mixed berry compote, sweet citrus, tropical Zkittlez notes, light earthy base", "misc": "Natural cross combining Grape Ape's deep grape flavor with Zkittlez' candy sweetness. THC 19–24%. Dense colorful buds with purple hues. Well-balanced hybrid — calming without being fully sedating. Popular for its distinctive grape-forward flavor profile. Good afternoon/social strain."}, "b0990993b588": {"lineage": "OG Kush x Durban Poison (Cookies Fam, San Francisco)", "therapeutic": "Chronic pain, PTSD, depression, nausea, appetite stimulation", "negative": "Dry mouth, dry eyes, possible paranoia at high doses", "aroma": "Sweet minty cookie dough, earthy OG musk, lemon zest, cherry notes, hint of pine", "misc": "One of the most culturally impactful strains of the 2010s — spawned an entire family of legendary crosses (Gelato, Sunset Sherbet, MAC, Runtz). At 80.5% THC in vape form. Euphoric rush followed by full-body relaxation. Complex, layered high — ideal for afternoon or evening."}, "a64e2855f46b": {"lineage": "Brazilian Sativa x South Indian Indica (Green House Seeds, Netherlands, 1994)", "therapeutic": "Depression, stress, anxiety, fatigue, mild chronic pain", "negative": "Dry mouth, dry eyes, possible anxiety or racing thoughts at high doses", "aroma": "Fresh pine resin, earthy spice, faint sweet floral notes, light sandalwood and cedar", "misc": "A Dutch cannabis classic and multiple Cannabis Cup winner from 1994. Green House Seeds original genetics. At 81% THC in vape form delivers White Widow's characteristic balanced, clear-headed high in concentrated form. Balanced hybrid with slight sativa lean. One of the most globally recognized strains."}, "3f9c768ad3ef": {"lineage": "Chem's Sister x Sour Dubb x Chocolate Diesel (GG Strains)", "therapeutic": "Chronic pain, insomnia, PTSD, depression, muscle spasms", "negative": "Dry mouth, dry eyes, heavy sedation — can be overwhelming for novice users", "aroma": "Pungent diesel and mocha chocolate, earthy pine resin, coffee grounds, chemical fuel — one of the most recognizable aromas in cannabis", "misc": "One of the most iconic strains ever created. Multiple Cannabis Cup winner. Bred by GG Strains. THC 25–32%. Extremely sticky, resin-coated buds. Powerful and fast-acting — couch-lock is common at higher doses. Best reserved for experienced users in the evening."}, "9934b135c2db": {"lineage": "Not strain-specific — THC distillate infused gummies", "therapeutic": "Chronic pain, insomnia, stress, anxiety — long-lasting body-focused relief (4–8 hours)", "negative": "Delayed onset 30–90 min. Do NOT re-dose too early. Dry mouth, possible paranoia if over-consumed. Start low.", "aroma": "N/A — raspberry candy flavor", "misc": "Grasslandz brand. 100mg total THC per package — 10mg per piece (10 pieces). Lab-tested distillate. Edibles provide longer-lasting, body-focused effects vs inhalation. Onset 30–90 min, peak 2–4 hrs, total duration 4–8 hrs. Ideal for sleep and extended pain relief. New consumers: start with 5mg (half piece)."}, "45e8067b787c": {"lineage": "Black Dahlia x Ace of Spades (Stargaze premium vape line)", "therapeutic": "Stress, mild pain, mood disorders, anxiety, relaxation", "negative": "Dry mouth, dry eyes", "aroma": "Dark sweet cherries, berry compote, floral grape, earthy funk — rich and wine-like", "misc": "Stargaze premium vape. Black Dahlia x Ace of Spades delivers a rich, fruity berry experience. At 82.9% THC. Currently out of stock — restocks periodically. Indica-leaning hybrid known for its distinctive dark fruit flavor profile. Worth asking staff about restock timing."}, "961994b89518": {"lineage": "Not strain-specific — THC distillate infused gummies", "therapeutic": "Chronic pain, insomnia, stress, anxiety — long-lasting body-focused relief (4–8 hours)", "negative": "Delayed onset 30–90 min. Do NOT re-dose too early. Dry mouth, possible paranoia if over-consumed. Start low.", "aroma": "N/A — peach candy flavor", "misc": "Grasslandz brand. 100mg total THC per package — 10mg per piece (10 pieces). Lab-tested distillate. Edibles ideal for those who prefer not to inhale or need longer-duration relief. Onset 30–90 min. New consumers: start with 5mg (half piece) and wait the full 90 minutes before re-evaluating."}, "d6623d889658": {"lineage": "Grape Pie x Wedding Crasher x Ice Cream Cake (Bloom Seed Co.)", "therapeutic": "Chronic pain, insomnia, stress relief, anxiety reduction", "negative": "Couch-lock at high doses, dry mouth, dry eyes", "aroma": "Sweet grape soda, ripe berry, whipped vanilla cream, doughy sweetness with faint gasoline on exhale", "misc": "Bred by Harry Palms (Bloom Seed Co.), former head breeder at Oni Seed Co. THC typically 20–29%. Dense resinous buds with purple hues and heavy trichome coverage. Award-adjacent — recognized as a modern dessert strain classic. Strong indica-dominant effects best suited to evening use."}, "7f7ffa3551e7": {"lineage": "Girl Scout Cookies x Sherbet (Cookies Fam Genetics — Gelato #45 phenotype)", "therapeutic": "Stress, depression, chronic pain, PTSD, nausea", "negative": "Dry mouth, dry eyes, mild sedation at high doses", "aroma": "Sweet berry and orange sherbet, creamy vanilla, herbal pepper, faint woody kush undertone", "misc": "Gelato #45 is one of the most prized phenotypes from the original Gelato line by the Cookies Fam. Lower THC (15–20%) than newer genetics but world-class terpene expression and euphoric effects. Dense, colorful buds. Balanced hybrid that reads more indica at higher doses. Exceptional flavor-to-effect ratio."}, "dbcb7ab15506": {"lineage": "Ice Cream Cake x Blockberry (Redwood County Weed Co.)", "therapeutic": "Stress, anxiety, depression, mild pain, mood enhancement", "negative": "Dry mouth, dry eyes", "aroma": "Sweet berry cream, orange citrus, tropical fruit, light earthiness, vanilla cream finish", "misc": "Redwood County Weed Co. cultivar. Ice Cream Cake contributes creamy sweetness; Blockberry adds bold fruit and citrus. THC 14–18%. Approachable potency makes this excellent for daytime use or new consumers. Well-balanced, pleasant, mood-lifting — a safe bet for gift recommendations."}, "32de19b6f29e": {"lineage": "Do-Si-Dos x Purple Punch (In House Genetics)", "therapeutic": "Insomnia, chronic pain, stress, appetite stimulation, nausea", "negative": "Dry mouth, dry eyes, heavy sedation — not for daytime use", "aroma": "Tropical grape punch, sweet berry candy, herbal earthiness, faint spice — rich and indulgent", "misc": "Bred by In House Genetics. Do-Si-Dos adds potency and body effect; Purple Punch contributes the sweet grape-tropical flavor. THC 20–28%. Dense purple flowers. One of the more potent indica-dominant strains on the menu. Fast-acting, long-lasting. Best for evening or nighttime use."}, "c697f763d6e1": {"lineage": "Mendo Breath x Do-Si-Dos (Archive Seed Bank)", "therapeutic": "Chronic pain, insomnia, stress, muscle tension, appetite stimulation", "negative": "Dry mouth, dry eyes, heavy couch-lock at higher doses", "aroma": "Sweet grape jelly, caramel, vanilla cream, earthy Mendo funk, hint of gas — like a fruity candy bar with a dank finish", "misc": "Archive Seed Bank genetics. Mendo Breath delivers caramel-vanilla sweetness; Do-Si-Dos adds potency and berry fruitiness. THC 14–20%. Dense frosted flowers. Indica-dominant — powerful relaxation and sedation. Named for its distinctively sweet jelly-like aroma. Great for pain and sleep."}, "aadbe36acb08": {"lineage": "Black Cherry Punch x Hash Church (Redwood County Weed Co.)", "therapeutic": "Stress relief, mood enhancement, mild anxiety, fatigue", "negative": "Dry mouth, dry eyes", "aroma": "Sweet cherry pine, skunky earthiness, floral undertones, light spice — aromatic and approachable", "misc": "Redwood County Weed Co. cultivar. Named after the mythological Costa Rican spirit La Cegua. Hash Church genetics add classic old-school pungency; Black Cherry Punch contributes sweet cherry fruit. THC 15–19%. Balanced, approachable hybrid — a good entry point for newer consumers."}, "ae8b04d10a31": {"lineage": "Alien Cookies x Kush Mints #11 (Capulator / Cap Junky Genetics)", "therapeutic": "Stress, anxiety, depression, chronic pain, appetite stimulation", "negative": "Dry mouth, dry eyes, possible paranoia at high doses in sensitive users", "aroma": "Pungent fuel and diesel, sweet pine, cooling menthol, spiced earth, faint fruity finish", "misc": "Redwood County Weed Co. cut of Cap Junky, one of the most decorated modern hybrids. Bred by Capulator (creator of MAC). THC 14–18% in this cut — more approachable potency than the flower version. Fast-hitting cerebral rush followed by warm body relaxation. Excellent daily driver."}, "57a8dde82c12": {"lineage": "Las Vegas Lemon Skunk x Member Berry (Elev8 Seeds)", "therapeutic": "Stress, depression, mild chronic pain, fatigue, mood enhancement", "negative": "Dry mouth, dry eyes, possible slight anxiety", "aroma": "Bright lemon citrus, sweet mixed berries, light skunky earthiness, pine, faint floral — vibrant and fresh", "misc": "Elev8 Seeds genetics combining Las Vegas Lemon Skunk's tart citrus with Member Berry's berry candy sweetness. THC 12–16%. One of the most approachable potency levels on the menu — excellent for daytime use or newer consumers. Uplifting and creative without being overwhelming. Great starter pre-roll."}, "baa51ab3ca78": {"lineage": "Grape Gas x Cereal Milk (Compound Genetics)", "therapeutic": "Stress, anxiety, mild pain, insomnia, mood disorders", "negative": "Dry mouth, dry eyes, potential drowsiness at higher doses", "aroma": "Grape soda and creamy milk sweetness, berry compote, light vanilla, earthy and slightly gassy base", "misc": "Compound Genetics cut. THC 28–35% in premium batches. Dense violet-tinted flowers packed with resin — excellent for both flower connoisseurs and hash makers. Calming with mood-lifting edge; not fully sedating at moderate doses. Great evening strain with dessert-like flavor."}, "b07cb1ec42ba": {"lineage": "Sour Diesel x Cinderella 99", "therapeutic": "Stress relief, appetite stimulation, mild depression, fatigue, social anxiety", "negative": "Dry mouth, dry eyes, mild sedation at high doses", "aroma": "Tart green apple candy, lemon-lime citrus, sweet berry, light diesel in background, tropical fruit finish", "misc": "A flavorful cross combining Sour Diesel's cerebral buzz with Cinderella 99's fruity sativa energy. At 76.8% THC in vape form. Delivers a sweet, clean experience — lighter and more approachable than pure Sour Diesel. Balanced, social, and uplifting. Good daytime or early evening vape."}, "e2b95f79aa58": {"lineage": "Cotton Candy x Mythic OG (Atlas Seeds)", "therapeutic": "Stress relief, mood enhancement, muscle relaxation, mild pain, anxiety", "negative": "Dry mouth, dry eyes", "aroma": "Vibrant sweet fruit candy, tropical punch, light gassy undertone — room-filling aromatic presence", "misc": "Bred by Atlas Seeds. THC 20–25%+ (some batches 29%+). Fast flowering, high resin production. Best for afternoon or evening. Named for its nostalgic candy-like terpene profile. Works well for creative or social settings. New arrival — one of Avión's signature craft pre-rolls."}, "03df98cc7bf8": {"lineage": "Cherry Kush x (Lemon Tree Papaya x GMO) x Fro'Do", "therapeutic": "Chronic pain, depression, mood swings, arthritis, muscle spasms and cramps", "negative": "Dry mouth, dry eyes, mild headache at high doses", "aroma": "Earthy spice, fresh woods, peppery zest, dank herbal cheese — like lemon-pepper parmesan with a funky GMO kick", "misc": "THC 18–23%, ~1% CBD. Named for its bold savory-citrus parmesan flavor. Cerebral flare up front followed by warming body waves. Dense olive-green buds with amber undertones. Great for social or creative sessions. New arrival — Avión's most unique flavor profile in the lineup."}, "7b052b7dd4f2": {"lineage": "(Fro'Do x Alaskan Yeti) x LilMissHS (Phylos Bioscience autoflower genetics)", "therapeutic": "Stress relief, mood enhancement, mild anxiety, relaxation", "negative": "Dry mouth, dry eyes", "aroma": "Earthy and fruity with herbal lavender notes, light floral, subtle spice — bright and approachable", "misc": "Phylos Bioscience autoflower genetics. THC ~20–25%. High resin production and stacking cola structure. Balanced hybrid experience — calm but not sedating. Great all-occasion strain suitable for a wider range of consumers. New arrival — Avión's most versatile pre-roll offering."}};
+
+// ── Mood map: effects + terpenes that predict each vibe ──
+// Sources: Russo 2011 Br J Pharmacol; Kamal et al. 2018 Front Neurosci;
+//          Smith et al. 2022 PLOS ONE (terpenes > indica/sativa label)
+const MOOD_MAP = {
+  'wind-down': {
+    label: 'Wind Down',
+    science: 'Myrcene + Linalool stack — sedation, muscle relaxation, GABAergic calm',
+    effects:  ['Sleepy','Relaxing','Calming','Chill','Body High','Unbothered'],
+    terpenes: ['Myrcene','Linalool']
+  },
+  'anxiety-relief': {
+    label: 'Anxiety Relief',
+    science: 'Caryophyllene (CB2) + Linalool (GABA) + Limonene (5-HT1A) — Kamal 2018 anxiolytic chemotype',
+    effects:  ['Calming','Chill','Relaxing','Unbothered','Blissful'],
+    terpenes: ['Caryophyllene','Linalool','Limonene']
+  },
+  'lift-up': {
+    label: 'Lift Up',
+    science: 'Limonene mood elevation (Komori 1995) + Terpinolene cerebral uplift + Ocimene/Valencene citrus energy',
+    effects:  ['Uplifting','Euphoric','Happy','Blissful','Energetic'],
+    terpenes: ['Limonene','Terpinolene','Ocimene','Valencene']
+  },
+  'get-creative': {
+    label: 'Get Creative',
+    science: 'Pinene AChE inhibition sharpens memory + Terpinolene cerebral drive (Miyazawa & Yamafuji 2005)',
+    effects:  ['Creative','Cerebral','Focused'],
+    terpenes: ['Pinene','B Pinene','Terpinolene','Limonene']
+  },
+  'get-social': {
+    label: 'Get Social',
+    science: 'Limonene + Terpinolene — euphoria and giggles without heavy sedation',
+    effects:  ['Social','Giggly','Talkative','Happy','Euphoric'],
+    terpenes: ['Limonene','Terpinolene']
+  },
+  'pain-body': {
+    label: 'Pain & Body',
+    science: 'Caryophyllene (CB2 agonist, Gertsch 2008 PNAS) + Myrcene analgesic + Humulene anti-inflammatory',
+    effects:  ['Body High','Tingly','Relaxing'],
+    terpenes: ['Caryophyllene','Myrcene','Humulene','Linalool','Bisabolol']
+  },
+  'just-happy': {
+    label: 'Just Happy',
+    science: 'Limonene + Linalool + Terpinolene — balanced euphoria and body warmth',
+    effects:  ['Happy','Euphoric','Blissful','Giggly','Tingly','Uplifting'],
+    terpenes: ['Limonene','Linalool','Terpinolene']
+  }
+};
+
+let currentKey   = null;
+let profileKeys  = [];
+let activeMood   = null;
+let activeCat    = 'all';
+let activeSearch = '';
+let searchTimer  = null;
+
+// Research-backed terpene → effect map (Russo 2011, Kamal 2018, Smith 2022)
+// Terpenes come from COA data — the only source we fully trust.
+// Scraped "effects" from the dispensary page are NOT used anywhere.
+const TERPENE_EFFECTS = {
+  'Myrcene':       ['Relaxing','Sleepy','Body High','Calming','Hungry'],
+  'Limonene':      ['Uplifting','Happy','Euphoric','Energetic','Focused'],
+  'Caryophyllene': ['Calming','Relaxing','Body High','Tingly'],
+  'Linalool':      ['Sleepy','Calming','Relaxing','Chill','Blissful'],
+  'Pinene':        ['Focused','Creative','Energetic','Uplifting','Cerebral'],
+  'B Pinene':      ['Focused','Creative','Energetic','Uplifting','Cerebral'],
+  'Terpinolene':   ['Creative','Uplifting','Euphoric','Energetic','Cerebral','Giggly'],
+  'Humulene':      ['Calming','Body High'],
+  'Ocimene':       ['Uplifting','Energetic','Social'],
+  'Valencene':     ['Uplifting','Happy','Social'],
+  'Bisabolol':     ['Calming','Relaxing','Blissful'],
+  'Geraniol':      ['Calming','Happy','Blissful'],
+  'Terpinene':     ['Uplifting','Energetic'],
+};
+
+function derivedEffects(terpenes) {
+  const set = new Set();
+  terpenes.forEach(t => (TERPENE_EFFECTS[t] || []).forEach(e => set.add(e)));
+  return [...set];
+}
+
+function moodScore(card, mood) {
+  if (!mood) return 0;
+  const tx      = (card.dataset.terpenes || '').split(',').filter(Boolean);
+  const derived = derivedEffects(tx);
+  return mood.effects.filter(e  => derived.includes(e)).length * 2
+       + mood.terpenes.filter(t => tx.includes(t)).length;
+}
+
+// Save original DOM order on load so we can restore it
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.grid').forEach(grid => {
+    [...grid.children].forEach((el, i) => { el.dataset.origIndex = i; });
+  });
+});
+
+function fmtList(arr) {
+  if (!arr || !arr.length) return '—';
+  return arr.join(', ');
+}
+
+function buildSgCard(key, forExport) {
+  const p = PRODUCTS[key] || {};
+  const s = STRAINS[key]  || {};
+  const thcPill = p.thc ? `<span class="sg-pill thc">THC ${p.thc}</span>` : '';
+  const cbdPill = p.cbd ? `<span class="sg-pill cbd">CBD ${p.cbd}</span>` : '';
+  const pills   = (thcPill || cbdPill) ? `<div class="sg-thc-cbd">${thcPill}${cbdPill}</div>` : '';
+  const price   = p.price ? `<div class="sg-price">${p.price}${p.weight ? ' · ' + p.weight : ''}</div>` : '';
+  const removeBtn = forExport ? '' : `<button class="profile-item-remove" onclick="removeFromProfile('${key}')" title="Remove">✕</button>`;
+
+  const tx      = p.terpenes || [];
+  const derived = derivedEffects(tx);
+  const rows = [
+    s.lineage    ? `<div class="sg-row"><strong>Lineage:</strong> ${s.lineage}</div>` : '',
+    derived.length ? `<div class="sg-row"><strong>Effects</strong> <span style="font-size:10px;color:#888;font-weight:400">(from COA terpenes)</span><strong>:</strong> ${fmtList(derived)}</div>` : '',
+    p.flavors?.length ? `<div class="sg-row"><strong>Flavors:</strong> ${fmtList(p.flavors)}</div>` : '',
+    tx.length    ? `<div class="sg-row"><strong>Terpenes:</strong> ${fmtList(tx)}</div>` : '',
+    s.therapeutic ? `<div class="sg-row"><strong>Therapeutic:</strong> ${s.therapeutic}</div>` : '',
+    s.negative   ? `<div class="sg-row"><strong>Negative:</strong> ${s.negative}</div>` : '',
+    s.aroma      ? `<div class="sg-row"><strong>Aroma:</strong> ${s.aroma}</div>` : '',
+    s.misc       ? `<div class="sg-row"><strong>Misc:</strong> ${s.misc}</div>` : '',
+  ].join('');
+
+  return `
+  <div class="sg-card" style="position:relative">
+    ${removeBtn}
+    <div class="sg-name">${p.name || 'Unknown'}</div>
+    <div class="sg-type">${p.strain_type ? '— ' + p.strain_type : ''}</div>
+    <span class="sg-supplier">${p.brand || 'Unknown'}</span>
+    ${pills}${price}
+    <hr class="sg-divider">
+    ${rows}
+  </div>`;
+}
+
+function openModal(key) {
+  currentKey = key;
+  const p = PRODUCTS[key] || {};
+  document.getElementById('modalCard').innerHTML = buildSgCard(key, false);
+  const btn = document.getElementById('btnAddProfile');
+  const inProfile = profileKeys.includes(key);
+  btn.textContent = inProfile ? '✓ In Profile' : '＋ Add to Profile';
+  btn.classList.toggle('added', inProfile);
+  document.getElementById('strainModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('strainModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('strainModal')) closeModal();
+}
+
+function toggleProfile() {
+  if (!currentKey) return;
+  const idx = profileKeys.indexOf(currentKey);
+  if (idx === -1) {
+    profileKeys.push(currentKey);
+  } else {
+    profileKeys.splice(idx, 1);
+  }
+  const btn = document.getElementById('btnAddProfile');
+  const inProfile = profileKeys.includes(currentKey);
+  btn.textContent = inProfile ? '✓ In Profile' : '＋ Add to Profile';
+  btn.classList.toggle('added', inProfile);
+  updateFab();
+}
+
+function removeFromProfile(key) {
+  profileKeys = profileKeys.filter(k => k !== key);
+  updateFab();
+  renderProfileCards();
+}
+
+function updateFab() {
+  const fab = document.getElementById('profileFab');
+  document.getElementById('fabCount').textContent = profileKeys.length;
+  fab.style.display = profileKeys.length > 0 ? 'flex' : 'none';
+}
+
+function renderProfileCards() {
+  const el = document.getElementById('profileCards');
+  const empty = document.getElementById('profileEmpty');
+  if (profileKeys.length === 0) {
+    empty.style.display = 'block';
+    el.innerHTML = '';
+    el.appendChild(empty);
+    return;
+  }
+  empty.style.display = 'none';
+  el.innerHTML = profileKeys.map(k => buildSgCard(k, false)).join('');
+}
+
+function openDrawer() {
+  renderProfileCards();
+  document.getElementById('profileDrawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDrawer() {
+  document.getElementById('profileDrawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function clearProfile() {
+  profileKeys = [];
+  updateFab();
+  renderProfileCards();
+}
+
+function exportGuide() {
+  if (profileKeys.length === 0) return;
+  const cards = profileKeys.map(k => buildSgCard(k, true)).join('');
+  const today = new Date().toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legit Cannabis – Strain Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{--green:#3d5c2e;--pink:#e88fa2;--cream:#f5f0e8;--dark-green:#2a3f1f;--border-green:#4a7030;--text:#1a1a1a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#e8e0d0;font-family:'Nunito Sans',sans-serif;padding:24px 16px;color:var(--text)}
+  .page{max-width:720px;margin:0 auto}
+  .header{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+  .logo-badge{background:var(--green);border-radius:14px;padding:10px 16px;display:flex;align-items:center;gap:8px}
+  .logo-badge .leaf{font-size:20px}
+  .logo-badge .name{font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;color:var(--pink);line-height:1.1;letter-spacing:.02em;text-transform:uppercase}
+  .header-title{font-family:'Nunito',sans-serif;font-weight:900;font-size:26px;color:var(--dark-green);letter-spacing:.04em;text-transform:uppercase}
+  .header-sub{font-size:12px;color:var(--green);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+  .sg-card{background:white;border:3px solid var(--border-green);border-radius:16px;padding:18px 22px;margin-bottom:18px}
+  .sg-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;text-align:center;text-transform:uppercase;letter-spacing:.05em;color:var(--dark-green);margin-bottom:2px}
+  .sg-type{text-align:center;font-size:12.5px;font-weight:700;color:#555;margin-bottom:4px}
+  .sg-supplier{display:block;background:var(--green);color:var(--pink);font-family:'Nunito',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;border-radius:20px;padding:3px 10px;width:fit-content;margin:0 auto 10px}
+  .sg-thc-cbd{display:flex;gap:8px;justify-content:center;margin-bottom:8px;flex-wrap:wrap}
+  .sg-pill{font-size:11px;font-weight:700;padding:2px 10px;border-radius:20px;font-family:'Nunito',sans-serif}
+  .sg-pill.thc{background:#16a34a;color:#fff}.sg-pill.cbd{background:#2563eb;color:#fff}
+  .sg-price{text-align:center;font-size:13px;font-weight:700;color:var(--dark-green);margin-bottom:6px}
+  .sg-divider{border:none;border-top:2px solid var(--border-green);margin:8px 0 12px}
+  .sg-row{font-size:12.5px;line-height:1.55;margin-bottom:4px;color:#222}
+  .sg-row strong{font-weight:700;color:var(--dark-green);font-family:'Nunito',sans-serif;font-size:12.5px}
+  .profile-item-remove{display:none}
+  .sg-row span{font-size:10px;color:#888;font-weight:400}
+  @media print{body{background:white;padding:0}.sg-card{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="logo-badge"><span class="leaf">🍃</span><div class="name">LEGIT<br>CANNABIS</div></div>
+    <div><div class="header-title">Strain Guide</div><div class="header-sub">Staff Reference · ${today}</div></div>
+  </div>
+  ${cards}
+</div>
+</body>
+</html>`;
+
+  const blob = new Blob([html], {type: 'text/html;charset=utf-8'});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = 'legit-strain-guide.html';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ── Category + mood + text search combined filter ──
+function applyFilters() {
+  const mood = activeMood ? MOOD_MAP[activeMood] : null;
+  const q    = activeSearch;
+  let totalVisible = 0;
+
+  document.querySelectorAll('.card').forEach(card => {
+    const key = card.dataset.key;
+
+    // Category check
+    const section = card.closest('.section');
+    const catOk = activeCat === 'all' || (section && section.dataset.cat === activeCat);
+
+    // Mood check — driven entirely by COA terpenes, not dispensary effect labels
+    let moodOk = true;
+    if (mood) {
+      const tx      = (card.dataset.terpenes || '').split(',').filter(Boolean);
+      const derived = derivedEffects(tx);
+      moodOk = mood.effects.some(e  => derived.includes(e))
+             || mood.terpenes.some(t => tx.includes(t));
+    }
+
+    // Text search — terpenes (COA), derived effects (research), and enriched
+    // strain fields (therapeutic, aroma, misc, lineage).
+    // Scraped dispensary "effects" intentionally excluded — not trusted.
+    let searchOk = true;
+    if (q) {
+      const p = PRODUCTS[key] || {};
+      const s = STRAINS[key]  || {};
+      const tx = (p.terpenes || []);
+      const blob = [
+        p.name, p.brand, p.strain_type,
+        tx.join(' '),
+        derivedEffects(tx).join(' '),
+        (p.flavors || []).join(' '),
+        s.lineage, s.therapeutic, s.negative, s.aroma, s.misc
+      ].filter(Boolean).join(' ').toLowerCase();
+      searchOk = blob.includes(q);
+    }
+
+    const visible = catOk && moodOk && searchOk;
+    card.classList.toggle('hidden', !visible);
+
+    // Match strength border
+    card.classList.remove('match-strong','match-good','match-weak');
+    if (visible && mood) {
+      const score = moodScore(card, mood);
+      if      (score >= 4) card.classList.add('match-strong');
+      else if (score >= 2) card.classList.add('match-good');
+      else                 card.classList.add('match-weak');
+    }
+
+    if (visible) totalVisible++;
+  });
+
+  // Sort each grid: mood active → best score first; no mood → restore original order
+  document.querySelectorAll('.grid').forEach(grid => {
+    const cards = [...grid.querySelectorAll('.card')];
+    if (mood) {
+      cards.sort((a, b) => {
+        const diff = moodScore(b, mood) - moodScore(a, mood);
+        return diff !== 0 ? diff : (parseInt(a.dataset.origIndex)||0) - (parseInt(b.dataset.origIndex)||0);
+      });
+    } else {
+      cards.sort((a, b) => (parseInt(a.dataset.origIndex)||0) - (parseInt(b.dataset.origIndex)||0));
+    }
+    cards.forEach(c => grid.appendChild(c));
+  });
+
+  // Update section visibility + counts
+  document.querySelectorAll('.section').forEach(s => {
+    const catOk = activeCat === 'all' || s.dataset.cat === activeCat;
+    if (!catOk) { s.classList.add('hidden'); return; }
+    const vis = s.querySelectorAll('.card:not(.hidden)').length;
+    s.classList.toggle('hidden', vis === 0);
+    const countEl = s.querySelector('[data-total]');
+    if (countEl) {
+      const total = countEl.dataset.total;
+      countEl.textContent = mood
+        ? `${vis} / ${total} matching`
+        : `${total} product${total == 1 ? '' : 's'}`;
+    }
+  });
+
+  // Divider + new-arrivals section
+  document.querySelectorAll('.section-divider').forEach(d => {
+    d.classList.toggle('hidden', activeCat !== 'all');
+  });
+
+  // Show "no results" message
+  document.getElementById('moodZero').classList.toggle('hidden', totalVisible > 0);
+
+  // Update status bar
+  const statusEl = document.getElementById('moodStatus');
+  const parts = [];
+  if (mood)  parts.push(`<strong>${mood.label}:</strong> ${mood.science}`);
+  if (q)     parts.push(`searching <strong>"${q}"</strong>`);
+  if (parts.length) {
+    parts.push(`— ${totalVisible} product${totalVisible == 1 ? '' : 's'} found`);
+    statusEl.innerHTML = parts.join(' · ');
+    statusEl.classList.remove('hidden');
+  } else {
+    statusEl.classList.add('hidden');
+  }
+}
+
+function handleSearch(val) {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    activeSearch = val.trim().toLowerCase();
+    document.getElementById('searchClear').classList.toggle('hidden', !activeSearch);
+    applyFilters();
+  }, 150);
+}
+
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  activeSearch = '';
+  document.getElementById('searchClear').classList.add('hidden');
+  applyFilters();
+}
+
 function filterCat(btn) {
   document.querySelectorAll('.tab').forEach(b => b.classList.remove('on'));
   btn.classList.add('on');
-  const sel = btn.dataset.cat;
-  document.querySelectorAll('.section').forEach(s => {
-    s.classList.toggle('hidden', sel !== 'all' && s.dataset.cat !== sel);
-  });
+  activeCat = btn.dataset.cat;
+  applyFilters();
   window.scrollTo({top:0,behavior:'smooth'});
 }
+
+function filterMood(btn) {
+  const mood = btn.dataset.mood;
+  if (activeMood === mood) {
+    clearMood();
+    return;
+  }
+  document.querySelectorAll('.mood-chip').forEach(c => c.classList.remove('on'));
+  btn.classList.add('on');
+  activeMood = mood;
+  document.getElementById('moodClear').classList.remove('hidden');
+  applyFilters();
+}
+
+function clearMood() {
+  activeMood = null;
+  document.querySelectorAll('.mood-chip').forEach(c => c.classList.remove('on'));
+  document.getElementById('moodClear').classList.add('hidden');
+  applyFilters();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeDrawer(); } });
+
+// ── Dark mode ──
+function toggleDark() {
+  const dark = document.body.classList.toggle('dark');
+  localStorage.setItem('lc-dark', dark ? '1' : '0');
+  document.getElementById('darkToggle').textContent = dark ? '☀️ Light' : '🌙 Dark';
+}
+(function() {
+  if (localStorage.getItem('lc-dark') === '1') {
+    document.body.classList.add('dark');
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('darkToggle').textContent = '☀️ Light';
+    });
+  }
+})();
 </script>
 </body>
 </html>

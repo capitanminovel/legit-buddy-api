@@ -3,10 +3,11 @@ import json
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
 
-CST      = timezone(timedelta(hours=-6))
-DATA     = Path(__file__).parent / "docs" / "products.json"
-OUT      = Path(__file__).parent / "docs" / "index.html"
-NEW_DAYS = 3
+CST          = timezone(timedelta(hours=-6))
+DATA         = Path(__file__).parent / "docs" / "products.json"
+STRAINS_DATA = Path(__file__).parent / "docs" / "strains_enriched.json"
+OUT          = Path(__file__).parent / "docs" / "index.html"
+NEW_DAYS     = 2
 
 CAT_ICONS = {
     "flower":"🌿","pre-roll":"🚬","pre_roll":"🚬","preroll":"🚬",
@@ -45,7 +46,7 @@ def new_badge(first_seen):
     if d <= NEW_DAYS:   return f'<span class="recent-badge">New ({d}d ago)</span>'
     return ""
 
-def build_card(p):
+def build_card(p, key):
     ci = cat_icon(p.get("category", ""))
     img = (f'<img src="{p["image"]}" alt="{p["name"]}" loading="lazy" onerror="this.parentNode.innerHTML=\'<div class=no-img>{ci}</div>\'">'
            if p.get("image")
@@ -60,11 +61,8 @@ def build_card(p):
     cbd_pill = f'<span class="potency-pill cbd">CBD {p["cbd"]}</span>' if p.get("cbd") else ""
     potency  = f'<div class="potency-row">{thc_pill}{cbd_pill}</div>' if (thc_pill or cbd_pill) else ""
 
-    terps  = "".join(f'<span class="terp">{t}</span>' for t in (p.get("terpenes") or [])[:3])
+    terps  = "".join(f'<span class="terp">{t}</span>' for t in (p.get("terpenes") or [])[:4])
     terp_h = f'<div class="terp-row">{terps}</div>' if terps else ""
-
-    efx   = "".join(f'<span class="effect">{e}</span>' for e in (p.get("effects") or [])[:3])
-    efx_h = f'<div class="effects-row">{efx}</div>' if efx else ""
 
     minors = " · ".join(filter(None, [
         f'CBG {p["cbg"]}' if p.get("cbg") else "",
@@ -85,14 +83,17 @@ def build_card(p):
     weight_h = f'<div class="card-weight">{p["weight"]}</div>' if p.get("weight") else ""
     brand_h  = f'<div class="card-brand">{p["brand"]}</div>'   if p.get("brand")  else ""
 
+    terpenes_csv = ",".join(p.get("terpenes") or [])
+
     return f"""
-    <div class="card">
+    <div class="card" data-key="{key}" data-terpenes="{terpenes_csv}" onclick="openModal('{key}')">
       <div class="card-img">{img}{badges}{potency}</div>
       <div class="card-body">
         {brand_h}
         <div class="card-name">{p["name"]}</div>
-        {weight_h}{minor_h}{terp_h}{efx_h}
+        {weight_h}{minor_h}{terp_h}
         <div class="price-section">{price_h}</div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
     </div>"""
 
@@ -100,57 +101,63 @@ def build():
     with open(DATA) as f:
         db = json.load(f)
 
+    strains = {}
+    if STRAINS_DATA.exists():
+        with open(STRAINS_DATA) as f:
+            strains = json.load(f)
+
     now     = datetime.now(CST)
     ts      = now.strftime("%a, %b %d %Y — %I:%M %p CST")
-    TARGET = ("flower", "pre-roll", "vapes", "edibles")
-    all_p  = [(k,v) for k,v in db["products"].items()
-              if v.get("in_stock", True) and (v.get("category","").lower() in TARGET)]
+    TARGET  = ("flower", "pre-roll", "vapes", "edibles")
+    all_p   = [(k,v) for k,v in db["products"].items()
+               if v.get("in_stock", True) and (v.get("category","").lower() in TARGET)]
 
-    # Sort: newest first, then alpha
     all_p.sort(key=lambda x: (age_days(x[1].get("first_seen","")), x[1].get("name","")))
 
-    # Group by category
     from collections import defaultdict
     cats = defaultdict(list)
-    for _, p in all_p:
-        cats[p.get("category") or "Other"].append(p)
+    for k, p in all_p:
+        cats[p.get("category") or "Other"].append((k, p))
 
-    # New arrivals (within NEW_DAYS)
-    new_items = [p for _, p in all_p if age_days(p.get("first_seen","")) <= NEW_DAYS]
+    new_items = [(k, p) for k, p in all_p if age_days(p.get("first_seen","")) <= NEW_DAYS]
 
     new_section = ""
     if new_items:
-        new_cards = "".join(build_card(p) for p in new_items)
+        new_cards = "".join(build_card(p, k) for k, p in new_items)
+        n = len(new_items)
         new_section = f"""
     <section class="section new-arrivals-section" data-cat="all">
       <div class="new-arrivals-head">
         <span class="new-arrivals-title">✨ New in the Last 3 Days</span>
-        <span class="new-arrivals-count">{len(new_items)} product{"s" if len(new_items)!=1 else ""}</span>
+        <span class="new-arrivals-count" data-total="{n}">{n} product{"s" if n!=1 else ""}</span>
       </div>
       <div class="grid">{new_cards}</div>
     </section>
     <div class="section-divider" data-cat="all"></div>"""
 
-    # Tab buttons
     tab_btns = '<button class="tab on" data-cat="all" onclick="filterCat(this)">All Products</button>\n'
     tab_btns += "\n".join(
         f'<button class="tab" data-cat="{c.lower()}" onclick="filterCat(this)">{cat_icon(c)} {c}</button>'
         for c in sorted(cats)
     )
 
-    # Category sections
     sections = ""
     for cat in sorted(cats):
-        items   = cats[cat]
-        cards   = "".join(build_card(p) for p in items)
+        items = cats[cat]
+        cards = "".join(build_card(p, k) for k, p in items)
+        n = len(items)
         sections += f"""
     <section class="section" data-cat="{cat.lower()}">
       <div class="section-head">
         <span class="section-title">{cat_icon(cat)} {cat}</span>
-        <span class="section-count">{len(items)} product{"s" if len(items)!=1 else ""}</span>
+        <span class="section-count" data-total="{n}">{n} product{"s" if n!=1 else ""}</span>
       </div>
       <div class="grid">{cards}</div>
     </section>"""
+
+    # Embed all product data + strain enrichment as JS
+    products_js = json.dumps({k: v for k, v in db["products"].items()}, ensure_ascii=False)
+    strains_js  = json.dumps(strains, ensure_ascii=False)
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -160,7 +167,7 @@ def build():
   <title>MN Legit Cannabis – South Metro Menu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
     :root{{
@@ -168,13 +175,46 @@ def build():
       --border:#e5e7eb;--bg:#f3f4f6;--white:#ffffff;
       --indica:#7c3aed;--sativa:#d97706;--hybrid:#0891b2;--cbd:#2563eb;--cbg:#6366f1;
       --new:#16a34a;--radius:10px;
+      --sg-green:#3d5c2e;--sg-pink:#e88fa2;--sg-cream:#f5f0e8;
+      --sg-dark:#2a3f1f;--sg-border:#4a7030;
     }}
+    body.dark{{
+      --brand:#4ade80;--brand-lt:#14261e;--text:#e2e8f0;--muted:#94a3b8;
+      --border:#2d3f32;--bg:#0d1a11;--white:#132019;
+      --indica:#a78bfa;--sativa:#fbbf24;--hybrid:#38bdf8;--cbd:#60a5fa;--cbg:#818cf8;
+      --new:#4ade80;
+    }}
+    body.dark header,body.dark .tabs-wrap,body.dark .legend,body.dark footer{{background:var(--white);border-color:var(--border)}}
+    body.dark .card{{background:#1a2d20;border-color:var(--border)}}
+    body.dark .mood-bar{{background:#1a2d20;border-color:var(--border)}}
+    body.dark .mood-chip{{background:#132019;color:var(--text);border-color:var(--border)}}
+    body.dark .mood-chip:hover{{background:#1e3826;border-color:var(--brand)}}
+    body.dark .search-input{{background:#132019;color:var(--text);border-color:var(--border)}}
+    body.dark .search-input:focus{{background:#1a2d20;border-color:var(--brand)}}
+    body.dark .new-arrivals-section{{background:linear-gradient(135deg,#132019,#0d1f14);border-color:#2d4a35}}
+    body.dark .terp{{background:#0d2015;color:#4ade80;border-color:#1e4a2a}}
+    body.dark .tier{{background:#132019;border-color:var(--border)}}
+    body.dark .card.match-strong{{border-left:5px solid #4ade80;box-shadow:-2px 0 10px rgba(74,222,128,.3)}}
+    body.dark .card.match-good{{border-left:5px solid #fbbf24;box-shadow:none}}
+    body.dark .card.match-weak{{border-left:5px solid #475569;box-shadow:none}}
+    body.dark .top-bar{{background:#0d2015}}
+    body.dark .modal-box,.dark .profile-box{{background:#1a2d20}}
+    body.dark .sg-card{{background:#1e3826;border-color:#3a6040}}
+    body.dark .sg-name,.dark .sg-row strong{{color:#c8f5d4}}
+    body.dark .sg-row{{color:#b2c9b8}}
+    body.dark .profile-box{{background:#132019}}
+    body.dark .profile-header{{background:#132019;border-color:#2d4a35}}
     body{{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px}}
     .top-bar{{background:var(--brand);color:#fff;text-align:center;font-size:.75rem;padding:6px;letter-spacing:.3px}}
     header{{background:var(--white);border-bottom:1px solid var(--border);padding:0 24px;position:sticky;top:0;z-index:30}}
     .header-inner{{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:20px;height:64px}}
     .logo{{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.05rem;color:var(--brand);text-decoration:none;white-space:nowrap}}
     .logo-leaf{{width:34px;height:34px;background:var(--brand);border-radius:50% 50% 50% 0;display:flex;align-items:center;justify-content:center;font-size:1rem;color:#fff;flex-shrink:0}}
+    .mascot-wrap{{flex-shrink:0;cursor:default;user-select:none;display:flex;align-items:center}}
+    .mascot-wrap img{{height:52px;width:auto;display:block}}
+    .mascot-flip{{transform:scaleX(-1)}}
+    .dark-toggle{{margin-left:auto;background:none;border:1.5px solid var(--border);border-radius:20px;padding:5px 12px;font-size:.78rem;font-weight:600;cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s;white-space:nowrap;flex-shrink:0}}
+    .dark-toggle:hover{{border-color:var(--brand);color:var(--brand)}}
     .header-meta{{margin-left:auto;text-align:right;font-size:.75rem;color:var(--muted);line-height:1.5}}
     .header-meta strong{{color:var(--brand)}}
     .tabs-wrap{{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:64px;z-index:20}}
@@ -185,14 +225,16 @@ def build():
     .tab.on{{color:var(--brand);border-bottom-color:var(--brand)}}
     .legend{{display:flex;gap:14px;flex-wrap:wrap;align-items:center;padding:10px 24px;background:var(--white);border-bottom:1px solid var(--border);font-size:.74rem;color:var(--muted)}}
     .legend-item{{display:flex;align-items:center;gap:5px}}
-    main{{max-width:1400px;margin:0 auto;padding:28px 24px 60px}}
+    main{{max-width:1400px;margin:0 auto;padding:28px 24px 100px}}
     .section{{margin-bottom:44px}}
     .section-head{{display:flex;align-items:baseline;gap:10px;margin-bottom:18px}}
     .section-title{{font-size:1.1rem;font-weight:700}}
     .section-count{{font-size:.8rem;color:var(--muted)}}
     .grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}}
-    .card{{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .15s,transform .15s}}
-    .card:hover{{box-shadow:0 4px 16px rgba(0,0,0,.10);transform:translateY(-2px)}}
+    .card{{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .15s,transform .15s;cursor:pointer}}
+    .card:hover{{box-shadow:0 4px 16px rgba(0,0,0,.12);transform:translateY(-2px)}}
+    .card:hover .card-detail-hint{{opacity:1}}
+    .card-detail-hint{{font-size:.67rem;color:var(--brand);font-weight:600;text-align:center;padding:4px 0 0;opacity:0;transition:opacity .15s;letter-spacing:.2px}}
     .card-img{{position:relative;background:#f9fafb;border-bottom:1px solid var(--border);height:170px;overflow:hidden;display:flex;align-items:center;justify-content:center}}
     .card-img img{{width:100%;height:100%;object-fit:cover;display:block}}
     .no-img{{font-size:3.2rem;color:#d1d5db}}
@@ -219,16 +261,102 @@ def build():
     .price-tiers{{display:flex;gap:5px;flex-wrap:wrap}}
     .tier{{font-size:.7rem;font-weight:500;border:1px solid var(--border);border-radius:5px;padding:3px 7px;color:var(--text);background:#fafafa}}
     .tier span{{display:block;font-size:.62rem;color:var(--muted)}}
-    footer{{text-align:center;padding:20px;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);background:var(--white)}}
+    footer{{text-align:center;padding:16px 20px 80px;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);background:var(--white)}}
+    .footer-sticky{{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--border);padding:8px 16px;display:flex;justify-content:space-between;align-items:center;font-size:.72rem;color:var(--muted);z-index:200;box-shadow:0 -2px 8px rgba(0,0,0,.06)}}
+    .footer-sticky .fs-stock{{font-weight:700;color:var(--brand)}}
+    .footer-sticky .fs-updated{{font-size:.68rem}}
+    @media(min-width:768px){{.footer-sticky{{display:none}}}}
     .new-arrivals-section{{background:linear-gradient(135deg,#f0fdf4,#ecfdf5);border:2px solid #86efac;border-radius:12px;padding:20px;margin-bottom:32px}}
     .new-arrivals-head{{display:flex;align-items:baseline;gap:10px;margin-bottom:18px}}
     .new-arrivals-title{{font-size:1.15rem;font-weight:700;color:var(--new)}}
     .new-arrivals-count{{font-size:.8rem;color:var(--muted)}}
     .section-divider{{height:2px;background:linear-gradient(90deg,var(--brand-lt),transparent);margin:0 0 36px;border-radius:1px}}
     .hidden{{display:none!important}}
+
+    /* ── Mood / Effect filter bar ── */
+    .mood-bar{{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin-bottom:24px;display:flex;flex-direction:column;gap:10px}}
+    .mood-bar-top{{display:flex;align-items:center;gap:10px;flex-wrap:wrap}}
+    .mood-bar-label{{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;white-space:nowrap}}
+    .mood-chips{{display:flex;gap:7px;flex-wrap:wrap;flex:1}}
+    .mood-chip{{border:1.5px solid var(--border);background:var(--bg);color:var(--text);border-radius:20px;padding:6px 13px;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .15s;white-space:nowrap;font-family:inherit}}
+    .mood-chip:hover{{border-color:var(--sg-green);color:var(--sg-green);background:#f0fdf4}}
+    .mood-chip.on{{background:var(--sg-green);color:var(--sg-pink);border-color:var(--sg-green);font-weight:700}}
+    .mood-clear{{border:none;background:none;color:var(--muted);font-size:.78rem;font-weight:600;cursor:pointer;padding:6px 8px;border-radius:20px;white-space:nowrap;font-family:inherit}}
+    .mood-clear:hover{{color:#e53e3e}}
+    .mood-status{{font-size:.78rem;color:var(--sg-green);font-weight:500;padding:2px 0 0;line-height:1.45}}
+    .mood-status strong{{font-weight:700}}
+    .mood-zero{{font-size:.85rem;color:var(--muted);text-align:center;padding:32px 0;font-weight:500}}
+    .card.match-strong{{border-left:5px solid #16a34a;box-shadow:-2px 0 10px rgba(22,163,74,.2)}}
+    .card.match-good{{border-left:5px solid #d97706}}
+    .card.match-weak{{border-left:5px solid #94a3b8}}
+
+    /* ── Text search ── */
+    .search-row{{display:flex;align-items:center;gap:8px}}
+    .search-wrap{{position:relative;flex:1;max-width:520px}}
+    .search-icon{{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:.85rem;pointer-events:none}}
+    .search-input{{width:100%;border:1.5px solid var(--border);border-radius:24px;padding:8px 36px 8px 32px;font-size:.82rem;font-family:inherit;outline:none;background:var(--bg);color:var(--text);transition:border-color .15s}}
+    .search-input:focus{{border-color:var(--sg-green);background:#fff}}
+    .search-input::placeholder{{color:#aaa}}
+    .search-clear{{position:absolute;right:10px;top:50%;transform:translateY(-50%);border:none;background:none;color:#aaa;font-size:1rem;cursor:pointer;padding:2px;line-height:1}}
+    .search-clear:hover{{color:#e53e3e}}
+
     @media(max-width:640px){{
-      header{{padding:0 14px}}.tabs{{padding:0 14px}}main{{padding:18px 14px 50px}}.legend{{padding:10px 14px}}
+      header{{padding:0 14px}}.tabs{{padding:0 14px}}main{{padding:18px 14px 100px}}.legend{{padding:10px 14px}}
       .grid{{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px}}.card-img{{height:140px}}
+      .mood-bar{{padding:12px 14px}}.mood-chips{{gap:5px}}.mood-chip{{font-size:.73rem;padding:5px 10px}}
+    }}
+
+    /* ── Modal overlay ── */
+    .modal-overlay{{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .2s}}
+    .modal-overlay.open{{opacity:1;pointer-events:all}}
+    .modal-box{{background:#e8e0d0;border-radius:18px;max-width:620px;width:100%;max-height:90vh;overflow-y:auto;position:relative;transform:scale(.95);transition:transform .2s;font-family:'Nunito Sans',sans-serif}}
+    .modal-overlay.open .modal-box{{transform:scale(1)}}
+    .modal-close{{position:sticky;top:12px;float:right;margin:12px 16px 0 0;background:var(--sg-green);color:var(--sg-pink);border:none;border-radius:50%;width:32px;height:32px;font-size:1.1rem;cursor:pointer;font-weight:900;line-height:32px;text-align:center;z-index:10;flex-shrink:0}}
+    .modal-close:hover{{background:var(--sg-dark)}}
+    .modal-inner{{padding:16px 22px 22px;clear:both}}
+
+    /* ── Strain card (inside modal) — matches legit_strain_guide.html ── */
+    .sg-card{{background:white;border:3px solid var(--sg-border);border-radius:16px;padding:18px 22px;margin-bottom:14px}}
+    .sg-name{{font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;text-align:center;text-transform:uppercase;letter-spacing:.05em;color:var(--sg-dark);margin-bottom:2px}}
+    .sg-type{{text-align:center;font-size:12.5px;font-weight:700;color:#555;margin-bottom:4px}}
+    .sg-supplier{{display:block;background:var(--sg-green);color:var(--sg-pink);font-family:'Nunito',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;border-radius:20px;padding:3px 10px;width:fit-content;margin:0 auto 10px}}
+    .sg-divider{{border:none;border-top:2px solid var(--sg-border);margin:8px 0 12px}}
+    .sg-row{{font-size:12.5px;line-height:1.55;margin-bottom:4px;color:#222}}
+    .sg-row strong{{font-weight:700;color:var(--sg-dark);font-family:'Nunito',sans-serif;font-size:12.5px}}
+    .sg-thc-cbd{{display:flex;gap:8px;justify-content:center;margin-bottom:8px;flex-wrap:wrap}}
+    .sg-pill{{font-size:11px;font-weight:700;padding:2px 10px;border-radius:20px;font-family:'Nunito',sans-serif}}
+    .sg-pill.thc{{background:#16a34a;color:#fff}}.sg-pill.cbd{{background:#2563eb;color:#fff}}
+    .sg-price{{text-align:center;font-size:13px;font-weight:700;color:var(--sg-dark);margin-bottom:6px}}
+    .modal-actions{{display:flex;gap:10px;margin-top:16px;justify-content:center;flex-wrap:wrap}}
+    .btn-add-profile{{background:var(--sg-green);color:var(--sg-pink);border:none;border-radius:24px;padding:10px 22px;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;transition:background .15s}}
+    .btn-add-profile:hover{{background:var(--sg-dark)}}
+    .btn-add-profile.added{{background:#6b7280;color:#fff}}
+    .btn-close-modal{{background:transparent;color:var(--sg-green);border:2px solid var(--sg-green);border-radius:24px;padding:10px 22px;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}}
+
+    /* ── Profile floating button ── */
+    .profile-fab{{position:fixed;bottom:28px;right:24px;background:var(--sg-green);color:var(--sg-pink);border:none;border-radius:30px;padding:12px 20px;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.25);z-index:500;display:none;align-items:center;gap:8px;transition:background .15s,transform .1s}}
+    .profile-fab:hover{{background:var(--sg-dark);transform:scale(1.04)}}
+    .profile-fab-count{{background:var(--sg-pink);color:var(--sg-dark);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:900}}
+
+    /* ── Profile drawer ── */
+    .profile-drawer{{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1100;display:none;align-items:flex-end;justify-content:center}}
+    .profile-drawer.open{{display:flex}}
+    .profile-box{{background:#e8e0d0;width:100%;max-width:680px;max-height:85vh;border-radius:18px 18px 0 0;overflow-y:auto;padding:0 0 30px}}
+    .profile-header{{display:flex;align-items:center;justify-content:space-between;padding:18px 22px 14px;background:#e8e0d0;position:sticky;top:0;border-bottom:2px solid var(--sg-border)}}
+    .profile-header-title{{font-family:'Nunito',sans-serif;font-weight:900;font-size:18px;color:var(--sg-dark);text-transform:uppercase;letter-spacing:.05em}}
+    .profile-header-actions{{display:flex;gap:8px;flex-wrap:wrap}}
+    .btn-export{{background:var(--sg-green);color:var(--sg-pink);border:none;border-radius:20px;padding:8px 16px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}}
+    .btn-export:hover{{background:var(--sg-dark)}}
+    .btn-clear{{background:transparent;color:#888;border:1px solid #ccc;border-radius:20px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;cursor:pointer}}
+    .btn-close-drawer{{background:transparent;color:var(--sg-green);border:2px solid var(--sg-green);border-radius:20px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;text-transform:uppercase;cursor:pointer}}
+    .profile-cards{{padding:16px 18px 0}}
+    .profile-empty{{text-align:center;padding:40px;color:#888;font-family:'Nunito',sans-serif;font-weight:700;font-size:14px}}
+    .profile-item-remove{{position:absolute;top:10px;right:12px;background:transparent;border:none;color:#aaa;font-size:18px;cursor:pointer;font-weight:700;line-height:1}}
+    .profile-item-remove:hover{{color:#e53e3e}}
+    @media(max-width:640px){{
+      .modal-box{{max-height:95vh;border-radius:14px}}
+      .profile-box{{max-height:92vh}}
+      .modal-inner{{padding:12px 14px 18px}}
     }}
   </style>
 </head>
@@ -236,10 +364,16 @@ def build():
 <div class="top-bar">🌿 MN Legit Cannabis · South Metro · Updated daily at 4:30 PM CST</div>
 <header>
   <div class="header-inner">
+    <div class="mascot-wrap">
+      <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExb216bXVxcmVpMm1zNTR3NWxob3hoeXloYWFlbWswcW13NnZ3MnlsMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/5C29m5sRSYch78Ko3B/giphy.gif" alt="" loading="lazy">
+    </div>
     <a class="logo" href="#">
-      <div class="logo-leaf">🌿</div>
       <div><div>Legit Cannabis</div><div style="font-size:.7rem;font-weight:400;color:var(--muted)">South Metro</div></div>
     </a>
+    <div class="mascot-wrap">
+      <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHAxcXpnaHdqN3QyaGtmaDM5azkyd2hlZndvNHZocncwamd6Y2Z5aSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VRvFAP4CXxUQw/giphy.gif" alt="" loading="lazy">
+    </div>
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDark()">🌙 Dark</button>
     <div class="header-meta">
       <div>Last updated: <strong>{ts}</strong></div>
       <div>{len(all_p)} products in stock</div>
@@ -253,20 +387,522 @@ def build():
   <div class="legend-item"><span class="strain-badge strain-cbd">CBD</span></div>
   <div class="legend-item"><span class="new-badge">New Today</span> Added today</div>
   <div class="legend-item"><span class="recent-badge">New (2d)</span> Within 3 days</div>
+  <div class="legend-item" style="margin-left:auto;color:var(--brand);font-weight:600">Tap any product for strain guide →</div>
 </div>
 <div class="tabs-wrap"><div class="tabs" id="tabs">{tab_btns}</div></div>
-<main>{new_section}{sections}</main>
-<footer>Auto-updated daily at 4:30 PM CST &nbsp;·&nbsp; MN Legit Cannabis South Metro</footer>
+<main>
+  <div class="mood-bar" id="moodBar">
+    <div class="mood-bar-top">
+      <span class="mood-bar-label">Find your vibe</span>
+      <div class="mood-chips" id="moodChips">
+        <button class="mood-chip" data-mood="wind-down"      onclick="filterMood(this)" title="Myrcene + Linalool — muscle relaxation, sedation, GABAergic calm (Russo 2011)">😴 Wind Down</button>
+        <button class="mood-chip" data-mood="anxiety-relief" onclick="filterMood(this)" title="Caryophyllene + Linalool + Limonene — the Kamal anxiolytic chemotype (Kamal et al. 2018, Front Neurosci)">🧘 Anxiety Relief</button>
+        <button class="mood-chip" data-mood="lift-up"        onclick="filterMood(this)" title="Limonene + Terpinolene + Ocimene — mood elevation, citrus-forward uplift">⬆ Lift Up</button>
+        <button class="mood-chip" data-mood="get-creative"   onclick="filterMood(this)" title="Pinene + Terpinolene — AChE inhibition sharpens focus; terpinolene drives cerebral creativity">🎨 Get Creative</button>
+        <button class="mood-chip" data-mood="get-social"     onclick="filterMood(this)" title="Limonene + Terpinolene — euphoria, giggles, sociability without heavy sedation">😄 Get Social</button>
+        <button class="mood-chip" data-mood="pain-body"      onclick="filterMood(this)" title="Caryophyllene (CB2 agonist) + Myrcene + Humulene — anti-inflammatory, analgesic, muscle relaxant">💆 Pain &amp; Body</button>
+        <button class="mood-chip" data-mood="just-happy"     onclick="filterMood(this)" title="Limonene + Linalool — balanced euphoria and body warmth">✨ Just Happy</button>
+      </div>
+      <button class="mood-clear hidden" id="moodClear" onclick="clearMood()">✕ Mood</button>
+    </div>
+    <div class="search-row">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" class="search-input"
+               placeholder="Search: anxiety, PTSD, sleep, pain, creative, Myrcene…"
+               oninput="handleSearch(this.value)">
+        <button class="search-clear hidden" id="searchClear" onclick="clearSearch()">✕</button>
+      </div>
+    </div>
+    <div class="mood-status hidden" id="moodStatus"></div>
+  </div>
+  {new_section}{sections}
+  <div class="mood-zero hidden" id="moodZero">No products match this vibe right now — try another filter.</div>
+</main>
+<footer>
+  Last updated: {ts} &nbsp;·&nbsp; {len(all_p)} products in stock &nbsp;·&nbsp; MN Legit Cannabis South Metro
+</footer>
+<div class="footer-sticky">
+  <span class="fs-stock">{len(all_p)} products in stock</span>
+  <span class="fs-updated">Updated {ts}</span>
+</div>
+
+<!-- Strain modal -->
+<div class="modal-overlay" id="strainModal" onclick="closeModalOutside(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-inner">
+      <div id="modalCard"></div>
+      <div class="modal-actions">
+        <button class="btn-add-profile" id="btnAddProfile" onclick="toggleProfile()">＋ Add to Profile</button>
+        <button class="btn-close-modal" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Profile drawer -->
+<div class="profile-drawer" id="profileDrawer">
+  <div class="profile-box">
+    <div class="profile-header">
+      <div class="profile-header-title">📋 Strain Profile</div>
+      <div class="profile-header-actions">
+        <button class="btn-export" onclick="exportGuide()">⬇ Download Strain Guide</button>
+        <button class="btn-clear" onclick="clearProfile()">Clear All</button>
+        <button class="btn-close-drawer" onclick="closeDrawer()">Close</button>
+      </div>
+    </div>
+    <div class="profile-cards" id="profileCards">
+      <div class="profile-empty" id="profileEmpty">No strains added yet.<br>Tap any product card, then "Add to Profile."</div>
+    </div>
+  </div>
+</div>
+
+<!-- Floating profile button -->
+<button class="profile-fab" id="profileFab" onclick="openDrawer()">
+  📋 My Profile <span class="profile-fab-count" id="fabCount">0</span>
+</button>
+
 <script>
+const PRODUCTS = {products_js};
+const STRAINS  = {strains_js};
+
+// ── Mood map: effects + terpenes that predict each vibe ──
+// Sources: Russo 2011 Br J Pharmacol; Kamal et al. 2018 Front Neurosci;
+//          Smith et al. 2022 PLOS ONE (terpenes > indica/sativa label)
+const MOOD_MAP = {{
+  'wind-down': {{
+    label: 'Wind Down',
+    science: 'Myrcene + Linalool stack — sedation, muscle relaxation, GABAergic calm',
+    effects:  ['Sleepy','Relaxing','Calming','Chill','Body High','Unbothered'],
+    terpenes: ['Myrcene','Linalool']
+  }},
+  'anxiety-relief': {{
+    label: 'Anxiety Relief',
+    science: 'Caryophyllene (CB2) + Linalool (GABA) + Limonene (5-HT1A) — Kamal 2018 anxiolytic chemotype',
+    effects:  ['Calming','Chill','Relaxing','Unbothered','Blissful'],
+    terpenes: ['Caryophyllene','Linalool','Limonene']
+  }},
+  'lift-up': {{
+    label: 'Lift Up',
+    science: 'Limonene mood elevation (Komori 1995) + Terpinolene cerebral uplift + Ocimene/Valencene citrus energy',
+    effects:  ['Uplifting','Euphoric','Happy','Blissful','Energetic'],
+    terpenes: ['Limonene','Terpinolene','Ocimene','Valencene']
+  }},
+  'get-creative': {{
+    label: 'Get Creative',
+    science: 'Pinene AChE inhibition sharpens memory + Terpinolene cerebral drive (Miyazawa & Yamafuji 2005)',
+    effects:  ['Creative','Cerebral','Focused'],
+    terpenes: ['Pinene','B Pinene','Terpinolene','Limonene']
+  }},
+  'get-social': {{
+    label: 'Get Social',
+    science: 'Limonene + Terpinolene — euphoria and giggles without heavy sedation',
+    effects:  ['Social','Giggly','Talkative','Happy','Euphoric'],
+    terpenes: ['Limonene','Terpinolene']
+  }},
+  'pain-body': {{
+    label: 'Pain & Body',
+    science: 'Caryophyllene (CB2 agonist, Gertsch 2008 PNAS) + Myrcene analgesic + Humulene anti-inflammatory',
+    effects:  ['Body High','Tingly','Relaxing'],
+    terpenes: ['Caryophyllene','Myrcene','Humulene','Linalool','Bisabolol']
+  }},
+  'just-happy': {{
+    label: 'Just Happy',
+    science: 'Limonene + Linalool + Terpinolene — balanced euphoria and body warmth',
+    effects:  ['Happy','Euphoric','Blissful','Giggly','Tingly','Uplifting'],
+    terpenes: ['Limonene','Linalool','Terpinolene']
+  }}
+}};
+
+let currentKey   = null;
+let profileKeys  = [];
+let activeMood   = null;
+let activeCat    = 'all';
+let activeSearch = '';
+let searchTimer  = null;
+
+// Research-backed terpene → effect map (Russo 2011, Kamal 2018, Smith 2022)
+// Terpenes come from COA data — the only source we fully trust.
+// Scraped "effects" from the dispensary page are NOT used anywhere.
+const TERPENE_EFFECTS = {{
+  'Myrcene':       ['Relaxing','Sleepy','Body High','Calming','Hungry'],
+  'Limonene':      ['Uplifting','Happy','Euphoric','Energetic','Focused'],
+  'Caryophyllene': ['Calming','Relaxing','Body High','Tingly'],
+  'Linalool':      ['Sleepy','Calming','Relaxing','Chill','Blissful'],
+  'Pinene':        ['Focused','Creative','Energetic','Uplifting','Cerebral'],
+  'B Pinene':      ['Focused','Creative','Energetic','Uplifting','Cerebral'],
+  'Terpinolene':   ['Creative','Uplifting','Euphoric','Energetic','Cerebral','Giggly'],
+  'Humulene':      ['Calming','Body High'],
+  'Ocimene':       ['Uplifting','Energetic','Social'],
+  'Valencene':     ['Uplifting','Happy','Social'],
+  'Bisabolol':     ['Calming','Relaxing','Blissful'],
+  'Geraniol':      ['Calming','Happy','Blissful'],
+  'Terpinene':     ['Uplifting','Energetic'],
+}};
+
+function derivedEffects(terpenes) {{
+  const set = new Set();
+  terpenes.forEach(t => (TERPENE_EFFECTS[t] || []).forEach(e => set.add(e)));
+  return [...set];
+}}
+
+function moodScore(card, mood) {{
+  if (!mood) return 0;
+  const tx      = (card.dataset.terpenes || '').split(',').filter(Boolean);
+  const derived = derivedEffects(tx);
+  return mood.effects.filter(e  => derived.includes(e)).length * 2
+       + mood.terpenes.filter(t => tx.includes(t)).length;
+}}
+
+// Save original DOM order on load so we can restore it
+document.addEventListener('DOMContentLoaded', () => {{
+  document.querySelectorAll('.grid').forEach(grid => {{
+    [...grid.children].forEach((el, i) => {{ el.dataset.origIndex = i; }});
+  }});
+}});
+
+function fmtList(arr) {{
+  if (!arr || !arr.length) return '—';
+  return arr.join(', ');
+}}
+
+function buildSgCard(key, forExport) {{
+  const p = PRODUCTS[key] || {{}};
+  const s = STRAINS[key]  || {{}};
+  const thcPill = p.thc ? `<span class="sg-pill thc">THC ${{p.thc}}</span>` : '';
+  const cbdPill = p.cbd ? `<span class="sg-pill cbd">CBD ${{p.cbd}}</span>` : '';
+  const pills   = (thcPill || cbdPill) ? `<div class="sg-thc-cbd">${{thcPill}}${{cbdPill}}</div>` : '';
+  const price   = p.price ? `<div class="sg-price">${{p.price}}${{p.weight ? ' · ' + p.weight : ''}}</div>` : '';
+  const removeBtn = forExport ? '' : `<button class="profile-item-remove" onclick="removeFromProfile('${{key}}')" title="Remove">✕</button>`;
+
+  const tx      = p.terpenes || [];
+  const derived = derivedEffects(tx);
+  const rows = [
+    s.lineage    ? `<div class="sg-row"><strong>Lineage:</strong> ${{s.lineage}}</div>` : '',
+    derived.length ? `<div class="sg-row"><strong>Effects</strong> <span style="font-size:10px;color:#888;font-weight:400">(from COA terpenes)</span><strong>:</strong> ${{fmtList(derived)}}</div>` : '',
+    p.flavors?.length ? `<div class="sg-row"><strong>Flavors:</strong> ${{fmtList(p.flavors)}}</div>` : '',
+    tx.length    ? `<div class="sg-row"><strong>Terpenes:</strong> ${{fmtList(tx)}}</div>` : '',
+    s.therapeutic ? `<div class="sg-row"><strong>Therapeutic:</strong> ${{s.therapeutic}}</div>` : '',
+    s.negative   ? `<div class="sg-row"><strong>Negative:</strong> ${{s.negative}}</div>` : '',
+    s.aroma      ? `<div class="sg-row"><strong>Aroma:</strong> ${{s.aroma}}</div>` : '',
+    s.misc       ? `<div class="sg-row"><strong>Misc:</strong> ${{s.misc}}</div>` : '',
+  ].join('');
+
+  return `
+  <div class="sg-card" style="position:relative">
+    ${{removeBtn}}
+    <div class="sg-name">${{p.name || 'Unknown'}}</div>
+    <div class="sg-type">${{p.strain_type ? '— ' + p.strain_type : ''}}</div>
+    <span class="sg-supplier">${{p.brand || 'Unknown'}}</span>
+    ${{pills}}${{price}}
+    <hr class="sg-divider">
+    ${{rows}}
+  </div>`;
+}}
+
+function openModal(key) {{
+  currentKey = key;
+  const p = PRODUCTS[key] || {{}};
+  document.getElementById('modalCard').innerHTML = buildSgCard(key, false);
+  const btn = document.getElementById('btnAddProfile');
+  const inProfile = profileKeys.includes(key);
+  btn.textContent = inProfile ? '✓ In Profile' : '＋ Add to Profile';
+  btn.classList.toggle('added', inProfile);
+  document.getElementById('strainModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}}
+
+function closeModal() {{
+  document.getElementById('strainModal').classList.remove('open');
+  document.body.style.overflow = '';
+}}
+
+function closeModalOutside(e) {{
+  if (e.target === document.getElementById('strainModal')) closeModal();
+}}
+
+function toggleProfile() {{
+  if (!currentKey) return;
+  const idx = profileKeys.indexOf(currentKey);
+  if (idx === -1) {{
+    profileKeys.push(currentKey);
+  }} else {{
+    profileKeys.splice(idx, 1);
+  }}
+  const btn = document.getElementById('btnAddProfile');
+  const inProfile = profileKeys.includes(currentKey);
+  btn.textContent = inProfile ? '✓ In Profile' : '＋ Add to Profile';
+  btn.classList.toggle('added', inProfile);
+  updateFab();
+}}
+
+function removeFromProfile(key) {{
+  profileKeys = profileKeys.filter(k => k !== key);
+  updateFab();
+  renderProfileCards();
+}}
+
+function updateFab() {{
+  const fab = document.getElementById('profileFab');
+  document.getElementById('fabCount').textContent = profileKeys.length;
+  fab.style.display = profileKeys.length > 0 ? 'flex' : 'none';
+}}
+
+function renderProfileCards() {{
+  const el = document.getElementById('profileCards');
+  const empty = document.getElementById('profileEmpty');
+  if (profileKeys.length === 0) {{
+    empty.style.display = 'block';
+    el.innerHTML = '';
+    el.appendChild(empty);
+    return;
+  }}
+  empty.style.display = 'none';
+  el.innerHTML = profileKeys.map(k => buildSgCard(k, false)).join('');
+}}
+
+function openDrawer() {{
+  renderProfileCards();
+  document.getElementById('profileDrawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}}
+
+function closeDrawer() {{
+  document.getElementById('profileDrawer').classList.remove('open');
+  document.body.style.overflow = '';
+}}
+
+function clearProfile() {{
+  profileKeys = [];
+  updateFab();
+  renderProfileCards();
+}}
+
+function exportGuide() {{
+  if (profileKeys.length === 0) return;
+  const cards = profileKeys.map(k => buildSgCard(k, true)).join('');
+  const today = new Date().toLocaleDateString('en-US', {{month:'long', day:'numeric', year:'numeric'}});
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legit Cannabis – Strain Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{{--green:#3d5c2e;--pink:#e88fa2;--cream:#f5f0e8;--dark-green:#2a3f1f;--border-green:#4a7030;--text:#1a1a1a}}
+  *{{box-sizing:border-box;margin:0;padding:0}}
+  body{{background:#e8e0d0;font-family:'Nunito Sans',sans-serif;padding:24px 16px;color:var(--text)}}
+  .page{{max-width:720px;margin:0 auto}}
+  .header{{display:flex;align-items:center;gap:16px;margin-bottom:28px}}
+  .logo-badge{{background:var(--green);border-radius:14px;padding:10px 16px;display:flex;align-items:center;gap:8px}}
+  .logo-badge .leaf{{font-size:20px}}
+  .logo-badge .name{{font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;color:var(--pink);line-height:1.1;letter-spacing:.02em;text-transform:uppercase}}
+  .header-title{{font-family:'Nunito',sans-serif;font-weight:900;font-size:26px;color:var(--dark-green);letter-spacing:.04em;text-transform:uppercase}}
+  .header-sub{{font-size:12px;color:var(--green);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}}
+  .sg-card{{background:white;border:3px solid var(--border-green);border-radius:16px;padding:18px 22px;margin-bottom:18px}}
+  .sg-name{{font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;text-align:center;text-transform:uppercase;letter-spacing:.05em;color:var(--dark-green);margin-bottom:2px}}
+  .sg-type{{text-align:center;font-size:12.5px;font-weight:700;color:#555;margin-bottom:4px}}
+  .sg-supplier{{display:block;background:var(--green);color:var(--pink);font-family:'Nunito',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;border-radius:20px;padding:3px 10px;width:fit-content;margin:0 auto 10px}}
+  .sg-thc-cbd{{display:flex;gap:8px;justify-content:center;margin-bottom:8px;flex-wrap:wrap}}
+  .sg-pill{{font-size:11px;font-weight:700;padding:2px 10px;border-radius:20px;font-family:'Nunito',sans-serif}}
+  .sg-pill.thc{{background:#16a34a;color:#fff}}.sg-pill.cbd{{background:#2563eb;color:#fff}}
+  .sg-price{{text-align:center;font-size:13px;font-weight:700;color:var(--dark-green);margin-bottom:6px}}
+  .sg-divider{{border:none;border-top:2px solid var(--border-green);margin:8px 0 12px}}
+  .sg-row{{font-size:12.5px;line-height:1.55;margin-bottom:4px;color:#222}}
+  .sg-row strong{{font-weight:700;color:var(--dark-green);font-family:'Nunito',sans-serif;font-size:12.5px}}
+  .profile-item-remove{{display:none}}
+  .sg-row span{{font-size:10px;color:#888;font-weight:400}}
+  @media print{{body{{background:white;padding:0}}.sg-card{{break-inside:avoid}}}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="logo-badge"><span class="leaf">🍃</span><div class="name">LEGIT<br>CANNABIS</div></div>
+    <div><div class="header-title">Strain Guide</div><div class="header-sub">Staff Reference · ${{today}}</div></div>
+  </div>
+  ${{cards}}
+</div>
+</body>
+</html>`;
+
+  const blob = new Blob([html], {{type: 'text/html;charset=utf-8'}});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = 'legit-strain-guide.html';
+  a.click();
+  URL.revokeObjectURL(url);
+}}
+
+// ── Category + mood + text search combined filter ──
+function applyFilters() {{
+  const mood = activeMood ? MOOD_MAP[activeMood] : null;
+  const q    = activeSearch;
+  let totalVisible = 0;
+
+  document.querySelectorAll('.card').forEach(card => {{
+    const key = card.dataset.key;
+
+    // Category check
+    const section = card.closest('.section');
+    const catOk = activeCat === 'all' || (section && section.dataset.cat === activeCat);
+
+    // Mood check — driven entirely by COA terpenes, not dispensary effect labels
+    let moodOk = true;
+    if (mood) {{
+      const tx      = (card.dataset.terpenes || '').split(',').filter(Boolean);
+      const derived = derivedEffects(tx);
+      moodOk = mood.effects.some(e  => derived.includes(e))
+             || mood.terpenes.some(t => tx.includes(t));
+    }}
+
+    // Text search — terpenes (COA), derived effects (research), and enriched
+    // strain fields (therapeutic, aroma, misc, lineage).
+    // Scraped dispensary "effects" intentionally excluded — not trusted.
+    let searchOk = true;
+    if (q) {{
+      const p = PRODUCTS[key] || {{}};
+      const s = STRAINS[key]  || {{}};
+      const tx = (p.terpenes || []);
+      const blob = [
+        p.name, p.brand, p.strain_type,
+        tx.join(' '),
+        derivedEffects(tx).join(' '),
+        (p.flavors || []).join(' '),
+        s.lineage, s.therapeutic, s.negative, s.aroma, s.misc
+      ].filter(Boolean).join(' ').toLowerCase();
+      searchOk = blob.includes(q);
+    }}
+
+    const visible = catOk && moodOk && searchOk;
+    card.classList.toggle('hidden', !visible);
+
+    // Match strength border
+    card.classList.remove('match-strong','match-good','match-weak');
+    if (visible && mood) {{
+      const score = moodScore(card, mood);
+      if      (score >= 4) card.classList.add('match-strong');
+      else if (score >= 2) card.classList.add('match-good');
+      else                 card.classList.add('match-weak');
+    }}
+
+    if (visible) totalVisible++;
+  }});
+
+  // Sort each grid: mood active → best score first; no mood → restore original order
+  document.querySelectorAll('.grid').forEach(grid => {{
+    const cards = [...grid.querySelectorAll('.card')];
+    if (mood) {{
+      cards.sort((a, b) => {{
+        const diff = moodScore(b, mood) - moodScore(a, mood);
+        return diff !== 0 ? diff : (parseInt(a.dataset.origIndex)||0) - (parseInt(b.dataset.origIndex)||0);
+      }});
+    }} else {{
+      cards.sort((a, b) => (parseInt(a.dataset.origIndex)||0) - (parseInt(b.dataset.origIndex)||0));
+    }}
+    cards.forEach(c => grid.appendChild(c));
+  }});
+
+  // Update section visibility + counts
+  document.querySelectorAll('.section').forEach(s => {{
+    const catOk = activeCat === 'all' || s.dataset.cat === activeCat;
+    if (!catOk) {{ s.classList.add('hidden'); return; }}
+    const vis = s.querySelectorAll('.card:not(.hidden)').length;
+    s.classList.toggle('hidden', vis === 0);
+    const countEl = s.querySelector('[data-total]');
+    if (countEl) {{
+      const total = countEl.dataset.total;
+      countEl.textContent = mood
+        ? `${{vis}} / ${{total}} matching`
+        : `${{total}} product${{total == 1 ? '' : 's'}}`;
+    }}
+  }});
+
+  // Divider + new-arrivals section
+  document.querySelectorAll('.section-divider').forEach(d => {{
+    d.classList.toggle('hidden', activeCat !== 'all');
+  }});
+
+  // Show "no results" message
+  document.getElementById('moodZero').classList.toggle('hidden', totalVisible > 0);
+
+  // Update status bar
+  const statusEl = document.getElementById('moodStatus');
+  const parts = [];
+  if (mood)  parts.push(`<strong>${{mood.label}}:</strong> ${{mood.science}}`);
+  if (q)     parts.push(`searching <strong>"${{q}}"</strong>`);
+  if (parts.length) {{
+    parts.push(`— ${{totalVisible}} product${{totalVisible == 1 ? '' : 's'}} found`);
+    statusEl.innerHTML = parts.join(' · ');
+    statusEl.classList.remove('hidden');
+  }} else {{
+    statusEl.classList.add('hidden');
+  }}
+}}
+
+function handleSearch(val) {{
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {{
+    activeSearch = val.trim().toLowerCase();
+    document.getElementById('searchClear').classList.toggle('hidden', !activeSearch);
+    applyFilters();
+  }}, 150);
+}}
+
+function clearSearch() {{
+  document.getElementById('searchInput').value = '';
+  activeSearch = '';
+  document.getElementById('searchClear').classList.add('hidden');
+  applyFilters();
+}}
+
 function filterCat(btn) {{
   document.querySelectorAll('.tab').forEach(b => b.classList.remove('on'));
   btn.classList.add('on');
-  const sel = btn.dataset.cat;
-  document.querySelectorAll('.section').forEach(s => {{
-    s.classList.toggle('hidden', sel !== 'all' && s.dataset.cat !== sel);
-  }});
+  activeCat = btn.dataset.cat;
+  applyFilters();
   window.scrollTo({{top:0,behavior:'smooth'}});
 }}
+
+function filterMood(btn) {{
+  const mood = btn.dataset.mood;
+  if (activeMood === mood) {{
+    clearMood();
+    return;
+  }}
+  document.querySelectorAll('.mood-chip').forEach(c => c.classList.remove('on'));
+  btn.classList.add('on');
+  activeMood = mood;
+  document.getElementById('moodClear').classList.remove('hidden');
+  applyFilters();
+}}
+
+function clearMood() {{
+  activeMood = null;
+  document.querySelectorAll('.mood-chip').forEach(c => c.classList.remove('on'));
+  document.getElementById('moodClear').classList.add('hidden');
+  applyFilters();
+}}
+
+document.addEventListener('keydown', e => {{ if (e.key === 'Escape') {{ closeModal(); closeDrawer(); }} }});
+
+// ── Dark mode ──
+function toggleDark() {{
+  const dark = document.body.classList.toggle('dark');
+  localStorage.setItem('lc-dark', dark ? '1' : '0');
+  document.getElementById('darkToggle').textContent = dark ? '☀️ Light' : '🌙 Dark';
+}}
+(function() {{
+  if (localStorage.getItem('lc-dark') === '1') {{
+    document.body.classList.add('dark');
+    document.addEventListener('DOMContentLoaded', () => {{
+      document.getElementById('darkToggle').textContent = '☀️ Light';
+    }});
+  }}
+}})();
 </script>
 </body>
 </html>"""
