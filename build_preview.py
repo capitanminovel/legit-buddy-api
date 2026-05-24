@@ -194,9 +194,9 @@ def build():
     body.dark .new-arrivals-section{{background:linear-gradient(135deg,#132019,#0d1f14);border-color:#2d4a35}}
     body.dark .terp{{background:#0d2015;color:#4ade80;border-color:#1e4a2a}}
     body.dark .tier{{background:#132019;border-color:var(--border)}}
-    body.dark .card.match-strong{{border-left:4px solid #4ade80;box-shadow:-2px 0 8px rgba(74,222,128,.25)}}
-    body.dark .card.match-good{{border-left:4px solid #86efac;box-shadow:none}}
-    body.dark .card.match-weak{{border-left:4px solid #3d6b4a;box-shadow:none}}
+    body.dark .card.match-strong{{border-left:5px solid #4ade80;box-shadow:-2px 0 10px rgba(74,222,128,.3)}}
+    body.dark .card.match-good{{border-left:5px solid #fbbf24;box-shadow:none}}
+    body.dark .card.match-weak{{border-left:5px solid #475569;box-shadow:none}}
     body.dark .top-bar{{background:#0d2015}}
     body.dark .modal-box,.dark .profile-box{{background:#1a2d20}}
     body.dark .sg-card{{background:#1e3826;border-color:#3a6040}}
@@ -282,9 +282,9 @@ def build():
     .mood-status{{font-size:.78rem;color:var(--sg-green);font-weight:500;padding:2px 0 0;line-height:1.45}}
     .mood-status strong{{font-weight:700}}
     .mood-zero{{font-size:.85rem;color:var(--muted);text-align:center;padding:32px 0;font-weight:500}}
-    .card.match-strong{{border-left:4px solid var(--sg-green)}}
-    .card.match-good{{border-left:4px solid #86efac}}
-    .card.match-weak{{border-left:4px solid #d1fae5}}
+    .card.match-strong{{border-left:5px solid #16a34a;box-shadow:-2px 0 10px rgba(22,163,74,.2)}}
+    .card.match-good{{border-left:5px solid #d97706}}
+    .card.match-weak{{border-left:5px solid #94a3b8}}
 
     /* ── Text search ── */
     .search-row{{display:flex;align-items:center;gap:8px}}
