@@ -373,8 +373,10 @@ def build():
     .export-popup-gif{{width:190px;height:190px;object-fit:cover;border-radius:14px;border:3px solid #4a7030;margin-bottom:14px}}
     .export-popup-title{{font-family:'Nunito',sans-serif;font-weight:900;font-size:20px;color:#2a3f1f;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}}
     .export-popup-sub{{font-size:13px;color:#3d5c2e;font-weight:600;margin-bottom:18px}}
-    .export-popup-btn{{background:#3d5c2e;color:#e88fa2;border:none;border-radius:20px;padding:10px 28px;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}}
+    .export-popup-btn{{background:#3d5c2e;color:#e88fa2;border:none;border-radius:20px;padding:10px 28px;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;transition:transform .1s}}
     .export-popup-btn:hover{{background:#2a3f1f}}
+    .export-popup-btn.ready{{animation:epPulse 0.9s ease-in-out infinite;background:#4a7030}}
+    @keyframes epPulse{{0%,100%{{transform:scale(1)}}50%{{transform:scale(1.06)}}}}
     .btn-clear{{background:transparent;color:#888;border:1px solid #ccc;border-radius:20px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;cursor:pointer}}
     .btn-close-drawer{{background:transparent;color:var(--sg-green);border:2px solid var(--sg-green);border-radius:20px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;text-transform:uppercase;cursor:pointer}}
     .profile-cards{{padding:16px 18px 0}}
@@ -419,7 +421,7 @@ def build():
   <div class="export-popup-box">
     <img class="export-popup-gif" src="https://media.giphy.com/media/VK2JbAI71xTxlSVNNu/giphy.gif" alt="">
     <div class="export-popup-title">Your guide is ready 🍃</div>
-    <div class="export-popup-sub">Downloading in <span id="exportCountdown">4</span>s…</div>
+    <div class="export-popup-sub" id="exportPopupSub">Downloading in <span id="exportCountdown">4</span>s…</div>
     <button class="export-popup-btn" id="exportGoBtn">Let's Go ⬇</button>
   </div>
 </div>
@@ -1054,35 +1056,41 @@ let _exportFile  = null;
 
 function showExportPopup(filename) {{
   _exportFile = filename;
-  const overlay = document.getElementById('exportPopup');
-  const btn     = document.getElementById('exportGoBtn');
+  const overlay   = document.getElementById('exportPopup');
+  const btn       = document.getElementById('exportGoBtn');
   const countdown = document.getElementById('exportCountdown');
+  const sub       = document.getElementById('exportPopupSub');
 
+  // Reset state
+  btn.textContent = "Let's Go ⬇";
+  btn.classList.remove('ready');
+  sub.innerHTML   = 'Downloading in <span id="exportCountdown">4</span>s…';
   overlay.classList.remove('hidden');
+
   let secs = 4;
-  countdown.textContent = secs;
+  document.getElementById('exportCountdown').textContent = secs;
 
   clearInterval(_exportTimer);
   _exportTimer = setInterval(() => {{
     secs--;
-    countdown.textContent = secs;
+    const el = document.getElementById('exportCountdown');
+    if (el) el.textContent = secs;
     if (secs <= 0) {{
       clearInterval(_exportTimer);
-      _doDownload();
+      // Can't auto-download on iOS — switch to "tap" state instead
+      sub.textContent = 'Ready! Tap the button to save.';
+      btn.textContent = '⬇ Download Now';
+      btn.classList.add('ready');
     }}
   }}, 1000);
 
-  btn.onclick = () => {{ clearInterval(_exportTimer); _doDownload(); }};
-}}
-
-function _doDownload() {{
-  document.getElementById('exportPopup').classList.add('hidden');
-  if (!_exportFile) return;
-  const a = document.createElement('a');
-  a.href = _exportFile;
-  a.download = _exportFile;
-  a.click();
-  _exportFile = null;
+  // window.open as a direct user-gesture call — works on iOS Safari
+  btn.onclick = () => {{
+    clearInterval(_exportTimer);
+    document.getElementById('exportPopup').classList.add('hidden');
+    if (_exportFile) window.open(_exportFile, '_blank');
+    _exportFile = null;
+  }};
 }}
 
 document.addEventListener('keydown', e => {{ if (e.key === 'Escape') {{ closeModal(); closeDrawer(); }} }});
