@@ -17,6 +17,29 @@
       --sg-green:#3d5c2e;--sg-pink:#e88fa2;--sg-cream:#f5f0e8;
       --sg-dark:#2a3f1f;--sg-border:#4a7030;
     }
+    body.dark{
+      --brand:#4ade80;--brand-lt:#14261e;--text:#e2e8f0;--muted:#94a3b8;
+      --border:#2d3f32;--bg:#0d1a11;--white:#132019;
+      --indica:#a78bfa;--sativa:#fbbf24;--hybrid:#38bdf8;--cbd:#60a5fa;--cbg:#818cf8;
+      --new:#4ade80;
+    }
+    body.dark header,body.dark .tabs-wrap,body.dark .legend,body.dark footer{background:var(--white);border-color:var(--border)}
+    body.dark .card{background:#1a2d20;border-color:var(--border)}
+    body.dark .mood-bar{background:#1a2d20;border-color:var(--border)}
+    body.dark .mood-chip{background:#132019;color:var(--text);border-color:var(--border)}
+    body.dark .mood-chip:hover{background:#1e3826;border-color:var(--brand)}
+    body.dark .search-input{background:#132019;color:var(--text);border-color:var(--border)}
+    body.dark .search-input:focus{background:#1a2d20;border-color:var(--brand)}
+    body.dark .new-arrivals-section{background:linear-gradient(135deg,#132019,#0d1f14);border-color:#2d4a35}
+    body.dark .terp{background:#0d2015;color:#4ade80;border-color:#1e4a2a}
+    body.dark .tier{background:#132019;border-color:var(--border)}
+    body.dark .top-bar{background:#0d2015}
+    body.dark .modal-box,.dark .profile-box{background:#1a2d20}
+    body.dark .sg-card{background:#1e3826;border-color:#3a6040}
+    body.dark .sg-name,.dark .sg-row strong{color:#c8f5d4}
+    body.dark .sg-row{color:#b2c9b8}
+    body.dark .profile-box{background:#132019}
+    body.dark .profile-header{background:#132019;border-color:#2d4a35}
     body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px}
     .top-bar{background:var(--brand);color:#fff;text-align:center;font-size:.75rem;padding:6px;letter-spacing:.3px}
     header{background:var(--white);border-bottom:1px solid var(--border);padding:0 24px;position:sticky;top:0;z-index:30}
@@ -25,6 +48,9 @@
     .logo-leaf{width:34px;height:34px;background:var(--brand);border-radius:50% 50% 50% 0;display:flex;align-items:center;justify-content:center;font-size:1rem;color:#fff;flex-shrink:0}
     .mascot-wrap{flex-shrink:0;cursor:default;user-select:none;display:flex;align-items:center}
     .mascot-wrap img{height:52px;width:auto;display:block}
+    .mascot-flip{transform:scaleX(-1)}
+    .dark-toggle{margin-left:auto;background:none;border:1.5px solid var(--border);border-radius:20px;padding:5px 12px;font-size:.78rem;font-weight:600;cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s;white-space:nowrap;flex-shrink:0}
+    .dark-toggle:hover{border-color:var(--brand);color:var(--brand)}
     .header-meta{margin-left:auto;text-align:right;font-size:.75rem;color:var(--muted);line-height:1.5}
     .header-meta strong{color:var(--brand)}
     .tabs-wrap{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:64px;z-index:20}
@@ -176,8 +202,12 @@
     <a class="logo" href="#">
       <div><div>Legit Cannabis</div><div style="font-size:.7rem;font-weight:400;color:var(--muted)">South Metro</div></div>
     </a>
+    <div class="mascot-wrap">
+      <img class="mascot-flip" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExb216bXVxcmVpMm1zNTR3NWxob3hoeXloYWFlbWswcW13NnZ3MnlsMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/5C29m5sRSYch78Ko3B/giphy.gif" alt="" loading="lazy">
+    </div>
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDark()">🌙 Dark</button>
     <div class="header-meta">
-      <div>Last updated: <strong>Sun, May 24 2026 — 12:20 PM CST</strong></div>
+      <div>Last updated: <strong>Sun, May 24 2026 — 12:22 PM CST</strong></div>
       <div>33 products in stock</div>
     </div>
   </div>
@@ -1084,6 +1114,21 @@ function clearMood() {
 }
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeDrawer(); } });
+
+// ── Dark mode ──
+function toggleDark() {
+  const dark = document.body.classList.toggle('dark');
+  localStorage.setItem('lc-dark', dark ? '1' : '0');
+  document.getElementById('darkToggle').textContent = dark ? '☀️ Light' : '🌙 Dark';
+}
+(function() {
+  if (localStorage.getItem('lc-dark') === '1') {
+    document.body.classList.add('dark');
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('darkToggle').textContent = '☀️ Light';
+    });
+  }
+})();
 </script>
 </body>
 </html>
