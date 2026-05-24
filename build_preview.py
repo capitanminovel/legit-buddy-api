@@ -452,7 +452,7 @@ def build():
 <!-- Export popup -->
 <div class="export-popup-overlay hidden" id="exportPopup">
   <div class="export-popup-box">
-    <img class="export-popup-gif" src="https://media.giphy.com/media/VK2JbAI71xTxlSVNNu/giphy.gif" alt="">
+    <img class="export-popup-gif" id="exportPopupGif" src="https://media.giphy.com/media/VK2JbAI71xTxlSVNNu/giphy.gif" alt="">
     <div class="export-popup-title">Your guide is ready 🍃</div>
     <div class="export-popup-sub" id="exportPopupSub">Downloading in <span id="exportCountdown">4</span>s…</div>
     <button class="export-popup-btn" id="exportGoBtn">Let's Go ⬇</button>
@@ -1146,6 +1146,7 @@ function showExportPopup(filename) {{
   btn.textContent = "Let's Go ⬇";
   btn.classList.remove('ready');
   sub.innerHTML   = 'Downloading in <span id="exportCountdown">4</span>s…';
+  document.getElementById('exportPopupGif').src = 'https://media.giphy.com/media/VK2JbAI71xTxlSVNNu/giphy.gif';
   overlay.classList.remove('hidden');
 
   let secs = 4;
@@ -1168,9 +1169,17 @@ function showExportPopup(filename) {{
   // window.open as a direct user-gesture call — works on iOS Safari
   btn.onclick = () => {{
     clearInterval(_exportTimer);
-    document.getElementById('exportPopup').classList.add('hidden');
-    if (_exportFile) window.open(_exportFile, '_blank');
+    // Swap to Pikachu, then download after 1s
+    document.getElementById('exportPopupGif').src = 'https://media.giphy.com/media/ux2EQfCsCm3hJ0dZGv/giphy.gif';
+    sub.textContent = '🎉 Downloading…';
+    btn.disabled = true;
+    const file = _exportFile;
     _exportFile = null;
+    setTimeout(() => {{
+      document.getElementById('exportPopup').classList.add('hidden');
+      btn.disabled = false;
+      if (file) window.open(file, '_blank');
+    }}, 1000);
   }};
 }}
 
