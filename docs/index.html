@@ -23,6 +23,11 @@
     .header-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:20px;height:64px}
     .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.05rem;color:var(--brand);text-decoration:none;white-space:nowrap}
     .logo-leaf{width:34px;height:34px;background:var(--brand);border-radius:50% 50% 50% 0;display:flex;align-items:center;justify-content:center;font-size:1rem;color:#fff;flex-shrink:0}
+    @keyframes mascot-bob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-6px) rotate(1deg)}}
+    @keyframes mascot-blink{0%,90%,100%{transform:scaleY(1)}95%{transform:scaleY(0.1)}}
+    .mascot-wrap{animation:mascot-bob 3s ease-in-out infinite;flex-shrink:0;cursor:default;user-select:none}
+    .mascot-wrap:hover{animation-duration:1s}
+    .mascot-eye{animation:mascot-blink 4s ease-in-out infinite}
     .header-meta{margin-left:auto;text-align:right;font-size:.75rem;color:var(--muted);line-height:1.5}
     .header-meta strong{color:var(--brand)}
     .tabs-wrap{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:64px;z-index:20}
@@ -91,6 +96,16 @@
     .mood-status strong{font-weight:700}
     .mood-zero{font-size:.85rem;color:var(--muted);text-align:center;padding:32px 0;font-weight:500}
 
+    /* ── Text search ── */
+    .search-row{display:flex;align-items:center;gap:8px}
+    .search-wrap{position:relative;flex:1;max-width:520px}
+    .search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:.85rem;pointer-events:none}
+    .search-input{width:100%;border:1.5px solid var(--border);border-radius:24px;padding:8px 36px 8px 32px;font-size:.82rem;font-family:inherit;outline:none;background:var(--bg);color:var(--text);transition:border-color .15s}
+    .search-input:focus{border-color:var(--sg-green);background:#fff}
+    .search-input::placeholder{color:#aaa}
+    .search-clear{position:absolute;right:10px;top:50%;transform:translateY(-50%);border:none;background:none;color:#aaa;font-size:1rem;cursor:pointer;padding:2px;line-height:1}
+    .search-clear:hover{color:#e53e3e}
+
     @media(max-width:640px){
       header{padding:0 14px}.tabs{padding:0 14px}main{padding:18px 14px 100px}.legend{padding:10px 14px}
       .grid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px}.card-img{height:140px}
@@ -155,12 +170,24 @@
 <div class="top-bar">🌿 MN Legit Cannabis · South Metro · Updated daily at 4:30 PM CST</div>
 <header>
   <div class="header-inner">
+    <div class="mascot-wrap" title="Legit Buddy 🌿">
+      <svg viewBox="0 0 60 74" width="46" height="46" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="22" cy="18" rx="5.5" ry="15" fill="#7dc45a" stroke="#2d5a1b" stroke-width="1.5" transform="rotate(-22 22 18)"/>
+        <ellipse cx="30" cy="12" rx="5.5" ry="17" fill="#7dc45a" stroke="#2d5a1b" stroke-width="1.5"/>
+        <ellipse cx="38" cy="18" rx="5.5" ry="15" fill="#7dc45a" stroke="#2d5a1b" stroke-width="1.5" transform="rotate(22 38 18)"/>
+        <circle cx="30" cy="50" r="17" fill="#7079c0" stroke="#2d3a6e" stroke-width="1.5"/>
+        <ellipse class="mascot-eye" cx="23" cy="48" rx="2.8" ry="2.8" fill="#e53e3e"/>
+        <ellipse class="mascot-eye" cx="37" cy="48" rx="2.8" ry="2.8" fill="#e53e3e"/>
+        <path d="M23 56 Q30 62 37 56" stroke="#2d3a6e" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        <ellipse cx="22" cy="66" rx="6" ry="4.5" fill="#5a63a8" stroke="#2d3a6e" stroke-width="1"/>
+        <ellipse cx="38" cy="66" rx="6" ry="4.5" fill="#5a63a8" stroke="#2d3a6e" stroke-width="1"/>
+      </svg>
+    </div>
     <a class="logo" href="#">
-      <div class="logo-leaf">🌿</div>
       <div><div>Legit Cannabis</div><div style="font-size:.7rem;font-weight:400;color:var(--muted)">South Metro</div></div>
     </a>
     <div class="header-meta">
-      <div>Last updated: <strong>Sun, May 24 2026 — 11:55 AM CST</strong></div>
+      <div>Last updated: <strong>Sun, May 24 2026 — 12:05 PM CST</strong></div>
       <div>33 products in stock</div>
     </div>
   </div>
@@ -192,7 +219,16 @@
         <button class="mood-chip" data-mood="pain-body"      onclick="filterMood(this)" title="Caryophyllene (CB2 agonist) + Myrcene + Humulene — anti-inflammatory, analgesic, muscle relaxant">💆 Pain &amp; Body</button>
         <button class="mood-chip" data-mood="just-happy"     onclick="filterMood(this)" title="Limonene + Linalool — balanced euphoria and body warmth">✨ Just Happy</button>
       </div>
-      <button class="mood-clear hidden" id="moodClear" onclick="clearMood()">✕ Clear</button>
+      <button class="mood-clear hidden" id="moodClear" onclick="clearMood()">✕ Mood</button>
+    </div>
+    <div class="search-row">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" class="search-input"
+               placeholder="Search: anxiety, PTSD, sleep, pain, creative, Myrcene…"
+               oninput="handleSearch(this.value)">
+        <button class="search-clear hidden" id="searchClear" onclick="clearSearch()">✕</button>
+      </div>
     </div>
     <div class="mood-status hidden" id="moodStatus"></div>
   </div>
@@ -685,10 +721,12 @@ const MOOD_MAP = {
   }
 };
 
-let currentKey  = null;
-let profileKeys = [];
-let activeMood  = null;
-let activeCat   = 'all';
+let currentKey   = null;
+let profileKeys  = [];
+let activeMood   = null;
+let activeCat    = 'all';
+let activeSearch = '';
+let searchTimer  = null;
 
 function fmtList(arr) {
   if (!arr || !arr.length) return '—';
@@ -862,12 +900,15 @@ function exportGuide() {
   URL.revokeObjectURL(url);
 }
 
-// ── Category + mood combined filter ──
+// ── Category + mood + text search combined filter ──
 function applyFilters() {
   const mood = activeMood ? MOOD_MAP[activeMood] : null;
+  const q    = activeSearch;
   let totalVisible = 0;
 
   document.querySelectorAll('.card').forEach(card => {
+    const key = card.dataset.key;
+
     // Category check
     const section = card.closest('.section');
     const catOk = activeCat === 'all' || (section && section.dataset.cat === activeCat);
@@ -881,7 +922,23 @@ function applyFilters() {
              || mood.terpenes.some(t => cardTerpenes.includes(t));
     }
 
-    const visible = catOk && moodOk;
+    // Text search — searches name, brand, strain type, effects, terpenes,
+    // flavors, and the enriched therapeutic/aroma/misc/lineage fields
+    let searchOk = true;
+    if (q) {
+      const p = PRODUCTS[key] || {};
+      const s = STRAINS[key]  || {};
+      const blob = [
+        p.name, p.brand, p.strain_type,
+        (p.effects  || []).join(' '),
+        (p.terpenes || []).join(' '),
+        (p.flavors  || []).join(' '),
+        s.lineage, s.therapeutic, s.negative, s.aroma, s.misc
+      ].filter(Boolean).join(' ').toLowerCase();
+      searchOk = blob.includes(q);
+    }
+
+    const visible = catOk && moodOk && searchOk;
     card.classList.toggle('hidden', !visible);
     if (visible) totalVisible++;
   });
@@ -909,14 +966,34 @@ function applyFilters() {
   // Show "no results" message
   document.getElementById('moodZero').classList.toggle('hidden', totalVisible > 0);
 
-  // Update mood status bar
+  // Update status bar
   const statusEl = document.getElementById('moodStatus');
-  if (mood) {
-    statusEl.innerHTML = `<strong>${mood.label}:</strong> ${mood.science} — ${totalVisible} product${totalVisible == 1 ? '' : 's'} matching`;
+  const parts = [];
+  if (mood)  parts.push(`<strong>${mood.label}:</strong> ${mood.science}`);
+  if (q)     parts.push(`searching <strong>"${q}"</strong>`);
+  if (parts.length) {
+    parts.push(`— ${totalVisible} product${totalVisible == 1 ? '' : 's'} found`);
+    statusEl.innerHTML = parts.join(' · ');
     statusEl.classList.remove('hidden');
   } else {
     statusEl.classList.add('hidden');
   }
+}
+
+function handleSearch(val) {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    activeSearch = val.trim().toLowerCase();
+    document.getElementById('searchClear').classList.toggle('hidden', !activeSearch);
+    applyFilters();
+  }, 150);
+}
+
+function clearSearch() {
+  document.getElementById('searchInput').value = '';
+  activeSearch = '';
+  document.getElementById('searchClear').classList.add('hidden');
+  applyFilters();
 }
 
 function filterCat(btn) {
