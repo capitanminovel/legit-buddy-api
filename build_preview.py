@@ -86,8 +86,11 @@ def build_card(p, key):
     weight_h = f'<div class="card-weight">{p["weight"]}</div>' if p.get("weight") else ""
     brand_h  = f'<div class="card-brand">{p["brand"]}</div>'   if p.get("brand")  else ""
 
+    effects_csv  = ",".join(p.get("effects")  or [])
+    terpenes_csv = ",".join(p.get("terpenes") or [])
+
     return f"""
-    <div class="card" data-key="{key}" onclick="openModal('{key}')">
+    <div class="card" data-key="{key}" data-effects="{effects_csv}" data-terpenes="{terpenes_csv}" onclick="openModal('{key}')">
       <div class="card-img">{img}{badges}{potency}</div>
       <div class="card-body">
         {brand_h}
@@ -125,11 +128,12 @@ def build():
     new_section = ""
     if new_items:
         new_cards = "".join(build_card(p, k) for k, p in new_items)
+        n = len(new_items)
         new_section = f"""
     <section class="section new-arrivals-section" data-cat="all">
       <div class="new-arrivals-head">
         <span class="new-arrivals-title">✨ New in the Last 3 Days</span>
-        <span class="new-arrivals-count">{len(new_items)} product{"s" if len(new_items)!=1 else ""}</span>
+        <span class="new-arrivals-count" data-total="{n}">{n} product{"s" if n!=1 else ""}</span>
       </div>
       <div class="grid">{new_cards}</div>
     </section>
@@ -145,11 +149,12 @@ def build():
     for cat in sorted(cats):
         items = cats[cat]
         cards = "".join(build_card(p, k) for k, p in items)
+        n = len(items)
         sections += f"""
     <section class="section" data-cat="{cat.lower()}">
       <div class="section-head">
         <span class="section-title">{cat_icon(cat)} {cat}</span>
-        <span class="section-count">{len(items)} product{"s" if len(items)!=1 else ""}</span>
+        <span class="section-count" data-total="{n}">{n} product{"s" if n!=1 else ""}</span>
       </div>
       <div class="grid">{cards}</div>
     </section>"""
@@ -236,9 +241,25 @@ def build():
     .new-arrivals-count{{font-size:.8rem;color:var(--muted)}}
     .section-divider{{height:2px;background:linear-gradient(90deg,var(--brand-lt),transparent);margin:0 0 36px;border-radius:1px}}
     .hidden{{display:none!important}}
+
+    /* ── Mood / Effect filter bar ── */
+    .mood-bar{{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin-bottom:24px;display:flex;flex-direction:column;gap:10px}}
+    .mood-bar-top{{display:flex;align-items:center;gap:10px;flex-wrap:wrap}}
+    .mood-bar-label{{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;white-space:nowrap}}
+    .mood-chips{{display:flex;gap:7px;flex-wrap:wrap;flex:1}}
+    .mood-chip{{border:1.5px solid var(--border);background:var(--bg);color:var(--text);border-radius:20px;padding:6px 13px;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .15s;white-space:nowrap;font-family:inherit}}
+    .mood-chip:hover{{border-color:var(--sg-green);color:var(--sg-green);background:#f0fdf4}}
+    .mood-chip.on{{background:var(--sg-green);color:var(--sg-pink);border-color:var(--sg-green);font-weight:700}}
+    .mood-clear{{border:none;background:none;color:var(--muted);font-size:.78rem;font-weight:600;cursor:pointer;padding:6px 8px;border-radius:20px;white-space:nowrap;font-family:inherit}}
+    .mood-clear:hover{{color:#e53e3e}}
+    .mood-status{{font-size:.78rem;color:var(--sg-green);font-weight:500;padding:2px 0 0;line-height:1.45}}
+    .mood-status strong{{font-weight:700}}
+    .mood-zero{{font-size:.85rem;color:var(--muted);text-align:center;padding:32px 0;font-weight:500}}
+
     @media(max-width:640px){{
       header{{padding:0 14px}}.tabs{{padding:0 14px}}main{{padding:18px 14px 100px}}.legend{{padding:10px 14px}}
       .grid{{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px}}.card-img{{height:140px}}
+      .mood-bar{{padding:12px 14px}}.mood-chips{{gap:5px}}.mood-chip{{font-size:.73rem;padding:5px 10px}}
     }}
 
     /* ── Modal overlay ── */
@@ -319,7 +340,26 @@ def build():
   <div class="legend-item" style="margin-left:auto;color:var(--brand);font-weight:600">Tap any product for strain guide →</div>
 </div>
 <div class="tabs-wrap"><div class="tabs" id="tabs">{tab_btns}</div></div>
-<main>{new_section}{sections}</main>
+<main>
+  <div class="mood-bar" id="moodBar">
+    <div class="mood-bar-top">
+      <span class="mood-bar-label">Find your vibe</span>
+      <div class="mood-chips" id="moodChips">
+        <button class="mood-chip" data-mood="wind-down"      onclick="filterMood(this)" title="Myrcene + Linalool — muscle relaxation, sedation, GABAergic calm (Russo 2011)">😴 Wind Down</button>
+        <button class="mood-chip" data-mood="anxiety-relief" onclick="filterMood(this)" title="Caryophyllene + Linalool + Limonene — the Kamal anxiolytic chemotype (Kamal et al. 2018, Front Neurosci)">🧘 Anxiety Relief</button>
+        <button class="mood-chip" data-mood="lift-up"        onclick="filterMood(this)" title="Limonene + Terpinolene + Ocimene — mood elevation, citrus-forward uplift">⬆ Lift Up</button>
+        <button class="mood-chip" data-mood="get-creative"   onclick="filterMood(this)" title="Pinene + Terpinolene — AChE inhibition sharpens focus; terpinolene drives cerebral creativity">🎨 Get Creative</button>
+        <button class="mood-chip" data-mood="get-social"     onclick="filterMood(this)" title="Limonene + Terpinolene — euphoria, giggles, sociability without heavy sedation">😄 Get Social</button>
+        <button class="mood-chip" data-mood="pain-body"      onclick="filterMood(this)" title="Caryophyllene (CB2 agonist) + Myrcene + Humulene — anti-inflammatory, analgesic, muscle relaxant">💆 Pain &amp; Body</button>
+        <button class="mood-chip" data-mood="just-happy"     onclick="filterMood(this)" title="Limonene + Linalool — balanced euphoria and body warmth">✨ Just Happy</button>
+      </div>
+      <button class="mood-clear hidden" id="moodClear" onclick="clearMood()">✕ Clear</button>
+    </div>
+    <div class="mood-status hidden" id="moodStatus"></div>
+  </div>
+  {new_section}{sections}
+  <div class="mood-zero hidden" id="moodZero">No products match this vibe right now — try another filter.</div>
+</main>
 <footer>Auto-updated daily at 4:30 PM CST &nbsp;·&nbsp; MN Legit Cannabis South Metro</footer>
 
 <!-- Strain modal -->
@@ -362,8 +402,58 @@ def build():
 const PRODUCTS = {products_js};
 const STRAINS  = {strains_js};
 
+// ── Mood map: effects + terpenes that predict each vibe ──
+// Sources: Russo 2011 Br J Pharmacol; Kamal et al. 2018 Front Neurosci;
+//          Smith et al. 2022 PLOS ONE (terpenes > indica/sativa label)
+const MOOD_MAP = {{
+  'wind-down': {{
+    label: 'Wind Down',
+    science: 'Myrcene + Linalool stack — sedation, muscle relaxation, GABAergic calm',
+    effects:  ['Sleepy','Relaxing','Calming','Chill','Body High','Unbothered'],
+    terpenes: ['Myrcene','Linalool']
+  }},
+  'anxiety-relief': {{
+    label: 'Anxiety Relief',
+    science: 'Caryophyllene (CB2) + Linalool (GABA) + Limonene (5-HT1A) — Kamal 2018 anxiolytic chemotype',
+    effects:  ['Calming','Chill','Relaxing','Unbothered','Blissful'],
+    terpenes: ['Caryophyllene','Linalool','Limonene']
+  }},
+  'lift-up': {{
+    label: 'Lift Up',
+    science: 'Limonene mood elevation (Komori 1995) + Terpinolene cerebral uplift + Ocimene/Valencene citrus energy',
+    effects:  ['Uplifting','Euphoric','Happy','Blissful','Energetic'],
+    terpenes: ['Limonene','Terpinolene','Ocimene','Valencene']
+  }},
+  'get-creative': {{
+    label: 'Get Creative',
+    science: 'Pinene AChE inhibition sharpens memory + Terpinolene cerebral drive (Miyazawa & Yamafuji 2005)',
+    effects:  ['Creative','Cerebral','Focused'],
+    terpenes: ['Pinene','B Pinene','Terpinolene','Limonene']
+  }},
+  'get-social': {{
+    label: 'Get Social',
+    science: 'Limonene + Terpinolene — euphoria and giggles without heavy sedation',
+    effects:  ['Social','Giggly','Talkative','Happy','Euphoric'],
+    terpenes: ['Limonene','Terpinolene']
+  }},
+  'pain-body': {{
+    label: 'Pain & Body',
+    science: 'Caryophyllene (CB2 agonist, Gertsch 2008 PNAS) + Myrcene analgesic + Humulene anti-inflammatory',
+    effects:  ['Body High','Tingly','Relaxing'],
+    terpenes: ['Caryophyllene','Myrcene','Humulene','Linalool','Bisabolol']
+  }},
+  'just-happy': {{
+    label: 'Just Happy',
+    science: 'Limonene + Linalool + Terpinolene — balanced euphoria and body warmth',
+    effects:  ['Happy','Euphoric','Blissful','Giggly','Tingly','Uplifting'],
+    terpenes: ['Limonene','Linalool','Terpinolene']
+  }}
+}};
+
 let currentKey  = null;
 let profileKeys = [];
+let activeMood  = null;
+let activeCat   = 'all';
 
 function fmtList(arr) {{
   if (!arr || !arr.length) return '—';
@@ -537,14 +627,89 @@ function exportGuide() {{
   URL.revokeObjectURL(url);
 }}
 
+// ── Category + mood combined filter ──
+function applyFilters() {{
+  const mood = activeMood ? MOOD_MAP[activeMood] : null;
+  let totalVisible = 0;
+
+  document.querySelectorAll('.card').forEach(card => {{
+    // Category check
+    const section = card.closest('.section');
+    const catOk = activeCat === 'all' || (section && section.dataset.cat === activeCat);
+
+    // Mood check — match on effects OR terpenes
+    let moodOk = true;
+    if (mood) {{
+      const cardEffects  = (card.dataset.effects  || '').split(',').filter(Boolean);
+      const cardTerpenes = (card.dataset.terpenes || '').split(',').filter(Boolean);
+      moodOk = mood.effects.some(e  => cardEffects.includes(e))
+             || mood.terpenes.some(t => cardTerpenes.includes(t));
+    }}
+
+    const visible = catOk && moodOk;
+    card.classList.toggle('hidden', !visible);
+    if (visible) totalVisible++;
+  }});
+
+  // Update section visibility + counts
+  document.querySelectorAll('.section').forEach(s => {{
+    const catOk = activeCat === 'all' || s.dataset.cat === activeCat;
+    if (!catOk) {{ s.classList.add('hidden'); return; }}
+    const vis = s.querySelectorAll('.card:not(.hidden)').length;
+    s.classList.toggle('hidden', vis === 0);
+    const countEl = s.querySelector('[data-total]');
+    if (countEl) {{
+      const total = countEl.dataset.total;
+      countEl.textContent = mood
+        ? `${{vis}} / ${{total}} matching`
+        : `${{total}} product${{total == 1 ? '' : 's'}}`;
+    }}
+  }});
+
+  // Divider + new-arrivals section
+  document.querySelectorAll('.section-divider').forEach(d => {{
+    d.classList.toggle('hidden', activeCat !== 'all');
+  }});
+
+  // Show "no results" message
+  document.getElementById('moodZero').classList.toggle('hidden', totalVisible > 0);
+
+  // Update mood status bar
+  const statusEl = document.getElementById('moodStatus');
+  if (mood) {{
+    statusEl.innerHTML = `<strong>${{mood.label}}:</strong> ${{mood.science}} — ${{totalVisible}} product${{totalVisible == 1 ? '' : 's'}} matching`;
+    statusEl.classList.remove('hidden');
+  }} else {{
+    statusEl.classList.add('hidden');
+  }}
+}}
+
 function filterCat(btn) {{
   document.querySelectorAll('.tab').forEach(b => b.classList.remove('on'));
   btn.classList.add('on');
-  const sel = btn.dataset.cat;
-  document.querySelectorAll('.section').forEach(s => {{
-    s.classList.toggle('hidden', sel !== 'all' && s.dataset.cat !== sel);
-  }});
+  activeCat = btn.dataset.cat;
+  applyFilters();
   window.scrollTo({{top:0,behavior:'smooth'}});
+}}
+
+function filterMood(btn) {{
+  const mood = btn.dataset.mood;
+  if (activeMood === mood) {{
+    clearMood();
+    return;
+  }}
+  document.querySelectorAll('.mood-chip').forEach(c => c.classList.remove('on'));
+  btn.classList.add('on');
+  activeMood = mood;
+  document.getElementById('moodClear').classList.remove('hidden');
+  applyFilters();
+}}
+
+function clearMood() {{
+  activeMood = null;
+  document.querySelectorAll('.mood-chip').forEach(c => c.classList.remove('on'));
+  document.getElementById('moodClear').classList.add('hidden');
+  applyFilters();
 }}
 
 document.addEventListener('keydown', e => {{ if (e.key === 'Escape') {{ closeModal(); closeDrawer(); }} }});
