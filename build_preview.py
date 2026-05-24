@@ -188,11 +188,8 @@ def build():
     .header-inner{{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:20px;height:64px}}
     .logo{{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.05rem;color:var(--brand);text-decoration:none;white-space:nowrap}}
     .logo-leaf{{width:34px;height:34px;background:var(--brand);border-radius:50% 50% 50% 0;display:flex;align-items:center;justify-content:center;font-size:1rem;color:#fff;flex-shrink:0}}
-    @keyframes mascot-bob{{0%,100%{{transform:translateY(0) rotate(-1deg)}}50%{{transform:translateY(-6px) rotate(1deg)}}}}
-    @keyframes mascot-blink{{0%,90%,100%{{transform:scaleY(1)}}95%{{transform:scaleY(0.1)}}}}
-    .mascot-wrap{{animation:mascot-bob 3s ease-in-out infinite;flex-shrink:0;cursor:default;user-select:none}}
-    .mascot-wrap:hover{{animation-duration:1s}}
-    .mascot-eye{{animation:mascot-blink 4s ease-in-out infinite}}
+    .mascot-wrap{{flex-shrink:0;cursor:default;user-select:none;display:flex;align-items:center}}
+    .mascot-wrap img{{height:52px;width:auto;display:block}}
     .header-meta{{margin-left:auto;text-align:right;font-size:.75rem;color:var(--muted);line-height:1.5}}
     .header-meta strong{{color:var(--brand)}}
     .tabs-wrap{{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:64px;z-index:20}}
@@ -335,18 +332,8 @@ def build():
 <div class="top-bar">🌿 MN Legit Cannabis · South Metro · Updated daily at 4:30 PM CST</div>
 <header>
   <div class="header-inner">
-    <div class="mascot-wrap" title="Legit Buddy 🌿">
-      <svg viewBox="0 0 60 74" width="46" height="46" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="22" cy="18" rx="5.5" ry="15" fill="#7dc45a" stroke="#2d5a1b" stroke-width="1.5" transform="rotate(-22 22 18)"/>
-        <ellipse cx="30" cy="12" rx="5.5" ry="17" fill="#7dc45a" stroke="#2d5a1b" stroke-width="1.5"/>
-        <ellipse cx="38" cy="18" rx="5.5" ry="15" fill="#7dc45a" stroke="#2d5a1b" stroke-width="1.5" transform="rotate(22 38 18)"/>
-        <circle cx="30" cy="50" r="17" fill="#7079c0" stroke="#2d3a6e" stroke-width="1.5"/>
-        <ellipse class="mascot-eye" cx="23" cy="48" rx="2.8" ry="2.8" fill="#e53e3e"/>
-        <ellipse class="mascot-eye" cx="37" cy="48" rx="2.8" ry="2.8" fill="#e53e3e"/>
-        <path d="M23 56 Q30 62 37 56" stroke="#2d3a6e" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-        <ellipse cx="22" cy="66" rx="6" ry="4.5" fill="#5a63a8" stroke="#2d3a6e" stroke-width="1"/>
-        <ellipse cx="38" cy="66" rx="6" ry="4.5" fill="#5a63a8" stroke="#2d3a6e" stroke-width="1"/>
-      </svg>
+    <div class="mascot-wrap">
+      <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExb216bXVxcmVpMm1zNTR3NWxob3hoeXloYWFlbWswcW13NnZ3MnlsMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/5C29m5sRSYch78Ko3B/giphy.gif" alt="" loading="lazy">
     </div>
     <a class="logo" href="#">
       <div><div>Legit Cannabis</div><div style="font-size:.7rem;font-weight:400;color:var(--muted)">South Metro</div></div>
