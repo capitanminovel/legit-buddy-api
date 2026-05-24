@@ -352,14 +352,23 @@ def build():
     .btn-export:hover{{background:var(--sg-dark)}}
     .export-bar{{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:8px 16px;background:var(--white);border-bottom:1px solid var(--border)}}
     .export-bar-label{{font-size:.7rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}}
-    .btn-export-all{{background:#1a7a4a;color:#fff;border:none;border-radius:20px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block}}
+    .btn-export-all{{background:#1a7a4a;color:#fff;border:none;border-radius:20px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap}}
     .btn-export-all:hover{{background:#145e38}}
-    .btn-export-avail{{background:var(--sg-pink);color:#fff;border:none;border-radius:20px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block}}
+    .btn-export-avail{{background:var(--sg-pink);color:#fff;border:none;border-radius:20px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap}}
     .btn-export-avail:hover{{background:#d4708a}}
     body.dark .export-bar{{background:var(--white);border-color:var(--border)}}
     body.dark .btn-export-all{{background:#4ade80;color:#0d1a11}}
     body.dark .btn-export-all:hover{{background:#22c55e}}
     body.dark .btn-export-avail{{background:#e88fa2;color:#1a0a0e}}
+    .export-popup-overlay{{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;display:flex;align-items:center;justify-content:center}}
+    .export-popup-overlay.hidden{{display:none}}
+    .export-popup-box{{background:#e8e0d0;border:3px solid #4a7030;border-radius:20px;padding:28px 32px;text-align:center;max-width:320px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.4);animation:epPop .35s cubic-bezier(.175,.885,.32,1.275)}}
+    @keyframes epPop{{from{{transform:scale(.7);opacity:0}}to{{transform:scale(1);opacity:1}}}}
+    .export-popup-gif{{width:190px;height:190px;object-fit:cover;border-radius:14px;border:3px solid #4a7030;margin-bottom:14px}}
+    .export-popup-title{{font-family:'Nunito',sans-serif;font-weight:900;font-size:20px;color:#2a3f1f;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}}
+    .export-popup-sub{{font-size:13px;color:#3d5c2e;font-weight:600;margin-bottom:18px}}
+    .export-popup-btn{{background:#3d5c2e;color:#e88fa2;border:none;border-radius:20px;padding:10px 28px;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}}
+    .export-popup-btn:hover{{background:#2a3f1f}}
     .btn-clear{{background:transparent;color:#888;border:1px solid #ccc;border-radius:20px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;cursor:pointer}}
     .btn-close-drawer{{background:transparent;color:var(--sg-green);border:2px solid var(--sg-green);border-radius:20px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;text-transform:uppercase;cursor:pointer}}
     .profile-cards{{padding:16px 18px 0}}
@@ -395,8 +404,18 @@ def build():
 </header>
 <div class="export-bar">
   <span class="export-bar-label">⬇ Export .docx:</span>
-  <a class="btn-export-avail" href="legit-available-guide.docx" download>✅ Available Now ({len(all_p)} products)</a>
-  <a class="btn-export-all"   href="legit-master-guide.docx" download>📦 Master Cache (all strains)</a>
+  <button class="btn-export-avail" onclick="showExportPopup('legit-available-guide.docx')">✅ Available Now ({len(all_p)} products)</button>
+  <button class="btn-export-all"   onclick="showExportPopup('legit-master-guide.docx')">📦 Master Cache (all strains)</button>
+</div>
+
+<!-- Export popup -->
+<div class="export-popup-overlay hidden" id="exportPopup">
+  <div class="export-popup-box">
+    <img class="export-popup-gif" src="https://media.giphy.com/media/VK2JbAI71xTxlSVNNu/giphy.gif" alt="">
+    <div class="export-popup-title">Your guide is ready 🍃</div>
+    <div class="export-popup-sub">Downloading in <span id="exportCountdown">4</span>s…</div>
+    <button class="export-popup-btn" id="exportGoBtn">Let's Go ⬇</button>
+  </div>
 </div>
 <div class="legend">
   <div class="legend-item"><span class="strain-badge strain-indica">Indica</span></div>
@@ -1014,6 +1033,43 @@ function clearMood() {{
   document.querySelectorAll('.mood-chip').forEach(c => c.classList.remove('on'));
   document.getElementById('moodClear').classList.add('hidden');
   applyFilters();
+}}
+
+// ── Export popup + docx download ──
+let _exportTimer = null;
+let _exportFile  = null;
+
+function showExportPopup(filename) {{
+  _exportFile = filename;
+  const overlay = document.getElementById('exportPopup');
+  const btn     = document.getElementById('exportGoBtn');
+  const countdown = document.getElementById('exportCountdown');
+
+  overlay.classList.remove('hidden');
+  let secs = 4;
+  countdown.textContent = secs;
+
+  clearInterval(_exportTimer);
+  _exportTimer = setInterval(() => {{
+    secs--;
+    countdown.textContent = secs;
+    if (secs <= 0) {{
+      clearInterval(_exportTimer);
+      _doDownload();
+    }}
+  }}, 1000);
+
+  btn.onclick = () => {{ clearInterval(_exportTimer); _doDownload(); }};
+}}
+
+function _doDownload() {{
+  document.getElementById('exportPopup').classList.add('hidden');
+  if (!_exportFile) return;
+  const a = document.createElement('a');
+  a.href = _exportFile;
+  a.download = _exportFile;
+  a.click();
+  _exportFile = null;
 }}
 
 document.addEventListener('keydown', e => {{ if (e.key === 'Escape') {{ closeModal(); closeDrawer(); }} }});
