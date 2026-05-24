@@ -347,6 +347,16 @@ def build():
     .profile-header-actions{{display:flex;gap:8px;flex-wrap:wrap}}
     .btn-export{{background:var(--sg-green);color:var(--sg-pink);border:none;border-radius:20px;padding:8px 16px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}}
     .btn-export:hover{{background:var(--sg-dark)}}
+    .export-bar{{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:8px 16px;background:var(--white);border-bottom:1px solid var(--border)}}
+    .export-bar-label{{font-size:.7rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}}
+    .btn-export-all{{background:#1a7a4a;color:#fff;border:none;border-radius:20px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap}}
+    .btn-export-all:hover{{background:#145e38}}
+    .btn-export-avail{{background:var(--sg-pink);color:#fff;border:none;border-radius:20px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap}}
+    .btn-export-avail:hover{{background:#d4708a}}
+    body.dark .export-bar{{background:var(--white);border-color:var(--border)}}
+    body.dark .btn-export-all{{background:#4ade80;color:#0d1a11}}
+    body.dark .btn-export-all:hover{{background:#22c55e}}
+    body.dark .btn-export-avail{{background:#e88fa2;color:#1a0a0e}}
     .btn-clear{{background:transparent;color:#888;border:1px solid #ccc;border-radius:20px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;cursor:pointer}}
     .btn-close-drawer{{background:transparent;color:var(--sg-green);border:2px solid var(--sg-green);border-radius:20px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;text-transform:uppercase;cursor:pointer}}
     .profile-cards{{padding:16px 18px 0}}
@@ -380,6 +390,11 @@ def build():
     </div>
   </div>
 </header>
+<div class="export-bar">
+  <span class="export-bar-label">⬇ Export Guide:</span>
+  <button class="btn-export-avail" onclick="exportAll('avail')">✅ Available Now ({len(all_p)} products)</button>
+  <button class="btn-export-all"   onclick="exportAll('master')">📦 Master Cache (all strains)</button>
+</div>
 <div class="legend">
   <div class="legend-item"><span class="strain-badge strain-indica">Indica</span></div>
   <div class="legend-item"><span class="strain-badge strain-sativa">Sativa</span></div>
@@ -734,6 +749,87 @@ function exportGuide() {{
   a.href     = url;
   a.download = 'legit-strain-guide.html';
   a.click();
+  URL.revokeObjectURL(url);
+}}
+
+function exportAll(mode) {{
+  // mode: 'avail' = only products in PRODUCTS (in-stock scraped set)
+  //       'master' = all keys in STRAINS cache
+  const today = new Date().toLocaleDateString('en-US', {{month:'long', day:'numeric', year:'numeric'}});
+
+  let keys;
+  if (mode === 'avail') {{
+    keys = Object.keys(PRODUCTS);
+  }} else {{
+    // master: all enriched keys, fall back to PRODUCTS data for any missing
+    keys = [...new Set([...Object.keys(STRAINS), ...Object.keys(PRODUCTS)])];
+  }}
+
+  // Sort: flower → pre-roll → vapes → other, then alpha within each
+  const catOrder = ['flower','pre-roll','vapes','edibles'];
+  keys.sort((a, b) => {{
+    const pa = PRODUCTS[a] || {{}};
+    const pb = PRODUCTS[b] || {{}};
+    const ca = (pa.category || '').toLowerCase();
+    const cb = (pb.category || '').toLowerCase();
+    const ia = catOrder.indexOf(ca); const ib = catOrder.indexOf(cb);
+    const oa = ia === -1 ? 99 : ia;  const ob = ib === -1 ? 99 : ib;
+    if (oa !== ob) return oa - ob;
+    return (pa.name || a).localeCompare(pb.name || b);
+  }});
+
+  const cards = keys.map(k => buildSgCard(k, true)).join('');
+  const title = mode === 'avail' ? 'Available Now' : 'Master Strain Cache';
+  const fname = mode === 'avail' ? 'legit-available-guide.html' : 'legit-master-guide.html';
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Legit Cannabis – ${{title}}</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{{--green:#3d5c2e;--pink:#e88fa2;--cream:#f5f0e8;--dark-green:#2a3f1f;--border-green:#4a7030;--text:#1a1a1a}}
+  *{{box-sizing:border-box;margin:0;padding:0}}
+  body{{background:#e8e0d0;font-family:'Nunito Sans',sans-serif;padding:24px 16px;color:var(--text)}}
+  .page{{max-width:720px;margin:0 auto}}
+  .header{{display:flex;align-items:center;gap:16px;margin-bottom:28px}}
+  .logo-badge{{background:var(--green);border-radius:14px;padding:10px 16px;display:flex;align-items:center;gap:8px}}
+  .logo-badge .leaf{{font-size:20px}}
+  .logo-badge .name{{font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;color:var(--pink);line-height:1.1;letter-spacing:.02em;text-transform:uppercase}}
+  .header-title{{font-family:'Nunito',sans-serif;font-weight:900;font-size:26px;color:var(--dark-green);letter-spacing:.04em;text-transform:uppercase}}
+  .header-sub{{font-size:12px;color:var(--green);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}}
+  .section-heading{{font-family:'Nunito',sans-serif;font-weight:900;font-size:16px;color:var(--dark-green);text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid var(--border-green);padding-bottom:6px;margin:24px 0 14px}}
+  .sg-card{{background:white;border:3px solid var(--border-green);border-radius:16px;padding:18px 22px;margin-bottom:18px}}
+  .sg-name{{font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;text-align:center;text-transform:uppercase;letter-spacing:.05em;color:var(--dark-green);margin-bottom:2px}}
+  .sg-type{{text-align:center;font-size:12.5px;font-weight:700;color:#555;margin-bottom:4px}}
+  .sg-supplier{{display:block;background:var(--green);color:var(--pink);font-family:'Nunito',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;border-radius:20px;padding:3px 10px;width:fit-content;margin:0 auto 10px}}
+  .sg-thc-cbd{{display:flex;gap:8px;justify-content:center;margin-bottom:8px;flex-wrap:wrap}}
+  .sg-pill{{font-size:11px;font-weight:700;padding:2px 10px;border-radius:20px;font-family:'Nunito',sans-serif}}
+  .sg-pill.thc{{background:#16a34a;color:#fff}}.sg-pill.cbd{{background:#2563eb;color:#fff}}
+  .sg-price{{text-align:center;font-size:13px;font-weight:700;color:var(--dark-green);margin-bottom:6px}}
+  .sg-divider{{border:none;border-top:2px solid var(--border-green);margin:8px 0 12px}}
+  .sg-row{{font-size:12.5px;line-height:1.55;margin-bottom:4px;color:#222}}
+  .sg-row strong{{font-weight:700;color:var(--dark-green);font-family:'Nunito',sans-serif;font-size:12.5px}}
+  .profile-item-remove{{display:none}}
+  @media print{{body{{background:white;padding:0}}.sg-card{{break-inside:avoid}}}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="logo-badge"><span class="leaf">🍃</span><div class="name">LEGIT<br>CANNABIS</div></div>
+    <div><div class="header-title">${{title}}</div><div class="header-sub">Staff Reference · ${{today}}</div></div>
+  </div>
+  ${{cards}}
+</div>
+</body>
+</html>`;
+
+  const blob = new Blob([html], {{type: 'text/html;charset=utf-8'}});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = fname; a.click();
   URL.revokeObjectURL(url);
 }}
 
