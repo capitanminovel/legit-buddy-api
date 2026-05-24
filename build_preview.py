@@ -257,6 +257,9 @@ def build():
     .mood-status{{font-size:.78rem;color:var(--sg-green);font-weight:500;padding:2px 0 0;line-height:1.45}}
     .mood-status strong{{font-weight:700}}
     .mood-zero{{font-size:.85rem;color:var(--muted);text-align:center;padding:32px 0;font-weight:500}}
+    .card.match-strong{{border-left:4px solid var(--sg-green)}}
+    .card.match-good{{border-left:4px solid #86efac}}
+    .card.match-weak{{border-left:4px solid #d1fae5}}
 
     /* ── Text search ── */
     .search-row{{display:flex;align-items:center;gap:8px}}
@@ -480,6 +483,21 @@ let activeCat    = 'all';
 let activeSearch = '';
 let searchTimer  = null;
 
+function moodScore(card, mood) {{
+  if (!mood) return 0;
+  const fx = (card.dataset.effects  || '').split(',').filter(Boolean);
+  const tx = (card.dataset.terpenes || '').split(',').filter(Boolean);
+  return mood.effects.filter(e  => fx.includes(e)).length * 2
+       + mood.terpenes.filter(t => tx.includes(t)).length;
+}}
+
+// Save original DOM order on load so we can restore it
+document.addEventListener('DOMContentLoaded', () => {{
+  document.querySelectorAll('.grid').forEach(grid => {{
+    [...grid.children].forEach((el, i) => {{ el.dataset.origIndex = i; }});
+  }});
+}});
+
 function fmtList(arr) {{
   if (!arr || !arr.length) return '—';
   return arr.join(', ');
@@ -692,7 +710,31 @@ function applyFilters() {{
 
     const visible = catOk && moodOk && searchOk;
     card.classList.toggle('hidden', !visible);
+
+    // Match strength border
+    card.classList.remove('match-strong','match-good','match-weak');
+    if (visible && mood) {{
+      const score = moodScore(card, mood);
+      if      (score >= 4) card.classList.add('match-strong');
+      else if (score >= 2) card.classList.add('match-good');
+      else                 card.classList.add('match-weak');
+    }}
+
     if (visible) totalVisible++;
+  }});
+
+  // Sort each grid: mood active → best score first; no mood → restore original order
+  document.querySelectorAll('.grid').forEach(grid => {{
+    const cards = [...grid.querySelectorAll('.card')];
+    if (mood) {{
+      cards.sort((a, b) => {{
+        const diff = moodScore(b, mood) - moodScore(a, mood);
+        return diff !== 0 ? diff : (parseInt(a.dataset.origIndex)||0) - (parseInt(b.dataset.origIndex)||0);
+      }});
+    }} else {{
+      cards.sort((a, b) => (parseInt(a.dataset.origIndex)||0) - (parseInt(b.dataset.origIndex)||0));
+    }}
+    cards.forEach(c => grid.appendChild(c));
   }});
 
   // Update section visibility + counts
