@@ -2,6 +2,9 @@
 import json
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
+from docx import Document
+from docx.shared import Pt
+from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 CST          = timezone(timedelta(hours=-6))
 DATA         = Path(__file__).parent / "docs" / "products.json"
@@ -261,7 +264,11 @@ def build():
     .price-tiers{{display:flex;gap:5px;flex-wrap:wrap}}
     .tier{{font-size:.7rem;font-weight:500;border:1px solid var(--border);border-radius:5px;padding:3px 7px;color:var(--text);background:#fafafa}}
     .tier span{{display:block;font-size:.62rem;color:var(--muted)}}
-    footer{{text-align:center;padding:20px;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);background:var(--white)}}
+    footer{{text-align:center;padding:16px 20px 80px;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);background:var(--white)}}
+    .footer-sticky{{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--border);padding:8px 16px;display:flex;justify-content:space-between;align-items:center;font-size:.72rem;color:var(--muted);z-index:200;box-shadow:0 -2px 8px rgba(0,0,0,.06)}}
+    .footer-sticky .fs-stock{{font-weight:700;color:var(--brand)}}
+    .footer-sticky .fs-updated{{font-size:.68rem}}
+    @media(min-width:768px){{.footer-sticky{{display:none}}}}
     .new-arrivals-section{{background:linear-gradient(135deg,#f0fdf4,#ecfdf5);border:2px solid #86efac;border-radius:12px;padding:20px;margin-bottom:32px}}
     .new-arrivals-head{{display:flex;align-items:baseline;gap:10px;margin-bottom:18px}}
     .new-arrivals-title{{font-size:1.15rem;font-weight:700;color:var(--new)}}
@@ -343,6 +350,25 @@ def build():
     .profile-header-actions{{display:flex;gap:8px;flex-wrap:wrap}}
     .btn-export{{background:var(--sg-green);color:var(--sg-pink);border:none;border-radius:20px;padding:8px 16px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}}
     .btn-export:hover{{background:var(--sg-dark)}}
+    .export-bar{{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:8px 16px;background:var(--white);border-bottom:1px solid var(--border)}}
+    .export-bar-label{{font-size:.7rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}}
+    .btn-export-all{{background:#1a7a4a;color:#fff;border:none;border-radius:20px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap}}
+    .btn-export-all:hover{{background:#145e38}}
+    .btn-export-avail{{background:var(--sg-pink);color:#fff;border:none;border-radius:20px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap}}
+    .btn-export-avail:hover{{background:#d4708a}}
+    body.dark .export-bar{{background:var(--white);border-color:var(--border)}}
+    body.dark .btn-export-all{{background:#4ade80;color:#0d1a11}}
+    body.dark .btn-export-all:hover{{background:#22c55e}}
+    body.dark .btn-export-avail{{background:#e88fa2;color:#1a0a0e}}
+    .export-popup-overlay{{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;display:flex;align-items:center;justify-content:center}}
+    .export-popup-overlay.hidden{{display:none}}
+    .export-popup-box{{background:#e8e0d0;border:3px solid #4a7030;border-radius:20px;padding:28px 32px;text-align:center;max-width:320px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.4);animation:epPop .35s cubic-bezier(.175,.885,.32,1.275)}}
+    @keyframes epPop{{from{{transform:scale(.7);opacity:0}}to{{transform:scale(1);opacity:1}}}}
+    .export-popup-gif{{width:190px;height:190px;object-fit:cover;border-radius:14px;border:3px solid #4a7030;margin-bottom:14px}}
+    .export-popup-title{{font-family:'Nunito',sans-serif;font-weight:900;font-size:20px;color:#2a3f1f;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}}
+    .export-popup-sub{{font-size:13px;color:#3d5c2e;font-weight:600;margin-bottom:18px}}
+    .export-popup-btn{{background:#3d5c2e;color:#e88fa2;border:none;border-radius:20px;padding:10px 28px;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}}
+    .export-popup-btn:hover{{background:#2a3f1f}}
     .btn-clear{{background:transparent;color:#888;border:1px solid #ccc;border-radius:20px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;cursor:pointer}}
     .btn-close-drawer{{background:transparent;color:var(--sg-green);border:2px solid var(--sg-green);border-radius:20px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;text-transform:uppercase;cursor:pointer}}
     .profile-cards{{padding:16px 18px 0}}
@@ -376,6 +402,21 @@ def build():
     </div>
   </div>
 </header>
+<div class="export-bar">
+  <span class="export-bar-label">⬇ Export .docx:</span>
+  <button class="btn-export-avail" onclick="showExportPopup('legit-available-guide.docx')">✅ Available Now ({len(all_p)} products)</button>
+  <button class="btn-export-all"   onclick="showExportPopup('legit-master-guide.docx')">📦 Master Cache (all strains)</button>
+</div>
+
+<!-- Export popup -->
+<div class="export-popup-overlay hidden" id="exportPopup">
+  <div class="export-popup-box">
+    <img class="export-popup-gif" src="https://media.giphy.com/media/VK2JbAI71xTxlSVNNu/giphy.gif" alt="">
+    <div class="export-popup-title">Your guide is ready 🍃</div>
+    <div class="export-popup-sub">Downloading in <span id="exportCountdown">4</span>s…</div>
+    <button class="export-popup-btn" id="exportGoBtn">Let's Go ⬇</button>
+  </div>
+</div>
 <div class="legend">
   <div class="legend-item"><span class="strain-badge strain-indica">Indica</span></div>
   <div class="legend-item"><span class="strain-badge strain-sativa">Sativa</span></div>
@@ -415,7 +456,13 @@ def build():
   {new_section}{sections}
   <div class="mood-zero hidden" id="moodZero">No products match this vibe right now — try another filter.</div>
 </main>
-<footer>Auto-updated daily at 4:30 PM CST &nbsp;·&nbsp; MN Legit Cannabis South Metro</footer>
+<footer>
+  Last updated: {ts} &nbsp;·&nbsp; {len(all_p)} products in stock &nbsp;·&nbsp; MN Legit Cannabis South Metro
+</footer>
+<div class="footer-sticky">
+  <span class="fs-stock">{len(all_p)} products in stock</span>
+  <span class="fs-updated">Updated {ts}</span>
+</div>
 
 <!-- Strain modal -->
 <div class="modal-overlay" id="strainModal" onclick="closeModalOutside(event)">
@@ -669,6 +716,32 @@ function clearProfile() {{
   renderProfileCards();
 }}
 
+const EXPORT_POPUP_CSS = `
+  .welcome-overlay{{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;display:flex;align-items:center;justify-content:center;animation:fadeIn .3s ease}}
+  @keyframes fadeIn{{from{{opacity:0}}to{{opacity:1}}}}
+  .welcome-box{{background:#e8e0d0;border:3px solid #4a7030;border-radius:20px;padding:28px 32px;text-align:center;max-width:340px;width:90%;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.35);animation:popIn .35s cubic-bezier(.175,.885,.32,1.275)}}
+  @keyframes popIn{{from{{transform:scale(.7);opacity:0}}to{{transform:scale(1);opacity:1}}}}
+  .welcome-gif{{width:200px;height:200px;object-fit:cover;border-radius:14px;margin-bottom:14px;border:3px solid #4a7030}}
+  .welcome-title{{font-family:'Nunito',sans-serif;font-weight:900;font-size:20px;color:#2a3f1f;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}}
+  .welcome-sub{{font-size:13px;color:#3d5c2e;font-weight:600;margin-bottom:18px}}
+  .welcome-close{{background:#3d5c2e;color:#e88fa2;border:none;border-radius:20px;padding:9px 24px;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}}
+  .welcome-close:hover{{background:#2a3f1f}}
+`;
+const EXPORT_POPUP_HTML = `
+<div class="welcome-overlay" id="welcomeOverlay" onclick="if(event.target===this)dismissWelcome()">
+  <div class="welcome-box">
+    <img class="welcome-gif" src="https://media.giphy.com/media/VK2JbAI71xTxlSVNNu/giphy.gif" alt="Welcome">
+    <div class="welcome-title">Welcome to Legit 🍃</div>
+    <div class="welcome-sub">Your strain guide is ready. Enjoy!</div>
+    <button class="welcome-close" onclick="dismissWelcome()">Let's Go</button>
+  </div>
+</div>
+<script>
+  function dismissWelcome(){{document.getElementById('welcomeOverlay').remove();}}
+  setTimeout(dismissWelcome, 5000);
+<\/script>
+`;
+
 function exportGuide() {{
   if (profileKeys.length === 0) return;
   const cards = profileKeys.map(k => buildSgCard(k, true)).join('');
@@ -705,9 +778,11 @@ function exportGuide() {{
   .profile-item-remove{{display:none}}
   .sg-row span{{font-size:10px;color:#888;font-weight:400}}
   @media print{{body{{background:white;padding:0}}.sg-card{{break-inside:avoid}}}}
+  ${{EXPORT_POPUP_CSS}}
 </style>
 </head>
 <body>
+${{EXPORT_POPUP_HTML}}
 <div class="page">
   <div class="header">
     <div class="logo-badge"><span class="leaf">🍃</span><div class="name">LEGIT<br>CANNABIS</div></div>
@@ -724,6 +799,89 @@ function exportGuide() {{
   a.href     = url;
   a.download = 'legit-strain-guide.html';
   a.click();
+  URL.revokeObjectURL(url);
+}}
+
+function exportAll(mode) {{
+  // mode: 'avail' = only products in PRODUCTS (in-stock scraped set)
+  //       'master' = all keys in STRAINS cache
+  const today = new Date().toLocaleDateString('en-US', {{month:'long', day:'numeric', year:'numeric'}});
+
+  let keys;
+  if (mode === 'avail') {{
+    keys = Object.keys(PRODUCTS);
+  }} else {{
+    // master: all enriched keys, fall back to PRODUCTS data for any missing
+    keys = [...new Set([...Object.keys(STRAINS), ...Object.keys(PRODUCTS)])];
+  }}
+
+  // Sort: flower → pre-roll → vapes → other, then alpha within each
+  const catOrder = ['flower','pre-roll','vapes','edibles'];
+  keys.sort((a, b) => {{
+    const pa = PRODUCTS[a] || {{}};
+    const pb = PRODUCTS[b] || {{}};
+    const ca = (pa.category || '').toLowerCase();
+    const cb = (pb.category || '').toLowerCase();
+    const ia = catOrder.indexOf(ca); const ib = catOrder.indexOf(cb);
+    const oa = ia === -1 ? 99 : ia;  const ob = ib === -1 ? 99 : ib;
+    if (oa !== ob) return oa - ob;
+    return (pa.name || a).localeCompare(pb.name || b);
+  }});
+
+  const cards = keys.map(k => buildSgCard(k, true)).join('');
+  const title = mode === 'avail' ? 'Available Now' : 'Master Strain Cache';
+  const fname = mode === 'avail' ? 'legit-available-guide.html' : 'legit-master-guide.html';
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Legit Cannabis – ${{title}}</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{{--green:#3d5c2e;--pink:#e88fa2;--cream:#f5f0e8;--dark-green:#2a3f1f;--border-green:#4a7030;--text:#1a1a1a}}
+  *{{box-sizing:border-box;margin:0;padding:0}}
+  body{{background:#e8e0d0;font-family:'Nunito Sans',sans-serif;padding:24px 16px;color:var(--text)}}
+  .page{{max-width:720px;margin:0 auto}}
+  .header{{display:flex;align-items:center;gap:16px;margin-bottom:28px}}
+  .logo-badge{{background:var(--green);border-radius:14px;padding:10px 16px;display:flex;align-items:center;gap:8px}}
+  .logo-badge .leaf{{font-size:20px}}
+  .logo-badge .name{{font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;color:var(--pink);line-height:1.1;letter-spacing:.02em;text-transform:uppercase}}
+  .header-title{{font-family:'Nunito',sans-serif;font-weight:900;font-size:26px;color:var(--dark-green);letter-spacing:.04em;text-transform:uppercase}}
+  .header-sub{{font-size:12px;color:var(--green);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}}
+  .section-heading{{font-family:'Nunito',sans-serif;font-weight:900;font-size:16px;color:var(--dark-green);text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid var(--border-green);padding-bottom:6px;margin:24px 0 14px}}
+  .sg-card{{background:white;border:3px solid var(--border-green);border-radius:16px;padding:18px 22px;margin-bottom:18px}}
+  .sg-name{{font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;text-align:center;text-transform:uppercase;letter-spacing:.05em;color:var(--dark-green);margin-bottom:2px}}
+  .sg-type{{text-align:center;font-size:12.5px;font-weight:700;color:#555;margin-bottom:4px}}
+  .sg-supplier{{display:block;background:var(--green);color:var(--pink);font-family:'Nunito',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;border-radius:20px;padding:3px 10px;width:fit-content;margin:0 auto 10px}}
+  .sg-thc-cbd{{display:flex;gap:8px;justify-content:center;margin-bottom:8px;flex-wrap:wrap}}
+  .sg-pill{{font-size:11px;font-weight:700;padding:2px 10px;border-radius:20px;font-family:'Nunito',sans-serif}}
+  .sg-pill.thc{{background:#16a34a;color:#fff}}.sg-pill.cbd{{background:#2563eb;color:#fff}}
+  .sg-price{{text-align:center;font-size:13px;font-weight:700;color:var(--dark-green);margin-bottom:6px}}
+  .sg-divider{{border:none;border-top:2px solid var(--border-green);margin:8px 0 12px}}
+  .sg-row{{font-size:12.5px;line-height:1.55;margin-bottom:4px;color:#222}}
+  .sg-row strong{{font-weight:700;color:var(--dark-green);font-family:'Nunito',sans-serif;font-size:12.5px}}
+  .profile-item-remove{{display:none}}
+  @media print{{body{{background:white;padding:0}}.sg-card{{break-inside:avoid}}}}
+  ${{EXPORT_POPUP_CSS}}
+</style>
+</head>
+<body>
+${{EXPORT_POPUP_HTML}}
+<div class="page">
+  <div class="header">
+    <div class="logo-badge"><span class="leaf">🍃</span><div class="name">LEGIT<br>CANNABIS</div></div>
+    <div><div class="header-title">${{title}}</div><div class="header-sub">Staff Reference · ${{today}}</div></div>
+  </div>
+  ${{cards}}
+</div>
+</body>
+</html>`;
+
+  const blob = new Blob([html], {{type: 'text/html;charset=utf-8'}});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = fname; a.click();
   URL.revokeObjectURL(url);
 }}
 
@@ -877,6 +1035,43 @@ function clearMood() {{
   applyFilters();
 }}
 
+// ── Export popup + docx download ──
+let _exportTimer = null;
+let _exportFile  = null;
+
+function showExportPopup(filename) {{
+  _exportFile = filename;
+  const overlay = document.getElementById('exportPopup');
+  const btn     = document.getElementById('exportGoBtn');
+  const countdown = document.getElementById('exportCountdown');
+
+  overlay.classList.remove('hidden');
+  let secs = 4;
+  countdown.textContent = secs;
+
+  clearInterval(_exportTimer);
+  _exportTimer = setInterval(() => {{
+    secs--;
+    countdown.textContent = secs;
+    if (secs <= 0) {{
+      clearInterval(_exportTimer);
+      _doDownload();
+    }}
+  }}, 1000);
+
+  btn.onclick = () => {{ clearInterval(_exportTimer); _doDownload(); }};
+}}
+
+function _doDownload() {{
+  document.getElementById('exportPopup').classList.add('hidden');
+  if (!_exportFile) return;
+  const a = document.createElement('a');
+  a.href = _exportFile;
+  a.download = _exportFile;
+  a.click();
+  _exportFile = null;
+}}
+
 document.addEventListener('keydown', e => {{ if (e.key === 'Escape') {{ closeModal(); closeDrawer(); }} }});
 
 // ── Dark mode ──
@@ -899,5 +1094,100 @@ function toggleDark() {{
 
     OUT.write_text(html, encoding="utf-8")
     print(f"Built → {OUT}  ({len(all_p)} products)")
+
+    # Also regenerate both docx exports
+    build_docx(all_p, db["products"], strains)
+
+
+DOCX_CAT_ORDER = ["flower", "pre-roll", "vapes"]
+DOCX_CAT_LABELS = {"flower": "FLOWER", "pre-roll": "PRE-ROLL", "vapes": "VAPES"}
+
+
+def _docx_section_header(doc, title):
+    doc.add_paragraph()
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    run = p.add_run(f"{'─' * 20}   {title}   {'─' * 20}")
+    run.bold = True
+    run.font.size = Pt(13)
+    doc.add_paragraph()
+
+
+def _docx_strain(doc, name, product, enriched):
+    strain_type = product.get("strain_type", "")
+    p = doc.add_paragraph()
+    r1 = p.add_run(name)
+    r1.bold = True
+    r1.font.size = Pt(16)
+    p.add_run("\t").bold = True
+    r3 = p.add_run(f"-   {strain_type}")
+    r3.bold = False
+    r3.font.size = Pt(14)
+
+    fields = [
+        ("Lineage",     enriched.get("lineage", "")),
+        ("Effects",     ", ".join(product.get("effects") or [])),
+        ("Flavors",     ", ".join(product.get("flavors") or [])),
+        ("Terpenes",    ", ".join(product.get("terpenes") or [])),
+        ("Therapeutic", enriched.get("therapeutic", "")),
+        ("Negative",    enriched.get("negative", "")),
+        ("Aroma",       enriched.get("aroma", "")),
+        ("Misc.",       enriched.get("misc", "")),
+    ]
+    for label, value in fields:
+        if not value:
+            continue
+        p = doc.add_paragraph()
+        rb = p.add_run(f"{label}: ")
+        rb.bold = True
+        p.add_run(value).bold = False
+    doc.add_paragraph()
+
+
+def build_docx(all_p, products_db, strains):
+    docs_dir = Path(__file__).parent / "docs"
+
+    def _write(path, items, title):
+        doc = Document()
+        doc.core_properties.title = title
+        # Title paragraph
+        heading = doc.add_paragraph()
+        heading.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        hr = heading.add_run(title.upper())
+        hr.bold = True
+        hr.font.size = Pt(18)
+        sub = doc.add_paragraph()
+        sub.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        sub.add_run(f"MN Legit Cannabis · South Metro · {datetime.now(CST).strftime('%B %d, %Y')}")
+
+        by_cat = {c: [] for c in DOCX_CAT_ORDER}
+        for key, p in items:
+            cat = (p.get("category") or "").lower()
+            if cat in by_cat:
+                by_cat[cat].append((key, p))
+
+        for cat in DOCX_CAT_ORDER:
+            entries = by_cat[cat]
+            if not entries:
+                continue
+            _docx_section_header(doc, DOCX_CAT_LABELS[cat])
+            for key, p in sorted(entries, key=lambda x: x[1].get("name", "")):
+                enriched = strains.get(key, {})
+                _docx_strain(doc, p.get("name", key), p, enriched)
+
+        doc.save(path)
+        print(f"Built docx → {path}  ({sum(len(v) for v in by_cat.values())} strains)")
+
+    # Available Now — only in-stock scraped products
+    _write(docs_dir / "legit-available-guide.docx", all_p, "Available Now")
+
+    # Master Cache — all enriched keys, supplemented by products_db
+    master_keys = list({**{k: products_db[k] for k in products_db}, **{}}.keys())
+    master_items = []
+    for k in strains:
+        p = products_db.get(k, {"name": k, "category": "flower"})
+        master_items.append((k, p))
+    _write(docs_dir / "legit-master-guide.docx", master_items, "Master Strain Cache")
+
 
 build()
