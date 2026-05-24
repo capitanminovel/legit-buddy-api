@@ -2,6 +2,9 @@
 import json
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
+from docx import Document
+from docx.shared import Pt
+from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 CST          = timezone(timedelta(hours=-6))
 DATA         = Path(__file__).parent / "docs" / "products.json"
@@ -349,9 +352,9 @@ def build():
     .btn-export:hover{{background:var(--sg-dark)}}
     .export-bar{{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:8px 16px;background:var(--white);border-bottom:1px solid var(--border)}}
     .export-bar-label{{font-size:.7rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}}
-    .btn-export-all{{background:#1a7a4a;color:#fff;border:none;border-radius:20px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap}}
+    .btn-export-all{{background:#1a7a4a;color:#fff;border:none;border-radius:20px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block}}
     .btn-export-all:hover{{background:#145e38}}
-    .btn-export-avail{{background:var(--sg-pink);color:#fff;border:none;border-radius:20px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap}}
+    .btn-export-avail{{background:var(--sg-pink);color:#fff;border:none;border-radius:20px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block}}
     .btn-export-avail:hover{{background:#d4708a}}
     body.dark .export-bar{{background:var(--white);border-color:var(--border)}}
     body.dark .btn-export-all{{background:#4ade80;color:#0d1a11}}
@@ -391,9 +394,9 @@ def build():
   </div>
 </header>
 <div class="export-bar">
-  <span class="export-bar-label">⬇ Export Guide:</span>
-  <button class="btn-export-avail" onclick="exportAll('avail')">✅ Available Now ({len(all_p)} products)</button>
-  <button class="btn-export-all"   onclick="exportAll('master')">📦 Master Cache (all strains)</button>
+  <span class="export-bar-label">⬇ Export .docx:</span>
+  <a class="btn-export-avail" href="legit-available-guide.docx" download>✅ Available Now ({len(all_p)} products)</a>
+  <a class="btn-export-all"   href="legit-master-guide.docx" download>📦 Master Cache (all strains)</a>
 </div>
 <div class="legend">
   <div class="legend-item"><span class="strain-badge strain-indica">Indica</span></div>
@@ -1035,5 +1038,100 @@ function toggleDark() {{
 
     OUT.write_text(html, encoding="utf-8")
     print(f"Built → {OUT}  ({len(all_p)} products)")
+
+    # Also regenerate both docx exports
+    build_docx(all_p, db["products"], strains)
+
+
+DOCX_CAT_ORDER = ["flower", "pre-roll", "vapes"]
+DOCX_CAT_LABELS = {"flower": "FLOWER", "pre-roll": "PRE-ROLL", "vapes": "VAPES"}
+
+
+def _docx_section_header(doc, title):
+    doc.add_paragraph()
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    run = p.add_run(f"{'─' * 20}   {title}   {'─' * 20}")
+    run.bold = True
+    run.font.size = Pt(13)
+    doc.add_paragraph()
+
+
+def _docx_strain(doc, name, product, enriched):
+    strain_type = product.get("strain_type", "")
+    p = doc.add_paragraph()
+    r1 = p.add_run(name)
+    r1.bold = True
+    r1.font.size = Pt(16)
+    p.add_run("\t").bold = True
+    r3 = p.add_run(f"-   {strain_type}")
+    r3.bold = False
+    r3.font.size = Pt(14)
+
+    fields = [
+        ("Lineage",     enriched.get("lineage", "")),
+        ("Effects",     ", ".join(product.get("effects") or [])),
+        ("Flavors",     ", ".join(product.get("flavors") or [])),
+        ("Terpenes",    ", ".join(product.get("terpenes") or [])),
+        ("Therapeutic", enriched.get("therapeutic", "")),
+        ("Negative",    enriched.get("negative", "")),
+        ("Aroma",       enriched.get("aroma", "")),
+        ("Misc.",       enriched.get("misc", "")),
+    ]
+    for label, value in fields:
+        if not value:
+            continue
+        p = doc.add_paragraph()
+        rb = p.add_run(f"{label}: ")
+        rb.bold = True
+        p.add_run(value).bold = False
+    doc.add_paragraph()
+
+
+def build_docx(all_p, products_db, strains):
+    docs_dir = Path(__file__).parent / "docs"
+
+    def _write(path, items, title):
+        doc = Document()
+        doc.core_properties.title = title
+        # Title paragraph
+        heading = doc.add_paragraph()
+        heading.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        hr = heading.add_run(title.upper())
+        hr.bold = True
+        hr.font.size = Pt(18)
+        sub = doc.add_paragraph()
+        sub.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        sub.add_run(f"MN Legit Cannabis · South Metro · {datetime.now(CST).strftime('%B %d, %Y')}")
+
+        by_cat = {c: [] for c in DOCX_CAT_ORDER}
+        for key, p in items:
+            cat = (p.get("category") or "").lower()
+            if cat in by_cat:
+                by_cat[cat].append((key, p))
+
+        for cat in DOCX_CAT_ORDER:
+            entries = by_cat[cat]
+            if not entries:
+                continue
+            _docx_section_header(doc, DOCX_CAT_LABELS[cat])
+            for key, p in sorted(entries, key=lambda x: x[1].get("name", "")):
+                enriched = strains.get(key, {})
+                _docx_strain(doc, p.get("name", key), p, enriched)
+
+        doc.save(path)
+        print(f"Built docx → {path}  ({sum(len(v) for v in by_cat.values())} strains)")
+
+    # Available Now — only in-stock scraped products
+    _write(docs_dir / "legit-available-guide.docx", all_p, "Available Now")
+
+    # Master Cache — all enriched keys, supplemented by products_db
+    master_keys = list({**{k: products_db[k] for k in products_db}, **{}}.keys())
+    master_items = []
+    for k in strains:
+        p = products_db.get(k, {"name": k, "category": "flower"})
+        master_items.append((k, p))
+    _write(docs_dir / "legit-master-guide.docx", master_items, "Master Strain Cache")
+
 
 build()

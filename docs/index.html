@@ -188,9 +188,9 @@
     .btn-export:hover{background:var(--sg-dark)}
     .export-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:8px 16px;background:var(--white);border-bottom:1px solid var(--border)}
     .export-bar-label{font-size:.7rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
-    .btn-export-all{background:#1a7a4a;color:#fff;border:none;border-radius:20px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap}
+    .btn-export-all{background:#1a7a4a;color:#fff;border:none;border-radius:20px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block}
     .btn-export-all:hover{background:#145e38}
-    .btn-export-avail{background:var(--sg-pink);color:#fff;border:none;border-radius:20px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap}
+    .btn-export-avail{background:var(--sg-pink);color:#fff;border:none;border-radius:20px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block}
     .btn-export-avail:hover{background:#d4708a}
     body.dark .export-bar{background:var(--white);border-color:var(--border)}
     body.dark .btn-export-all{background:#4ade80;color:#0d1a11}
@@ -224,15 +224,15 @@
     </div>
     <button class="dark-toggle" id="darkToggle" onclick="toggleDark()">🌙 Dark</button>
     <div class="header-meta">
-      <div>Last updated: <strong>Sun, May 24 2026 — 01:20 PM CST</strong></div>
+      <div>Last updated: <strong>Sun, May 24 2026 — 01:23 PM CST</strong></div>
       <div>33 products in stock</div>
     </div>
   </div>
 </header>
 <div class="export-bar">
-  <span class="export-bar-label">⬇ Export Guide:</span>
-  <button class="btn-export-avail" onclick="exportAll('avail')">✅ Available Now (33 products)</button>
-  <button class="btn-export-all"   onclick="exportAll('master')">📦 Master Cache (all strains)</button>
+  <span class="export-bar-label">⬇ Export .docx:</span>
+  <a class="btn-export-avail" href="legit-available-guide.docx" download>✅ Available Now (33 products)</a>
+  <a class="btn-export-all"   href="legit-master-guide.docx" download>📦 Master Cache (all strains)</a>
 </div>
 <div class="legend">
   <div class="legend-item"><span class="strain-badge strain-indica">Indica</span></div>
@@ -674,11 +674,11 @@
   <div class="mood-zero hidden" id="moodZero">No products match this vibe right now — try another filter.</div>
 </main>
 <footer>
-  Last updated: Sun, May 24 2026 — 01:20 PM CST &nbsp;·&nbsp; 33 products in stock &nbsp;·&nbsp; MN Legit Cannabis South Metro
+  Last updated: Sun, May 24 2026 — 01:23 PM CST &nbsp;·&nbsp; 33 products in stock &nbsp;·&nbsp; MN Legit Cannabis South Metro
 </footer>
 <div class="footer-sticky">
   <span class="fs-stock">33 products in stock</span>
-  <span class="fs-updated">Updated Sun, May 24 2026 — 01:20 PM CST</span>
+  <span class="fs-updated">Updated Sun, May 24 2026 — 01:23 PM CST</span>
 </div>
 
 <!-- Strain modal -->
