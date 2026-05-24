@@ -399,6 +399,35 @@ def build():
     body.dark .btn-export-all{{background:#4ade80;color:#0d1a11}}
     body.dark .btn-export-all:hover{{background:#22c55e}}
     body.dark .btn-export-avail{{background:#e88fa2;color:#1a0a0e}}
+    .btn-staff-guide{{background:transparent;color:var(--muted);border:1.5px solid var(--border);border-radius:20px;padding:6px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap}}
+    .btn-staff-guide:hover{{border-color:var(--brand);color:var(--brand)}}
+
+    /* ── Staff guide modal ── */
+    .sg-guide-overlay{{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:500;display:flex;align-items:flex-end;justify-content:center}}
+    .sg-guide-overlay.hidden{{display:none}}
+    .sg-guide-box{{background:var(--bg);width:100%;max-width:720px;max-height:90vh;border-radius:20px 20px 0 0;overflow-y:auto;padding:0 0 40px}}
+    .sg-guide-head{{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--border);padding:16px 22px;display:flex;align-items:center;justify-content:space-between;z-index:2}}
+    .sg-guide-title{{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.1rem;color:var(--brand)}}
+    .sg-guide-close{{background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--muted);line-height:1}}
+    .sg-guide-section{{margin:20px 18px 0}}
+    .sg-guide-section-title{{font-family:'Nunito',sans-serif;font-weight:900;font-size:.9rem;color:var(--brand);text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid var(--brand-lt);padding-bottom:6px;margin-bottom:12px}}
+    .sg-guide-card{{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:10px}}
+    .sg-guide-card-head{{display:flex;align-items:center;gap:8px;margin-bottom:5px}}
+    .sg-guide-card-icon{{font-size:1.2rem}}
+    .sg-guide-card-name{{font-family:'Nunito',sans-serif;font-weight:900;font-size:.95rem;color:var(--text)}}
+    .sg-guide-card-body{{font-size:.8rem;color:var(--text);line-height:1.6}}
+    .sg-guide-card-body strong{{color:var(--brand)}}
+    .sg-guide-card-body em{{color:var(--muted);font-style:normal;font-size:.75rem}}
+    .sg-guide-tag{{display:inline-block;font-size:.68rem;font-weight:700;background:var(--brand-lt);color:var(--brand);border:1px solid #bbf7d0;border-radius:10px;padding:2px 8px;margin:2px 2px 0 0}}
+    .sg-guide-table{{width:100%;border-collapse:collapse;font-size:.78rem;margin-top:6px}}
+    .sg-guide-table th{{text-align:left;color:var(--muted);font-weight:700;padding:4px 8px 4px 0;border-bottom:1px solid var(--border)}}
+    .sg-guide-table td{{padding:6px 8px 6px 0;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.45}}
+    .sg-guide-table td:first-child{{font-weight:700;white-space:nowrap;color:var(--brand)}}
+    .sg-guide-note{{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:10px 14px;font-size:.78rem;color:#92400e;line-height:1.55;margin-top:10px}}
+    body.dark .sg-guide-box{{background:var(--bg)}}
+    body.dark .sg-guide-head{{background:var(--bg)}}
+    body.dark .sg-guide-card{{background:#1a2d20;border-color:var(--border)}}
+    body.dark .sg-guide-note{{background:#1a1500;border-color:#713f12;color:#fde68a}}
     .export-popup-overlay{{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;display:flex;align-items:center;justify-content:center}}
     .export-popup-overlay.hidden{{display:none}}
     .export-popup-box{{background:#e8e0d0;border:3px solid #4a7030;border-radius:20px;padding:28px 32px;text-align:center;max-width:320px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.4);animation:epPop .35s cubic-bezier(.175,.885,.32,1.275)}}
@@ -447,6 +476,7 @@ def build():
   <span class="export-bar-label">⬇ Export .docx:</span>
   <button class="btn-export-avail" onclick="showExportPopup('legit-available-guide.docx')">✅ Available Now ({len(all_p)} products)</button>
   <button class="btn-export-all"   onclick="showExportPopup('legit-master-guide.docx')">📦 Master Cache (all strains)</button>
+  <button class="btn-staff-guide"  onclick="openStaffGuide()" style="margin-left:auto">📖 Staff Guide</button>
 </div>
 
 <!-- Export popup -->
@@ -520,6 +550,17 @@ def build():
       Cards sort best → weakest match. Border color = strength at a glance.
     </div>
     <div id="moodsInfoCards"></div>
+  </div>
+</div>
+
+<!-- Staff guide modal -->
+<div class="sg-guide-overlay hidden" id="staffGuideModal" onclick="if(event.target===this)closeStaffGuide()">
+  <div class="sg-guide-box">
+    <div class="sg-guide-head">
+      <span class="sg-guide-title">📖 Staff Guide</span>
+      <button class="sg-guide-close" onclick="closeStaffGuide()">✕</button>
+    </div>
+    <div id="staffGuideContent"></div>
   </div>
 </div>
 
@@ -1183,7 +1224,7 @@ function showExportPopup(filename) {{
   }};
 }}
 
-document.addEventListener('keydown', e => {{ if (e.key === 'Escape') {{ closeModal(); closeDrawer(); closeMoodsInfo(); }} }});
+document.addEventListener('keydown', e => {{ if (e.key === 'Escape') {{ closeModal(); closeDrawer(); closeMoodsInfo(); closeStaffGuide(); }} }});
 
 // ── Moods info modal ──
 const MOOD_INFO = [
@@ -1230,6 +1271,108 @@ function openMoodsInfo() {{
 
 function closeMoodsInfo() {{
   document.getElementById('moodsInfoModal').classList.add('hidden');
+  document.body.style.overflow = '';
+}}
+
+// ── Staff guide modal ──
+function openStaffGuide() {{
+  const container = document.getElementById('staffGuideContent');
+  container.innerHTML = `
+    <div class="sg-guide-section">
+      <div class="sg-guide-section-title">📱 Using the Menu</div>
+      <div class="sg-guide-card">
+        <div class="sg-guide-card-head"><span class="sg-guide-card-icon">🗂️</span><span class="sg-guide-card-name">Category Tabs</span></div>
+        <div class="sg-guide-card-body">Tap <strong>Flower · Pre-Roll · Vapes · Edibles</strong> at the top to filter by type. Products added in the last 3 days appear in the <strong>✨ New</strong> section automatically.</div>
+      </div>
+      <div class="sg-guide-card">
+        <div class="sg-guide-card-head"><span class="sg-guide-card-icon">🔍</span><span class="sg-guide-card-name">Search</span></div>
+        <div class="sg-guide-card-body">The search bar scans everything — product names, terpenes, aroma descriptions, lineage, and therapeutic uses. Try:<br>
+          <span class="sg-guide-tag">anxiety</span><span class="sg-guide-tag">sleep</span><span class="sg-guide-tag">Myrcene</span><span class="sg-guide-tag">citrus</span><span class="sg-guide-tag">Cookies</span><span class="sg-guide-tag">PTSD</span>
+        </div>
+      </div>
+      <div class="sg-guide-card">
+        <div class="sg-guide-card-head"><span class="sg-guide-card-icon">🎯</span><span class="sg-guide-card-name">Mood Filter</span></div>
+        <div class="sg-guide-card-body">Tap any mood chip to score and sort every card 1–10 for that vibe. Border color shows match strength at a glance:<br><br>
+          <strong style="color:#16a34a">🟢 Green border</strong> — strong match (7+)<br>
+          <strong style="color:#ca8a04">🟡 Amber border</strong> — decent match (4–6)<br>
+          <strong style="color:#6b7280">⚫ Gray border</strong> — weak match (1–3)<br><br>
+          Tap <strong>ℹ️ How it works</strong> next to the mood chips for the full science breakdown.
+        </div>
+      </div>
+      <div class="sg-guide-card">
+        <div class="sg-guide-card-head"><span class="sg-guide-card-icon">🪟</span><span class="sg-guide-card-name">Strain Guide (Tap a Card)</span></div>
+        <div class="sg-guide-card-body">Tap any product card to open its full strain profile — lineage, therapeutic uses, aroma, terpenes, and general notes. Hit <strong>＋ Add to Profile</strong> to collect strains for a custom export.</div>
+      </div>
+    </div>
+
+    <div class="sg-guide-section">
+      <div class="sg-guide-section-title">🗂️ Where the Info Comes From</div>
+      <div class="sg-guide-card">
+        <div class="sg-guide-card-head"><span class="sg-guide-card-icon">💳</span><span class="sg-guide-card-name">Sweed POS — Product Data & Terpenes</span></div>
+        <div class="sg-guide-card-body">Name, brand, price, THC/CBD, weight, category, and <strong>terpenes</strong> all come directly from the Sweed POS system. Terpenes in particular come from the <strong>COA (Certificate of Analysis)</strong> each brand submits when they deliver product.<br><br>
+          <div class="sg-guide-note">⚠️ If terpenes look incomplete, the fix is in Sweed — update the COA data there and it'll reflect here on the next daily update (4:30 PM CST).</div>
+        </div>
+      </div>
+      <div class="sg-guide-card">
+        <div class="sg-guide-card-head"><span class="sg-guide-card-icon">🤖</span><span class="sg-guide-card-name">Claude AI — Strain Profiles</span></div>
+        <div class="sg-guide-card-body">When a new strain appears, Claude AI generates its profile using published strain databases and cannabis genetics research. It fills in:<br><br>
+          <span class="sg-guide-tag">Lineage</span><span class="sg-guide-tag">Therapeutic uses</span><span class="sg-guide-tag">Side effects</span><span class="sg-guide-tag">Aroma</span><span class="sg-guide-tag">Breeder notes</span><br><br>
+          Profiles are generated <em>once per strain</em> and stored. They won't change unless manually updated.
+        </div>
+      </div>
+      <div class="sg-guide-card">
+        <div class="sg-guide-card-head"><span class="sg-guide-card-icon">🔬</span><span class="sg-guide-card-name">Published Research — Mood Scoring</span></div>
+        <div class="sg-guide-card-body">Mood scores aren't invented — they're grounded in peer-reviewed pharmacology papers:<br><br>
+          <strong>Russo 2011</strong> (Br J Pharmacol) — cannabis terpene synergy and therapeutic applications<br>
+          <strong>Kamal et al. 2018</strong> (Front Neurosci) — terpene combinations driving anxiolytic effects<br>
+          <strong>Gertsch 2008</strong> (PNAS) — Caryophyllene as the only terpene that activates cannabinoid receptors (CB2)
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-guide-section">
+      <div class="sg-guide-section-title">🎯 How Mood Scores Are Calculated</div>
+      <div class="sg-guide-card">
+        <div class="sg-guide-card-body">Scores are <strong>position-weighted</strong> — terpene order on the COA reflects concentration (highest first). The dominant terpene contributes far more than a trace one:<br><br>
+          <table class="sg-guide-table">
+            <tr><th>COA Position</th><th>Points</th></tr>
+            <tr><td>1st (dominant)</td><td>4.0 pts</td></tr>
+            <tr><td>2nd</td><td>2.5 pts</td></tr>
+            <tr><td>3rd</td><td>1.5 pts</td></tr>
+            <tr><td>4th+ (minor)</td><td>0.75 pts</td></tr>
+          </table><br>
+          Example — <strong>Pain &amp; Body</strong>: Caryophyllene is the only terpene proven to activate CB2 receptors (pain/inflammation). Listed 1st → likely scores 7–8. Listed 3rd → scores 4–5. Absent → max 5 regardless of other terpenes.<br><br>
+          <em>Claude AI provides its own 1–10 rating using this same logic plus its knowledge of each strain. When Claude ratings exist, they take priority over the formula.</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-guide-section">
+      <div class="sg-guide-section-title">⬇️ Downloading Strain Guides</div>
+      <div class="sg-guide-card">
+        <div class="sg-guide-card-body">
+          <table class="sg-guide-table">
+            <tr><th>Button</th><th>Contents</th></tr>
+            <tr><td>✅ Available Now</td><td>Every product currently in stock, sorted Flower → Pre-Roll → Vapes</td></tr>
+            <tr><td>📦 Master Cache</td><td>Every strain ever enriched (including past products), same sort order</td></tr>
+          </table><br>
+          Click either button → popup appears → press <strong>Let's Go</strong> → <code>.docx</code> file downloads. Open in Microsoft Word or Google Docs.<br><br>
+          Documents rebuild automatically every day. A new strain added to Sweed today will appear in tomorrow's download.
+        </div>
+      </div>
+      <div class="sg-guide-card">
+        <div class="sg-guide-card-head"><span class="sg-guide-card-icon">📋</span><span class="sg-guide-card-name">Build a Custom Profile</span></div>
+        <div class="sg-guide-card-body">Tap any product card → press <strong>＋ Add to Profile</strong> → open the <strong>📋 My Profile</strong> button (bottom-right corner) → press <strong>⬇ Download Strain Guide</strong> to save an HTML file you can open in Word. Good for building a handpicked reference sheet for a specific customer or use case.</div>
+      </div>
+    </div>
+    <div style="height:20px"></div>
+  `;
+  document.getElementById('staffGuideModal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}}
+
+function closeStaffGuide() {{
+  document.getElementById('staffGuideModal').classList.add('hidden');
   document.body.style.overflow = '';
 }}
 
