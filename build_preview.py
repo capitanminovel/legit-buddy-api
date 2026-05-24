@@ -3,10 +3,11 @@ import json
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
 
-CST      = timezone(timedelta(hours=-6))
-DATA     = Path(__file__).parent / "docs" / "products.json"
-OUT      = Path(__file__).parent / "docs" / "index.html"
-NEW_DAYS = 2
+CST          = timezone(timedelta(hours=-6))
+DATA         = Path(__file__).parent / "docs" / "products.json"
+STRAINS_DATA = Path(__file__).parent / "docs" / "strains_enriched.json"
+OUT          = Path(__file__).parent / "docs" / "index.html"
+NEW_DAYS     = 2
 
 CAT_ICONS = {
     "flower":"🌿","pre-roll":"🚬","pre_roll":"🚬","preroll":"🚬",
@@ -45,7 +46,7 @@ def new_badge(first_seen):
     if d <= NEW_DAYS:   return f'<span class="recent-badge">New ({d}d ago)</span>'
     return ""
 
-def build_card(p):
+def build_card(p, key):
     ci = cat_icon(p.get("category", ""))
     img = (f'<img src="{p["image"]}" alt="{p["name"]}" loading="lazy" onerror="this.parentNode.innerHTML=\'<div class=no-img>{ci}</div>\'">'
            if p.get("image")
@@ -86,13 +87,14 @@ def build_card(p):
     brand_h  = f'<div class="card-brand">{p["brand"]}</div>'   if p.get("brand")  else ""
 
     return f"""
-    <div class="card">
+    <div class="card" data-key="{key}" onclick="openModal('{key}')">
       <div class="card-img">{img}{badges}{potency}</div>
       <div class="card-body">
         {brand_h}
         <div class="card-name">{p["name"]}</div>
         {weight_h}{minor_h}{terp_h}{efx_h}
         <div class="price-section">{price_h}</div>
+        <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
     </div>"""
 
@@ -100,27 +102,29 @@ def build():
     with open(DATA) as f:
         db = json.load(f)
 
+    strains = {}
+    if STRAINS_DATA.exists():
+        with open(STRAINS_DATA) as f:
+            strains = json.load(f)
+
     now     = datetime.now(CST)
     ts      = now.strftime("%a, %b %d %Y — %I:%M %p CST")
-    TARGET = ("flower", "pre-roll", "vapes", "edibles")
-    all_p  = [(k,v) for k,v in db["products"].items()
-              if v.get("in_stock", True) and (v.get("category","").lower() in TARGET)]
+    TARGET  = ("flower", "pre-roll", "vapes", "edibles")
+    all_p   = [(k,v) for k,v in db["products"].items()
+               if v.get("in_stock", True) and (v.get("category","").lower() in TARGET)]
 
-    # Sort: newest first, then alpha
     all_p.sort(key=lambda x: (age_days(x[1].get("first_seen","")), x[1].get("name","")))
 
-    # Group by category
     from collections import defaultdict
     cats = defaultdict(list)
-    for _, p in all_p:
-        cats[p.get("category") or "Other"].append(p)
+    for k, p in all_p:
+        cats[p.get("category") or "Other"].append((k, p))
 
-    # New arrivals (within NEW_DAYS)
-    new_items = [p for _, p in all_p if age_days(p.get("first_seen","")) <= NEW_DAYS]
+    new_items = [(k, p) for k, p in all_p if age_days(p.get("first_seen","")) <= NEW_DAYS]
 
     new_section = ""
     if new_items:
-        new_cards = "".join(build_card(p) for p in new_items)
+        new_cards = "".join(build_card(p, k) for k, p in new_items)
         new_section = f"""
     <section class="section new-arrivals-section" data-cat="all">
       <div class="new-arrivals-head">
@@ -131,18 +135,16 @@ def build():
     </section>
     <div class="section-divider" data-cat="all"></div>"""
 
-    # Tab buttons
     tab_btns = '<button class="tab on" data-cat="all" onclick="filterCat(this)">All Products</button>\n'
     tab_btns += "\n".join(
         f'<button class="tab" data-cat="{c.lower()}" onclick="filterCat(this)">{cat_icon(c)} {c}</button>'
         for c in sorted(cats)
     )
 
-    # Category sections
     sections = ""
     for cat in sorted(cats):
-        items   = cats[cat]
-        cards   = "".join(build_card(p) for p in items)
+        items = cats[cat]
+        cards = "".join(build_card(p, k) for k, p in items)
         sections += f"""
     <section class="section" data-cat="{cat.lower()}">
       <div class="section-head">
@@ -152,6 +154,10 @@ def build():
       <div class="grid">{cards}</div>
     </section>"""
 
+    # Embed all product data + strain enrichment as JS
+    products_js = json.dumps({k: v for k, v in db["products"].items()}, ensure_ascii=False)
+    strains_js  = json.dumps(strains, ensure_ascii=False)
+
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -160,7 +166,7 @@ def build():
   <title>MN Legit Cannabis – South Metro Menu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
     :root{{
@@ -168,6 +174,8 @@ def build():
       --border:#e5e7eb;--bg:#f3f4f6;--white:#ffffff;
       --indica:#7c3aed;--sativa:#d97706;--hybrid:#0891b2;--cbd:#2563eb;--cbg:#6366f1;
       --new:#16a34a;--radius:10px;
+      --sg-green:#3d5c2e;--sg-pink:#e88fa2;--sg-cream:#f5f0e8;
+      --sg-dark:#2a3f1f;--sg-border:#4a7030;
     }}
     body{{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px}}
     .top-bar{{background:var(--brand);color:#fff;text-align:center;font-size:.75rem;padding:6px;letter-spacing:.3px}}
@@ -185,14 +193,16 @@ def build():
     .tab.on{{color:var(--brand);border-bottom-color:var(--brand)}}
     .legend{{display:flex;gap:14px;flex-wrap:wrap;align-items:center;padding:10px 24px;background:var(--white);border-bottom:1px solid var(--border);font-size:.74rem;color:var(--muted)}}
     .legend-item{{display:flex;align-items:center;gap:5px}}
-    main{{max-width:1400px;margin:0 auto;padding:28px 24px 60px}}
+    main{{max-width:1400px;margin:0 auto;padding:28px 24px 100px}}
     .section{{margin-bottom:44px}}
     .section-head{{display:flex;align-items:baseline;gap:10px;margin-bottom:18px}}
     .section-title{{font-size:1.1rem;font-weight:700}}
     .section-count{{font-size:.8rem;color:var(--muted)}}
     .grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}}
-    .card{{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .15s,transform .15s}}
-    .card:hover{{box-shadow:0 4px 16px rgba(0,0,0,.10);transform:translateY(-2px)}}
+    .card{{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .15s,transform .15s;cursor:pointer}}
+    .card:hover{{box-shadow:0 4px 16px rgba(0,0,0,.12);transform:translateY(-2px)}}
+    .card:hover .card-detail-hint{{opacity:1}}
+    .card-detail-hint{{font-size:.67rem;color:var(--brand);font-weight:600;text-align:center;padding:4px 0 0;opacity:0;transition:opacity .15s;letter-spacing:.2px}}
     .card-img{{position:relative;background:#f9fafb;border-bottom:1px solid var(--border);height:170px;overflow:hidden;display:flex;align-items:center;justify-content:center}}
     .card-img img{{width:100%;height:100%;object-fit:cover;display:block}}
     .no-img{{font-size:3.2rem;color:#d1d5db}}
@@ -227,8 +237,61 @@ def build():
     .section-divider{{height:2px;background:linear-gradient(90deg,var(--brand-lt),transparent);margin:0 0 36px;border-radius:1px}}
     .hidden{{display:none!important}}
     @media(max-width:640px){{
-      header{{padding:0 14px}}.tabs{{padding:0 14px}}main{{padding:18px 14px 50px}}.legend{{padding:10px 14px}}
+      header{{padding:0 14px}}.tabs{{padding:0 14px}}main{{padding:18px 14px 100px}}.legend{{padding:10px 14px}}
       .grid{{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px}}.card-img{{height:140px}}
+    }}
+
+    /* ── Modal overlay ── */
+    .modal-overlay{{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .2s}}
+    .modal-overlay.open{{opacity:1;pointer-events:all}}
+    .modal-box{{background:#e8e0d0;border-radius:18px;max-width:620px;width:100%;max-height:90vh;overflow-y:auto;position:relative;transform:scale(.95);transition:transform .2s;font-family:'Nunito Sans',sans-serif}}
+    .modal-overlay.open .modal-box{{transform:scale(1)}}
+    .modal-close{{position:sticky;top:12px;float:right;margin:12px 16px 0 0;background:var(--sg-green);color:var(--sg-pink);border:none;border-radius:50%;width:32px;height:32px;font-size:1.1rem;cursor:pointer;font-weight:900;line-height:32px;text-align:center;z-index:10;flex-shrink:0}}
+    .modal-close:hover{{background:var(--sg-dark)}}
+    .modal-inner{{padding:16px 22px 22px;clear:both}}
+
+    /* ── Strain card (inside modal) — matches legit_strain_guide.html ── */
+    .sg-card{{background:white;border:3px solid var(--sg-border);border-radius:16px;padding:18px 22px;margin-bottom:14px}}
+    .sg-name{{font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;text-align:center;text-transform:uppercase;letter-spacing:.05em;color:var(--sg-dark);margin-bottom:2px}}
+    .sg-type{{text-align:center;font-size:12.5px;font-weight:700;color:#555;margin-bottom:4px}}
+    .sg-supplier{{display:block;background:var(--sg-green);color:var(--sg-pink);font-family:'Nunito',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;border-radius:20px;padding:3px 10px;width:fit-content;margin:0 auto 10px}}
+    .sg-divider{{border:none;border-top:2px solid var(--sg-border);margin:8px 0 12px}}
+    .sg-row{{font-size:12.5px;line-height:1.55;margin-bottom:4px;color:#222}}
+    .sg-row strong{{font-weight:700;color:var(--sg-dark);font-family:'Nunito',sans-serif;font-size:12.5px}}
+    .sg-thc-cbd{{display:flex;gap:8px;justify-content:center;margin-bottom:8px;flex-wrap:wrap}}
+    .sg-pill{{font-size:11px;font-weight:700;padding:2px 10px;border-radius:20px;font-family:'Nunito',sans-serif}}
+    .sg-pill.thc{{background:#16a34a;color:#fff}}.sg-pill.cbd{{background:#2563eb;color:#fff}}
+    .sg-price{{text-align:center;font-size:13px;font-weight:700;color:var(--sg-dark);margin-bottom:6px}}
+    .modal-actions{{display:flex;gap:10px;margin-top:16px;justify-content:center;flex-wrap:wrap}}
+    .btn-add-profile{{background:var(--sg-green);color:var(--sg-pink);border:none;border-radius:24px;padding:10px 22px;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;transition:background .15s}}
+    .btn-add-profile:hover{{background:var(--sg-dark)}}
+    .btn-add-profile.added{{background:#6b7280;color:#fff}}
+    .btn-close-modal{{background:transparent;color:var(--sg-green);border:2px solid var(--sg-green);border-radius:24px;padding:10px 22px;font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}}
+
+    /* ── Profile floating button ── */
+    .profile-fab{{position:fixed;bottom:28px;right:24px;background:var(--sg-green);color:var(--sg-pink);border:none;border-radius:30px;padding:12px 20px;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.25);z-index:500;display:none;align-items:center;gap:8px;transition:background .15s,transform .1s}}
+    .profile-fab:hover{{background:var(--sg-dark);transform:scale(1.04)}}
+    .profile-fab-count{{background:var(--sg-pink);color:var(--sg-dark);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:900}}
+
+    /* ── Profile drawer ── */
+    .profile-drawer{{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1100;display:none;align-items:flex-end;justify-content:center}}
+    .profile-drawer.open{{display:flex}}
+    .profile-box{{background:#e8e0d0;width:100%;max-width:680px;max-height:85vh;border-radius:18px 18px 0 0;overflow-y:auto;padding:0 0 30px}}
+    .profile-header{{display:flex;align-items:center;justify-content:space-between;padding:18px 22px 14px;background:#e8e0d0;position:sticky;top:0;border-bottom:2px solid var(--sg-border)}}
+    .profile-header-title{{font-family:'Nunito',sans-serif;font-weight:900;font-size:18px;color:var(--sg-dark);text-transform:uppercase;letter-spacing:.05em}}
+    .profile-header-actions{{display:flex;gap:8px;flex-wrap:wrap}}
+    .btn-export{{background:var(--sg-green);color:var(--sg-pink);border:none;border-radius:20px;padding:8px 16px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}}
+    .btn-export:hover{{background:var(--sg-dark)}}
+    .btn-clear{{background:transparent;color:#888;border:1px solid #ccc;border-radius:20px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;cursor:pointer}}
+    .btn-close-drawer{{background:transparent;color:var(--sg-green);border:2px solid var(--sg-green);border-radius:20px;padding:8px 14px;font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;text-transform:uppercase;cursor:pointer}}
+    .profile-cards{{padding:16px 18px 0}}
+    .profile-empty{{text-align:center;padding:40px;color:#888;font-family:'Nunito',sans-serif;font-weight:700;font-size:14px}}
+    .profile-item-remove{{position:absolute;top:10px;right:12px;background:transparent;border:none;color:#aaa;font-size:18px;cursor:pointer;font-weight:700;line-height:1}}
+    .profile-item-remove:hover{{color:#e53e3e}}
+    @media(max-width:640px){{
+      .modal-box{{max-height:95vh;border-radius:14px}}
+      .profile-box{{max-height:92vh}}
+      .modal-inner{{padding:12px 14px 18px}}
     }}
   </style>
 </head>
@@ -253,11 +316,227 @@ def build():
   <div class="legend-item"><span class="strain-badge strain-cbd">CBD</span></div>
   <div class="legend-item"><span class="new-badge">New Today</span> Added today</div>
   <div class="legend-item"><span class="recent-badge">New (2d)</span> Within 3 days</div>
+  <div class="legend-item" style="margin-left:auto;color:var(--brand);font-weight:600">Tap any product for strain guide →</div>
 </div>
 <div class="tabs-wrap"><div class="tabs" id="tabs">{tab_btns}</div></div>
 <main>{new_section}{sections}</main>
 <footer>Auto-updated daily at 4:30 PM CST &nbsp;·&nbsp; MN Legit Cannabis South Metro</footer>
+
+<!-- Strain modal -->
+<div class="modal-overlay" id="strainModal" onclick="closeModalOutside(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-inner">
+      <div id="modalCard"></div>
+      <div class="modal-actions">
+        <button class="btn-add-profile" id="btnAddProfile" onclick="toggleProfile()">＋ Add to Profile</button>
+        <button class="btn-close-modal" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Profile drawer -->
+<div class="profile-drawer" id="profileDrawer">
+  <div class="profile-box">
+    <div class="profile-header">
+      <div class="profile-header-title">📋 Strain Profile</div>
+      <div class="profile-header-actions">
+        <button class="btn-export" onclick="exportGuide()">⬇ Download Strain Guide</button>
+        <button class="btn-clear" onclick="clearProfile()">Clear All</button>
+        <button class="btn-close-drawer" onclick="closeDrawer()">Close</button>
+      </div>
+    </div>
+    <div class="profile-cards" id="profileCards">
+      <div class="profile-empty" id="profileEmpty">No strains added yet.<br>Tap any product card, then "Add to Profile."</div>
+    </div>
+  </div>
+</div>
+
+<!-- Floating profile button -->
+<button class="profile-fab" id="profileFab" onclick="openDrawer()">
+  📋 My Profile <span class="profile-fab-count" id="fabCount">0</span>
+</button>
+
 <script>
+const PRODUCTS = {products_js};
+const STRAINS  = {strains_js};
+
+let currentKey  = null;
+let profileKeys = [];
+
+function fmtList(arr) {{
+  if (!arr || !arr.length) return '—';
+  return arr.join(', ');
+}}
+
+function buildSgCard(key, forExport) {{
+  const p = PRODUCTS[key] || {{}};
+  const s = STRAINS[key]  || {{}};
+  const thcPill = p.thc ? `<span class="sg-pill thc">THC ${{p.thc}}</span>` : '';
+  const cbdPill = p.cbd ? `<span class="sg-pill cbd">CBD ${{p.cbd}}</span>` : '';
+  const pills   = (thcPill || cbdPill) ? `<div class="sg-thc-cbd">${{thcPill}}${{cbdPill}}</div>` : '';
+  const price   = p.price ? `<div class="sg-price">${{p.price}}${{p.weight ? ' · ' + p.weight : ''}}</div>` : '';
+  const removeBtn = forExport ? '' : `<button class="profile-item-remove" onclick="removeFromProfile('${{key}}')" title="Remove">✕</button>`;
+
+  const rows = [
+    s.lineage     ? `<div class="sg-row"><strong>Lineage:</strong> ${{s.lineage}}</div>` : '',
+    p.effects?.length ? `<div class="sg-row"><strong>Effects:</strong> ${{fmtList(p.effects)}}</div>` : '',
+    p.flavors?.length ? `<div class="sg-row"><strong>Flavors:</strong> ${{fmtList(p.flavors)}}</div>` : '',
+    p.terpenes?.length ? `<div class="sg-row"><strong>Terpenes:</strong> ${{fmtList(p.terpenes)}}</div>` : '',
+    s.therapeutic ? `<div class="sg-row"><strong>Therapeutic:</strong> ${{s.therapeutic}}</div>` : '',
+    s.negative    ? `<div class="sg-row"><strong>Negative:</strong> ${{s.negative}}</div>` : '',
+    s.aroma       ? `<div class="sg-row"><strong>Aroma:</strong> ${{s.aroma}}</div>` : '',
+    s.misc        ? `<div class="sg-row"><strong>Misc:</strong> ${{s.misc}}</div>` : '',
+  ].join('');
+
+  return `
+  <div class="sg-card" style="position:relative">
+    ${{removeBtn}}
+    <div class="sg-name">${{p.name || 'Unknown'}}</div>
+    <div class="sg-type">${{p.strain_type ? '— ' + p.strain_type : ''}}</div>
+    <span class="sg-supplier">${{p.brand || 'Unknown'}}</span>
+    ${{pills}}${{price}}
+    <hr class="sg-divider">
+    ${{rows}}
+  </div>`;
+}}
+
+function openModal(key) {{
+  currentKey = key;
+  const p = PRODUCTS[key] || {{}};
+  document.getElementById('modalCard').innerHTML = buildSgCard(key, false);
+  const btn = document.getElementById('btnAddProfile');
+  const inProfile = profileKeys.includes(key);
+  btn.textContent = inProfile ? '✓ In Profile' : '＋ Add to Profile';
+  btn.classList.toggle('added', inProfile);
+  document.getElementById('strainModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}}
+
+function closeModal() {{
+  document.getElementById('strainModal').classList.remove('open');
+  document.body.style.overflow = '';
+}}
+
+function closeModalOutside(e) {{
+  if (e.target === document.getElementById('strainModal')) closeModal();
+}}
+
+function toggleProfile() {{
+  if (!currentKey) return;
+  const idx = profileKeys.indexOf(currentKey);
+  if (idx === -1) {{
+    profileKeys.push(currentKey);
+  }} else {{
+    profileKeys.splice(idx, 1);
+  }}
+  const btn = document.getElementById('btnAddProfile');
+  const inProfile = profileKeys.includes(currentKey);
+  btn.textContent = inProfile ? '✓ In Profile' : '＋ Add to Profile';
+  btn.classList.toggle('added', inProfile);
+  updateFab();
+}}
+
+function removeFromProfile(key) {{
+  profileKeys = profileKeys.filter(k => k !== key);
+  updateFab();
+  renderProfileCards();
+}}
+
+function updateFab() {{
+  const fab = document.getElementById('profileFab');
+  document.getElementById('fabCount').textContent = profileKeys.length;
+  fab.style.display = profileKeys.length > 0 ? 'flex' : 'none';
+}}
+
+function renderProfileCards() {{
+  const el = document.getElementById('profileCards');
+  const empty = document.getElementById('profileEmpty');
+  if (profileKeys.length === 0) {{
+    empty.style.display = 'block';
+    el.innerHTML = '';
+    el.appendChild(empty);
+    return;
+  }}
+  empty.style.display = 'none';
+  el.innerHTML = profileKeys.map(k => buildSgCard(k, false)).join('');
+}}
+
+function openDrawer() {{
+  renderProfileCards();
+  document.getElementById('profileDrawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}}
+
+function closeDrawer() {{
+  document.getElementById('profileDrawer').classList.remove('open');
+  document.body.style.overflow = '';
+}}
+
+function clearProfile() {{
+  profileKeys = [];
+  updateFab();
+  renderProfileCards();
+}}
+
+function exportGuide() {{
+  if (profileKeys.length === 0) return;
+  const cards = profileKeys.map(k => buildSgCard(k, true)).join('');
+  const today = new Date().toLocaleDateString('en-US', {{month:'long', day:'numeric', year:'numeric'}});
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legit Cannabis – Strain Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{{--green:#3d5c2e;--pink:#e88fa2;--cream:#f5f0e8;--dark-green:#2a3f1f;--border-green:#4a7030;--text:#1a1a1a}}
+  *{{box-sizing:border-box;margin:0;padding:0}}
+  body{{background:#e8e0d0;font-family:'Nunito Sans',sans-serif;padding:24px 16px;color:var(--text)}}
+  .page{{max-width:720px;margin:0 auto}}
+  .header{{display:flex;align-items:center;gap:16px;margin-bottom:28px}}
+  .logo-badge{{background:var(--green);border-radius:14px;padding:10px 16px;display:flex;align-items:center;gap:8px}}
+  .logo-badge .leaf{{font-size:20px}}
+  .logo-badge .name{{font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;color:var(--pink);line-height:1.1;letter-spacing:.02em;text-transform:uppercase}}
+  .header-title{{font-family:'Nunito',sans-serif;font-weight:900;font-size:26px;color:var(--dark-green);letter-spacing:.04em;text-transform:uppercase}}
+  .header-sub{{font-size:12px;color:var(--green);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}}
+  .sg-card{{background:white;border:3px solid var(--border-green);border-radius:16px;padding:18px 22px;margin-bottom:18px}}
+  .sg-name{{font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;text-align:center;text-transform:uppercase;letter-spacing:.05em;color:var(--dark-green);margin-bottom:2px}}
+  .sg-type{{text-align:center;font-size:12.5px;font-weight:700;color:#555;margin-bottom:4px}}
+  .sg-supplier{{display:block;background:var(--green);color:var(--pink);font-family:'Nunito',sans-serif;font-weight:800;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;border-radius:20px;padding:3px 10px;width:fit-content;margin:0 auto 10px}}
+  .sg-thc-cbd{{display:flex;gap:8px;justify-content:center;margin-bottom:8px;flex-wrap:wrap}}
+  .sg-pill{{font-size:11px;font-weight:700;padding:2px 10px;border-radius:20px;font-family:'Nunito',sans-serif}}
+  .sg-pill.thc{{background:#16a34a;color:#fff}}.sg-pill.cbd{{background:#2563eb;color:#fff}}
+  .sg-price{{text-align:center;font-size:13px;font-weight:700;color:var(--dark-green);margin-bottom:6px}}
+  .sg-divider{{border:none;border-top:2px solid var(--border-green);margin:8px 0 12px}}
+  .sg-row{{font-size:12.5px;line-height:1.55;margin-bottom:4px;color:#222}}
+  .sg-row strong{{font-weight:700;color:var(--dark-green);font-family:'Nunito',sans-serif;font-size:12.5px}}
+  .profile-item-remove{{display:none}}
+  @media print{{body{{background:white;padding:0}}.sg-card{{break-inside:avoid}}}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="logo-badge"><span class="leaf">🍃</span><div class="name">LEGIT<br>CANNABIS</div></div>
+    <div><div class="header-title">Strain Guide</div><div class="header-sub">Staff Reference · ${{today}}</div></div>
+  </div>
+  ${{cards}}
+</div>
+</body>
+</html>`;
+
+  const blob = new Blob([html], {{type: 'text/html;charset=utf-8'}});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = 'legit-strain-guide.html';
+  a.click();
+  URL.revokeObjectURL(url);
+}}
+
 function filterCat(btn) {{
   document.querySelectorAll('.tab').forEach(b => b.classList.remove('on'));
   btn.classList.add('on');
@@ -267,6 +546,8 @@ function filterCat(btn) {{
   }});
   window.scrollTo({{top:0,behavior:'smooth'}});
 }}
+
+document.addEventListener('keydown', e => {{ if (e.key === 'Escape') {{ closeModal(); closeDrawer(); }} }});
 </script>
 </body>
 </html>"""
