@@ -6,7 +6,7 @@ from datetime import datetime, timezone, timedelta
 CST      = timezone(timedelta(hours=-6))
 DATA     = Path(__file__).parent / "docs" / "products.json"
 OUT      = Path(__file__).parent / "docs" / "index.html"
-NEW_DAYS = 3
+NEW_DAYS = 2
 
 CAT_ICONS = {
     "flower":"🌿","pre-roll":"🚬","pre_roll":"🚬","preroll":"🚬",
