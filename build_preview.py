@@ -1179,7 +1179,7 @@ function showExportPopup(filename) {{
       document.getElementById('exportPopup').classList.add('hidden');
       btn.disabled = false;
       if (file) window.open(file, '_blank');
-    }}, 1000);
+    }}, 3000);
   }};
 }}
 
