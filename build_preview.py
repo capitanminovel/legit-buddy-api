@@ -445,6 +445,7 @@ def build():
         <button class="mood-chip" data-mood="get-social"     onclick="filterMood(this)" title="Limonene + Terpinolene — euphoria, giggles, sociability without heavy sedation">😄 Get Social</button>
         <button class="mood-chip" data-mood="pain-body"      onclick="filterMood(this)" title="Caryophyllene (CB2 agonist) + Myrcene + Humulene — anti-inflammatory, analgesic, muscle relaxant">💆 Pain &amp; Body</button>
         <button class="mood-chip" data-mood="just-happy"     onclick="filterMood(this)" title="Limonene + Linalool — balanced euphoria and body warmth">✨ Just Happy</button>
+        <button class="mood-chip" data-mood="aphrodisiac"    onclick="filterMood(this)" title="Limonene (dopamine↑) + Linalool (anxiety↓) + Geraniol (rose terpene) + Caryophyllene (CB2 tactile) — 3,000 years of documented use (Russo 2011)">🌹 Aphrodisiac</button>
       </div>
       <button class="mood-clear hidden" id="moodClear" onclick="clearMood()">✕ Mood</button>
     </div>
@@ -555,6 +556,12 @@ const MOOD_MAP = {{
     science: 'Limonene + Linalool + Terpinolene — balanced euphoria and body warmth',
     effects:  ['Happy','Euphoric','Blissful','Giggly','Tingly','Uplifting'],
     terpenes: ['Limonene','Linalool','Terpinolene']
+  }},
+  'aphrodisiac': {{
+    label: 'Aphrodisiac',
+    science: 'Limonene (dopamine/serotonin ↑) + Linalool (anxiety ↓, the #1 arousal blocker) + Geraniol (rose terpene, historic aphrodisiac) + Caryophyllene (CB2 tactile sensitivity) + Terpinolene (lowers inhibitions). Cannabis aphrodisiac use documented across cultures for 3,000+ years — Russo 2011.',
+    effects:  ['Aroused','Tingly','Euphoric','Blissful','Happy'],
+    terpenes: ['Limonene','Linalool','Geraniol','Terpinolene','Ocimene','Caryophyllene']
   }}
 }};
 
@@ -570,17 +577,17 @@ let searchTimer  = null;
 // Scraped "effects" from the dispensary page are NOT used anywhere.
 const TERPENE_EFFECTS = {{
   'Myrcene':       ['Relaxing','Sleepy','Body High','Calming','Hungry'],
-  'Limonene':      ['Uplifting','Happy','Euphoric','Energetic','Focused'],
-  'Caryophyllene': ['Calming','Relaxing','Body High','Tingly'],
-  'Linalool':      ['Sleepy','Calming','Relaxing','Chill','Blissful'],
+  'Limonene':      ['Uplifting','Happy','Euphoric','Energetic','Focused','Aroused'],
+  'Caryophyllene': ['Calming','Relaxing','Body High','Tingly','Aroused'],
+  'Linalool':      ['Sleepy','Calming','Relaxing','Chill','Blissful','Aroused'],
   'Pinene':        ['Focused','Creative','Energetic','Uplifting','Cerebral'],
   'B Pinene':      ['Focused','Creative','Energetic','Uplifting','Cerebral'],
-  'Terpinolene':   ['Creative','Uplifting','Euphoric','Energetic','Cerebral','Giggly'],
+  'Terpinolene':   ['Creative','Uplifting','Euphoric','Energetic','Cerebral','Giggly','Aroused'],
   'Humulene':      ['Calming','Body High'],
-  'Ocimene':       ['Uplifting','Energetic','Social'],
+  'Ocimene':       ['Uplifting','Energetic','Social','Aroused'],
   'Valencene':     ['Uplifting','Happy','Social'],
   'Bisabolol':     ['Calming','Relaxing','Blissful'],
-  'Geraniol':      ['Calming','Happy','Blissful'],
+  'Geraniol':      ['Calming','Happy','Blissful','Aroused','Tingly'],
   'Terpinene':     ['Uplifting','Energetic'],
 }};
 
