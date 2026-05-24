@@ -269,6 +269,12 @@ def build():
     .footer-sticky .fs-stock{{font-weight:700;color:var(--brand)}}
     .footer-sticky .fs-updated{{font-size:.68rem}}
     @media(min-width:768px){{.footer-sticky{{display:none}}}}
+    @media(max-width:600px){{
+      .header-meta{{display:none}}
+      .mascot-wrap img{{height:36px}}
+      .dark-toggle{{padding:4px 8px;font-size:.7rem}}
+      .header-inner{{gap:10px}}
+    }}
     .new-arrivals-section{{background:linear-gradient(135deg,#f0fdf4,#ecfdf5);border:2px solid #86efac;border-radius:12px;padding:20px;margin-bottom:32px}}
     .new-arrivals-head{{display:flex;align-items:baseline;gap:10px;margin-bottom:18px}}
     .new-arrivals-title{{font-size:1.15rem;font-weight:700;color:var(--new)}}
