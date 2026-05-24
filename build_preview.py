@@ -358,13 +358,13 @@ def build():
 <header>
   <div class="header-inner">
     <div class="mascot-wrap">
-      <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExb216bXVxcmVpMm1zNTR3NWxob3hoeXloYWFlbWswcW13NnZ3MnlsMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/5C29m5sRSYch78Ko3B/giphy.gif" alt="" loading="lazy">
+      <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHAxcXpnaHdqN3QyaGtmaDM5azkyd2hlZndvNHZocncwamd6Y2Z5aSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VRvFAP4CXxUQw/giphy.gif" alt="" loading="lazy">
     </div>
     <a class="logo" href="#">
       <div><div>Legit Cannabis</div><div style="font-size:.7rem;font-weight:400;color:var(--muted)">South Metro</div></div>
     </a>
     <div class="mascot-wrap">
-      <img class="mascot-flip" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExb216bXVxcmVpMm1zNTR3NWxob3hoeXloYWFlbWswcW13NnZ3MnlsMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/5C29m5sRSYch78Ko3B/giphy.gif" alt="" loading="lazy">
+      <img class="mascot-flip" src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHAxcXpnaHdqN3QyaGtmaDM5azkyd2hlZndvNHZocncwamd6Y2Z5aSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VRvFAP4CXxUQw/giphy.gif" alt="" loading="lazy">
     </div>
     <button class="dark-toggle" id="darkToggle" onclick="toggleDark()">🌙 Dark</button>
     <div class="header-meta">
