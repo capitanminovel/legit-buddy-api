@@ -61,11 +61,8 @@ def build_card(p, key):
     cbd_pill = f'<span class="potency-pill cbd">CBD {p["cbd"]}</span>' if p.get("cbd") else ""
     potency  = f'<div class="potency-row">{thc_pill}{cbd_pill}</div>' if (thc_pill or cbd_pill) else ""
 
-    terps  = "".join(f'<span class="terp">{t}</span>' for t in (p.get("terpenes") or [])[:3])
+    terps  = "".join(f'<span class="terp">{t}</span>' for t in (p.get("terpenes") or [])[:4])
     terp_h = f'<div class="terp-row">{terps}</div>' if terps else ""
-
-    efx   = "".join(f'<span class="effect">{e}</span>' for e in (p.get("effects") or [])[:3])
-    efx_h = f'<div class="effects-row">{efx}</div>' if efx else ""
 
     minors = " · ".join(filter(None, [
         f'CBG {p["cbg"]}' if p.get("cbg") else "",
@@ -86,16 +83,15 @@ def build_card(p, key):
     weight_h = f'<div class="card-weight">{p["weight"]}</div>' if p.get("weight") else ""
     brand_h  = f'<div class="card-brand">{p["brand"]}</div>'   if p.get("brand")  else ""
 
-    effects_csv  = ",".join(p.get("effects")  or [])
     terpenes_csv = ",".join(p.get("terpenes") or [])
 
     return f"""
-    <div class="card" data-key="{key}" data-effects="{effects_csv}" data-terpenes="{terpenes_csv}" onclick="openModal('{key}')">
+    <div class="card" data-key="{key}" data-terpenes="{terpenes_csv}" onclick="openModal('{key}')">
       <div class="card-img">{img}{badges}{potency}</div>
       <div class="card-body">
         {brand_h}
         <div class="card-name">{p["name"]}</div>
-        {weight_h}{minor_h}{terp_h}{efx_h}
+        {weight_h}{minor_h}{terp_h}
         <div class="price-section">{price_h}</div>
         <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
@@ -483,11 +479,36 @@ let activeCat    = 'all';
 let activeSearch = '';
 let searchTimer  = null;
 
+// Research-backed terpene → effect map (Russo 2011, Kamal 2018, Smith 2022)
+// Terpenes come from COA data — the only source we fully trust.
+// Scraped "effects" from the dispensary page are NOT used anywhere.
+const TERPENE_EFFECTS = {{
+  'Myrcene':       ['Relaxing','Sleepy','Body High','Calming','Hungry'],
+  'Limonene':      ['Uplifting','Happy','Euphoric','Energetic','Focused'],
+  'Caryophyllene': ['Calming','Relaxing','Body High','Tingly'],
+  'Linalool':      ['Sleepy','Calming','Relaxing','Chill','Blissful'],
+  'Pinene':        ['Focused','Creative','Energetic','Uplifting','Cerebral'],
+  'B Pinene':      ['Focused','Creative','Energetic','Uplifting','Cerebral'],
+  'Terpinolene':   ['Creative','Uplifting','Euphoric','Energetic','Cerebral','Giggly'],
+  'Humulene':      ['Calming','Body High'],
+  'Ocimene':       ['Uplifting','Energetic','Social'],
+  'Valencene':     ['Uplifting','Happy','Social'],
+  'Bisabolol':     ['Calming','Relaxing','Blissful'],
+  'Geraniol':      ['Calming','Happy','Blissful'],
+  'Terpinene':     ['Uplifting','Energetic'],
+}};
+
+function derivedEffects(terpenes) {{
+  const set = new Set();
+  terpenes.forEach(t => (TERPENE_EFFECTS[t] || []).forEach(e => set.add(e)));
+  return [...set];
+}}
+
 function moodScore(card, mood) {{
   if (!mood) return 0;
-  const fx = (card.dataset.effects  || '').split(',').filter(Boolean);
-  const tx = (card.dataset.terpenes || '').split(',').filter(Boolean);
-  return mood.effects.filter(e  => fx.includes(e)).length * 2
+  const tx      = (card.dataset.terpenes || '').split(',').filter(Boolean);
+  const derived = derivedEffects(tx);
+  return mood.effects.filter(e  => derived.includes(e)).length * 2
        + mood.terpenes.filter(t => tx.includes(t)).length;
 }}
 
@@ -512,15 +533,17 @@ function buildSgCard(key, forExport) {{
   const price   = p.price ? `<div class="sg-price">${{p.price}}${{p.weight ? ' · ' + p.weight : ''}}</div>` : '';
   const removeBtn = forExport ? '' : `<button class="profile-item-remove" onclick="removeFromProfile('${{key}}')" title="Remove">✕</button>`;
 
+  const tx      = p.terpenes || [];
+  const derived = derivedEffects(tx);
   const rows = [
-    s.lineage     ? `<div class="sg-row"><strong>Lineage:</strong> ${{s.lineage}}</div>` : '',
-    p.effects?.length ? `<div class="sg-row"><strong>Effects:</strong> ${{fmtList(p.effects)}}</div>` : '',
+    s.lineage    ? `<div class="sg-row"><strong>Lineage:</strong> ${{s.lineage}}</div>` : '',
+    derived.length ? `<div class="sg-row"><strong>Effects</strong> <span style="font-size:10px;color:#888;font-weight:400">(from COA terpenes)</span><strong>:</strong> ${{fmtList(derived)}}</div>` : '',
     p.flavors?.length ? `<div class="sg-row"><strong>Flavors:</strong> ${{fmtList(p.flavors)}}</div>` : '',
-    p.terpenes?.length ? `<div class="sg-row"><strong>Terpenes:</strong> ${{fmtList(p.terpenes)}}</div>` : '',
+    tx.length    ? `<div class="sg-row"><strong>Terpenes:</strong> ${{fmtList(tx)}}</div>` : '',
     s.therapeutic ? `<div class="sg-row"><strong>Therapeutic:</strong> ${{s.therapeutic}}</div>` : '',
-    s.negative    ? `<div class="sg-row"><strong>Negative:</strong> ${{s.negative}}</div>` : '',
-    s.aroma       ? `<div class="sg-row"><strong>Aroma:</strong> ${{s.aroma}}</div>` : '',
-    s.misc        ? `<div class="sg-row"><strong>Misc:</strong> ${{s.misc}}</div>` : '',
+    s.negative   ? `<div class="sg-row"><strong>Negative:</strong> ${{s.negative}}</div>` : '',
+    s.aroma      ? `<div class="sg-row"><strong>Aroma:</strong> ${{s.aroma}}</div>` : '',
+    s.misc       ? `<div class="sg-row"><strong>Misc:</strong> ${{s.misc}}</div>` : '',
   ].join('');
 
   return `
@@ -647,6 +670,7 @@ function exportGuide() {{
   .sg-row{{font-size:12.5px;line-height:1.55;margin-bottom:4px;color:#222}}
   .sg-row strong{{font-weight:700;color:var(--dark-green);font-family:'Nunito',sans-serif;font-size:12.5px}}
   .profile-item-remove{{display:none}}
+  .sg-row span{{font-size:10px;color:#888;font-weight:400}}
   @media print{{body{{background:white;padding:0}}.sg-card{{break-inside:avoid}}}}
 </style>
 </head>
@@ -683,26 +707,28 @@ function applyFilters() {{
     const section = card.closest('.section');
     const catOk = activeCat === 'all' || (section && section.dataset.cat === activeCat);
 
-    // Mood check — match on effects OR terpenes
+    // Mood check — driven entirely by COA terpenes, not dispensary effect labels
     let moodOk = true;
     if (mood) {{
-      const cardEffects  = (card.dataset.effects  || '').split(',').filter(Boolean);
-      const cardTerpenes = (card.dataset.terpenes || '').split(',').filter(Boolean);
-      moodOk = mood.effects.some(e  => cardEffects.includes(e))
-             || mood.terpenes.some(t => cardTerpenes.includes(t));
+      const tx      = (card.dataset.terpenes || '').split(',').filter(Boolean);
+      const derived = derivedEffects(tx);
+      moodOk = mood.effects.some(e  => derived.includes(e))
+             || mood.terpenes.some(t => tx.includes(t));
     }}
 
-    // Text search — searches name, brand, strain type, effects, terpenes,
-    // flavors, and the enriched therapeutic/aroma/misc/lineage fields
+    // Text search — terpenes (COA), derived effects (research), and enriched
+    // strain fields (therapeutic, aroma, misc, lineage).
+    // Scraped dispensary "effects" intentionally excluded — not trusted.
     let searchOk = true;
     if (q) {{
       const p = PRODUCTS[key] || {{}};
       const s = STRAINS[key]  || {{}};
+      const tx = (p.terpenes || []);
       const blob = [
         p.name, p.brand, p.strain_type,
-        (p.effects  || []).join(' '),
-        (p.terpenes || []).join(' '),
-        (p.flavors  || []).join(' '),
+        tx.join(' '),
+        derivedEffects(tx).join(' '),
+        (p.flavors || []).join(' '),
         s.lineage, s.therapeutic, s.negative, s.aroma, s.misc
       ].filter(Boolean).join(' ').toLowerCase();
       searchOk = blob.includes(q);
