@@ -694,6 +694,32 @@ function clearProfile() {{
   renderProfileCards();
 }}
 
+const EXPORT_POPUP_CSS = `
+  .welcome-overlay{{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;display:flex;align-items:center;justify-content:center;animation:fadeIn .3s ease}}
+  @keyframes fadeIn{{from{{opacity:0}}to{{opacity:1}}}}
+  .welcome-box{{background:#e8e0d0;border:3px solid #4a7030;border-radius:20px;padding:28px 32px;text-align:center;max-width:340px;width:90%;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.35);animation:popIn .35s cubic-bezier(.175,.885,.32,1.275)}}
+  @keyframes popIn{{from{{transform:scale(.7);opacity:0}}to{{transform:scale(1);opacity:1}}}}
+  .welcome-gif{{width:200px;height:200px;object-fit:cover;border-radius:14px;margin-bottom:14px;border:3px solid #4a7030}}
+  .welcome-title{{font-family:'Nunito',sans-serif;font-weight:900;font-size:20px;color:#2a3f1f;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}}
+  .welcome-sub{{font-size:13px;color:#3d5c2e;font-weight:600;margin-bottom:18px}}
+  .welcome-close{{background:#3d5c2e;color:#e88fa2;border:none;border-radius:20px;padding:9px 24px;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer}}
+  .welcome-close:hover{{background:#2a3f1f}}
+`;
+const EXPORT_POPUP_HTML = `
+<div class="welcome-overlay" id="welcomeOverlay" onclick="if(event.target===this)dismissWelcome()">
+  <div class="welcome-box">
+    <img class="welcome-gif" src="https://media.giphy.com/media/VK2JbAI71xTxlSVNNu/giphy.gif" alt="Welcome">
+    <div class="welcome-title">Welcome to Legit 🍃</div>
+    <div class="welcome-sub">Your strain guide is ready. Enjoy!</div>
+    <button class="welcome-close" onclick="dismissWelcome()">Let's Go</button>
+  </div>
+</div>
+<script>
+  function dismissWelcome(){{document.getElementById('welcomeOverlay').remove();}}
+  setTimeout(dismissWelcome, 5000);
+<\/script>
+`;
+
 function exportGuide() {{
   if (profileKeys.length === 0) return;
   const cards = profileKeys.map(k => buildSgCard(k, true)).join('');
@@ -730,9 +756,11 @@ function exportGuide() {{
   .profile-item-remove{{display:none}}
   .sg-row span{{font-size:10px;color:#888;font-weight:400}}
   @media print{{body{{background:white;padding:0}}.sg-card{{break-inside:avoid}}}}
+  ${{EXPORT_POPUP_CSS}}
 </style>
 </head>
 <body>
+${{EXPORT_POPUP_HTML}}
 <div class="page">
   <div class="header">
     <div class="logo-badge"><span class="leaf">🍃</span><div class="name">LEGIT<br>CANNABIS</div></div>
@@ -813,9 +841,11 @@ function exportAll(mode) {{
   .sg-row strong{{font-weight:700;color:var(--dark-green);font-family:'Nunito',sans-serif;font-size:12.5px}}
   .profile-item-remove{{display:none}}
   @media print{{body{{background:white;padding:0}}.sg-card{{break-inside:avoid}}}}
+  ${{EXPORT_POPUP_CSS}}
 </style>
 </head>
 <body>
+${{EXPORT_POPUP_HTML}}
 <div class="page">
   <div class="header">
     <div class="logo-badge"><span class="leaf">🍃</span><div class="name">LEGIT<br>CANNABIS</div></div>
