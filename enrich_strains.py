@@ -46,32 +46,37 @@ Respond with ONLY a valid JSON object (no markdown, no explanation) with these e
 For edibles (gummies, etc.) adapt accordingly — no genetic lineage needed, focus on dosing guidance.
 Be accurate and specific. Use your knowledge of cannabis genetics and strain databases."""
 
-RATINGS_PROMPT = """You are a cannabis terpene pharmacology expert. Rate this strain 0-10 for each mood category based ONLY on its actual COA terpene profile. Use the research below.
+RATINGS_PROMPT = """You are a cannabis terpene pharmacology expert. Rate this strain 1-10 for each mood category.
+
+CRITICAL RULES — read carefully:
+1. Base scores ONLY on the COA terpenes listed. Never assume terpenes not listed.
+2. Terpene ORDER matters — terpene listed first is most concentrated (dominant). Weight dominant terpenes heavily.
+3. You MUST spread scores across the full 1-10 range. Do NOT cluster at 7-10.
+   - Most strains should score 3-6 for most moods.
+   - 8-10 means this strain is EXCEPTIONAL for that mood — 2+ dominant terpenes align perfectly.
+   - 1-2 means the key terpenes for that mood are absent or only traces.
+4. If a key terpene is listed 4th or later, treat it as a minor contributor (+1-2 pts max).
+5. A strain cannot score 8+ on more than 3 moods. Force trade-offs.
 
 Strain: {name}
 Type: {strain_type}
-COA Terpenes: {terpenes}
+COA Terpenes (in order, 1st = dominant): {terpenes}
 Lineage: {lineage}
-Therapeutic: {therapeutic}
 
-Terpene → mood science (use this to score):
-- wind_down: Myrcene (GABA sedation), Linalool (anxiolytic/sleep), Caryophyllene (CB2 muscle)
-- anxiety_relief: Linalool (GABA↑, cortisol↓), Caryophyllene (CB2 anti-anxiety), Limonene (5-HT1A)
-- lift_up: Limonene (dopamine/serotonin↑, Komori 1995), Terpinolene (cerebral), Ocimene/Valencene (citrus energy)
-- get_creative: Pinene (AChE inhibition, memory/focus, Miyazawa 2005), Terpinolene (cerebral drive)
-- get_social: Limonene + Terpinolene (euphoria, giggles, social ease)
-- pain_body: Caryophyllene (CB2 agonist, Gertsch 2008 PNAS), Myrcene (analgesic), Humulene (anti-inflammatory)
-- just_happy: Limonene + Linalool + Terpinolene (balanced euphoria and warmth)
-- aphrodisiac: Limonene (dopamine↑ desire), Linalool (anxiety↓, #1 arousal blocker), Geraniol (rose/romance), Caryophyllene (CB2 tactile sensitivity), Terpinolene (lowers inhibitions)
+Mood scoring keys (terpenes listed are the ONLY relevant ones):
+- wind_down: Myrcene (#1 driver), Linalool, Caryophyllene. No Myrcene/Linalool → max 4.
+- anxiety_relief: Linalool (#1), Caryophyllene (#2), Limonene. No Linalool → max 5.
+- lift_up: Limonene (#1), Terpinolene, Ocimene, Valencene. No Limonene/Terpinolene → max 4.
+- get_creative: Pinene (#1, alpha or beta), Terpinolene. No Pinene → max 5.
+- get_social: Limonene (#1), Terpinolene. No both → max 4.
+- pain_body: Caryophyllene (#1 driver, CB2 agonist), Myrcene, Humulene. No Caryophyllene → max 5.
+- just_happy: Limonene + Linalool together → high. Missing either → max 6.
+- aphrodisiac: Limonene (#1), Linalool (#2), Geraniol, Caryophyllene, Terpinolene. Needs 2+ → 7+.
 
-Scoring guide:
-- 0: terpene not present, no match
-- 1-3: weak — one minor matching terpene
-- 4-6: moderate — one strong or two minor matching terpenes
-- 7-9: strong — two or more matching terpenes present in COA
-- 10: exceptional — multiple primary terpenes align perfectly
+Example calibration for a strain with Myrcene dominant, Caryophyllene secondary, trace Limonene:
+wind_down:8, anxiety_relief:5, lift_up:3, get_creative:1, get_social:2, pain_body:6, just_happy:4, aphrodisiac:3
 
-Respond with ONLY valid JSON (no markdown):
+Respond with ONLY valid JSON (no markdown, no explanation):
 {{"wind_down":0,"anxiety_relief":0,"lift_up":0,"get_creative":0,"get_social":0,"pain_body":0,"just_happy":0,"aphrodisiac":0}}"""
 
 

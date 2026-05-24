@@ -649,12 +649,26 @@ function derivedEffects(terpenes) {{
   return [...set];
 }}
 
+// Terpene position → concentration proxy (earlier in COA list = dominant)
+function terpenePositionScore(tx, moodTerpenes) {{
+  return moodTerpenes.reduce((sum, mt) => {{
+    const idx = tx.indexOf(mt);
+    if (idx === -1) return sum;
+    if (idx === 0)  return sum + 4.0;   // dominant terpene — very strong signal
+    if (idx <= 1)   return sum + 2.5;   // secondary
+    if (idx <= 3)   return sum + 1.5;   // tertiary
+    return sum + 0.75;                  // minor trace
+  }}, 0);
+}}
+
 function moodScore(card, mood) {{
   if (!mood) return 0;
   const tx      = (card.dataset.terpenes || '').split(',').filter(Boolean);
   const derived = derivedEffects(tx);
-  return mood.effects.filter(e  => derived.includes(e)).length * 2
-       + mood.terpenes.filter(t => tx.includes(t)).length;
+  const terpScore   = terpenePositionScore(tx, mood.terpenes);
+  const effectScore = mood.effects.filter(e => derived.includes(e)).length * 0.8;
+  // Scale to 0-10 with realistic spread: max raw ~8-9 → caps at 10
+  return Math.min(10, Math.round((terpScore + effectScore) * 10 / 9));
 }}
 
 // Save original DOM order on load so we can restore it
