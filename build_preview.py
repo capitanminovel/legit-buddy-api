@@ -90,7 +90,7 @@ def build_card(p, key):
 
     return f"""
     <div class="card" data-key="{key}" data-terpenes="{terpenes_csv}" onclick="openModal('{key}')">
-      <div class="card-img">{img}{badges}{potency}<div class="rating-badge" id="rb-{key}"></div></div>
+      <div class="card-img">{img}{badges}{potency}<div class="rating-badge"></div></div>
       <div class="card-body">
         {brand_h}
         <div class="card-name">{p["name"]}</div>
@@ -1009,7 +1009,7 @@ function applyFilters() {{
 
     // Rating badge + match border
     card.classList.remove('match-strong','match-good','match-weak');
-    const rb = document.getElementById('rb-' + key);
+    const rb = card.querySelector('.rating-badge');
     if (visible && mood) {{
       // Prefer Claude AI rating (0-10), fall back to computed score scaled to 0-10
       const moodKey = activeMood.replace(/-/g,'_');
