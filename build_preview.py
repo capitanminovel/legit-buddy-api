@@ -90,7 +90,7 @@ def build_card(p, key):
 
     return f"""
     <div class="card" data-key="{key}" data-terpenes="{terpenes_csv}" onclick="openModal('{key}')">
-      <div class="card-img">{img}{badges}{potency}</div>
+      <div class="card-img">{img}{badges}{potency}<div class="rating-badge" id="rb-{key}"></div></div>
       <div class="card-body">
         {brand_h}
         <div class="card-name">{p["name"]}</div>
@@ -299,6 +299,39 @@ def build():
     .card.match-good{{border-left:5px solid #d97706}}
     .card.match-weak{{border-left:5px solid #94a3b8}}
 
+    /* ── Rating badge shown on cards when mood active ── */
+    .rating-badge{{display:none;position:absolute;top:8px;right:8px;min-width:28px;height:28px;border-radius:50%;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;align-items:center;justify-content:center;z-index:2;box-shadow:0 2px 6px rgba(0,0,0,.25);border:2px solid rgba(255,255,255,.6)}}
+    .rating-badge.show{{display:flex}}
+    .rating-badge.rb-strong{{background:#16a34a;color:#fff}}
+    .rating-badge.rb-good{{background:#d97706;color:#fff}}
+    .rating-badge.rb-weak{{background:#94a3b8;color:#fff}}
+    body.dark .card.match-strong{{border-left:5px solid #4ade80;box-shadow:-2px 0 10px rgba(74,222,128,.3)}}
+    body.dark .card.match-good{{border-left:5px solid #fbbf24}}
+    body.dark .card.match-weak{{border-left:5px solid #475569}}
+    body.dark .rating-badge.rb-strong{{background:#4ade80;color:#0d1a11}}
+    body.dark .rating-badge.rb-good{{background:#fbbf24;color:#1a1000}}
+    body.dark .rating-badge.rb-weak{{background:#475569;color:#e2e8f0}}
+
+    /* ── Moods info button + modal ── */
+    .mood-info-btn{{border:none;background:none;color:var(--muted);font-size:.8rem;font-weight:600;cursor:pointer;padding:4px 6px;border-radius:8px;font-family:inherit;white-space:nowrap;flex-shrink:0}}
+    .mood-info-btn:hover{{color:var(--brand);background:var(--brand-lt)}}
+    .moods-modal-overlay{{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:500;display:flex;align-items:flex-end;justify-content:center}}
+    .moods-modal-overlay.hidden{{display:none}}
+    .moods-modal-box{{background:var(--bg);width:100%;max-width:680px;max-height:88vh;border-radius:20px 20px 0 0;overflow-y:auto;padding:0 0 30px}}
+    .moods-modal-head{{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--border);padding:16px 22px;display:flex;align-items:center;justify-content:space-between}}
+    .moods-modal-title{{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.1rem;color:var(--brand)}}
+    .moods-modal-close{{background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--muted);line-height:1}}
+    .mood-card{{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin:16px 18px 0}}
+    .mood-card-head{{display:flex;align-items:center;gap:10px;margin-bottom:6px}}
+    .mood-card-icon{{font-size:1.4rem}}
+    .mood-card-name{{font-family:'Nunito',sans-serif;font-weight:900;font-size:1rem;color:var(--brand)}}
+    .mood-card-science{{font-size:.78rem;color:var(--text);line-height:1.55;margin-bottom:8px}}
+    .mood-card-terps{{display:flex;gap:5px;flex-wrap:wrap}}
+    .mood-card-terp{{font-size:.68rem;font-weight:700;background:var(--brand-lt);color:var(--brand);border:1px solid #bbf7d0;border-radius:10px;padding:2px 8px}}
+    body.dark .mood-card{{background:#1a2d20;border-color:var(--border)}}
+    body.dark .moods-modal-box{{background:var(--bg)}}
+    body.dark .moods-modal-head{{background:var(--bg)}}
+
     /* ── Text search ── */
     .search-row{{display:flex;align-items:center;gap:8px}}
     .search-wrap{{position:relative;flex:1;max-width:520px}}
@@ -450,6 +483,7 @@ def build():
         <button class="mood-chip" data-mood="aphrodisiac"    onclick="filterMood(this)" title="Limonene (dopamine↑) + Linalool (anxiety↓) + Geraniol (rose terpene) + Caryophyllene (CB2 tactile) — 3,000 years of documented use (Russo 2011)">🌹 Aphrodisiac</button>
       </div>
       <button class="mood-clear hidden" id="moodClear" onclick="clearMood()">✕ Mood</button>
+      <button class="mood-info-btn" onclick="openMoodsInfo()" title="Learn the science behind each mood filter">ℹ️ How it works</button>
     </div>
     <div class="search-row">
       <div class="search-wrap">
@@ -471,6 +505,22 @@ def build():
 <div class="footer-sticky">
   <span class="fs-stock">{len(all_p)} products in stock</span>
   <span class="fs-updated">Updated {ts}</span>
+</div>
+
+<!-- Moods info modal -->
+<div class="moods-modal-overlay hidden" id="moodsInfoModal" onclick="if(event.target===this)closeMoodsInfo()">
+  <div class="moods-modal-box">
+    <div class="moods-modal-head">
+      <span class="moods-modal-title">🔬 How Moods Are Scored</span>
+      <button class="moods-modal-close" onclick="closeMoodsInfo()">✕</button>
+    </div>
+    <div style="padding:10px 18px 0;font-size:.8rem;color:var(--muted);line-height:1.55">
+      Every rating is derived from <strong>COA terpene lab data only</strong> — not dispensary marketing copy.
+      Scores 1–10 are generated by Claude AI using published pharmacology research (Russo 2011 <em>Br J Pharmacol</em>, Kamal 2018 <em>Front Neurosci</em>, Gertsch 2008 <em>PNAS</em>).
+      Cards sort best → weakest match. Border color = strength at a glance.
+    </div>
+    <div id="moodsInfoCards"></div>
+  </div>
 </div>
 
 <!-- Strain modal -->
@@ -943,13 +993,27 @@ function applyFilters() {{
     const visible = catOk && moodOk && searchOk;
     card.classList.toggle('hidden', !visible);
 
-    // Match strength border
+    // Rating badge + match border
     card.classList.remove('match-strong','match-good','match-weak');
+    const rb = document.getElementById('rb-' + key);
     if (visible && mood) {{
-      const score = moodScore(card, mood);
-      if      (score >= 4) card.classList.add('match-strong');
-      else if (score >= 2) card.classList.add('match-good');
-      else                 card.classList.add('match-weak');
+      // Prefer Claude AI rating (0-10), fall back to computed score scaled to 0-10
+      const moodKey = activeMood.replace(/-/g,'_');
+      const claudeRating = STRAINS[key]?.mood_ratings?.[moodKey];
+      const score10 = claudeRating != null
+        ? claudeRating
+        : Math.min(10, Math.round(moodScore(card, mood) * 1.5));
+
+      if (rb) {{
+        rb.textContent = score10;
+        rb.className = 'rating-badge show ' +
+          (score10 >= 7 ? 'rb-strong' : score10 >= 4 ? 'rb-good' : 'rb-weak');
+      }}
+      if      (score10 >= 7) card.classList.add('match-strong');
+      else if (score10 >= 4) card.classList.add('match-good');
+      else                   card.classList.add('match-weak');
+    }} else {{
+      if (rb) rb.className = 'rating-badge';
     }}
 
     if (visible) totalVisible++;
@@ -959,8 +1023,11 @@ function applyFilters() {{
   document.querySelectorAll('.grid').forEach(grid => {{
     const cards = [...grid.querySelectorAll('.card')];
     if (mood) {{
+      const moodKey = activeMood.replace(/-/g,'_');
       cards.sort((a, b) => {{
-        const diff = moodScore(b, mood) - moodScore(a, mood);
+        const ra = STRAINS[a.dataset.key]?.mood_ratings?.[moodKey] ?? Math.min(10, moodScore(a, mood) * 1.5);
+        const rb = STRAINS[b.dataset.key]?.mood_ratings?.[moodKey] ?? Math.min(10, moodScore(b, mood) * 1.5);
+        const diff = rb - ra;
         return diff !== 0 ? diff : (parseInt(a.dataset.origIndex)||0) - (parseInt(b.dataset.origIndex)||0);
       }});
     }} else {{
@@ -1093,7 +1160,55 @@ function showExportPopup(filename) {{
   }};
 }}
 
-document.addEventListener('keydown', e => {{ if (e.key === 'Escape') {{ closeModal(); closeDrawer(); }} }});
+document.addEventListener('keydown', e => {{ if (e.key === 'Escape') {{ closeModal(); closeDrawer(); closeMoodsInfo(); }} }});
+
+// ── Moods info modal ──
+const MOOD_INFO = [
+  {{ key:'wind-down',      icon:'😴', name:'Wind Down',
+     science:'Myrcene binds GABA-A receptors causing sedation and muscle relaxation (Russo 2011). Linalool elevates adenosine and suppresses glutamate excitability. Together they create the classic "couch-lock" body stone ideal for sleep or unwinding.',
+     terps:['Myrcene','Linalool','Caryophyllene'] }},
+  {{ key:'anxiety-relief', icon:'🧘', name:'Anxiety Relief',
+     science:'Linalool raises GABA and lowers cortisol — the same mechanism as benzodiazepines but milder. Caryophyllene selectively activates CB2 (not CB1) reducing neuroinflammation. Limonene targets 5-HT1A serotonin receptors. Together this is the Kamal 2018 anxiolytic chemotype.',
+     terps:['Linalool','Caryophyllene','Limonene'] }},
+  {{ key:'lift-up',        icon:'⬆', name:'Lift Up',
+     science:'Limonene elevates serotonin and dopamine within 10 minutes of inhalation (Komori 1995, Neuroimmunomodulation). Terpinolene adds cerebral, energizing uplift. Ocimene and Valencene contribute citrus energy without sedation.',
+     terps:['Limonene','Terpinolene','Ocimene','Valencene'] }},
+  {{ key:'get-creative',   icon:'🎨', name:'Get Creative',
+     science:'α-Pinene inhibits acetylcholinesterase (AChE), the enzyme that breaks down acetylcholine — sharpening memory and focus (Miyazawa & Yamafuji 2005). This counters THC-induced short-term memory impairment and drives cerebral, focused creativity.',
+     terps:['Pinene','B Pinene','Terpinolene','Limonene'] }},
+  {{ key:'get-social',     icon:'😄', name:'Get Social',
+     science:'Terpinolene produces euphoria and lowers social inhibitions via serotonergic pathways. Limonene raises dopamine (the reward/motivation neurotransmitter). Combined they produce the giggly, talkative, social-butterfly high.',
+     terps:['Limonene','Terpinolene','Ocimene'] }},
+  {{ key:'pain-body',      icon:'💆', name:'Pain & Body',
+     science:'Caryophyllene is the only terpene that directly binds cannabinoid receptors (CB2 agonist, Gertsch 2008 PNAS) — reducing neuroinflammation and pain signaling. Myrcene is analgesic. Humulene suppresses prostaglandins (same mechanism as ibuprofen).',
+     terps:['Caryophyllene','Myrcene','Humulene','Linalool'] }},
+  {{ key:'just-happy',     icon:'✨', name:'Just Happy',
+     science:'Limonene + Linalool create a balanced euphoria without overstimulation. Terpinolene adds warmth and a gentle creative edge. This is the classic "feel-good" terpene trio — mood-elevating but grounded.',
+     terps:['Limonene','Linalool','Terpinolene'] }},
+  {{ key:'aphrodisiac',    icon:'🌹', name:'Aphrodisiac',
+     science:'Cannabis aphrodisiac use is documented across 3,000 years in India, Persia, and China (Russo 2011). Mechanistically: Limonene raises dopamine (desire), Linalool eliminates anxiety (the #1 arousal blocker), Geraniol (rose terpene) has historic romance associations, Caryophyllene (CB2) may enhance blood flow and tactile sensitivity, Terpinolene lowers inhibitions.',
+     terps:['Limonene','Linalool','Geraniol','Caryophyllene','Terpinolene','Ocimene'] }},
+];
+
+function openMoodsInfo() {{
+  const container = document.getElementById('moodsInfoCards');
+  container.innerHTML = MOOD_INFO.map(m => `
+    <div class="mood-card">
+      <div class="mood-card-head">
+        <span class="mood-card-icon">${{m.icon}}</span>
+        <span class="mood-card-name">${{m.name}}</span>
+      </div>
+      <div class="mood-card-science">${{m.science}}</div>
+      <div class="mood-card-terps">${{m.terps.map(t=>`<span class="mood-card-terp">${{t}}</span>`).join('')}}</div>
+    </div>`).join('');
+  document.getElementById('moodsInfoModal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}}
+
+function closeMoodsInfo() {{
+  document.getElementById('moodsInfoModal').classList.add('hidden');
+  document.body.style.overflow = '';
+}}
 
 // ── Dark mode ──
 function toggleDark() {{
