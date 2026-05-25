@@ -64,6 +64,19 @@ def build_card(p, key):
     cbd_pill = f'<span class="potency-pill cbd">CBD {p["cbd"]}</span>' if p.get("cbd") else ""
     potency  = f'<div class="potency-row">{thc_pill}{cbd_pill}</div>' if (thc_pill or cbd_pill) else ""
 
+    qty = p.get("qty")
+    if qty is not None:
+        if qty == 0:
+            stock_h = '<span class="stock-badge stock-out">Out of Stock</span>'
+        elif qty <= 3:
+            stock_h = f'<span class="stock-badge stock-low">⚠ {qty} left</span>'
+        elif qty <= 7:
+            stock_h = f'<span class="stock-badge stock-med">{qty} in stock</span>'
+        else:
+            stock_h = f'<span class="stock-badge stock-ok">{qty} in stock</span>'
+    else:
+        stock_h = ""
+
     terps  = "".join(f'<span class="terp">{t}</span>' for t in (p.get("terpenes") or [])[:4])
     terp_h = f'<div class="terp-row">{terps}</div>' if terps else ""
 
@@ -96,6 +109,7 @@ def build_card(p, key):
         <div class="card-name">{p["name"]}</div>
         {weight_h}{minor_h}{terp_h}
         <div class="price-section">{price_h}</div>
+        {stock_h}
         <div class="card-detail-hint">Tap for strain guide →</div>
       </div>
     </div>"""
@@ -259,6 +273,15 @@ def build():
     .terp{{font-size:.65rem;background:#f0fdf4;color:var(--brand);border:1px solid #bbf7d0;padding:1px 6px;border-radius:10px}}
     .effects-row{{display:flex;gap:4px;flex-wrap:wrap;margin-top:2px}}
     .effect{{font-size:.65rem;background:#eff6ff;color:#3b82f6;border:1px solid #bfdbfe;padding:1px 6px;border-radius:10px}}
+    .stock-badge{{display:inline-block;font-size:.65rem;font-weight:700;padding:2px 7px;border-radius:8px;margin-top:5px;letter-spacing:.02em}}
+    .stock-out{{background:#fee2e2;color:#b91c1c}}
+    .stock-low{{background:#fef3c7;color:#92400e}}
+    .stock-med{{background:#fffbeb;color:#78350f}}
+    .stock-ok{{background:#f0fdf4;color:#166534}}
+    body.dark .stock-out{{background:#3b0a0a;color:#fca5a5}}
+    body.dark .stock-low{{background:#2d1a00;color:#fcd34d}}
+    body.dark .stock-med{{background:#261a00;color:#fde68a}}
+    body.dark .stock-ok{{background:#052e16;color:#86efac}}
     .price-section{{margin-top:auto;padding-top:10px}}
     .price-single{{font-size:1rem;font-weight:700;color:var(--brand)}}
     .price-tiers{{display:flex;gap:5px;flex-wrap:wrap}}
