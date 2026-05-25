@@ -174,20 +174,16 @@ def _normalize_sweed_product(raw: dict) -> dict | None:
     image  = _str(images[0]) if images else ""
 
     variants    = raw.get("variants") or []
-    thc = cbd = cbg = cbn = ""
+    thc = cbd   = ""
     price = weight = ""
     price_tiers: dict = {}
-    in_stock = False
-    qty_total = 0
-    lab_data: dict = {}
+    in_stock    = False
 
     for v in variants:
         avail   = (v.get("orderingAvailability") or {}).get("reason", "")
-        v_qty   = v.get("availableQty") or 0
-        v_stock = avail == "Available" and v_qty > 0
+        v_stock = avail == "Available" and (v.get("availableQty") or 0) > 0
         if v_stock:
-            in_stock  = True
-            qty_total += v_qty
+            in_stock = True
 
         v_price = v.get("price") or 0
         v_name  = _str(v.get("name") or "")
@@ -197,15 +193,6 @@ def _normalize_sweed_product(raw: dict) -> dict | None:
             thc = _pct(str(lab["thc"]["value"][0]))
         if not cbd and (lab.get("cbd") or {}).get("value"):
             cbd = _pct(str(lab["cbd"]["value"][0]))
-        if not cbg and (lab.get("cbg") or {}).get("value"):
-            cbg = _pct(str(lab["cbg"]["value"][0]))
-        if not cbn and (lab.get("cbn") or {}).get("value"):
-            cbn = _pct(str(lab["cbn"]["value"][0]))
-
-        # Capture all lab keys we haven't explicitly parsed (for discovery)
-        for lk, lv in lab.items():
-            if lk not in ("thc", "cbd", "cbg", "cbn") and lk not in lab_data:
-                lab_data[lk] = lv
 
         if v_price:
             key = _WEIGHT_TO_TIER.get(v_name.lower().replace(" ", ""),
@@ -218,12 +205,10 @@ def _normalize_sweed_product(raw: dict) -> dict | None:
     return {
         "name": name, "brand": brand, "category": category,
         "strain_type": strain_type, "thc": thc, "cbd": cbd,
-        "cbg": cbg, "cbn": cbn,
+        "cbg": "", "cbn": "",
         "terpenes": terpenes, "effects": effects, "flavors": flavors,
         "weight": weight, "price": price, "price_tiers": price_tiers,
-        "in_stock": in_stock, "qty": qty_total if in_stock else 0,
-        "lab_extra": lab_data,
-        "image": image,
+        "in_stock": in_stock, "image": image,
         "description": _str(raw.get("description") or ""),
     }
 
