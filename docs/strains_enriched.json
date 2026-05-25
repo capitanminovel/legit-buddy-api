@@ -4,237 +4,577 @@
     "therapeutic": "Stress relief, anxiety, mild pain, insomnia, depression",
     "negative": "Dry mouth, dry eyes, mild couch-lock at higher doses",
     "aroma": "Sweet fresh blueberries, baked muffin dough, light vanilla cream, subtle herbal earthiness",
-    "misc": "Created by Humboldt Seed Co. THC typically 18–23%. Dense colorful buds with deep purple hues and orange hairs. A crowd-pleasing, beginner-friendly strain known for its approachable flavor and balanced effects. Great intro strain for new consumers."
+    "misc": "Created by Humboldt Seed Co. THC typically 18–23%. Dense colorful buds with deep purple hues and orange hairs. A crowd-pleasing, beginner-friendly strain known for its approachable flavor and balanced effects. Great intro strain for new consumers.",
+    "mood_ratings": {
+      "wind_down": 9,
+      "anxiety_relief": 7,
+      "lift_up": 4,
+      "get_creative": 6,
+      "get_social": 3,
+      "pain_body": 5,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
   },
   "9bd115b860af": {
     "lineage": "Alien Cookies x Kush Mints #11 (Capulator / Cap Junky Genetics)",
     "therapeutic": "Stress, anxiety, depression, chronic pain, appetite stimulation",
     "negative": "Dry mouth, dry eyes, possible paranoia in sensitive users at high doses",
     "aroma": "Pungent fuel and diesel, sweet pine, cooling menthol, spiced earth, faint fruity finish",
-    "misc": "Bred by renowned breeder Capulator (creator of MAC). Often cited as one of the best modern hybrids. THC 22–30%+. Fast-hitting cerebral rush followed by warm body relaxation. Popular in dispensaries nationwide for consistent potency and terpene expression."
+    "misc": "Bred by renowned breeder Capulator (creator of MAC). Often cited as one of the best modern hybrids. THC 22–30%+. Fast-hitting cerebral rush followed by warm body relaxation. Popular in dispensaries nationwide for consistent potency and terpene expression.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 8,
+      "lift_up": 5,
+      "get_creative": 3,
+      "get_social": 5,
+      "pain_body": 5,
+      "just_happy": 7,
+      "aphrodisiac": 7
+    }
   },
   "c7bc9b6b18c2": {
     "lineage": "The Soap x Velvet Runtz (Campfire Cannabis in-house cross)",
     "therapeutic": "Stress, fatigue, depression, mild chronic pain, creative blocks",
     "negative": "Dry mouth, dry eyes, occasional anxiety at high doses",
     "aroma": "Clean soapy citrus, sweet mixed berry, light diesel backbone, faint pine and earthy woods",
-    "misc": "House cross by Campfire Cannabis combining The Soap's clean citrus with Velvet Runtz candy sweetness. THC 20–25%. Versatile hybrid — sativa-leaning first hour then settles into relaxed body state. Great for daytime creative work or afternoon social sessions."
+    "misc": "House cross by Campfire Cannabis combining The Soap's clean citrus with Velvet Runtz candy sweetness. THC 20–25%. Versatile hybrid — sativa-leaning first hour then settles into relaxed body state. Great for daytime creative work or afternoon social sessions.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 4,
+      "lift_up": 6,
+      "get_creative": 7,
+      "get_social": 5,
+      "pain_body": 4,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
   },
   "2223f6ee76a3": {
     "lineage": "Tahoe OG x Runtz",
     "therapeutic": "Insomnia, chronic pain, stress, anxiety, muscle tension",
     "negative": "Dry mouth, dry eyes, heavy sedation — not for daytime use",
     "aroma": "Earthy OG pine with sweet candy citrus, creamy tropical undertones, classic kush musk base",
-    "misc": "Combines Tahoe OG's heavy-hitting indica body stone with Runtz's sweet candy genetics. THC 25–30%. Dense frosty buds. The OG backbone delivers reliable potency and full-body relaxation while Runtz adds dessert sweetness. Best for evening wind-down or pre-sleep."
+    "misc": "Combines Tahoe OG's heavy-hitting indica body stone with Runtz's sweet candy genetics. THC 25–30%. Dense frosty buds. The OG backbone delivers reliable potency and full-body relaxation while Runtz adds dessert sweetness. Best for evening wind-down or pre-sleep.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 7,
+      "lift_up": 5,
+      "get_creative": 3,
+      "get_social": 3,
+      "pain_body": 2,
+      "just_happy": 5,
+      "aphrodisiac": 6
+    }
   },
   "f9a02875b44a": {
     "lineage": "MAC (Miracle Alien Cookies) x Grape Stomper (Gage Green Seeds)",
     "therapeutic": "Chronic pain, stress, insomnia, mood disorders, nausea",
     "negative": "Dry mouth, dry eyes, couch-lock at high doses",
     "aroma": "Creamy grape candy, sweet apple, citrus zest, light floral, earthy funk on the finish",
-    "misc": "Cross of two award-winning genetics. MAC contributes creamy citrus and potency; Grape Stomper adds grape and fruit sweetness. THC 24–29%. Available in half-ounce — great value buy. Dense, trichome-heavy flowers with deep purple and green hues. Best for evening use."
+    "misc": "Cross of two award-winning genetics. MAC contributes creamy citrus and potency; Grape Stomper adds grape and fruit sweetness. THC 24–29%. Available in half-ounce — great value buy. Dense, trichome-heavy flowers with deep purple and green hues. Best for evening use.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 7,
+      "lift_up": 2,
+      "get_creative": 6,
+      "get_social": 3,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
   },
   "8ddb5a864d39": {
     "lineage": "Purple Panty Dropper x Blueberry (Humboldt Seed Co.)",
     "therapeutic": "Stress, anxiety, mild pain, insomnia, depression, appetite",
     "negative": "Dry mouth, dry eyes, mild couch-lock at higher doses",
     "aroma": "Sweet fresh blueberries, baked muffin dough, light vanilla cream, subtle herbal earthiness",
-    "misc": "Humboldt Seed Co. genetics. THC 15–22%. Dense, colorful buds with purple hues. One of the most recognizable and approachable flavor profiles in cannabis — sweet, fruity, and non-offensive. Great recommendation for new consumers or those sensitive to heavy indicas."
+    "misc": "Humboldt Seed Co. genetics. THC 15–22%. Dense, colorful buds with purple hues. One of the most recognizable and approachable flavor profiles in cannabis — sweet, fruity, and non-offensive. Great recommendation for new consumers or those sensitive to heavy indicas.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 4,
+      "lift_up": 6,
+      "get_creative": 2,
+      "get_social": 5,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
   },
   "d024338fee18": {
     "lineage": "Animal Mints x Kush Mints (Seed Junky Genetics)",
     "therapeutic": "Depression, fatigue, stress, anxiety, mild chronic pain",
     "negative": "Dry mouth, dry eyes, possible anxiety at high doses in novice users",
     "aroma": "Clean floral soap, fresh mint, citrus zest, light cheese notes, pine — one of the most distinctive and refreshing terpene profiles in cannabis",
-    "misc": "Created by Seed Junky Genetics. Famously described as smelling like fresh soap or floral laundry detergent — a truly unique, clean aroma. THC 20–26%. Euphoric and uplifting with a clean, lasting head high. Strong daytime strain for focus and creativity."
+    "misc": "Created by Seed Junky Genetics. Famously described as smelling like fresh soap or floral laundry detergent — a truly unique, clean aroma. THC 20–26%. Euphoric and uplifting with a clean, lasting head high. Strong daytime strain for focus and creativity.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 8,
+      "lift_up": 5,
+      "get_creative": 3,
+      "get_social": 5,
+      "pain_body": 4,
+      "just_happy": 7,
+      "aphrodisiac": 6
+    }
   },
   "1ff4b7efe819": {
     "lineage": "(Biscotti x Sherb BX1) x Jealousy F2 (Compound Genetics / Seed Junky)",
     "therapeutic": "Insomnia, chronic pain, stress, appetite stimulation, muscle tension",
     "negative": "Dry mouth, dry eyes, heavy sedation — not for daytime use",
     "aroma": "Sweet grape diesel, rich berry, creamy dessert notes, faint chemical fuel on exhale",
-    "misc": "Premium cross of high-end genetics. Biscotti x Sherb BX1 provides the creamy dessert foundation; Jealousy F2 adds potency and deep purple coloration. THC 25–30%+. Dense purple-tinted buds with heavy resin coverage. Hard-hitting indica-dominant — reserved for evening or experienced users."
+    "misc": "Premium cross of high-end genetics. Biscotti x Sherb BX1 provides the creamy dessert foundation; Jealousy F2 adds potency and deep purple coloration. THC 25–30%+. Dense purple-tinted buds with heavy resin coverage. Hard-hitting indica-dominant — reserved for evening or experienced users.",
+    "mood_ratings": {
+      "wind_down": 4,
+      "anxiety_relief": 5,
+      "lift_up": 2,
+      "get_creative": 3,
+      "get_social": 2,
+      "pain_body": 7,
+      "just_happy": 3,
+      "aphrodisiac": 3
+    }
   },
   "6ba39e627a58": {
     "lineage": "Chemdawg x Biscotti (Campfire Cannabis in-house cross)",
     "therapeutic": "Stress, depression, appetite stimulation, fatigue, social anxiety",
     "negative": "Dry mouth, dry eyes, mild paranoia possible at higher doses",
     "aroma": "Savory earthy spice, herbal diesel, hints of plum and sweet fruit, subtle biscotti dough and vanilla on the finish",
-    "misc": "Campfire Cannabis in-house cross merging Chemdawg's pungent diesel potency with Biscotti's creamy sweetness. THC 18–24%. Social and giggly — great for group settings. Named for its spicy herbal aroma reminiscent of savory cuisine. Best for afternoon or evening social use."
+    "misc": "Campfire Cannabis in-house cross merging Chemdawg's pungent diesel potency with Biscotti's creamy sweetness. THC 18–24%. Social and giggly — great for group settings. Named for its spicy herbal aroma reminiscent of savory cuisine. Best for afternoon or evening social use.",
+    "mood_ratings": {
+      "wind_down": 5,
+      "anxiety_relief": 4,
+      "lift_up": 3,
+      "get_creative": 3,
+      "get_social": 3,
+      "pain_body": 4,
+      "just_happy": 4,
+      "aphrodisiac": 3
+    }
   },
   "265b210f94fe": {
     "lineage": "Zkittlez x Gelato (Cookies Fam / Runtz brand)",
     "therapeutic": "Stress, anxiety, depression, chronic pain, appetite stimulation",
     "negative": "Dry mouth, dry eyes, possible sedation at high doses",
     "aroma": "Tropical candy sweetness, pineapple citrus, fruity Zkittlez notes, creamy Gelato undertone, light spice on exhale",
-    "misc": "Bred by the Cookies Fam and widely regarded as one of the most influential strains of the 2020s. Named after the candy brand for its intense sweetness. THC 18–25%. Dense colorful buds. Rapid-hitting, well-balanced — euphoric head high paired with full-body relaxation. Nearly universally well-received."
+    "misc": "Bred by the Cookies Fam and widely regarded as one of the most influential strains of the 2020s. Named after the candy brand for its intense sweetness. THC 18–25%. Dense colorful buds. Rapid-hitting, well-balanced — euphoric head high paired with full-body relaxation. Nearly universally well-received.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 4,
+      "lift_up": 6,
+      "get_creative": 3,
+      "get_social": 6,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
   },
   "99326fcf9900": {
     "lineage": "GMO (Garlic Cookies) x Han-Solo Burger (Skunk House Genetics)",
     "therapeutic": "Inflammation, chronic pain, insomnia, stress, appetite stimulation",
     "negative": "Dry mouth, dry eyes, heavy sedation — not for daytime use. Can be overwhelming for novices.",
     "aroma": "Pungent gas and diesel, spicy savory garlic notes, sour lemon, hints of cheese and fuel — unmistakably GMO-forward",
-    "misc": "Bred by Skunk House Genetics. Also known as GMO BX. One of the hardest-hitting indicas on the market — THC 25–30%+. Fast-acting, long-lasting body stone. Best reserved for evening or end-of-day use. Not for new consumers."
+    "misc": "Bred by Skunk House Genetics. Also known as GMO BX. One of the hardest-hitting indicas on the market — THC 25–30%+. Fast-acting, long-lasting body stone. Best reserved for evening or end-of-day use. Not for new consumers.",
+    "mood_ratings": {
+      "wind_down": 9,
+      "anxiety_relief": 4,
+      "lift_up": 5,
+      "get_creative": 6,
+      "get_social": 4,
+      "pain_body": 5,
+      "just_happy": 4,
+      "aphrodisiac": 3
+    }
   },
   "6a06396da757": {
     "lineage": "Black Cherry Punch x Tropicana Cookies (Franchise Genetics)",
     "therapeutic": "Stress, depression, fatigue, mild pain, creative blocks",
     "negative": "Dry mouth, dry eyes, occasional mild anxiety",
     "aroma": "Fresh orange and grapefruit citrus burst, sweet black cherry, earthy tropical undertones, faint cookie dough base",
-    "misc": "Bred by Franchise Genetics. One of the most vibrant citrus terpene profiles available. Combines Black Cherry Punch's sweet fruitiness with Tropicana Cookies' heavy citrus terps. THC 18–24%. Excellent daytime or social strain — uplifting, creative, mood-enhancing."
+    "misc": "Bred by Franchise Genetics. One of the most vibrant citrus terpene profiles available. Combines Black Cherry Punch's sweet fruitiness with Tropicana Cookies' heavy citrus terps. THC 18–24%. Excellent daytime or social strain — uplifting, creative, mood-enhancing.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 4,
+      "lift_up": 7,
+      "get_creative": 3,
+      "get_social": 6,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
   },
   "4b794faff189": {
     "lineage": "GG4 (Gorilla Glue #4) x Jokerz (Compound Genetics)",
     "therapeutic": "Chronic pain, stress, inflammation, PTSD, insomnia",
     "negative": "Dry mouth, dry eyes, couch-lock in higher doses",
     "aroma": "Heavy diesel and pine resin, earthy fuel, faint sweet fruit undertone, nutty finish with floral accents from Jokerz genetics",
-    "misc": "Combines GG4's legendary resin production and potency with Jokerz' complex terpene structure. THC 20–26%. Heavy-duty sticky flowers. Starts with cerebral creative energy, then melts into full-body relaxation. Named for its extreme stickiness — scissors-clogging resin production."
+    "misc": "Combines GG4's legendary resin production and potency with Jokerz' complex terpene structure. THC 20–26%. Heavy-duty sticky flowers. Starts with cerebral creative energy, then melts into full-body relaxation. Named for its extreme stickiness — scissors-clogging resin production.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 8,
+      "lift_up": 4,
+      "get_creative": 3,
+      "get_social": 3,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 6
+    }
   },
   "e1138882d6cd": {
     "lineage": "Mexican Sativa x Chemdawg (origin New York City, popularized 1990s)",
     "therapeutic": "Depression, fatigue, stress, ADHD, chronic pain",
     "negative": "Dry mouth, dry eyes, anxiety or racing thoughts in sensitive users",
     "aroma": "Sharp diesel fuel, pungent lemon citrus, skunk, earthy pine — one of the most recognizable cannabis aromas of the past 30 years",
-    "misc": "A legendary sativa from the 1990s NYC underground. At 80.3% THC in vape form, delivers Sour Diesel's iconic cerebral rush in concentrated form. Fast-acting, energizing, and creative. Perfect for daytime. One of the most culturally significant cannabis strains ever produced."
+    "misc": "A legendary sativa from the 1990s NYC underground. At 80.3% THC in vape form, delivers Sour Diesel's iconic cerebral rush in concentrated form. Fast-acting, energizing, and creative. Perfect for daytime. One of the most culturally significant cannabis strains ever produced.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 8,
+      "get_creative": 4,
+      "get_social": 7,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 5
+    }
   },
   "184eb9c71846": {
     "lineage": "Grape Ape x Zkittlez (also known as Grape Zkittlez)",
     "therapeutic": "Stress, anxiety, mild pain, mood enhancement, appetite",
     "negative": "Dry mouth, dry eyes, potential drowsiness at higher doses",
     "aroma": "Intense grape candy, mixed berry compote, sweet citrus, tropical Zkittlez notes, light earthy base",
-    "misc": "Natural cross combining Grape Ape's deep grape flavor with Zkittlez' candy sweetness. THC 19–24%. Dense colorful buds with purple hues. Well-balanced hybrid — calming without being fully sedating. Popular for its distinctive grape-forward flavor profile. Good afternoon/social strain."
+    "misc": "Natural cross combining Grape Ape's deep grape flavor with Zkittlez' candy sweetness. THC 19–24%. Dense colorful buds with purple hues. Well-balanced hybrid — calming without being fully sedating. Popular for its distinctive grape-forward flavor profile. Good afternoon/social strain.",
+    "mood_ratings": {
+      "wind_down": 9,
+      "anxiety_relief": 7,
+      "lift_up": 4,
+      "get_creative": 2,
+      "get_social": 3,
+      "pain_body": 5,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
   },
   "b0990993b588": {
     "lineage": "OG Kush x Durban Poison (Cookies Fam, San Francisco)",
     "therapeutic": "Chronic pain, PTSD, depression, nausea, appetite stimulation",
     "negative": "Dry mouth, dry eyes, possible paranoia at high doses",
     "aroma": "Sweet minty cookie dough, earthy OG musk, lemon zest, cherry notes, hint of pine",
-    "misc": "One of the most culturally impactful strains of the 2010s — spawned an entire family of legendary crosses (Gelato, Sunset Sherbet, MAC, Runtz). At 80.5% THC in vape form. Euphoric rush followed by full-body relaxation. Complex, layered high — ideal for afternoon or evening."
+    "misc": "One of the most culturally impactful strains of the 2010s — spawned an entire family of legendary crosses (Gelato, Sunset Sherbet, MAC, Runtz). At 80.5% THC in vape form. Euphoric rush followed by full-body relaxation. Complex, layered high — ideal for afternoon or evening.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 4,
+      "lift_up": 6,
+      "get_creative": 3,
+      "get_social": 5,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
   },
   "a64e2855f46b": {
     "lineage": "Brazilian Sativa x South Indian Indica (Green House Seeds, Netherlands, 1994)",
     "therapeutic": "Depression, stress, anxiety, fatigue, mild chronic pain",
     "negative": "Dry mouth, dry eyes, possible anxiety or racing thoughts at high doses",
     "aroma": "Fresh pine resin, earthy spice, faint sweet floral notes, light sandalwood and cedar",
-    "misc": "A Dutch cannabis classic and multiple Cannabis Cup winner from 1994. Green House Seeds original genetics. At 81% THC in vape form delivers White Widow's characteristic balanced, clear-headed high in concentrated form. Balanced hybrid with slight sativa lean. One of the most globally recognized strains."
+    "misc": "A Dutch cannabis classic and multiple Cannabis Cup winner from 1994. Green House Seeds original genetics. At 81% THC in vape form delivers White Widow's characteristic balanced, clear-headed high in concentrated form. Balanced hybrid with slight sativa lean. One of the most globally recognized strains.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 4,
+      "lift_up": 3,
+      "get_creative": 7,
+      "get_social": 3,
+      "pain_body": 5,
+      "just_happy": 4,
+      "aphrodisiac": 3
+    }
   },
   "3f9c768ad3ef": {
     "lineage": "Chem's Sister x Sour Dubb x Chocolate Diesel (GG Strains)",
     "therapeutic": "Chronic pain, insomnia, PTSD, depression, muscle spasms",
     "negative": "Dry mouth, dry eyes, heavy sedation — can be overwhelming for novice users",
     "aroma": "Pungent diesel and mocha chocolate, earthy pine resin, coffee grounds, chemical fuel — one of the most recognizable aromas in cannabis",
-    "misc": "One of the most iconic strains ever created. Multiple Cannabis Cup winner. Bred by GG Strains. THC 25–32%. Extremely sticky, resin-coated buds. Powerful and fast-acting — couch-lock is common at higher doses. Best reserved for experienced users in the evening."
+    "misc": "One of the most iconic strains ever created. Multiple Cannabis Cup winner. Bred by GG Strains. THC 25–32%. Extremely sticky, resin-coated buds. Powerful and fast-acting — couch-lock is common at higher doses. Best reserved for experienced users in the evening.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 4,
+      "lift_up": 5,
+      "get_creative": 2,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
   },
   "9934b135c2db": {
     "lineage": "Not strain-specific — THC distillate infused gummies",
     "therapeutic": "Chronic pain, insomnia, stress, anxiety — long-lasting body-focused relief (4–8 hours)",
     "negative": "Delayed onset 30–90 min. Do NOT re-dose too early. Dry mouth, possible paranoia if over-consumed. Start low.",
     "aroma": "N/A — raspberry candy flavor",
-    "misc": "Grasslandz brand. 100mg total THC per package — 10mg per piece (10 pieces). Lab-tested distillate. Edibles provide longer-lasting, body-focused effects vs inhalation. Onset 30–90 min, peak 2–4 hrs, total duration 4–8 hrs. Ideal for sleep and extended pain relief. New consumers: start with 5mg (half piece)."
+    "misc": "Grasslandz brand. 100mg total THC per package — 10mg per piece (10 pieces). Lab-tested distillate. Edibles provide longer-lasting, body-focused effects vs inhalation. Onset 30–90 min, peak 2–4 hrs, total duration 4–8 hrs. Ideal for sleep and extended pain relief. New consumers: start with 5mg (half piece).",
+    "mood_ratings": {
+      "wind_down": 3,
+      "anxiety_relief": 3,
+      "lift_up": 3,
+      "get_creative": 3,
+      "get_social": 3,
+      "pain_body": 3,
+      "just_happy": 3,
+      "aphrodisiac": 3
+    }
   },
   "45e8067b787c": {
     "lineage": "Black Dahlia x Ace of Spades (Stargaze premium vape line)",
     "therapeutic": "Stress, mild pain, mood disorders, anxiety, relaxation",
     "negative": "Dry mouth, dry eyes",
     "aroma": "Dark sweet cherries, berry compote, floral grape, earthy funk — rich and wine-like",
-    "misc": "Stargaze premium vape. Black Dahlia x Ace of Spades delivers a rich, fruity berry experience. At 82.9% THC. Currently out of stock — restocks periodically. Indica-leaning hybrid known for its distinctive dark fruit flavor profile. Worth asking staff about restock timing."
+    "misc": "Stargaze premium vape. Black Dahlia x Ace of Spades delivers a rich, fruity berry experience. At 82.9% THC. Currently out of stock — restocks periodically. Indica-leaning hybrid known for its distinctive dark fruit flavor profile. Worth asking staff about restock timing.",
+    "mood_ratings": {
+      "wind_down": 5,
+      "anxiety_relief": 4,
+      "lift_up": 3,
+      "get_creative": 3,
+      "get_social": 3,
+      "pain_body": 4,
+      "just_happy": 4,
+      "aphrodisiac": 3
+    }
   },
   "961994b89518": {
     "lineage": "Not strain-specific — THC distillate infused gummies",
     "therapeutic": "Chronic pain, insomnia, stress, anxiety — long-lasting body-focused relief (4–8 hours)",
     "negative": "Delayed onset 30–90 min. Do NOT re-dose too early. Dry mouth, possible paranoia if over-consumed. Start low.",
     "aroma": "N/A — peach candy flavor",
-    "misc": "Grasslandz brand. 100mg total THC per package — 10mg per piece (10 pieces). Lab-tested distillate. Edibles ideal for those who prefer not to inhale or need longer-duration relief. Onset 30–90 min. New consumers: start with 5mg (half piece) and wait the full 90 minutes before re-evaluating."
+    "misc": "Grasslandz brand. 100mg total THC per package — 10mg per piece (10 pieces). Lab-tested distillate. Edibles ideal for those who prefer not to inhale or need longer-duration relief. Onset 30–90 min. New consumers: start with 5mg (half piece) and wait the full 90 minutes before re-evaluating.",
+    "mood_ratings": {
+      "wind_down": 3,
+      "anxiety_relief": 3,
+      "lift_up": 3,
+      "get_creative": 3,
+      "get_social": 3,
+      "pain_body": 3,
+      "just_happy": 3,
+      "aphrodisiac": 3
+    }
   },
   "d6623d889658": {
     "lineage": "Grape Pie x Wedding Crasher x Ice Cream Cake (Bloom Seed Co.)",
     "therapeutic": "Chronic pain, insomnia, stress relief, anxiety reduction",
     "negative": "Couch-lock at high doses, dry mouth, dry eyes",
     "aroma": "Sweet grape soda, ripe berry, whipped vanilla cream, doughy sweetness with faint gasoline on exhale",
-    "misc": "Bred by Harry Palms (Bloom Seed Co.), former head breeder at Oni Seed Co. THC typically 20–29%. Dense resinous buds with purple hues and heavy trichome coverage. Award-adjacent — recognized as a modern dessert strain classic. Strong indica-dominant effects best suited to evening use."
+    "misc": "Bred by Harry Palms (Bloom Seed Co.), former head breeder at Oni Seed Co. THC typically 20–29%. Dense resinous buds with purple hues and heavy trichome coverage. Award-adjacent — recognized as a modern dessert strain classic. Strong indica-dominant effects best suited to evening use.",
+    "mood_ratings": {
+      "wind_down": 9,
+      "anxiety_relief": 7,
+      "lift_up": 2,
+      "get_creative": 2,
+      "get_social": 2,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
   },
   "7f7ffa3551e7": {
     "lineage": "Girl Scout Cookies x Sherbet (Cookies Fam Genetics — Gelato #45 phenotype)",
     "therapeutic": "Stress, depression, chronic pain, PTSD, nausea",
     "negative": "Dry mouth, dry eyes, mild sedation at high doses",
     "aroma": "Sweet berry and orange sherbet, creamy vanilla, herbal pepper, faint woody kush undertone",
-    "misc": "Gelato #45 is one of the most prized phenotypes from the original Gelato line by the Cookies Fam. Lower THC (15–20%) than newer genetics but world-class terpene expression and euphoric effects. Dense, colorful buds. Balanced hybrid that reads more indica at higher doses. Exceptional flavor-to-effect ratio."
+    "misc": "Gelato #45 is one of the most prized phenotypes from the original Gelato line by the Cookies Fam. Lower THC (15–20%) than newer genetics but world-class terpene expression and euphoric effects. Dense, colorful buds. Balanced hybrid that reads more indica at higher doses. Exceptional flavor-to-effect ratio.",
+    "mood_ratings": {
+      "wind_down": 3,
+      "anxiety_relief": 4,
+      "lift_up": 8,
+      "get_creative": 3,
+      "get_social": 7,
+      "pain_body": 6,
+      "just_happy": 5,
+      "aphrodisiac": 5
+    }
   },
   "dbcb7ab15506": {
     "lineage": "Ice Cream Cake x Blockberry (Redwood County Weed Co.)",
     "therapeutic": "Stress, anxiety, depression, mild pain, mood enhancement",
     "negative": "Dry mouth, dry eyes",
     "aroma": "Sweet berry cream, orange citrus, tropical fruit, light earthiness, vanilla cream finish",
-    "misc": "Redwood County Weed Co. cultivar. Ice Cream Cake contributes creamy sweetness; Blockberry adds bold fruit and citrus. THC 14–18%. Approachable potency makes this excellent for daytime use or new consumers. Well-balanced, pleasant, mood-lifting — a safe bet for gift recommendations."
+    "misc": "Redwood County Weed Co. cultivar. Ice Cream Cake contributes creamy sweetness; Blockberry adds bold fruit and citrus. THC 14–18%. Approachable potency makes this excellent for daytime use or new consumers. Well-balanced, pleasant, mood-lifting — a safe bet for gift recommendations.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 7,
+      "lift_up": 5,
+      "get_creative": 3,
+      "get_social": 4,
+      "pain_body": 5,
+      "just_happy": 6,
+      "aphrodisiac": 6
+    }
   },
   "32de19b6f29e": {
     "lineage": "Do-Si-Dos x Purple Punch (In House Genetics)",
     "therapeutic": "Insomnia, chronic pain, stress, appetite stimulation, nausea",
     "negative": "Dry mouth, dry eyes, heavy sedation — not for daytime use",
     "aroma": "Tropical grape punch, sweet berry candy, herbal earthiness, faint spice — rich and indulgent",
-    "misc": "Bred by In House Genetics. Do-Si-Dos adds potency and body effect; Purple Punch contributes the sweet grape-tropical flavor. THC 20–28%. Dense purple flowers. One of the more potent indica-dominant strains on the menu. Fast-acting, long-lasting. Best for evening or nighttime use."
+    "misc": "Bred by In House Genetics. Do-Si-Dos adds potency and body effect; Purple Punch contributes the sweet grape-tropical flavor. THC 20–28%. Dense purple flowers. One of the more potent indica-dominant strains on the menu. Fast-acting, long-lasting. Best for evening or nighttime use.",
+    "mood_ratings": {
+      "wind_down": 9,
+      "anxiety_relief": 4,
+      "lift_up": 5,
+      "get_creative": 2,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
   },
   "c697f763d6e1": {
     "lineage": "Mendo Breath x Do-Si-Dos (Archive Seed Bank)",
     "therapeutic": "Chronic pain, insomnia, stress, muscle tension, appetite stimulation",
     "negative": "Dry mouth, dry eyes, heavy couch-lock at higher doses",
     "aroma": "Sweet grape jelly, caramel, vanilla cream, earthy Mendo funk, hint of gas — like a fruity candy bar with a dank finish",
-    "misc": "Archive Seed Bank genetics. Mendo Breath delivers caramel-vanilla sweetness; Do-Si-Dos adds potency and berry fruitiness. THC 14–20%. Dense frosted flowers. Indica-dominant — powerful relaxation and sedation. Named for its distinctively sweet jelly-like aroma. Great for pain and sleep."
+    "misc": "Archive Seed Bank genetics. Mendo Breath delivers caramel-vanilla sweetness; Do-Si-Dos adds potency and berry fruitiness. THC 14–20%. Dense frosted flowers. Indica-dominant — powerful relaxation and sedation. Named for its distinctively sweet jelly-like aroma. Great for pain and sleep.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 4,
+      "lift_up": 5,
+      "get_creative": 2,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
   },
   "aadbe36acb08": {
     "lineage": "Black Cherry Punch x Hash Church (Redwood County Weed Co.)",
     "therapeutic": "Stress relief, mood enhancement, mild anxiety, fatigue",
     "negative": "Dry mouth, dry eyes",
     "aroma": "Sweet cherry pine, skunky earthiness, floral undertones, light spice — aromatic and approachable",
-    "misc": "Redwood County Weed Co. cultivar. Named after the mythological Costa Rican spirit La Cegua. Hash Church genetics add classic old-school pungency; Black Cherry Punch contributes sweet cherry fruit. THC 15–19%. Balanced, approachable hybrid — a good entry point for newer consumers."
+    "misc": "Redwood County Weed Co. cultivar. Named after the mythological Costa Rican spirit La Cegua. Hash Church genetics add classic old-school pungency; Black Cherry Punch contributes sweet cherry fruit. THC 15–19%. Balanced, approachable hybrid — a good entry point for newer consumers.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 4,
+      "lift_up": 6,
+      "get_creative": 3,
+      "get_social": 5,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
   },
   "ae8b04d10a31": {
     "lineage": "Alien Cookies x Kush Mints #11 (Capulator / Cap Junky Genetics)",
     "therapeutic": "Stress, anxiety, depression, chronic pain, appetite stimulation",
     "negative": "Dry mouth, dry eyes, possible paranoia at high doses in sensitive users",
     "aroma": "Pungent fuel and diesel, sweet pine, cooling menthol, spiced earth, faint fruity finish",
-    "misc": "Redwood County Weed Co. cut of Cap Junky, one of the most decorated modern hybrids. Bred by Capulator (creator of MAC). THC 14–18% in this cut — more approachable potency than the flower version. Fast-hitting cerebral rush followed by warm body relaxation. Excellent daily driver."
+    "misc": "Redwood County Weed Co. cut of Cap Junky, one of the most decorated modern hybrids. Bred by Capulator (creator of MAC). THC 14–18% in this cut — more approachable potency than the flower version. Fast-hitting cerebral rush followed by warm body relaxation. Excellent daily driver.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 8,
+      "lift_up": 5,
+      "get_creative": 3,
+      "get_social": 5,
+      "pain_body": 5,
+      "just_happy": 7,
+      "aphrodisiac": 7
+    }
   },
   "57a8dde82c12": {
     "lineage": "Las Vegas Lemon Skunk x Member Berry (Elev8 Seeds)",
     "therapeutic": "Stress, depression, mild chronic pain, fatigue, mood enhancement",
     "negative": "Dry mouth, dry eyes, possible slight anxiety",
     "aroma": "Bright lemon citrus, sweet mixed berries, light skunky earthiness, pine, faint floral — vibrant and fresh",
-    "misc": "Elev8 Seeds genetics combining Las Vegas Lemon Skunk's tart citrus with Member Berry's berry candy sweetness. THC 12–16%. One of the most approachable potency levels on the menu — excellent for daytime use or newer consumers. Uplifting and creative without being overwhelming. Great starter pre-roll."
+    "misc": "Elev8 Seeds genetics combining Las Vegas Lemon Skunk's tart citrus with Member Berry's berry candy sweetness. THC 12–16%. One of the most approachable potency levels on the menu — excellent for daytime use or newer consumers. Uplifting and creative without being overwhelming. Great starter pre-roll.",
+    "mood_ratings": {
+      "wind_down": 3,
+      "anxiety_relief": 4,
+      "lift_up": 3,
+      "get_creative": 8,
+      "get_social": 3,
+      "pain_body": 6,
+      "just_happy": 4,
+      "aphrodisiac": 3
+    }
   },
   "baa51ab3ca78": {
     "lineage": "Grape Gas x Cereal Milk (Compound Genetics)",
     "therapeutic": "Stress, anxiety, mild pain, insomnia, mood disorders",
     "negative": "Dry mouth, dry eyes, potential drowsiness at higher doses",
     "aroma": "Grape soda and creamy milk sweetness, berry compote, light vanilla, earthy and slightly gassy base",
-    "misc": "Compound Genetics cut. THC 28–35% in premium batches. Dense violet-tinted flowers packed with resin — excellent for both flower connoisseurs and hash makers. Calming with mood-lifting edge; not fully sedating at moderate doses. Great evening strain with dessert-like flavor."
+    "misc": "Compound Genetics cut. THC 28–35% in premium batches. Dense violet-tinted flowers packed with resin — excellent for both flower connoisseurs and hash makers. Calming with mood-lifting edge; not fully sedating at moderate doses. Great evening strain with dessert-like flavor.",
+    "mood_ratings": {
+      "wind_down": 3,
+      "anxiety_relief": 4,
+      "lift_up": 8,
+      "get_creative": 3,
+      "get_social": 7,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
   },
   "b07cb1ec42ba": {
     "lineage": "Sour Diesel x Cinderella 99",
     "therapeutic": "Stress relief, appetite stimulation, mild depression, fatigue, social anxiety",
     "negative": "Dry mouth, dry eyes, mild sedation at high doses",
     "aroma": "Tart green apple candy, lemon-lime citrus, sweet berry, light diesel in background, tropical fruit finish",
-    "misc": "A flavorful cross combining Sour Diesel's cerebral buzz with Cinderella 99's fruity sativa energy. At 76.8% THC in vape form. Delivers a sweet, clean experience — lighter and more approachable than pure Sour Diesel. Balanced, social, and uplifting. Good daytime or early evening vape."
+    "misc": "A flavorful cross combining Sour Diesel's cerebral buzz with Cinderella 99's fruity sativa energy. At 76.8% THC in vape form. Delivers a sweet, clean experience — lighter and more approachable than pure Sour Diesel. Balanced, social, and uplifting. Good daytime or early evening vape.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 4,
+      "lift_up": 3,
+      "get_creative": 7,
+      "get_social": 3,
+      "pain_body": 5,
+      "just_happy": 4,
+      "aphrodisiac": 3
+    }
   },
   "e2b95f79aa58": {
     "lineage": "Cotton Candy x Mythic OG (Atlas Seeds)",
     "therapeutic": "Stress relief, mood enhancement, muscle relaxation, mild pain, anxiety",
     "negative": "Dry mouth, dry eyes",
     "aroma": "Vibrant sweet fruit candy, tropical punch, light gassy undertone — room-filling aromatic presence",
-    "misc": "Bred by Atlas Seeds. THC 20–25%+ (some batches 29%+). Fast flowering, high resin production. Best for afternoon or evening. Named for its nostalgic candy-like terpene profile. Works well for creative or social settings. New arrival — one of Avión's signature craft pre-rolls."
+    "misc": "Bred by Atlas Seeds. THC 20–25%+ (some batches 29%+). Fast flowering, high resin production. Best for afternoon or evening. Named for its nostalgic candy-like terpene profile. Works well for creative or social settings. New arrival — one of Avión's signature craft pre-rolls.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 4,
+      "lift_up": 6,
+      "get_creative": 2,
+      "get_social": 5,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
   },
   "03df98cc7bf8": {
     "lineage": "Cherry Kush x (Lemon Tree Papaya x GMO) x Fro'Do",
     "therapeutic": "Chronic pain, depression, mood swings, arthritis, muscle spasms and cramps",
     "negative": "Dry mouth, dry eyes, mild headache at high doses",
     "aroma": "Earthy spice, fresh woods, peppery zest, dank herbal cheese — like lemon-pepper parmesan with a funky GMO kick",
-    "misc": "THC 18–23%, ~1% CBD. Named for its bold savory-citrus parmesan flavor. Cerebral flare up front followed by warming body waves. Dense olive-green buds with amber undertones. Great for social or creative sessions. New arrival — Avión's most unique flavor profile in the lineup."
+    "misc": "THC 18–23%, ~1% CBD. Named for its bold savory-citrus parmesan flavor. Cerebral flare up front followed by warming body waves. Dense olive-green buds with amber undertones. Great for social or creative sessions. New arrival — Avión's most unique flavor profile in the lineup.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 4,
+      "lift_up": 7,
+      "get_creative": 3,
+      "get_social": 6,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 5
+    }
   },
   "7b052b7dd4f2": {
     "lineage": "(Fro'Do x Alaskan Yeti) x LilMissHS (Phylos Bioscience autoflower genetics)",
     "therapeutic": "Stress relief, mood enhancement, mild anxiety, relaxation",
     "negative": "Dry mouth, dry eyes",
     "aroma": "Earthy and fruity with herbal lavender notes, light floral, subtle spice — bright and approachable",
-    "misc": "Phylos Bioscience autoflower genetics. THC ~20–25%. High resin production and stacking cola structure. Balanced hybrid experience — calm but not sedating. Great all-occasion strain suitable for a wider range of consumers. New arrival — Avión's most versatile pre-roll offering."
+    "misc": "Phylos Bioscience autoflower genetics. THC ~20–25%. High resin production and stacking cola structure. Balanced hybrid experience — calm but not sedating. Great all-occasion strain suitable for a wider range of consumers. New arrival — Avión's most versatile pre-roll offering.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 3,
+      "lift_up": 6,
+      "get_creative": 2,
+      "get_social": 5,
+      "pain_body": 3,
+      "just_happy": 5,
+      "aphrodisiac": 3
+    }
   }
 }
