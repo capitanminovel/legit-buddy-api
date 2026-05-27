@@ -627,5 +627,56 @@
       "just_happy": 5,
       "aphrodisiac": 3
     }
+  },
+  "e958853503bb": {
+    "lineage": "Mythic OG x Candy Cane (Avió / proprietary hybrid; Candy Cane is derived from AK-47 x Mango x White Widow lineage, while Mythic OG carries OG Kush heritage)",
+    "therapeutic": "Stress relief, anxiety reduction, mild chronic pain, muscle tension, insomnia onset, mood elevation",
+    "negative": "Dry mouth, dry eyes, mild dizziness at higher doses, potential couch-lock with overconsumption, may increase appetite",
+    "aroma": "A lush wave of sweet tropical fruit and citrus zest opens up front, layered beneath with earthy OG musk and a warm spiced undertone that lingers on the exhale. The candy-like sweetness is prominent but grounded by a subtle kushy dankness that keeps it from feeling one-dimensional.",
+    "misc": "Froot by the Foot is a branded pre-roll from Avió, a California-based cannabis company known for curated, flavor-forward cultivars; at 20.1% THC it sits in a solid mid-to-upper potency range suitable for intermediate consumers. The indica-leaning hybrid profile, driven by Myrcene and Caryophyllene, delivers a relaxing body effect without full sedation, making it best suited for late afternoon or evening use. Consumers seeking a flavorful, easygoing wind-down smoke will find this a well-balanced option, though newer users should take measured puffs given the THC content.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 4,
+      "lift_up": 6,
+      "get_creative": 2,
+      "get_social": 5,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
+  },
+  "62d25dc9d10f": {
+    "lineage": "Cherry Kush x (Lemon Tree Papaya x GMO) x Fro'Do (Avió)",
+    "therapeutic": "Stress relief, mild anxiety, mood elevation, mental fatigue, mild pain management",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, possible dizziness for low-tolerance users",
+    "aroma": "Zesty Parm bursts with a sharp citrus-forward nose of fresh lemon zest and tangy lime rind, underpinned by funky garlic-diesel undertones inherited from GMO and a dank skunky earthiness that rounds out the profile with herbal pine resin on the exhale.",
+    "misc": "Crafted by Avió, Zesty Parm is a sativa-leaning hybrid that draws its bright citrus character from the Lemon Tree Papaya lineage while GMO contributes a savory, funky depth that gives this strain its distinctive 'parmesan' quality — a nod likely reflected in the name. At 17.2% THC it sits in a moderate range suitable for intermediate consumers, offering a balanced experience that leans euphoric and clear-headed rather than sedating, making it well-suited for daytime to early evening use when focus and a lifted mood are desired without heavy couch-lock.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 4,
+      "lift_up": 7,
+      "get_creative": 3,
+      "get_social": 6,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 5
+    }
+  },
+  "87fe23eebf9e": {
+    "lineage": "Fro'Do x Alaskan Yeti, then crossed with LilMissHS — Fro'Do is believed to be derived from Frodo Baggins-lineage genetics, Alaskan Yeti is a frosty sativa-dominant hybrid, and LilMissHS (Little Miss Headspace) adds a euphoric, uplifting character; produced under the Avió brand",
+    "therapeutic": "Stress relief, mild anxiety reduction, mood elevation, mental fatigue, mild pain management, creative blocks",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses for THC-sensitive users, possible light headedness; not ideal for severe anxiety sufferers due to sativa-leaning energy",
+    "aroma": "A bright, resinous burst of tropical fruit and fresh-cut pine opens the nose, giving way to a subtle earthy spice reminiscent of crushed black pepper and warm citrus zest. The interplay of sweet and herbal notes lingers pleasantly, making it an approachable and inviting aromatic profile.",
+    "misc": "Frodo Squeeze is an Avió house blend pre-roll sitting at a moderate 17.1% THC, making it well-suited for intermediate consumers or beginners seeking a gentle sativa-leaning experience without overwhelming potency. Buds are typically light green with moderate trichome coverage reflecting the Alaskan Yeti influence, and the myrcene-forward terpene profile tempers the sativa energy into a calm, focused headspace. Best enjoyed during late morning or early afternoon when productivity and a lifted mood are desired; the relaxing body undertones from myrcene make it versatile enough for early evening wind-down as well.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 3,
+      "lift_up": 6,
+      "get_creative": 2,
+      "get_social": 5,
+      "pain_body": 4,
+      "just_happy": 5,
+      "aphrodisiac": 3
+    }
   }
 }
