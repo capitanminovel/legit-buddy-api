@@ -11,7 +11,6 @@ import hashlib
 import json
 import re
 import time
-import unicodedata
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
@@ -547,12 +546,8 @@ def try_playwright() -> list[dict]:
 
 # ── Database helpers ──────────────────────────────────────────────────────────
 
-def _normalize(s: str) -> str:
-    """Strip accents so cosmetic brand renames don't create orphan entries."""
-    return unicodedata.normalize("NFD", s).encode("ascii", "ignore").decode().lower().strip()
-
 def product_key(p: dict) -> str:
-    key = f"{_normalize(p.get('name',''))}-{_normalize(p.get('brand',''))}"
+    key = f"{p.get('name','').lower().strip()}-{p.get('brand','').lower().strip()}"
     return hashlib.md5(key.encode()).hexdigest()[:12]
 
 def load_db() -> dict:
