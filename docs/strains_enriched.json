@@ -576,5 +576,56 @@
       "just_happy": 5,
       "aphrodisiac": 3
     }
+  },
+  "ce49eae04ae2": {
+    "lineage": "Mythic OG x Candy Cane (Avió)",
+    "therapeutic": "Stress relief, mild chronic pain, anxiety, insomnia, muscle tension, mood elevation",
+    "negative": "Dry mouth, dry eyes, possible couch-lock at higher doses, mild dizziness in low-tolerance users, drowsiness",
+    "aroma": "A lush wave of tropical fruit and sugary candy opens the nose, followed by a grounding undercurrent of earthy spice and subtle floral notes. The sweetness lingers with a hint of citrus zest that keeps it vibrant and inviting.",
+    "misc": "Froot by the Foot is an indica-leaning hybrid crafted by Avió, combining the heavy resinous body of Mythic OG with the colorful, candy-forward sweetness of Candy Cane. At 20.1% THC, this cultivar sits in a moderate-to-potent range well-suited for evening or late-afternoon use when relaxation and mood lift are the goal. The myrcene-dominant terpene profile amplifies the sedative body effects, while limonene brightens the experience with euphoria and caryophyllene adds a peppery depth that may help with inflammation — making this a solid choice for consumers seeking a flavorful wind-down smoke.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 4,
+      "lift_up": 6,
+      "get_creative": 2,
+      "get_social": 5,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
+  },
+  "45acbd932aeb": {
+    "lineage": "Cherry Kush x (Lemon Tree Papaya x GMO) x Fro'Do (Avió)",
+    "therapeutic": "Stress relief, mild anxiety, fatigue, mood elevation, mild pain management",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, possible drowsiness in sensitive users",
+    "aroma": "Zesty Parm bursts with a sharp citrus-forward nose of fresh lemon zest and lime rind, layered beneath earthy, dank skunk and a savory garlic-funk courtesy of its GMO heritage. A subtle piney herbal backbone and cracked black pepper finish round out a complex, mouth-watering terpene profile.",
+    "misc": "This unique hybrid from Avió blends the sweet citrus genetics of Lemon Tree Papaya with the pungent, fuel-heavy earthiness of GMO and the fruity sweetness of Cherry Kush, anchored by Fro'Do for added resin and body depth. At 17.2% THC it sits in a moderate range — approachable for intermediate consumers while still delivering noticeable calming euphoria without heavy sedation. Best suited for late afternoon or early evening use when you want to decompress, stay mentally engaged, and enjoy a flavorful smoke session; the dominant Myrcene and Limonene pairing supports relaxation without full couch-lock.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 4,
+      "lift_up": 7,
+      "get_creative": 3,
+      "get_social": 6,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
+  },
+  "956c29d611b1": {
+    "lineage": "(Fro'Do x Alaskan Yeti) x Lil Miss Hard Sauce — Fro'Do is a cross of Frozay x Dosi-Woah, Alaskan Yeti is a rare sativa-leaning hybrid with Alaskan Thunder Fuck heritage, and Lil Miss Hard Sauce (LilMissHS) is a terpene-rich hybrid known for fruity, fuel-forward profiles; bred under the Avió program",
+    "therapeutic": "Stress relief, mild anxiety reduction, mood elevation, mental fatigue, mild pain management, appetite stimulation",
+    "negative": "Dry mouth, dry eyes, potential mild paranoia at higher doses, mild dizziness for low-tolerance users; not ideal for those sensitive to sativa-leaning stimulation late at night",
+    "aroma": "A bright and layered bouquet opens with zesty citrus and ripe tropical fruit driven by limonene, underpinned by a damp earthy musk from myrcene and rounded out with a sharp, herbal pine-spice note courtesy of terpinene that lingers pleasantly on the exhale.",
+    "misc": "Produced by Avió, a brand focused on craft-quality pre-rolls with curated genetics; at 17.1% THC this is a moderate-strength sativa-leaning hybrid well-suited for daytime to early evening use when focus and calm are both desired. The buds typically present with light green hues, amber trichomes, and a slightly sticky resinous texture consistent with its Dosi-Woah and Hard Sauce ancestry. Best consumed by intermediate consumers looking for a balanced, uplifting yet grounded experience without heavy sedation.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 3,
+      "lift_up": 6,
+      "get_creative": 2,
+      "get_social": 5,
+      "pain_body": 3,
+      "just_happy": 5,
+      "aphrodisiac": 3
+    }
   }
 }
