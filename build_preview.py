@@ -109,6 +109,12 @@ def build():
         with open(STRAINS_DATA) as f:
             strains = json.load(f)
 
+    schedule = {"shifts": [], "last_updated": None}
+    sched_path = Path(__file__).parent / "docs" / "schedule.json"
+    if sched_path.exists():
+        with open(sched_path) as f:
+            schedule = json.load(f)
+
     now     = datetime.now(CST)
     ts      = now.strftime("%a, %b %d %Y — %I:%M %p CST")
     TARGET  = ("flower", "pre-roll", "vapes", "edibles")
@@ -158,9 +164,11 @@ def build():
       <div class="grid">{cards}</div>
     </section>"""
 
-    # Embed all product data + strain enrichment as JS
-    products_js = json.dumps({k: v for k, v in db["products"].items()}, ensure_ascii=False)
-    strains_js  = json.dumps(strains, ensure_ascii=False)
+    # Embed all product data + strain enrichment + schedule as JS
+    products_js  = json.dumps({k: v for k, v in db["products"].items()}, ensure_ascii=False)
+    strains_js   = json.dumps(strains, ensure_ascii=False)
+    schedule_js  = json.dumps(schedule, ensure_ascii=False)
+    tab_btns    += '\n<button class="tab sched-tab" data-cat="schedule" onclick="openScheduleTab(this)">📅 Schedule</button>'
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -450,6 +458,41 @@ def build():
       .profile-box{{max-height:92vh}}
       .modal-inner{{padding:12px 14px 18px}}
     }}
+    /* ── Schedule ── */
+    .sched-tab{{margin-left:auto}}
+    #scheduleSection{{display:none;padding:24px}}
+    #scheduleSection.active{{display:block}}
+    .pin-overlay{{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);z-index:300;display:flex;align-items:center;justify-content:center}}
+    .pin-overlay.hidden{{display:none}}
+    .pin-box{{background:var(--white);border-radius:16px;padding:36px 40px;text-align:center;min-width:280px;box-shadow:0 20px 60px rgba(0,0,0,.25)}}
+    .pin-box h2{{font-family:'Nunito',sans-serif;font-size:1.25rem;color:var(--text);margin-bottom:6px}}
+    .pin-box p{{font-size:.8rem;color:var(--muted);margin-bottom:20px}}
+    .pin-input{{width:120px;text-align:center;font-size:1.8rem;letter-spacing:.4em;font-weight:700;padding:8px 12px;border:2px solid var(--border);border-radius:10px;font-family:'Nunito',sans-serif;color:var(--text);outline:none}}
+    .pin-input:focus{{border-color:var(--brand)}}
+    .pin-error{{color:#dc2626;font-size:.78rem;margin-top:10px;min-height:18px}}
+    .sched-header{{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}}
+    .sched-title{{font-family:'Nunito',sans-serif;font-size:1.2rem;font-weight:800;color:var(--text)}}
+    .sched-nav{{display:flex;align-items:center;gap:8px;margin-left:auto}}
+    .sched-nav-btn{{padding:6px 14px;border:1px solid var(--border);border-radius:20px;background:var(--white);color:var(--muted);cursor:pointer;font-size:.78rem;font-weight:600;transition:all .15s}}
+    .sched-nav-btn:hover{{border-color:var(--brand);color:var(--brand)}}
+    .sched-nav-btn.disabled{{opacity:.4;cursor:default;pointer-events:none}}
+    .sched-week-label{{font-size:.82rem;color:var(--muted);font-weight:600;min-width:90px;text-align:center}}
+    .sched-filters{{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}}
+    .sched-filter-btn{{padding:5px 14px;border-radius:20px;border:1px solid var(--border);background:var(--white);color:var(--muted);cursor:pointer;font-size:.75rem;font-weight:600;transition:all .15s}}
+    .sched-filter-btn:hover{{border-color:var(--brand);color:var(--brand)}}
+    .sched-filter-btn.on{{background:var(--brand-lt);border-color:var(--brand);color:var(--brand)}}
+    .sched-day{{margin-bottom:18px;background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden}}
+    .sched-day.today .sched-day-head{{background:var(--brand);color:#fff}}
+    .sched-day-head{{padding:9px 16px;font-size:.82rem;font-weight:700;background:var(--bg);color:var(--text);display:flex;align-items:center;gap:8px}}
+    .sched-today-badge{{background:#fff;color:var(--brand);font-size:.65rem;font-weight:800;padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:.05em}}
+    .sched-shifts{{padding:4px 0}}
+    .sched-shift{{display:flex;align-items:center;gap:12px;padding:9px 16px;border-bottom:1px solid var(--bg);font-size:.82rem}}
+    .sched-shift:last-child{{border-bottom:none}}
+    .sched-shift-name{{font-weight:600;color:var(--text);min-width:130px}}
+    .sched-shift-time{{color:var(--muted);white-space:nowrap}}
+    .sched-empty{{text-align:center;padding:48px 24px;color:var(--muted);font-size:.88rem}}
+    .sched-empty-icon{{font-size:2rem;margin-bottom:12px;opacity:.4}}
+    .sched-updated{{font-size:.7rem;color:var(--muted);text-align:right;margin-top:12px}}
   </style>
 </head>
 <body>
@@ -1390,6 +1433,203 @@ function toggleDark() {{
     }});
   }}
 }})();
+</script>
+
+<!-- ── PIN overlay ── -->
+<div class="pin-overlay hidden" id="pinOverlay">
+  <div class="pin-box">
+    <h2>Staff Access</h2>
+    <p>Enter your code to view the schedule</p>
+    <input class="pin-input" id="pinInput" type="password" maxlength="4"
+           inputmode="numeric" placeholder="••••" autocomplete="off"
+           oninput="checkPin(this.value)">
+    <div class="pin-error" id="pinError"></div>
+  </div>
+</div>
+
+<!-- ── Schedule section (injected into main by JS) ── -->
+<template id="scheduleTemplate">
+  <section id="scheduleSection">
+    <div class="sched-header">
+      <span class="sched-title">📅 Staff Schedule</span>
+      <div class="sched-nav">
+        <button class="sched-nav-btn" id="schedPrevBtn" onclick="schedNav(-7)">← Previous</button>
+        <span class="sched-week-label" id="schedWeekLabel"></span>
+        <button class="sched-nav-btn" id="schedNextBtn" onclick="schedNav(7)">Next →</button>
+      </div>
+    </div>
+    <div class="sched-filters" id="schedFilters"></div>
+    <div id="schedDays"></div>
+    <div class="sched-updated" id="schedUpdated"></div>
+  </section>
+</template>
+
+<script>
+const SCHEDULE = {schedule_js};
+const SCHED_PIN = '0420';
+let schedOffset   = 0;   // days from today (multiples of 7)
+let schedPerson   = 'all';
+let schedUnlocked = false;
+
+function openScheduleTab(btn) {{
+  if (schedUnlocked || sessionStorage.getItem('sched-ok') === '1') {{
+    schedUnlocked = true;
+    showSchedule(btn);
+    return;
+  }}
+  document.getElementById('pinOverlay').classList.remove('hidden');
+  document.getElementById('pinInput').value = '';
+  document.getElementById('pinError').textContent = '';
+  setTimeout(() => document.getElementById('pinInput').focus(), 80);
+  // store btn ref to activate after unlock
+  window._schedBtn = btn;
+}}
+
+function checkPin(val) {{
+  if (val.length < 4) return;
+  if (val === SCHED_PIN) {{
+    sessionStorage.setItem('sched-ok', '1');
+    schedUnlocked = true;
+    document.getElementById('pinOverlay').classList.add('hidden');
+    showSchedule(window._schedBtn);
+  }} else {{
+    document.getElementById('pinError').textContent = 'Incorrect code';
+    document.getElementById('pinInput').value = '';
+  }}
+}}
+
+function showSchedule(btn) {{
+  // Activate tab
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+  if (btn) btn.classList.add('on');
+  // Hide product content, show schedule
+  document.querySelectorAll('.section,.new-arrivals-section,.section-divider,.mood-bar,.legend').forEach(el => {{
+    el.style.display = 'none';
+  }});
+  let sec = document.getElementById('scheduleSection');
+  if (!sec) {{
+    const tpl = document.getElementById('scheduleTemplate');
+    const clone = tpl.content.cloneNode(true);
+    document.querySelector('main').appendChild(clone);
+    sec = document.getElementById('scheduleSection');
+  }}
+  sec.classList.add('active');
+  renderSchedule();
+}}
+
+function hideSchedule() {{
+  const sec = document.getElementById('scheduleSection');
+  if (sec) sec.classList.remove('active');
+  document.querySelectorAll('.section,.new-arrivals-section,.section-divider,.mood-bar,.legend').forEach(el => {{
+    el.style.display = '';
+  }});
+}}
+
+// Patch filterCat to hide schedule when switching back to product tabs
+const _origFilterCat = typeof filterCat === 'function' ? filterCat : null;
+function filterCat(btn) {{
+  hideSchedule();
+  if (_origFilterCat) _origFilterCat(btn);
+}}
+
+function schedNav(days) {{
+  const newOffset = schedOffset + days;
+  // Don't go more than 35 days back or 7 days forward
+  if (newOffset < -35 || newOffset > 7) return;
+  schedOffset = newOffset;
+  renderSchedule();
+}}
+
+function setSchedPerson(name, btn) {{
+  schedPerson = name;
+  document.querySelectorAll('.sched-filter-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  renderSchedule();
+}}
+
+function renderSchedule() {{
+  const shifts = SCHEDULE.shifts || [];
+  const today  = new Date();
+  today.setHours(0,0,0,0);
+
+  // Week window: schedOffset days from today
+  const windowStart = new Date(today);
+  windowStart.setDate(windowStart.getDate() + schedOffset);
+  const windowEnd = new Date(windowStart);
+  windowEnd.setDate(windowEnd.getDate() + 6);
+
+  // Nav label
+  const fmt = d => d.toLocaleDateString('en-US', {{month:'short', day:'numeric'}});
+  document.getElementById('schedWeekLabel').textContent = fmt(windowStart) + ' – ' + fmt(windowEnd);
+
+  // Nav buttons
+  document.getElementById('schedPrevBtn').classList.toggle('disabled', schedOffset <= -35);
+  document.getElementById('schedNextBtn').classList.toggle('disabled', schedOffset >= 7);
+
+  // Build person filter chips
+  const people = ['all', ...Array.from(new Set(shifts.map(s => s.name))).sort()];
+  const filtersEl = document.getElementById('schedFilters');
+  if (filtersEl.children.length === 0) {{
+    people.forEach(p => {{
+      const b = document.createElement('button');
+      b.className = 'sched-filter-btn' + (p === schedPerson ? ' on' : '');
+      b.textContent = p === 'all' ? '👥 Everyone' : p;
+      b.onclick = () => setSchedPerson(p, b);
+      filtersEl.appendChild(b);
+    }});
+  }}
+
+  // Render 7 days
+  const daysEl = document.getElementById('schedDays');
+  daysEl.innerHTML = '';
+  for (let i = 0; i < 7; i++) {{
+    const day = new Date(windowStart);
+    day.setDate(day.getDate() + i);
+    const dayStr = day.toISOString().slice(0,10);
+    const isToday = day.getTime() === today.getTime();
+
+    const dayShifts = shifts.filter(s => {{
+      if (s.date !== dayStr) return false;
+      return schedPerson === 'all' || s.name === schedPerson;
+    }});
+
+    const dayEl = document.createElement('div');
+    dayEl.className = 'sched-day' + (isToday ? ' today' : '');
+
+    const headEl = document.createElement('div');
+    headEl.className = 'sched-day-head';
+    headEl.innerHTML = day.toLocaleDateString('en-US', {{weekday:'long', month:'short', day:'numeric'}})
+      + (isToday ? ' <span class="sched-today-badge">Today</span>' : '');
+    dayEl.appendChild(headEl);
+
+    if (dayShifts.length === 0) {{
+      const emp = document.createElement('div');
+      emp.className = 'sched-shift';
+      emp.style.color = 'var(--muted)';
+      emp.style.fontStyle = 'italic';
+      emp.style.fontSize = '.78rem';
+      emp.textContent = 'No shifts scheduled';
+      dayEl.appendChild(emp);
+    }} else {{
+      const t2m = t => {{ const m=t.match(/(\d+):(\d+)\s*(AM|PM)/i); if(!m)return 0; let h=+m[1],pm=m[3].toUpperCase()==='PM'; if(pm&&h!==12)h+=12; if(!pm&&h===12)h=0; return h*60+(+m[2]); }};
+      dayShifts.sort((a,b) => t2m(a.start||'') - t2m(b.start||''));
+      dayShifts.forEach(s => {{
+        const row = document.createElement('div');
+        row.className = 'sched-shift';
+        row.innerHTML = `<span class="sched-shift-name">${{s.name}}</span>`
+          + `<span class="sched-shift-time">${{s.start}} – ${{s.end}}</span>`;
+        dayEl.appendChild(row);
+      }});
+    }}
+    daysEl.appendChild(dayEl);
+  }}
+
+  // Last updated
+  const upd = document.getElementById('schedUpdated');
+  if (SCHEDULE.last_updated) {{
+    upd.textContent = 'Schedule last updated: ' + new Date(SCHEDULE.last_updated).toLocaleString('en-US', {{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'}});
+  }}
+}}
 </script>
 </body>
 </html>"""
