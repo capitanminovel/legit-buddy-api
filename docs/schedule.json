@@ -1052,22 +1052,8 @@
     },
     {
       "date": "2026-06-10",
-      "name": "Brandon",
-      "start": "4:00 PM",
-      "end": "9:30 PM",
-      "role": "Budtender"
-    },
-    {
-      "date": "2026-06-10",
       "name": "MJ",
       "start": "4:00 PM",
-      "end": "9:30 PM",
-      "role": "Budtender"
-    },
-    {
-      "date": "2026-06-10",
-      "name": "Courtney",
-      "start": "5:00 PM",
       "end": "9:30 PM",
       "role": "Budtender"
     },
@@ -1082,7 +1068,7 @@
       "date": "2026-06-10",
       "name": "Tasha",
       "start": "9:30 AM",
-      "end": "5:00 PM",
+      "end": "4:00 PM",
       "role": "Budtender"
     },
     {
@@ -1404,13 +1390,6 @@
       "date": "2026-06-17",
       "name": "Mike",
       "start": "4:00 PM",
-      "end": "9:30 PM",
-      "role": "Budtender"
-    },
-    {
-      "date": "2026-06-17",
-      "name": "Courtney",
-      "start": "5:00 PM",
       "end": "9:30 PM",
       "role": "Budtender"
     },
@@ -1458,13 +1437,6 @@
     },
     {
       "date": "2026-06-18",
-      "name": "Courtney",
-      "start": "4:00 PM",
-      "end": "9:30 PM",
-      "role": "Budtender"
-    },
-    {
-      "date": "2026-06-18",
       "name": "Grant",
       "start": "4:00 PM",
       "end": "9:30 PM",
@@ -1507,13 +1479,6 @@
     },
     {
       "date": "2026-06-19",
-      "name": "MJ",
-      "start": "4:00 PM",
-      "end": "9:30 PM",
-      "role": "Budtender"
-    },
-    {
-      "date": "2026-06-19",
       "name": "Mike",
       "start": "4:00 PM",
       "end": "9:30 PM",
@@ -1543,7 +1508,7 @@
     {
       "date": "2026-06-20",
       "name": "Jon",
-      "start": "12:00 PM",
+      "start": "1:00 PM",
       "end": "9:30 PM",
       "role": "Budtender"
     },
@@ -1717,7 +1682,7 @@
     },
     {
       "date": "2026-06-24",
-      "name": "Tyge",
+      "name": "Tasha",
       "start": "10:00 AM",
       "end": "4:00 PM",
       "role": "Budtender"
@@ -1733,13 +1698,6 @@
       "date": "2026-06-24",
       "name": "MJ",
       "start": "4:00 PM",
-      "end": "9:30 PM",
-      "role": "Budtender"
-    },
-    {
-      "date": "2026-06-24",
-      "name": "Courtney",
-      "start": "5:00 PM",
       "end": "9:30 PM",
       "role": "Budtender"
     },
@@ -1959,7 +1917,63 @@
       "start": "9:30 AM",
       "end": "4:00 PM",
       "role": "Budtender"
+    },
+    {
+      "date": "2026-06-10",
+      "name": "Bridget",
+      "start": "9:30 AM",
+      "end": "5:00 PM",
+      "role": "Budtender"
+    },
+    {
+      "date": "2026-06-10",
+      "name": "Mike",
+      "start": "4:00 PM",
+      "end": "9:30 PM",
+      "role": "Budtender"
+    },
+    {
+      "date": "2026-06-11",
+      "name": "Courtney",
+      "start": "9:30 AM",
+      "end": "4:00 PM",
+      "role": "Budtender"
+    },
+    {
+      "date": "2026-06-18",
+      "name": "Courtney",
+      "start": "9:30 AM",
+      "end": "4:00 PM",
+      "role": "Budtender"
+    },
+    {
+      "date": "2026-06-19",
+      "name": "Jose",
+      "start": "5:00 PM",
+      "end": "9:30 PM",
+      "role": "Budtender"
+    },
+    {
+      "date": "2026-06-20",
+      "name": "Mike",
+      "start": "12:00 PM",
+      "end": "9:30 PM",
+      "role": "Budtender"
+    },
+    {
+      "date": "2026-06-21",
+      "name": "Courtney",
+      "start": "4:00 PM",
+      "end": "8:30 PM",
+      "role": "Budtender"
+    },
+    {
+      "date": "2026-06-24",
+      "name": "Mike",
+      "start": "5:00 PM",
+      "end": "9:30 PM",
+      "role": "Budtender"
     }
   ],
-  "last_updated": "2026-05-27T17:23:37.088827-06:00"
+  "last_updated": "2026-05-27T23:44:49.493385"
 }
