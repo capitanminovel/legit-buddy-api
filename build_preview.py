@@ -490,7 +490,6 @@ def build():
     .sched-shift:last-child{{border-bottom:none}}
     .sched-shift-name{{font-weight:600;color:var(--text);min-width:130px}}
     .sched-shift-time{{color:var(--muted);white-space:nowrap}}
-    .sched-shift-role{{color:var(--brand);font-size:.72rem;font-weight:600;background:var(--brand-lt);padding:2px 8px;border-radius:10px;white-space:nowrap}}
     .sched-empty{{text-align:center;padding:48px 24px;color:var(--muted);font-size:.88rem}}
     .sched-empty-icon{{font-size:2rem;margin-bottom:12px;opacity:.4}}
     .sched-updated{{font-size:.7rem;color:var(--muted);text-align:right;margin-top:12px}}
@@ -1612,13 +1611,13 @@ function renderSchedule() {{
       emp.textContent = 'No shifts scheduled';
       dayEl.appendChild(emp);
     }} else {{
-      dayShifts.sort((a,b) => (a.start||'').localeCompare(b.start||''));
+      const t2m = t => {{ const m=t.match(/(\d+):(\d+)\s*(AM|PM)/i); if(!m)return 0; let h=+m[1],pm=m[3].toUpperCase()==='PM'; if(pm&&h!==12)h+=12; if(!pm&&h===12)h=0; return h*60+(+m[2]); }};
+      dayShifts.sort((a,b) => t2m(a.start||'') - t2m(b.start||''));
       dayShifts.forEach(s => {{
         const row = document.createElement('div');
         row.className = 'sched-shift';
         row.innerHTML = `<span class="sched-shift-name">${{s.name}}</span>`
-          + `<span class="sched-shift-time">${{s.start}} – ${{s.end}}</span>`
-          + (s.role ? `<span class="sched-shift-role">${{s.role}}</span>` : '');
+          + `<span class="sched-shift-time">${{s.start}} – ${{s.end}}</span>`;
         dayEl.appendChild(row);
       }});
     }}
