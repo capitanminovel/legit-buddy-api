@@ -10,7 +10,7 @@ CST          = timezone(timedelta(hours=-6))
 DATA         = Path(__file__).parent / "docs" / "products.json"
 STRAINS_DATA = Path(__file__).parent / "docs" / "strains_enriched.json"
 OUT          = Path(__file__).parent / "docs" / "index.html"
-NEW_DAYS     = 2
+NEW_DAYS     = 3
 
 CAT_ICONS = {
     "flower":"🌿","pre-roll":"🚬","pre_roll":"🚬","preroll":"🚬",
