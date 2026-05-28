@@ -510,6 +510,12 @@ def build():
     .sched-tab{{margin-left:auto}}
     #scheduleSection{{display:none;padding:24px}}
     #scheduleSection.active{{display:block}}
+    .sched-img-section{{margin-top:28px;border-top:1px solid var(--border);padding-top:16px}}
+    .sched-img-toggle{{background:none;border:1px solid var(--border);border-radius:20px;padding:7px 16px;font-size:.8rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s}}
+    .sched-img-toggle:hover{{border-color:var(--brand);color:var(--brand)}}
+    .sched-img-wrap{{margin-top:16px}}
+    .sched-img-label{{font-weight:700;font-size:.85rem;color:var(--muted);margin:16px 0 8px}}
+    .sched-img{{width:100%;border-radius:10px;border:1px solid var(--border);display:block}}
     .pin-overlay{{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);z-index:300;display:flex;align-items:center;justify-content:center}}
     .pin-overlay.hidden{{display:none}}
     .pin-box{{background:var(--white);border-radius:16px;padding:36px 40px;text-align:center;min-width:280px;box-shadow:0 20px 60px rgba(0,0,0,.25)}}
@@ -1513,6 +1519,15 @@ function toggleDark() {{
     <div class="sched-filters" id="schedFilters"></div>
     <div id="schedDays"></div>
     <div class="sched-updated" id="schedUpdated"></div>
+    <div class="sched-img-section">
+      <button class="sched-img-toggle" onclick="toggleSchedImages(this)">📷 View Original Schedule Images</button>
+      <div class="sched-img-wrap hidden" id="schedImages">
+        <p class="sched-img-label">May 2026</p>
+        <img src="schedule-may.jpg" alt="May schedule" class="sched-img">
+        <p class="sched-img-label">June 2026</p>
+        <img src="schedule-june.jpg" alt="June schedule" class="sched-img">
+      </div>
+    </div>
   </section>
 </template>
 
@@ -1575,6 +1590,12 @@ function hideSchedule() {{
   document.querySelectorAll('.section,.new-arrivals-section,.sold-section,.section-divider,.mood-bar,.legend').forEach(el => {{
     el.style.display = '';
   }});
+}}
+
+function toggleSchedImages(btn) {{
+  const wrap = document.getElementById('schedImages');
+  const hidden = wrap.classList.toggle('hidden');
+  btn.textContent = hidden ? '📷 View Original Schedule Images' : '📷 Hide Schedule Images';
 }}
 
 function schedNav(days) {{
