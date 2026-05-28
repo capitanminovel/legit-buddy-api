@@ -340,6 +340,7 @@
     .sched-empty{text-align:center;padding:48px 24px;color:var(--muted);font-size:.88rem}
     .sched-empty-icon{font-size:2rem;margin-bottom:12px;opacity:.4}
     .sched-updated{font-size:.7rem;color:var(--muted);text-align:right;margin-top:12px}
+    .sched-note{margin-top:16px;padding:10px 14px;background:#fffbeb;border:1px solid #fcd34d;border-radius:8px;font-size:.78rem;color:#92400e;line-height:1.5}
   </style>
 </head>
 <body>
@@ -357,7 +358,7 @@
     </div>
     <button class="dark-toggle" id="darkToggle" onclick="toggleDark()">🌙 Dark</button>
     <div class="header-meta">
-      <div>Last updated: <strong>Thu, May 28 2026 — 05:24 PM CST</strong></div>
+      <div>Last updated: <strong>Thu, May 28 2026 — 05:52 PM CST</strong></div>
       <div>25 products in stock</div>
     </div>
   </div>
@@ -425,9 +426,9 @@
     <section class="sold-section" data-cat="all">
       <div class="sold-head">
         <span class="sold-title">🚫 Sold Out — Last 2 Days</span>
-        <span class="sold-count">6 items</span>
+        <span class="sold-count">4 items</span>
       </div>
-      <div class="sold-list"><div class="sold-row"><span class="sold-icon">💨</span><span class="sold-name">Sour Apple</span><span class="strain-badge strain-hybrid sold-strain">Hybrid</span><span class="sold-thc">THC 76.8%</span><span class="sold-when">Gone Today</span></div><div class="sold-row"><span class="sold-icon">💨</span><span class="sold-name">Girl Scout Cookies</span><span class="strain-badge strain-hybrid sold-strain">Hybrid</span><span class="sold-thc">THC 80.5%</span><span class="sold-when">Gone 1d ago</span></div><div class="sold-row"><span class="sold-icon">🍬</span><span class="sold-name">Raspberry</span><span class="strain-badge strain-hybrid sold-strain">Hybrid</span><span class="sold-thc">THC 100.0%</span><span class="sold-when">Gone 1d ago</span></div><div class="sold-row"><span class="sold-icon">🌿</span><span class="sold-name">Cap Junky</span><span class="strain-badge strain-hybrid sold-strain">Hybrid</span><span class="sold-thc">THC 29.0%</span><span class="sold-when">Gone 2d ago</span></div><div class="sold-row"><span class="sold-icon">🚬</span><span class="sold-name">Egg Roll</span><span class="strain-badge strain-indica sold-strain">Hybrid (Indica)</span><span class="sold-thc">THC 19.2%</span><span class="sold-when">Gone 2d ago</span></div><div class="sold-row"><span class="sold-icon">💨</span><span class="sold-name">Sour Diesel</span><span class="strain-badge strain-sativa sold-strain">Hybrid (Sativa)</span><span class="sold-thc">THC 80.3%</span><span class="sold-when">Gone 2d ago</span></div></div>
+      <div class="sold-list"><div class="sold-row"><span class="sold-icon">💨</span><span class="sold-name">Sour Apple</span><span class="strain-badge strain-hybrid sold-strain">Hybrid</span><span class="sold-thc">THC 76.8%</span><span class="sold-when">Gone Today</span></div><div class="sold-row"><span class="sold-icon">💨</span><span class="sold-name">Girl Scout Cookies</span><span class="strain-badge strain-hybrid sold-strain">Hybrid</span><span class="sold-thc">THC 80.5%</span><span class="sold-when">Gone 1d ago</span></div><div class="sold-row"><span class="sold-icon">🚬</span><span class="sold-name">Egg Roll</span><span class="strain-badge strain-indica sold-strain">Hybrid (Indica)</span><span class="sold-thc">THC 19.2%</span><span class="sold-when">Gone 2d ago</span></div><div class="sold-row"><span class="sold-icon">🍬</span><span class="sold-name">Raspberry</span><span class="strain-badge strain-hybrid sold-strain">Hybrid</span><span class="sold-thc">THC 100.0%</span><span class="sold-when">Gone 2d ago</span></div></div>
     </section>
     <div class="section-divider" data-cat="all"></div>
     <section class="section" data-cat="edibles">
@@ -704,11 +705,11 @@
   <div class="mood-zero hidden" id="moodZero">No products match this vibe right now — try another filter.</div>
 </main>
 <footer>
-  Last updated: Thu, May 28 2026 — 05:24 PM CST &nbsp;·&nbsp; 25 products in stock &nbsp;·&nbsp; MN Legit Cannabis South Metro
+  Last updated: Thu, May 28 2026 — 05:52 PM CST &nbsp;·&nbsp; 25 products in stock &nbsp;·&nbsp; MN Legit Cannabis South Metro
 </footer>
 <div class="footer-sticky">
   <span class="fs-stock">25 products in stock</span>
-  <span class="fs-updated">Updated Thu, May 28 2026 — 05:24 PM CST</span>
+  <span class="fs-updated">Updated Thu, May 28 2026 — 05:52 PM CST</span>
 </div>
 
 <!-- Moods info modal -->
@@ -1091,7 +1092,7 @@ ${EXPORT_POPUP_HTML}
   const url  = URL.createObjectURL(blob);
   const a    = document.createElement('a');
   a.href     = url;
-  a.download = 'legit-strain-guide.html';
+  a.download = 'legit-strain-guide.doc';
   a.click();
   URL.revokeObjectURL(url);
 }
@@ -1604,6 +1605,7 @@ function toggleDark() {
     <div class="sched-filters" id="schedFilters"></div>
     <div id="schedDays"></div>
     <div class="sched-updated" id="schedUpdated"></div>
+    <div class="sched-note">⚠ This schedule reflects the original posted schedule only. It does not capture changes made after posting — always verify against the source images above.</div>
   </section>
 </template>
 

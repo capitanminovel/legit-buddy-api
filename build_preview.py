@@ -547,6 +547,7 @@ def build():
     .sched-empty{{text-align:center;padding:48px 24px;color:var(--muted);font-size:.88rem}}
     .sched-empty-icon{{font-size:2rem;margin-bottom:12px;opacity:.4}}
     .sched-updated{{font-size:.7rem;color:var(--muted);text-align:right;margin-top:12px}}
+    .sched-note{{margin-top:16px;padding:10px 14px;background:#fffbeb;border:1px solid #fcd34d;border-radius:8px;font-size:.78rem;color:#92400e;line-height:1.5}}
   </style>
 </head>
 <body>
@@ -1015,7 +1016,7 @@ ${{EXPORT_POPUP_HTML}}
   const url  = URL.createObjectURL(blob);
   const a    = document.createElement('a');
   a.href     = url;
-  a.download = 'legit-strain-guide.html';
+  a.download = 'legit-strain-guide.doc';
   a.click();
   URL.revokeObjectURL(url);
 }}
@@ -1528,6 +1529,7 @@ function toggleDark() {{
     <div class="sched-filters" id="schedFilters"></div>
     <div id="schedDays"></div>
     <div class="sched-updated" id="schedUpdated"></div>
+    <div class="sched-note">⚠ This schedule reflects the original posted schedule only. It does not capture changes made after posting — always verify against the source images above.</div>
   </section>
 </template>
 
