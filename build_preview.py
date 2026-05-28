@@ -11,6 +11,7 @@ DATA         = Path(__file__).parent / "docs" / "products.json"
 STRAINS_DATA = Path(__file__).parent / "docs" / "strains_enriched.json"
 OUT          = Path(__file__).parent / "docs" / "index.html"
 NEW_DAYS     = 3
+SOLD_DAYS    = 2
 
 CAT_ICONS = {
     "flower":"🌿","pre-roll":"🚬","pre_roll":"🚬","preroll":"🚬",
@@ -144,6 +145,40 @@ def build():
     </section>
     <div class="section-divider" data-cat="all"></div>"""
 
+    sold_items = sorted(
+        [(k, p) for k, p in db["products"].items()
+         if not p.get("in_stock", True)
+         and p.get("category", "").lower() in TARGET
+         and age_days(p.get("last_seen", "")) <= SOLD_DAYS],
+        key=lambda x: age_days(x[1].get("last_seen", ""))
+    )
+
+    sold_section = ""
+    if sold_items:
+        def sold_row(p):
+            d = age_days(p.get("last_seen", ""))
+            when = "Today" if d == 0 else f"{d}d ago"
+            ci   = cat_icon(p.get("category", ""))
+            thc  = f'<span class="sold-thc">THC {p["thc"]}</span>' if p.get("thc") else ""
+            sb   = f'<span class="strain-badge {strain_class(p["strain_type"])} sold-strain">{p["strain_type"]}</span>' if p.get("strain_type") else ""
+            return (f'<div class="sold-row">'
+                    f'<span class="sold-icon">{ci}</span>'
+                    f'<span class="sold-name">{p["name"]}</span>'
+                    f'{sb}{thc}'
+                    f'<span class="sold-when">Gone {when}</span>'
+                    f'</div>')
+        rows = "".join(sold_row(p) for _, p in sold_items)
+        n = len(sold_items)
+        sold_section = f"""
+    <section class="section sold-section" data-cat="all">
+      <div class="sold-head">
+        <span class="sold-title">🛒 Sold in the Last 2 Days</span>
+        <span class="sold-count">{n} item{"s" if n!=1 else ""}</span>
+      </div>
+      <div class="sold-list">{rows}</div>
+    </section>
+    <div class="section-divider" data-cat="all"></div>"""
+
     tab_btns = '<button class="tab on" data-cat="all" onclick="filterCat(this)">All Products</button>\n'
     tab_btns += "\n".join(
         f'<button class="tab" data-cat="{c.lower()}" onclick="filterCat(this)">{cat_icon(c)} {c}</button>'
@@ -203,6 +238,8 @@ def build():
     body.dark .search-input{{background:#132019;color:var(--text);border-color:var(--border)}}
     body.dark .search-input:focus{{background:#1a2d20;border-color:var(--brand)}}
     body.dark .new-arrivals-section{{background:linear-gradient(135deg,#132019,#0d1f14);border-color:#2d4a35}}
+    body.dark .sold-section{{background:linear-gradient(135deg,#1c1505,#1f1a08);border-color:#78350f}}
+    body.dark .sold-row{{background:rgba(255,255,255,.05)}}
     body.dark .terp{{background:#0d2015;color:#4ade80;border-color:#1e4a2a}}
     body.dark .tier{{background:#132019;border-color:var(--border)}}
     body.dark .card.match-strong{{border-left:5px solid #4ade80;box-shadow:-2px 0 10px rgba(74,222,128,.3)}}
@@ -287,6 +324,17 @@ def build():
     .new-arrivals-head{{display:flex;align-items:baseline;gap:10px;margin-bottom:18px}}
     .new-arrivals-title{{font-size:1.15rem;font-weight:700;color:var(--new)}}
     .new-arrivals-count{{font-size:.8rem;color:var(--muted)}}
+    .sold-section{{background:linear-gradient(135deg,#fffbeb,#fef3c7);border:2px solid #fcd34d;border-radius:12px;padding:20px;margin-bottom:32px}}
+    .sold-head{{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}}
+    .sold-title{{font-size:1.15rem;font-weight:700;color:#b45309}}
+    .sold-count{{font-size:.8rem;color:var(--muted)}}
+    .sold-list{{display:flex;flex-direction:column;gap:8px}}
+    .sold-row{{display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(255,255,255,.6);border-radius:8px;flex-wrap:wrap}}
+    .sold-icon{{font-size:1.1rem;flex-shrink:0}}
+    .sold-name{{font-weight:600;font-size:.9rem;flex:1;min-width:140px}}
+    .sold-strain{{font-size:.65rem;padding:2px 6px}}
+    .sold-thc{{font-size:.75rem;color:#92400e;font-weight:600;background:#fde68a;padding:2px 7px;border-radius:10px}}
+    .sold-when{{margin-left:auto;font-size:.75rem;color:#b45309;font-weight:700;white-space:nowrap}}
     .section-divider{{height:2px;background:linear-gradient(90deg,var(--brand-lt),transparent);margin:0 0 36px;border-radius:1px}}
     .hidden{{display:none!important}}
 
@@ -538,6 +586,7 @@ def build():
   <div class="legend-item"><span class="strain-badge strain-cbd">CBD</span></div>
   <div class="legend-item"><span class="new-badge">New Today</span> Added today</div>
   <div class="legend-item"><span class="recent-badge">New (2d)</span> Within 3 days</div>
+  <div class="legend-item"><span class="sold-thc" style="background:#fde68a;color:#92400e;padding:2px 7px;border-radius:10px;font-size:.75rem;font-weight:600">🛒 Gone</span> Sold in last 2 days</div>
   <div class="legend-item" style="margin-left:auto;color:var(--brand);font-weight:600">Tap any product for strain guide →</div>
 </div>
 <div class="tabs-wrap"><div class="tabs" id="tabs">{tab_btns}</div></div>
@@ -569,7 +618,7 @@ def build():
     </div>
     <div class="mood-status hidden" id="moodStatus"></div>
   </div>
-  {new_section}{sections}
+  {new_section}{sold_section}{sections}
   <div class="mood-zero hidden" id="moodZero">No products match this vibe right now — try another filter.</div>
 </main>
 <footer>
@@ -1503,7 +1552,7 @@ function showSchedule(btn) {{
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
   if (btn) btn.classList.add('on');
   // Hide product content, show schedule
-  document.querySelectorAll('.section,.new-arrivals-section,.section-divider,.mood-bar,.legend').forEach(el => {{
+  document.querySelectorAll('.section,.new-arrivals-section,.sold-section,.section-divider,.mood-bar,.legend').forEach(el => {{
     el.style.display = 'none';
   }});
   let sec = document.getElementById('scheduleSection');
@@ -1520,7 +1569,7 @@ function showSchedule(btn) {{
 function hideSchedule() {{
   const sec = document.getElementById('scheduleSection');
   if (sec) sec.classList.remove('active');
-  document.querySelectorAll('.section,.new-arrivals-section,.section-divider,.mood-bar,.legend').forEach(el => {{
+  document.querySelectorAll('.section,.new-arrivals-section,.sold-section,.section-divider,.mood-bar,.legend').forEach(el => {{
     el.style.display = '';
   }});
 }}

@@ -31,6 +31,8 @@
     body.dark .search-input{background:#132019;color:var(--text);border-color:var(--border)}
     body.dark .search-input:focus{background:#1a2d20;border-color:var(--brand)}
     body.dark .new-arrivals-section{background:linear-gradient(135deg,#132019,#0d1f14);border-color:#2d4a35}
+    body.dark .sold-section{background:linear-gradient(135deg,#1c1505,#1f1a08);border-color:#78350f}
+    body.dark .sold-row{background:rgba(255,255,255,.05)}
     body.dark .terp{background:#0d2015;color:#4ade80;border-color:#1e4a2a}
     body.dark .tier{background:#132019;border-color:var(--border)}
     body.dark .card.match-strong{border-left:5px solid #4ade80;box-shadow:-2px 0 10px rgba(74,222,128,.3)}
@@ -115,6 +117,17 @@
     .new-arrivals-head{display:flex;align-items:baseline;gap:10px;margin-bottom:18px}
     .new-arrivals-title{font-size:1.15rem;font-weight:700;color:var(--new)}
     .new-arrivals-count{font-size:.8rem;color:var(--muted)}
+    .sold-section{background:linear-gradient(135deg,#fffbeb,#fef3c7);border:2px solid #fcd34d;border-radius:12px;padding:20px;margin-bottom:32px}
+    .sold-head{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
+    .sold-title{font-size:1.15rem;font-weight:700;color:#b45309}
+    .sold-count{font-size:.8rem;color:var(--muted)}
+    .sold-list{display:flex;flex-direction:column;gap:8px}
+    .sold-row{display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(255,255,255,.6);border-radius:8px;flex-wrap:wrap}
+    .sold-icon{font-size:1.1rem;flex-shrink:0}
+    .sold-name{font-weight:600;font-size:.9rem;flex:1;min-width:140px}
+    .sold-strain{font-size:.65rem;padding:2px 6px}
+    .sold-thc{font-size:.75rem;color:#92400e;font-weight:600;background:#fde68a;padding:2px 7px;border-radius:10px}
+    .sold-when{margin-left:auto;font-size:.75rem;color:#b45309;font-weight:700;white-space:nowrap}
     .section-divider{height:2px;background:linear-gradient(90deg,var(--brand-lt),transparent);margin:0 0 36px;border-radius:1px}
     .hidden{display:none!important}
 
@@ -338,7 +351,7 @@
     </div>
     <button class="dark-toggle" id="darkToggle" onclick="toggleDark()">🌙 Dark</button>
     <div class="header-meta">
-      <div>Last updated: <strong>Wed, May 27 2026 — 08:36 PM CST</strong></div>
+      <div>Last updated: <strong>Thu, May 28 2026 — 04:55 PM CST</strong></div>
       <div>27 products in stock</div>
     </div>
   </div>
@@ -366,6 +379,7 @@
   <div class="legend-item"><span class="strain-badge strain-cbd">CBD</span></div>
   <div class="legend-item"><span class="new-badge">New Today</span> Added today</div>
   <div class="legend-item"><span class="recent-badge">New (2d)</span> Within 3 days</div>
+  <div class="legend-item"><span class="sold-thc" style="background:#fde68a;color:#92400e;padding:2px 7px;border-radius:10px;font-size:.75rem;font-weight:600">🛒 Gone</span> Sold in last 2 days</div>
   <div class="legend-item" style="margin-left:auto;color:var(--brand);font-weight:600">Tap any product for strain guide →</div>
 </div>
 <div class="tabs-wrap"><div class="tabs" id="tabs"><button class="tab on" data-cat="all" onclick="filterCat(this)">All Products</button>
@@ -403,42 +417,12 @@
     <div class="mood-status hidden" id="moodStatus"></div>
   </div>
   
-    <section class="section new-arrivals-section" data-cat="all">
-      <div class="new-arrivals-head">
-        <span class="new-arrivals-title">✨ New in the Last 3 Days</span>
-        <span class="new-arrivals-count" data-total="3">3 products</span>
+    <section class="section sold-section" data-cat="all">
+      <div class="sold-head">
+        <span class="sold-title">🛒 Sold in the Last 2 Days</span>
+        <span class="sold-count">4 items</span>
       </div>
-      <div class="grid">
-    <div class="card" data-key="956c29d611b1" data-terpenes="Myrcene,Limonene,Terpinene" onclick="openModal('956c29d611b1')">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779045231_bbdbe5cc-61c4-4a49-ad04-b3aa64e0492d.png" alt="Frodo Sqeeze" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="recent-badge">New (3d ago)</span><span class="strain-badge strain-sativa">Hybrid (Sativa)</span></div><div class="potency-row"><span class="potency-pill thc">THC 17.1%</span><span class="potency-pill cbd">CBD 0.3%</span></div><div class="rating-badge"></div></div>
-      <div class="card-body">
-        <div class="card-brand">Avió</div>
-        <div class="card-name">Frodo Sqeeze</div>
-        <div class="card-weight">1 G</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Limonene</span><span class="terp">Terpinene</span></div>
-        <div class="price-section"><div class="price-tiers"><div class="tier">$18.00<span>1g</span></div></div></div>
-        <div class="card-detail-hint">Tap for strain guide →</div>
-      </div>
-    </div>
-    <div class="card" data-key="ce49eae04ae2" data-terpenes="Myrcene,Limonene,Caryophyllene" onclick="openModal('ce49eae04ae2')">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779044973_efa87939-7c8f-4e49-a299-3894fae52ba8.png" alt="Froot by the Foot" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="recent-badge">New (3d ago)</span><span class="strain-badge strain-indica">Hybrid (Indica)</span></div><div class="potency-row"><span class="potency-pill thc">THC 20.1%</span><span class="potency-pill cbd">CBD 0.3%</span></div><div class="rating-badge"></div></div>
-      <div class="card-body">
-        <div class="card-brand">Avió</div>
-        <div class="card-name">Froot by the Foot</div>
-        <div class="card-weight">1 G</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Limonene</span><span class="terp">Caryophyllene</span></div>
-        <div class="price-section"><div class="price-tiers"><div class="tier">$18.00<span>1g</span></div></div></div>
-        <div class="card-detail-hint">Tap for strain guide →</div>
-      </div>
-    </div>
-    <div class="card" data-key="45acbd932aeb" data-terpenes="Myrcene,Limonene,Caryophyllene" onclick="openModal('45acbd932aeb')">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779044713_09d2b1db-2789-4def-87c4-c5f17f6fb77b.png" alt="Zesty Parm" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="recent-badge">New (3d ago)</span><span class="strain-badge strain-sativa">Hybrid (Sativa)</span></div><div class="potency-row"><span class="potency-pill thc">THC 17.2%</span><span class="potency-pill cbd">CBD 0.2%</span></div><div class="rating-badge"></div></div>
-      <div class="card-body">
-        <div class="card-brand">Avió</div>
-        <div class="card-name">Zesty Parm</div>
-        <div class="card-weight">1 G</div><div class="terp-row"><span class="terp">Myrcene</span><span class="terp">Limonene</span><span class="terp">Caryophyllene</span></div>
-        <div class="price-section"><div class="price-tiers"><div class="tier">$18.00<span>1g</span></div></div></div>
-        <div class="card-detail-hint">Tap for strain guide →</div>
-      </div>
-    </div></div>
+      <div class="sold-list"><div class="sold-row"><span class="sold-icon">🍬</span><span class="sold-name">Raspberry</span><span class="strain-badge strain-hybrid sold-strain">Hybrid</span><span class="sold-thc">THC 100.0%</span><span class="sold-when">Gone 1d ago</span></div><div class="sold-row"><span class="sold-icon">🌿</span><span class="sold-name">Cap Junky</span><span class="strain-badge strain-hybrid sold-strain">Hybrid</span><span class="sold-thc">THC 29.0%</span><span class="sold-when">Gone 2d ago</span></div><div class="sold-row"><span class="sold-icon">🚬</span><span class="sold-name">Egg Roll</span><span class="strain-badge strain-indica sold-strain">Hybrid (Indica)</span><span class="sold-thc">THC 19.2%</span><span class="sold-when">Gone 2d ago</span></div><div class="sold-row"><span class="sold-icon">💨</span><span class="sold-name">Sour Diesel</span><span class="strain-badge strain-sativa sold-strain">Hybrid (Sativa)</span><span class="sold-thc">THC 80.3%</span><span class="sold-when">Gone 2d ago</span></div></div>
     </section>
     <div class="section-divider" data-cat="all"></div>
     <section class="section" data-cat="edibles">
@@ -602,7 +586,7 @@
       </div>
       <div class="grid">
     <div class="card" data-key="956c29d611b1" data-terpenes="Myrcene,Limonene,Terpinene" onclick="openModal('956c29d611b1')">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779045231_bbdbe5cc-61c4-4a49-ad04-b3aa64e0492d.png" alt="Frodo Sqeeze" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="recent-badge">New (3d ago)</span><span class="strain-badge strain-sativa">Hybrid (Sativa)</span></div><div class="potency-row"><span class="potency-pill thc">THC 17.1%</span><span class="potency-pill cbd">CBD 0.3%</span></div><div class="rating-badge"></div></div>
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779045231_bbdbe5cc-61c4-4a49-ad04-b3aa64e0492d.png" alt="Frodo Sqeeze" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="strain-badge strain-sativa">Hybrid (Sativa)</span></div><div class="potency-row"><span class="potency-pill thc">THC 17.1%</span><span class="potency-pill cbd">CBD 0.3%</span></div><div class="rating-badge"></div></div>
       <div class="card-body">
         <div class="card-brand">Avió</div>
         <div class="card-name">Frodo Sqeeze</div>
@@ -612,7 +596,7 @@
       </div>
     </div>
     <div class="card" data-key="ce49eae04ae2" data-terpenes="Myrcene,Limonene,Caryophyllene" onclick="openModal('ce49eae04ae2')">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779044973_efa87939-7c8f-4e49-a299-3894fae52ba8.png" alt="Froot by the Foot" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="recent-badge">New (3d ago)</span><span class="strain-badge strain-indica">Hybrid (Indica)</span></div><div class="potency-row"><span class="potency-pill thc">THC 20.1%</span><span class="potency-pill cbd">CBD 0.3%</span></div><div class="rating-badge"></div></div>
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779044973_efa87939-7c8f-4e49-a299-3894fae52ba8.png" alt="Froot by the Foot" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="strain-badge strain-indica">Hybrid (Indica)</span></div><div class="potency-row"><span class="potency-pill thc">THC 20.1%</span><span class="potency-pill cbd">CBD 0.3%</span></div><div class="rating-badge"></div></div>
       <div class="card-body">
         <div class="card-brand">Avió</div>
         <div class="card-name">Froot by the Foot</div>
@@ -622,7 +606,7 @@
       </div>
     </div>
     <div class="card" data-key="45acbd932aeb" data-terpenes="Myrcene,Limonene,Caryophyllene" onclick="openModal('45acbd932aeb')">
-      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779044713_09d2b1db-2789-4def-87c4-c5f17f6fb77b.png" alt="Zesty Parm" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="recent-badge">New (3d ago)</span><span class="strain-badge strain-sativa">Hybrid (Sativa)</span></div><div class="potency-row"><span class="potency-pill thc">THC 17.2%</span><span class="potency-pill cbd">CBD 0.2%</span></div><div class="rating-badge"></div></div>
+      <div class="card-img"><img src="https://media-prime.sweedpos.com/store/prime/1779044713_09d2b1db-2789-4def-87c4-c5f17f6fb77b.png" alt="Zesty Parm" loading="lazy" onerror="this.parentNode.innerHTML='<div class=no-img>🚬</div>'"><div class="badges"><span class="strain-badge strain-sativa">Hybrid (Sativa)</span></div><div class="potency-row"><span class="potency-pill thc">THC 17.2%</span><span class="potency-pill cbd">CBD 0.2%</span></div><div class="rating-badge"></div></div>
       <div class="card-body">
         <div class="card-brand">Avió</div>
         <div class="card-name">Zesty Parm</div>
@@ -742,11 +726,11 @@
   <div class="mood-zero hidden" id="moodZero">No products match this vibe right now — try another filter.</div>
 </main>
 <footer>
-  Last updated: Wed, May 27 2026 — 08:36 PM CST &nbsp;·&nbsp; 27 products in stock &nbsp;·&nbsp; MN Legit Cannabis South Metro
+  Last updated: Thu, May 28 2026 — 04:55 PM CST &nbsp;·&nbsp; 27 products in stock &nbsp;·&nbsp; MN Legit Cannabis South Metro
 </footer>
 <div class="footer-sticky">
   <span class="fs-stock">27 products in stock</span>
-  <span class="fs-updated">Updated Wed, May 27 2026 — 08:36 PM CST</span>
+  <span class="fs-updated">Updated Thu, May 28 2026 — 04:55 PM CST</span>
 </div>
 
 <!-- Moods info modal -->
@@ -1672,7 +1656,7 @@ function showSchedule(btn) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
   if (btn) btn.classList.add('on');
   // Hide product content, show schedule
-  document.querySelectorAll('.section,.new-arrivals-section,.section-divider,.mood-bar,.legend').forEach(el => {
+  document.querySelectorAll('.section,.new-arrivals-section,.sold-section,.section-divider,.mood-bar,.legend').forEach(el => {
     el.style.display = 'none';
   });
   let sec = document.getElementById('scheduleSection');
@@ -1689,7 +1673,7 @@ function showSchedule(btn) {
 function hideSchedule() {
   const sec = document.getElementById('scheduleSection');
   if (sec) sec.classList.remove('active');
-  document.querySelectorAll('.section,.new-arrivals-section,.section-divider,.mood-bar,.legend').forEach(el => {
+  document.querySelectorAll('.section,.new-arrivals-section,.sold-section,.section-divider,.mood-bar,.legend').forEach(el => {
     el.style.display = '';
   });
 }
