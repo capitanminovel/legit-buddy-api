@@ -4,6 +4,8 @@ on:
   schedule:
     # 9:00 AM CST = 15:00 UTC
     - cron: '0 15 * * *'
+    # 1:00 PM CST = 19:00 UTC
+    - cron: '0 19 * * *'
     # 4:30 PM CST = 22:30 UTC
     - cron: '30 22 * * *'
     # 10:00 PM CST = 04:00 UTC
