@@ -510,7 +510,7 @@ def build():
     .sched-tab{{margin-left:auto}}
     #scheduleSection{{display:none;padding:24px}}
     #scheduleSection.active{{display:block}}
-    .sched-img-section{{margin-top:28px;border-top:1px solid var(--border);padding-top:16px}}
+    .sched-img-section{{margin-bottom:20px;border-bottom:1px solid var(--border);padding-bottom:16px}}
     .sched-img-toggle{{background:none;border:1px solid var(--border);border-radius:20px;padding:7px 16px;font-size:.8rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s}}
     .sched-img-toggle:hover{{border-color:var(--brand);color:var(--brand)}}
     .sched-img-wrap{{margin-top:16px}}
@@ -1516,9 +1516,6 @@ function toggleDark() {{
         <button class="sched-nav-btn" id="schedNextBtn" onclick="schedNav(7)">Next →</button>
       </div>
     </div>
-    <div class="sched-filters" id="schedFilters"></div>
-    <div id="schedDays"></div>
-    <div class="sched-updated" id="schedUpdated"></div>
     <div class="sched-img-section">
       <button class="sched-img-toggle" onclick="toggleSchedImages(this)">📷 View Original Schedule Images</button>
       <div class="sched-img-wrap hidden" id="schedImages">
@@ -1528,6 +1525,9 @@ function toggleDark() {{
         <img src="schedule-june.jpg" alt="June schedule" class="sched-img">
       </div>
     </div>
+    <div class="sched-filters" id="schedFilters"></div>
+    <div id="schedDays"></div>
+    <div class="sched-updated" id="schedUpdated"></div>
   </section>
 </template>
 
