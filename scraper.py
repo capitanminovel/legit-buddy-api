@@ -487,6 +487,7 @@ def try_playwright() -> list[dict]:
             user_agent=HEADERS["User-Agent"],
             viewport={"width": 1440, "height": 900},
             extra_http_headers={"Accept-Language": "en-US,en;q=0.9"},
+            ignore_https_errors=True,
         )
         page = ctx.new_page()
 
