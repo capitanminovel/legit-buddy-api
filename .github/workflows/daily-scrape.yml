@@ -2,12 +2,12 @@ name: Daily Menu Scrape
 
 on:
   schedule:
-    # 4:30 AM CST = 10:30 UTC  (9:30 during CDT / summer)
-    - cron: '30 10 * * *'
-    # 9:30 AM CST = 15:30 UTC  (14:30 during CDT / summer)
-    - cron: '30 15 * * *'
-    # 4:30 PM CST = 22:30 UTC  (21:30 during CDT / summer)
+    # 9:00 AM CST = 15:00 UTC
+    - cron: '0 15 * * *'
+    # 4:30 PM CST = 22:30 UTC
     - cron: '30 22 * * *'
+    # 10:00 PM CST = 04:00 UTC
+    - cron: '0 4 * * *'
   workflow_dispatch:   # click "Run workflow" in GitHub any time
 
 permissions:
