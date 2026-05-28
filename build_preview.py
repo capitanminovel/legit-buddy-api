@@ -172,7 +172,7 @@ def build():
         sold_section = f"""
     <section class="section sold-section" data-cat="all">
       <div class="sold-head">
-        <span class="sold-title">🛒 Sold in the Last 2 Days</span>
+        <span class="sold-title">🚫 Sold Out — Last 2 Days</span>
         <span class="sold-count">{n} item{"s" if n!=1 else ""}</span>
       </div>
       <div class="sold-list">{rows}</div>
@@ -586,7 +586,7 @@ def build():
   <div class="legend-item"><span class="strain-badge strain-cbd">CBD</span></div>
   <div class="legend-item"><span class="new-badge">New Today</span> Added today</div>
   <div class="legend-item"><span class="recent-badge">New (2d)</span> Within 3 days</div>
-  <div class="legend-item"><span class="sold-thc" style="background:#fde68a;color:#92400e;padding:2px 7px;border-radius:10px;font-size:.75rem;font-weight:600">🛒 Gone</span> Sold in last 2 days</div>
+  <div class="legend-item"><span class="sold-thc" style="background:#fde68a;color:#92400e;padding:2px 7px;border-radius:10px;font-size:.75rem;font-weight:600">🚫 Gone</span> Sold out in last 2 days</div>
   <div class="legend-item" style="margin-left:auto;color:var(--brand);font-weight:600">Tap any product for strain guide →</div>
 </div>
 <div class="tabs-wrap"><div class="tabs" id="tabs">{tab_btns}</div></div>
