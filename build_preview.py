@@ -977,12 +977,18 @@ function exportGuide() {{
   *{{box-sizing:border-box;margin:0;padding:0}}
   body{{background:#e8e0d0;font-family:'Nunito Sans',sans-serif;padding:24px 16px;color:var(--text)}}
   .page{{max-width:720px;margin:0 auto}}
-  .header{{display:flex;align-items:center;gap:16px;margin-bottom:28px}}
+  .header{{display:flex;align-items:center;gap:16px;margin-bottom:20px}}
   .logo-badge{{background:var(--green);border-radius:14px;padding:10px 16px;display:flex;align-items:center;gap:8px}}
   .logo-badge .leaf{{font-size:20px}}
   .logo-badge .name{{font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;color:var(--pink);line-height:1.1;letter-spacing:.02em;text-transform:uppercase}}
   .header-title{{font-family:'Nunito',sans-serif;font-weight:900;font-size:26px;color:var(--dark-green);letter-spacing:.04em;text-transform:uppercase}}
   .header-sub{{font-size:12px;color:var(--green);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}}
+  .info-box{{background:white;border:2px solid var(--border-green);border-radius:12px;padding:14px 18px;margin-bottom:22px;font-size:12.5px;line-height:1.6;color:#333}}
+  .info-box strong{{color:var(--dark-green);font-family:'Nunito',sans-serif}}
+  .info-box .info-title{{font-family:'Nunito',sans-serif;font-weight:900;font-size:14px;color:var(--dark-green);margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em}}
+  .info-grid{{display:grid;grid-template-columns:1fr 1fr;gap:4px 20px;margin-top:6px}}
+  .info-grid div::before{{content:'→ ';color:#888}}
+  .info-note{{margin-top:10px;padding-top:8px;border-top:1px solid #e0d8cc;font-size:11.5px;color:#777}}
   .sg-card{{background:white;border:3px solid var(--border-green);border-radius:16px;padding:18px 22px;margin-bottom:18px}}
   .sg-name{{font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;text-align:center;text-transform:uppercase;letter-spacing:.05em;color:var(--dark-green);margin-bottom:2px}}
   .sg-type{{text-align:center;font-size:12.5px;font-weight:700;color:#555;margin-bottom:4px}}
@@ -996,7 +1002,7 @@ function exportGuide() {{
   .sg-row strong{{font-weight:700;color:var(--dark-green);font-family:'Nunito',sans-serif;font-size:12.5px}}
   .profile-item-remove{{display:none}}
   .sg-row span{{font-size:10px;color:#888;font-weight:400}}
-  @media print{{body{{background:white;padding:0}}.sg-card{{break-inside:avoid}}}}
+  @media print{{body{{background:white;padding:0}}.sg-card{{break-inside:avoid}}.info-box{{break-inside:avoid}}}}
   ${{EXPORT_POPUP_CSS}}
 </style>
 </head>
@@ -1007,6 +1013,22 @@ ${{EXPORT_POPUP_HTML}}
     <div class="logo-badge"><span class="leaf">🍃</span><div class="name">LEGIT<br>CANNABIS</div></div>
     <div><div class="header-title">Strain Guide</div><div class="header-sub">Staff Reference · ${{today}}</div></div>
   </div>
+  <div class="info-box">
+    <div class="info-title">Legit Staff Buddy — Quick Reference</div>
+    <strong>Access:</strong> capitanminovel.github.io/legit-buddy-api<br>
+    <strong>Schedule PIN:</strong> 0420 &nbsp;·&nbsp; <strong>Menu updated:</strong> 9 AM · 1 PM · 4:30 PM · 10 PM CST daily
+    <div class="info-grid">
+      <div>Live menu &amp; search</div>
+      <div>Staff schedule (PIN)</div>
+      <div>New arrivals (3 days)</div>
+      <div>Sold out tracker (2 days)</div>
+      <div>Strain &amp; terpene guide</div>
+      <div>Mood filter</div>
+      <div>Profile strain guide</div>
+      <div>Original schedule images</div>
+    </div>
+    <div class="info-note">⚠ Schedule reflects the original posted schedule only. Always verify changes against the source images in the app.</div>
+  </div>
   ${{cards}}
 </div>
 </body>
@@ -1016,7 +1038,7 @@ ${{EXPORT_POPUP_HTML}}
   const url  = URL.createObjectURL(blob);
   const a    = document.createElement('a');
   a.href     = url;
-  a.download = 'legit-strain-guide.doc';
+  a.download = 'legit-strain-guide.html';
   a.click();
   URL.revokeObjectURL(url);
 }}
