@@ -170,7 +170,7 @@ def build():
         rows = "".join(sold_row(p) for _, p in sold_items)
         n = len(sold_items)
         sold_section = f"""
-    <section class="section sold-section" data-cat="all">
+    <section class="sold-section" data-cat="all">
       <div class="sold-head">
         <span class="sold-title">🚫 Sold Out — Last 2 Days</span>
         <span class="sold-count">{n} item{"s" if n!=1 else ""}</span>
@@ -1198,10 +1198,12 @@ function applyFilters() {{
     }}
   }});
 
-  // Divider + new-arrivals section
+  // Divider + new-arrivals + sold-out sections (all-only)
   document.querySelectorAll('.section-divider').forEach(d => {{
     d.classList.toggle('hidden', activeCat !== 'all');
   }});
+  const soldSec = document.querySelector('.sold-section');
+  if (soldSec) soldSec.classList.toggle('hidden', activeCat !== 'all');
 
   // Show "no results" message
   document.getElementById('moodZero').classList.toggle('hidden', totalVisible > 0);
@@ -1237,6 +1239,7 @@ function clearSearch() {{
 }}
 
 function filterCat(btn) {{
+  hideSchedule();
   document.querySelectorAll('.tab').forEach(b => b.classList.remove('on'));
   btn.classList.add('on');
   activeCat = btn.dataset.cat;
@@ -1572,13 +1575,6 @@ function hideSchedule() {{
   document.querySelectorAll('.section,.new-arrivals-section,.sold-section,.section-divider,.mood-bar,.legend').forEach(el => {{
     el.style.display = '';
   }});
-}}
-
-// Patch filterCat to hide schedule when switching back to product tabs
-const _origFilterCat = typeof filterCat === 'function' ? filterCat : null;
-function filterCat(btn) {{
-  hideSchedule();
-  if (_origFilterCat) _origFilterCat(btn);
 }}
 
 function schedNav(days) {{
