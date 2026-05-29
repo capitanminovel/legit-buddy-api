@@ -572,6 +572,9 @@ def merge(db: dict, fresh: list[dict]) -> dict:
         if pid not in data:
             p["first_seen"] = now
             log(f"  NEW: {p['name']}")
+        elif data[pid].get("category") != p.get("category"):
+            p["first_seen"] = now
+            log(f"  CATEGORY CHANGE ({data[pid].get('category')} → {p.get('category')}): {p['name']}")
         else:
             p["first_seen"] = data[pid]["first_seen"]
         p["last_seen"] = now
