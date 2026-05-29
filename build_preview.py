@@ -571,7 +571,7 @@ def build():
   </div>
 </header>
 <div class="export-bar">
-  <span class="export-bar-label">⬇ Export .docx:</span>
+  <span class="export-bar-label">⬇ Export Strain Profile:</span>
   <button class="btn-export-avail" onclick="showExportPopup('legit-available-guide.docx')">✅ Available Now ({len(all_p)} products)</button>
   <button class="btn-export-all"   onclick="showExportPopup('legit-master-guide.docx')">📦 Master Cache (all strains)</button>
   <button class="btn-staff-guide"  onclick="openStaffGuide()" style="margin-left:auto">📖 Staff Guide</button>
