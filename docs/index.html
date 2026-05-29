@@ -358,7 +358,7 @@
     </div>
     <button class="dark-toggle" id="darkToggle" onclick="toggleDark()">🌙 Dark</button>
     <div class="header-meta">
-      <div>Last updated: <strong>Thu, May 28 2026 — 06:17 PM CST</strong></div>
+      <div>Last updated: <strong>Thu, May 28 2026 — 06:20 PM CST</strong></div>
       <div>25 products in stock</div>
     </div>
   </div>
@@ -705,11 +705,11 @@
   <div class="mood-zero hidden" id="moodZero">No products match this vibe right now — try another filter.</div>
 </main>
 <footer>
-  Last updated: Thu, May 28 2026 — 06:17 PM CST &nbsp;·&nbsp; 25 products in stock &nbsp;·&nbsp; MN Legit Cannabis South Metro
+  Last updated: Thu, May 28 2026 — 06:20 PM CST &nbsp;·&nbsp; 25 products in stock &nbsp;·&nbsp; MN Legit Cannabis South Metro
 </footer>
 <div class="footer-sticky">
   <span class="fs-stock">25 products in stock</span>
-  <span class="fs-updated">Updated Thu, May 28 2026 — 06:17 PM CST</span>
+  <span class="fs-updated">Updated Thu, May 28 2026 — 06:20 PM CST</span>
 </div>
 
 <!-- Moods info modal -->
@@ -1090,20 +1090,46 @@ ${EXPORT_POPUP_HTML}
     <div><div class="header-title">Strain Guide</div><div class="header-sub">Staff Reference · ${today}</div></div>
   </div>
   <div class="info-box">
-    <div class="info-title">Legit Staff Buddy — Quick Reference</div>
-    <strong>Access:</strong> capitanminovel.github.io/legit-buddy-api<br>
-    <strong>Schedule PIN:</strong> 0420 &nbsp;·&nbsp; <strong>Menu updated:</strong> 9 AM · 1 PM · 4:30 PM · 10 PM CST daily
-    <div class="info-grid">
-      <div>Live menu &amp; search</div>
-      <div>Staff schedule (PIN)</div>
-      <div>New arrivals (3 days)</div>
-      <div>Sold out tracker (2 days)</div>
-      <div>Strain &amp; terpene guide</div>
-      <div>Mood filter</div>
-      <div>Profile strain guide</div>
-      <div>Original schedule images</div>
+    <div class="info-title">🍃 Legit Staff Buddy — Staff Guide</div>
+
+    <div style="margin-bottom:12px;">
+      <strong>Access:</strong> capitanminovel.github.io/legit-buddy-api<br>
+      <strong>Schedule PIN:</strong> 0420
     </div>
-    <div class="info-note">⚠ Schedule reflects the original as sent. If changes were made after posting, check the physical schedule at work.</div>
+
+    <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--dark-green);margin-bottom:6px;">🔄 Menu Updates</div>
+    <div style="margin-bottom:12px;">
+      The menu is automatically checked and updated <strong>4 times daily</strong>:<br>
+      <strong>9:00 AM · 1:00 PM · 4:30 PM · 10:00 PM CST</strong><br>
+      New products and sold-out items reflect within the hour of each update.
+    </div>
+
+    <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--dark-green);margin-bottom:6px;">✨ New Arrivals</div>
+    <div style="margin-bottom:12px;">
+      Products added to the menu within the last <strong>3 days</strong> are highlighted with a green "New Today" or "New (Xd ago)" badge at the top of the page.
+    </div>
+
+    <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--dark-green);margin-bottom:6px;">🚫 Sold Out Tracker</div>
+    <div style="margin-bottom:12px;">
+      Items that left the menu within the last <strong>2 days</strong> appear in the amber "Sold Out" section so you know what recently went out of stock.
+    </div>
+
+    <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--dark-green);margin-bottom:6px;">🔍 Search &amp; Filter</div>
+    <div style="margin-bottom:12px;">
+      Use the search bar to find products by name, brand, terpene, or effect. Filter by category (Flower, Pre-Roll, Vapes, Edibles) using the tabs. Use the <strong>Mood Filter</strong> to recommend products by effect — Relax, Focus, Sleep, Social, and more.
+    </div>
+
+    <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--dark-green);margin-bottom:6px;">📋 Strain Guide &amp; Profile</div>
+    <div style="margin-bottom:12px;">
+      Tap any product card to view its full strain profile — lineage, terpenes, therapeutic uses, aroma, and mood ratings. Press <strong>＋ Add to Profile</strong> to save strains to your personal list, then use <strong>⬇ Export Strain Profiles</strong> to download a printable guide.
+    </div>
+
+    <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--dark-green);margin-bottom:6px;">📅 Staff Schedule</div>
+    <div style="margin-bottom:12px;">
+      Enter PIN <strong>0420</strong> to view the staff schedule. Navigate weeks using the Previous/Next buttons. Use the staff filter chips to view individual schedules. Tap <strong>📷 View Original Schedule Images</strong> to see the source photos.
+    </div>
+
+    <div class="info-note">⚠ The schedule reflects the original as sent. If changes were made after it was sent, refer to the <strong>physical schedule posted at work</strong>.</div>
   </div>
   ${cards}
 </div>
