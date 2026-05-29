@@ -11,19 +11,22 @@
       background: #f0f0f0;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       min-height: 100vh;
+      padding: 24px;
       font-family: 'Barlow Condensed', sans-serif;
     }
 
     .poster {
-      width: 600px;
-      max-width: 100%;
+      width: 8.5in;
+      height: 11in;
       background: #ffffff;
       border: 3px solid #1a1a1a;
       position: relative;
       overflow: hidden;
-      padding: 36px 40px 40px;
+      padding: 0.5in 0.6in 0.5in;
+      display: flex;
+      flex-direction: column;
     }
 
     .poster::before, .poster::after {
@@ -50,30 +53,37 @@
 
     .title {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 80px;
+      font-size: 72px;
       color: #1a1a1a;
       text-align: center;
       line-height: 0.9;
       letter-spacing: 3px;
-      margin-bottom: 28px;
+      margin-bottom: 20px;
+      flex-shrink: 0;
     }
 
     .cat-img {
       width: 100%;
+      flex: 1;
       display: block;
       border: 2px solid #e0e0e0;
+      object-fit: cover;
+      object-position: center;
+      min-height: 0;
     }
 
     .divider {
       height: 2px;
       background: linear-gradient(to right, transparent, #1a1a1a, transparent);
-      margin: 28px 0;
+      margin: 20px 0;
+      flex-shrink: 0;
     }
 
     .bottom-row {
       display: flex;
       align-items: center;
       gap: 28px;
+      flex-shrink: 0;
     }
 
     .qr-wrap {
@@ -140,12 +150,13 @@
     }
 
     .footer-strip {
-      margin-top: 28px;
+      margin-top: 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-top: 1px solid #ddd;
-      padding-top: 14px;
+      padding-top: 12px;
+      flex-shrink: 0;
     }
 
     .footer-strip span {
@@ -164,19 +175,9 @@
     }
 
     @media print {
-      @page { size: letter portrait; margin: 0.5in; }
-      body { background: #fff; display: block; padding: 0; margin: 0; }
-      .poster {
-        width: 100%;
-        max-width: 100%;
-        border-color: #000;
-        page-break-inside: avoid;
-        box-shadow: none;
-        padding: 24px 28px 28px;
-      }
-      .title { font-size: 60px; }
-      .scan-label { font-size: 28px; }
-      .cat-img { max-height: 220px; object-fit: cover; object-position: center; }
+      @page { size: letter portrait; margin: 0; }
+      body { background: #fff; padding: 0; margin: 0; }
+      .poster { border: none; width: 8.5in; height: 11in; }
     }
   </style>
 </head>
