@@ -678,5 +678,39 @@
       "just_happy": 5,
       "aphrodisiac": 3
     }
+  },
+  "0332f6000648": {
+    "lineage": "Purple Thai x Undisclosed Hybrid (Campfire Cannabis); Purple Thai itself is a classic sativa-dominant landrace cross of Thai stick genetics and Purple varieties, likely carrying Afghani influence through the purple-expressing parent",
+    "therapeutic": "Stress relief, depression, fatigue, mild anxiety, appetite stimulation, focus disorders, mood elevation",
+    "negative": "Dry mouth, dry eyes, mild paranoia in sensitive users or at higher doses, potential anxiousness due to sativa-forward profile, overconsumption may cause racing thoughts",
+    "aroma": "Bangkok Purple opens with a vibrant burst of sun-ripened blueberry and tropical citrus, layered over a delicate floral undercurrent of lavender and jasmine. As the bouquet settles, warm hints of spice and earthy resin emerge, giving it an exotic, Southeast Asian-inspired complexity.",
+    "misc": "Produced by Campfire Cannabis, Bangkok Purple is a sativa-leaning hybrid with a moderate THC content of 16.9%, making it approachable for intermediate consumers while still delivering a meaningful effect. Buds are expected to display deep purple and forest green hues with amber trichomes, consistent with its Purple Thai heritage and the linalool-rich terpene profile that reinforces the lavender and floral notes. Best enjoyed during morning or early afternoon sessions when its energetic, focusing, and motivating qualities can be fully leveraged — particularly well-suited for creative work, social activity, or outdoor adventures.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 8,
+      "lift_up": 6,
+      "get_creative": 3,
+      "get_social": 5,
+      "pain_body": 4,
+      "just_happy": 7,
+      "aphrodisiac": 6
+    }
+  },
+  "e0b832e65b4f": {
+    "lineage": "F1 Durban Poison x TK41 (Campfire Cannabis); TK41 is believed to be a Trainwreck-derived cultivar, making this a cross of the classic South African sativa landrace Durban Poison with a potent indica-leaning Trainwreck phenotype",
+    "therapeutic": "Stress relief, mild depression, fatigue, mood elevation, creative blocks, mild anxiety, appetite stimulation",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, possible restlessness or racing thoughts in sativa-sensitive users despite indica classification",
+    "aroma": "A bright, complex bouquet opens with zesty citrus and sweet tropical fruit, reminiscent of Durban Poison's signature anise-tinged freshness, undercut by a sharp diesel note and warm spiced vanilla that lingers on the exhale. The linalool and pinene weave in a subtle floral-herbal cleanliness that keeps the profile from feeling heavy.",
+    "misc": "Poison Gushers is a Campfire Cannabis house cultivar blending the legendary energetic clarity of Durban Poison with the resinous body of TK41, yielding an atypically uplifting indica-dominant hybrid sitting at a moderate 16.6% THC — approachable for intermediate consumers. Buds typically display forest-green coloration with amber trichomes and a sticky, resinous texture consistent with Trainwreck lineage. Best suited for daytime or early afternoon use given its energetic and creative effects profile; not recommended as a nighttime sleep aid despite its indica classification.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 8,
+      "lift_up": 4,
+      "get_creative": 7,
+      "get_social": 3,
+      "pain_body": 4,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
   }
 }
