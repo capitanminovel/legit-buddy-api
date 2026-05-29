@@ -1539,6 +1539,7 @@ function toggleDark() {{
         <button class="sched-nav-btn" id="schedNextBtn" onclick="schedNav(7)">Next →</button>
       </div>
     </div>
+    <div class="sched-note" style="margin-top:0;margin-bottom:16px;">⚠ This schedule reflects the original posted schedule only. It does not capture changes made after posting — always verify against the source images below.</div>
     <div class="sched-img-section">
       <button class="sched-img-toggle" onclick="toggleSchedImages(this)">📷 View Original Schedule Images</button>
       <div class="sched-img-wrap hidden" id="schedImages">
