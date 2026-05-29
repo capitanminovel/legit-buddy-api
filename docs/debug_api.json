@@ -55,7 +55,7 @@
   },
   {
     "category": "edibles",
-    "page": 27,
+    "page": 26,
     "top_level": "dict",
     "keys": [
       "filters",
@@ -70,7 +70,7 @@
       "list"
     ],
     "list_key": "filters",
-    "list_len": 11,
+    "list_len": 4,
     "item_keys": [
       "key",
       "type",
@@ -82,7 +82,7 @@
   },
   {
     "category": "vapes",
-    "page": 27,
+    "page": 26,
     "top_level": "dict",
     "keys": [
       "filters",
