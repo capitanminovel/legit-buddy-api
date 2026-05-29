@@ -1027,7 +1027,7 @@ ${{EXPORT_POPUP_HTML}}
       <div>Profile strain guide</div>
       <div>Original schedule images</div>
     </div>
-    <div class="info-note">⚠ Schedule reflects the original posted schedule only. Always verify changes against the source images in the app.</div>
+    <div class="info-note">⚠ Schedule reflects the original as sent. If no changes were made, this is accurate. If changes were made after posting, check the physical schedule at work.</div>
   </div>
   ${{cards}}
 </div>
@@ -1539,7 +1539,7 @@ function toggleDark() {{
         <button class="sched-nav-btn" id="schedNextBtn" onclick="schedNav(7)">Next →</button>
       </div>
     </div>
-    <div class="sched-note" style="margin-top:0;margin-bottom:16px;">⚠ This schedule reflects the original posted schedule only. It does not capture changes made after posting — always verify against the source images below.</div>
+    <div class="sched-note" style="margin-top:0;margin-bottom:16px;">⚠ This reflects the schedule as originally sent. If no changes have been made, this is accurate. If changes were made after it was sent, refer to the physical schedule posted at work.</div>
     <div class="sched-img-section">
       <button class="sched-img-toggle" onclick="toggleSchedImages(this)">📷 View Original Schedule Images</button>
       <div class="sched-img-wrap hidden" id="schedImages">
@@ -1552,7 +1552,7 @@ function toggleDark() {{
     <div class="sched-filters" id="schedFilters"></div>
     <div id="schedDays"></div>
     <div class="sched-updated" id="schedUpdated"></div>
-    <div class="sched-note">⚠ This schedule reflects the original posted schedule only. It does not capture changes made after posting — always verify against the source images above.</div>
+    <div class="sched-note">⚠ This reflects the schedule as originally sent. If no changes have been made, this is accurate. If changes were made after it was sent, refer to the physical schedule posted at work.</div>
   </section>
 </template>
 
