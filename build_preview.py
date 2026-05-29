@@ -1518,13 +1518,18 @@ function toggleDark() {{
 
 <!-- ── PIN overlay ── -->
 <div class="pin-overlay hidden" id="pinOverlay">
-  <div class="pin-box">
+  <div class="pin-box" id="pinBox">
     <h2>Staff Access</h2>
     <p>Enter your code to view the schedule</p>
     <input class="pin-input" id="pinInput" type="password" maxlength="4"
            inputmode="numeric" placeholder="••••" autocomplete="off"
            oninput="checkPin(this.value)">
     <div class="pin-error" id="pinError"></div>
+  </div>
+  <div class="pin-box hidden" id="pinCaution">
+    <h2>⚠ Use With Caution</h2>
+    <p style="margin:12px 0 18px;font-size:.9rem;line-height:1.6;color:#555;">This reflects the schedule as originally sent. If no changes have been made, this is accurate.<br><br>If changes were made after it was sent, refer to the <strong>physical schedule posted at work</strong>.</p>
+    <button onclick="dismissCaution()" style="background:#3d5c2e;color:#fff;border:none;border-radius:20px;padding:10px 28px;font-size:.9rem;font-weight:700;cursor:pointer;width:100%;">Got it — View Schedule</button>
   </div>
 </div>
 
@@ -1582,12 +1587,20 @@ function checkPin(val) {{
   if (val === SCHED_PIN) {{
     sessionStorage.setItem('sched-ok', '1');
     schedUnlocked = true;
-    document.getElementById('pinOverlay').classList.add('hidden');
-    showSchedule(window._schedBtn);
+    document.getElementById('pinBox').classList.add('hidden');
+    document.getElementById('pinCaution').classList.remove('hidden');
   }} else {{
     document.getElementById('pinError').textContent = 'Incorrect code';
     document.getElementById('pinInput').value = '';
   }}
+}}
+
+function dismissCaution() {{
+  document.getElementById('pinOverlay').classList.add('hidden');
+  document.getElementById('pinBox').classList.remove('hidden');
+  document.getElementById('pinCaution').classList.add('hidden');
+  document.getElementById('pinInput').value = '';
+  showSchedule(window._schedBtn);
 }}
 
 function showSchedule(btn) {{
