@@ -18,6 +18,7 @@
 
     .poster {
       width: 600px;
+      max-width: 100%;
       background: #ffffff;
       border: 3px solid #1a1a1a;
       position: relative;
@@ -163,8 +164,19 @@
     }
 
     @media print {
-      body { background: #fff; }
-      .poster { border-color: #000; page-break-inside: avoid; }
+      @page { size: letter portrait; margin: 0.5in; }
+      body { background: #fff; display: block; padding: 0; margin: 0; }
+      .poster {
+        width: 100%;
+        max-width: 100%;
+        border-color: #000;
+        page-break-inside: avoid;
+        box-shadow: none;
+        padding: 24px 28px 28px;
+      }
+      .title { font-size: 60px; }
+      .scan-label { font-size: 28px; }
+      .cat-img { max-height: 220px; object-fit: cover; object-position: center; }
     }
   </style>
 </head>
