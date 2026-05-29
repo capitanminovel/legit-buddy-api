@@ -1528,7 +1528,7 @@ function toggleDark() {{
   </div>
   <div class="pin-box hidden" id="pinCaution">
     <h2>⚠ Use With Caution</h2>
-    <p style="margin:12px 0 18px;font-size:.9rem;line-height:1.6;color:#555;">This reflects the schedule as originally sent. If no changes have been made, this is accurate.<br><br>If changes were made after it was sent, refer to the <strong>physical schedule posted at work</strong>.</p>
+    <p style="margin:12px 0 18px;font-size:.9rem;line-height:1.6;color:#555;">This reflects the schedule as originally sent.<br><br>If changes were made after it was sent, refer to the <strong>physical schedule posted at work</strong>.</p>
     <button onclick="dismissCaution()" style="background:#3d5c2e;color:#fff;border:none;border-radius:20px;padding:10px 28px;font-size:.9rem;font-weight:700;cursor:pointer;width:100%;">Got it — View Schedule</button>
   </div>
 </div>
