@@ -1966,6 +1966,13 @@
       "start": "5:00 PM",
       "end": "9:30 PM",
       "role": "Budtender"
+    },
+    {
+      "date": "2026-06-04",
+      "name": "Courtney",
+      "start": "9:30 AM",
+      "end": "4:00 PM",
+      "role": "Budtender"
     }
   ],
   "last_updated": "2026-05-27T23:44:49.493385"

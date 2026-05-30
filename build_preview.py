@@ -1562,6 +1562,9 @@ function toggleDark() {{
 <!-- ── Schedule section (injected into main by JS) ── -->
 <template id="scheduleTemplate">
   <section id="scheduleSection">
+    <div style="background:#fef3c7;border:2px solid #f59e0b;border-radius:10px;padding:12px 16px;margin-bottom:18px;display:flex;align-items:center;gap:10px;font-size:.85rem;color:#92400e;font-weight:600;">
+      🚧 <span><strong>Schedule — Work in Progress.</strong> Some shifts may be missing or incorrect while we verify double shifts. Check the source images below or the physical schedule at work.</span>
+    </div>
     <div class="sched-header">
       <span class="sched-title">📅 Staff Schedule</span>
       <div class="sched-nav">
