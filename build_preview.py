@@ -1570,45 +1570,15 @@ function toggleDark() {{
 <!-- ── Schedule section (injected into main by JS) ── -->
 <template id="scheduleTemplate">
   <section id="scheduleSection">
-    <div style="background:#fef3c7;border:2px solid #f59e0b;border-radius:10px;padding:12px 16px;margin-bottom:18px;display:flex;align-items:center;gap:10px;font-size:.85rem;color:#92400e;font-weight:600;">
-      🚧 <span><strong>Schedule — Work in Progress.</strong> Always verify shifts against the <strong>source images below</strong> or the physical schedule posted at work.</span>
+    <div style="background:#fef3c7;border:2px solid #f59e0b;border-radius:10px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;gap:10px;font-size:.85rem;color:#92400e;font-weight:600;">
+      🚧 <span><strong>Schedule — Work in Progress.</strong> Always verify shifts against the source images below or the physical schedule posted at work.</span>
     </div>
     <div class="sched-img-section">
-      <button class="sched-img-toggle" id="schedImgToggleBtn" onclick="toggleSchedImages(this)">
-        <div class="sched-img-toggle-left">
-          <span class="sched-img-toggle-icon">📅</span>
-          <div class="sched-img-toggle-text">
-            <span class="sched-img-toggle-title">View Original Schedule Images</span>
-            <span class="sched-img-toggle-sub">Tap to see the source calendar photos — always verify shifts here</span>
-          </div>
-        </div>
-        <span class="sched-img-toggle-arrow">▼</span>
-      </button>
-      <div class="sched-img-wrap hidden" id="schedImages">
-        <p class="sched-img-label">May 2026</p>
-        <img src="schedule-may.jpg" alt="May schedule" class="sched-img">
-        <p class="sched-img-label">June 2026</p>
-        <img src="schedule-june.jpg" alt="June schedule" class="sched-img">
-      </div>
+      <p class="sched-img-label">May 2026</p>
+      <img src="schedule-may.jpg" alt="May schedule" class="sched-img">
+      <p class="sched-img-label" style="margin-top:20px">June 2026</p>
+      <img src="schedule-june.jpg" alt="June schedule" class="sched-img">
     </div>
-    <div class="sched-header">
-      <span class="sched-title">📅 Staff Schedule</span>
-      <div class="sched-nav">
-        <button class="sched-nav-btn" id="schedPrevBtn" onclick="schedNav(-7)">← Previous</button>
-        <span class="sched-week-label" id="schedWeekLabel"></span>
-        <button class="sched-nav-btn" id="schedNextBtn" onclick="schedNav(7)">Next →</button>
-      </div>
-    </div>
-    <div class="sched-note" style="margin-top:0;margin-bottom:16px;">⚠ This reflects the schedule as originally sent. If changes were made after it was sent, refer to the physical schedule posted at work.</div>
-    <div class="sched-filter-row">
-      <span class="sched-filter-label">👤 Viewing</span>
-      <select class="sched-filter-select" id="schedPersonSelect" onchange="setSchedPerson(this.value)">
-        <option value="all">👥 Everyone</option>
-      </select>
-    </div>
-    <div id="schedDays"></div>
-    <div class="sched-updated" id="schedUpdated"></div>
-    <div class="sched-note">⚠ This reflects the schedule as originally sent. If changes were made after it was sent, refer to the physical schedule posted at work.</div>
   </section>
 </template>
 
