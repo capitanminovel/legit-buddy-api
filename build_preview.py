@@ -538,10 +538,11 @@ def build():
     .sched-nav-btn:hover{{border-color:var(--brand);color:var(--brand)}}
     .sched-nav-btn.disabled{{opacity:.4;cursor:default;pointer-events:none}}
     .sched-week-label{{font-size:.82rem;color:var(--muted);font-weight:600;min-width:90px;text-align:center}}
-    .sched-filters{{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}}
-    .sched-filter-btn{{padding:5px 14px;border-radius:20px;border:1px solid var(--border);background:var(--white);color:var(--muted);cursor:pointer;font-size:.75rem;font-weight:600;transition:all .15s}}
-    .sched-filter-btn:hover{{border-color:var(--brand);color:var(--brand)}}
-    .sched-filter-btn.on{{background:var(--brand-lt);border-color:var(--brand);color:var(--brand)}}
+    .sched-filter-row{{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap}}
+    .sched-filter-label{{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}}
+    .sched-filter-select{{flex:1;min-width:160px;max-width:280px;padding:9px 14px;border:1.5px solid var(--border);border-radius:10px;background:var(--white);color:var(--text);font-family:inherit;font-size:.88rem;font-weight:600;cursor:pointer;outline:none;transition:border-color .15s;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}}
+    .sched-filter-select:focus{{border-color:var(--brand)}}
+    body.dark .sched-filter-select{{background-color:var(--white);border-color:var(--border)}}
     .sched-day{{margin-bottom:18px;background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden}}
     .sched-day.today .sched-day-head{{background:var(--brand);color:#fff}}
     .sched-day-head{{padding:9px 16px;font-size:.82rem;font-weight:700;background:var(--bg);color:var(--text);display:flex;align-items:center;gap:8px}}
@@ -1599,7 +1600,12 @@ function toggleDark() {{
       </div>
     </div>
     <div class="sched-note" style="margin-top:0;margin-bottom:16px;">⚠ This reflects the schedule as originally sent. If changes were made after it was sent, refer to the physical schedule posted at work.</div>
-    <div class="sched-filters" id="schedFilters"></div>
+    <div class="sched-filter-row">
+      <span class="sched-filter-label">👤 Viewing</span>
+      <select class="sched-filter-select" id="schedPersonSelect" onchange="setSchedPerson(this.value)">
+        <option value="all">👥 Everyone</option>
+      </select>
+    </div>
     <div id="schedDays"></div>
     <div class="sched-updated" id="schedUpdated"></div>
     <div class="sched-note">⚠ This reflects the schedule as originally sent. If changes were made after it was sent, refer to the physical schedule posted at work.</div>
@@ -1692,10 +1698,8 @@ function schedNav(days) {{
   renderSchedule();
 }}
 
-function setSchedPerson(name, btn) {{
+function setSchedPerson(name) {{
   schedPerson = name;
-  document.querySelectorAll('.sched-filter-btn').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
   renderSchedule();
 }}
 
@@ -1718,18 +1722,18 @@ function renderSchedule() {{
   document.getElementById('schedPrevBtn').classList.toggle('disabled', schedOffset <= -35);
   document.getElementById('schedNextBtn').classList.toggle('disabled', schedOffset >= 7);
 
-  // Build person filter chips
+  // Build person dropdown (populate once)
   const people = ['all', ...Array.from(new Set(shifts.map(s => s.name))).sort()];
-  const filtersEl = document.getElementById('schedFilters');
-  if (filtersEl.children.length === 0) {{
-    people.forEach(p => {{
-      const b = document.createElement('button');
-      b.className = 'sched-filter-btn' + (p === schedPerson ? ' on' : '');
-      b.textContent = p === 'all' ? '👥 Everyone' : p;
-      b.onclick = () => setSchedPerson(p, b);
-      filtersEl.appendChild(b);
+  const sel = document.getElementById('schedPersonSelect');
+  if (sel.options.length <= 1) {{
+    people.slice(1).forEach(p => {{
+      const opt = document.createElement('option');
+      opt.value = p;
+      opt.textContent = p;
+      sel.appendChild(opt);
     }});
   }}
+  sel.value = schedPerson;
 
   // Render 7 days
   const daysEl = document.getElementById('schedDays');
