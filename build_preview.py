@@ -510,9 +510,16 @@ def build():
     .sched-tab{{margin-left:auto}}
     #scheduleSection{{display:none;padding:24px}}
     #scheduleSection.active{{display:block}}
-    .sched-img-section{{margin-bottom:20px;border-bottom:1px solid var(--border);padding-bottom:16px}}
-    .sched-img-toggle{{background:none;border:1px solid var(--border);border-radius:20px;padding:7px 16px;font-size:.8rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s}}
-    .sched-img-toggle:hover{{border-color:var(--brand);color:var(--brand)}}
+    .sched-img-section{{margin-bottom:24px}}
+    .sched-img-toggle{{width:100%;background:linear-gradient(135deg,#1a7a4a,#145e38);border:none;border-radius:14px;padding:18px 22px;font-size:1rem;font-weight:700;color:#fff;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;box-shadow:0 4px 14px rgba(26,122,74,.25)}}
+    .sched-img-toggle:hover{{background:linear-gradient(135deg,#145e38,#0f4a2c);box-shadow:0 6px 20px rgba(26,122,74,.35);transform:translateY(-1px)}}
+    .sched-img-toggle-left{{display:flex;align-items:center;gap:12px}}
+    .sched-img-toggle-icon{{font-size:1.6rem;flex-shrink:0}}
+    .sched-img-toggle-text{{display:flex;flex-direction:column;gap:2px}}
+    .sched-img-toggle-title{{font-size:1rem;font-weight:800;letter-spacing:.01em}}
+    .sched-img-toggle-sub{{font-size:.78rem;font-weight:500;opacity:.85}}
+    .sched-img-toggle-arrow{{font-size:1.2rem;opacity:.8;transition:transform .2s;flex-shrink:0}}
+    .sched-img-toggle.open .sched-img-toggle-arrow{{transform:rotate(180deg)}}
     .sched-img-wrap{{margin-top:16px}}
     .sched-img-label{{font-weight:700;font-size:.85rem;color:var(--muted);margin:16px 0 8px}}
     .sched-img{{width:100%;border-radius:10px;border:1px solid var(--border);display:block}}
@@ -1563,7 +1570,25 @@ function toggleDark() {{
 <template id="scheduleTemplate">
   <section id="scheduleSection">
     <div style="background:#fef3c7;border:2px solid #f59e0b;border-radius:10px;padding:12px 16px;margin-bottom:18px;display:flex;align-items:center;gap:10px;font-size:.85rem;color:#92400e;font-weight:600;">
-      🚧 <span><strong>Schedule — Work in Progress.</strong> Some shifts may be missing or incorrect while we verify double shifts. Check the source images below or the physical schedule at work.</span>
+      🚧 <span><strong>Schedule — Work in Progress.</strong> Always verify shifts against the <strong>source images below</strong> or the physical schedule posted at work.</span>
+    </div>
+    <div class="sched-img-section">
+      <button class="sched-img-toggle" id="schedImgToggleBtn" onclick="toggleSchedImages(this)">
+        <div class="sched-img-toggle-left">
+          <span class="sched-img-toggle-icon">📅</span>
+          <div class="sched-img-toggle-text">
+            <span class="sched-img-toggle-title">View Original Schedule Images</span>
+            <span class="sched-img-toggle-sub">Tap to see the source calendar photos — always verify shifts here</span>
+          </div>
+        </div>
+        <span class="sched-img-toggle-arrow">▼</span>
+      </button>
+      <div class="sched-img-wrap hidden" id="schedImages">
+        <p class="sched-img-label">May 2026</p>
+        <img src="schedule-may.jpg" alt="May schedule" class="sched-img">
+        <p class="sched-img-label">June 2026</p>
+        <img src="schedule-june.jpg" alt="June schedule" class="sched-img">
+      </div>
     </div>
     <div class="sched-header">
       <span class="sched-title">📅 Staff Schedule</span>
@@ -1574,15 +1599,6 @@ function toggleDark() {{
       </div>
     </div>
     <div class="sched-note" style="margin-top:0;margin-bottom:16px;">⚠ This reflects the schedule as originally sent. If changes were made after it was sent, refer to the physical schedule posted at work.</div>
-    <div class="sched-img-section">
-      <button class="sched-img-toggle" onclick="toggleSchedImages(this)">📷 View Original Schedule Images</button>
-      <div class="sched-img-wrap hidden" id="schedImages">
-        <p class="sched-img-label">May 2026</p>
-        <img src="schedule-may.jpg" alt="May schedule" class="sched-img">
-        <p class="sched-img-label">June 2026</p>
-        <img src="schedule-june.jpg" alt="June schedule" class="sched-img">
-      </div>
-    </div>
     <div class="sched-filters" id="schedFilters"></div>
     <div id="schedDays"></div>
     <div class="sched-updated" id="schedUpdated"></div>
@@ -1662,7 +1678,10 @@ function hideSchedule() {{
 function toggleSchedImages(btn) {{
   const wrap = document.getElementById('schedImages');
   const hidden = wrap.classList.toggle('hidden');
-  btn.textContent = hidden ? '📷 View Original Schedule Images' : '📷 Hide Schedule Images';
+  btn.classList.toggle('open', !hidden);
+  btn.querySelector('.sched-img-toggle-sub').textContent = hidden
+    ? 'Tap to see the source calendar photos — always verify shifts here'
+    : 'Tap to hide images';
 }}
 
 function schedNav(days) {{
