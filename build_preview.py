@@ -11,7 +11,6 @@ DATA         = Path(__file__).parent / "docs" / "products.json"
 STRAINS_DATA = Path(__file__).parent / "docs" / "strains_enriched.json"
 OUT          = Path(__file__).parent / "docs" / "index.html"
 NEW_DAYS     = 3
-SOLD_DAYS    = 2
 
 CAT_ICONS = {
     "flower":"🌿","pre-roll":"🚬","pre_roll":"🚬","preroll":"🚬",
@@ -110,12 +109,6 @@ def build():
         with open(STRAINS_DATA) as f:
             strains = json.load(f)
 
-    schedule = {"shifts": [], "last_updated": None}
-    sched_path = Path(__file__).parent / "docs" / "schedule.json"
-    if sched_path.exists():
-        with open(sched_path) as f:
-            schedule = json.load(f)
-
     now     = datetime.now(CST)
     ts      = now.strftime("%a, %b %d %Y — %I:%M %p CST")
     TARGET  = ("flower", "pre-roll", "vapes", "edibles")
@@ -145,40 +138,6 @@ def build():
     </section>
     <div class="section-divider" data-cat="all"></div>"""
 
-    sold_items = sorted(
-        [(k, p) for k, p in db["products"].items()
-         if not p.get("in_stock", True)
-         and p.get("category", "").lower() in TARGET
-         and age_days(p.get("last_seen", "")) <= SOLD_DAYS],
-        key=lambda x: age_days(x[1].get("last_seen", ""))
-    )
-
-    sold_section = ""
-    if sold_items:
-        def sold_row(p):
-            d = age_days(p.get("last_seen", ""))
-            when = "Today" if d == 0 else f"{d}d ago"
-            ci   = cat_icon(p.get("category", ""))
-            thc  = f'<span class="sold-thc">THC {p["thc"]}</span>' if p.get("thc") else ""
-            sb   = f'<span class="strain-badge {strain_class(p["strain_type"])} sold-strain">{p["strain_type"]}</span>' if p.get("strain_type") else ""
-            return (f'<div class="sold-row">'
-                    f'<span class="sold-icon">{ci}</span>'
-                    f'<span class="sold-name">{p["name"]}</span>'
-                    f'{sb}{thc}'
-                    f'<span class="sold-when">Gone {when}</span>'
-                    f'</div>')
-        rows = "".join(sold_row(p) for _, p in sold_items)
-        n = len(sold_items)
-        sold_section = f"""
-    <section class="sold-section" data-cat="all">
-      <div class="sold-head">
-        <span class="sold-title">🚫 Sold Out — Last 2 Days</span>
-        <span class="sold-count">{n} item{"s" if n!=1 else ""}</span>
-      </div>
-      <div class="sold-list">{rows}</div>
-    </section>
-    <div class="section-divider" data-cat="all"></div>"""
-
     tab_btns = '<button class="tab on" data-cat="all" onclick="filterCat(this)">All Products</button>\n'
     tab_btns += "\n".join(
         f'<button class="tab" data-cat="{c.lower()}" onclick="filterCat(this)">{cat_icon(c)} {c}</button>'
@@ -199,11 +158,9 @@ def build():
       <div class="grid">{cards}</div>
     </section>"""
 
-    # Embed all product data + strain enrichment + schedule as JS
-    products_js  = json.dumps({k: v for k, v in db["products"].items()}, ensure_ascii=False)
-    strains_js   = json.dumps(strains, ensure_ascii=False)
-    schedule_js  = json.dumps(schedule, ensure_ascii=False)
-    tab_btns    += '\n<button class="tab sched-tab" data-cat="schedule" onclick="openScheduleTab(this)">📅 Schedule</button>'
+    # Embed all product data + strain enrichment as JS
+    products_js = json.dumps({k: v for k, v in db["products"].items()}, ensure_ascii=False)
+    strains_js  = json.dumps(strains, ensure_ascii=False)
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -238,8 +195,6 @@ def build():
     body.dark .search-input{{background:#132019;color:var(--text);border-color:var(--border)}}
     body.dark .search-input:focus{{background:#1a2d20;border-color:var(--brand)}}
     body.dark .new-arrivals-section{{background:linear-gradient(135deg,#132019,#0d1f14);border-color:#2d4a35}}
-    body.dark .sold-section{{background:linear-gradient(135deg,#1c1505,#1f1a08);border-color:#78350f}}
-    body.dark .sold-row{{background:rgba(255,255,255,.05)}}
     body.dark .terp{{background:#0d2015;color:#4ade80;border-color:#1e4a2a}}
     body.dark .tier{{background:#132019;border-color:var(--border)}}
     body.dark .card.match-strong{{border-left:5px solid #4ade80;box-shadow:-2px 0 10px rgba(74,222,128,.3)}}
@@ -324,17 +279,6 @@ def build():
     .new-arrivals-head{{display:flex;align-items:baseline;gap:10px;margin-bottom:18px}}
     .new-arrivals-title{{font-size:1.15rem;font-weight:700;color:var(--new)}}
     .new-arrivals-count{{font-size:.8rem;color:var(--muted)}}
-    .sold-section{{background:linear-gradient(135deg,#fffbeb,#fef3c7);border:2px solid #fcd34d;border-radius:12px;padding:20px;margin-bottom:32px}}
-    .sold-head{{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}}
-    .sold-title{{font-size:1.15rem;font-weight:700;color:#b45309}}
-    .sold-count{{font-size:.8rem;color:var(--muted)}}
-    .sold-list{{display:flex;flex-direction:column;gap:8px}}
-    .sold-row{{display:flex;align-items:center;gap:8px;padding:8px 10px;background:rgba(255,255,255,.6);border-radius:8px;flex-wrap:wrap}}
-    .sold-icon{{font-size:1.1rem;flex-shrink:0}}
-    .sold-name{{font-weight:600;font-size:.9rem;flex:1;min-width:140px}}
-    .sold-strain{{font-size:.65rem;padding:2px 6px}}
-    .sold-thc{{font-size:.75rem;color:#92400e;font-weight:600;background:#fde68a;padding:2px 7px;border-radius:10px}}
-    .sold-when{{margin-left:auto;font-size:.75rem;color:#b45309;font-weight:700;white-space:nowrap}}
     .section-divider{{height:2px;background:linear-gradient(90deg,var(--brand-lt),transparent);margin:0 0 36px;border-radius:1px}}
     .hidden{{display:none!important}}
 
@@ -506,56 +450,6 @@ def build():
       .profile-box{{max-height:92vh}}
       .modal-inner{{padding:12px 14px 18px}}
     }}
-    /* ── Schedule ── */
-    .sched-tab{{margin-left:auto}}
-    #scheduleSection{{display:none;padding:24px}}
-    #scheduleSection.active{{display:block}}
-    .sched-img-section{{margin-bottom:24px}}
-    .sched-img-toggle{{width:100%;background:linear-gradient(135deg,#1a7a4a,#145e38);border:none;border-radius:14px;padding:18px 22px;font-size:1rem;font-weight:700;color:#fff;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;box-shadow:0 4px 14px rgba(26,122,74,.25)}}
-    .sched-img-toggle:hover{{background:linear-gradient(135deg,#145e38,#0f4a2c);box-shadow:0 6px 20px rgba(26,122,74,.35);transform:translateY(-1px)}}
-    .sched-img-toggle-left{{display:flex;align-items:center;gap:12px}}
-    .sched-img-toggle-icon{{font-size:1.6rem;flex-shrink:0}}
-    .sched-img-toggle-text{{display:flex;flex-direction:column;gap:2px}}
-    .sched-img-toggle-title{{font-size:1rem;font-weight:800;letter-spacing:.01em}}
-    .sched-img-toggle-sub{{font-size:.78rem;font-weight:500;opacity:.85}}
-    .sched-img-toggle-arrow{{font-size:1.2rem;opacity:.8;transition:transform .2s;flex-shrink:0}}
-    .sched-img-toggle.open .sched-img-toggle-arrow{{transform:rotate(180deg)}}
-    .sched-img-wrap{{margin-top:16px}}
-    .sched-img-label{{font-weight:700;font-size:.85rem;color:var(--muted);margin:16px 0 8px}}
-    .sched-img{{width:100%;border-radius:10px;border:1px solid var(--border);display:block}}
-    .pin-overlay{{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);z-index:300;display:flex;align-items:center;justify-content:center}}
-    .pin-overlay.hidden{{display:none}}
-    .pin-box{{background:var(--white);border-radius:16px;padding:36px 40px;text-align:center;min-width:280px;box-shadow:0 20px 60px rgba(0,0,0,.25)}}
-    .pin-box h2{{font-family:'Nunito',sans-serif;font-size:1.25rem;color:var(--text);margin-bottom:6px}}
-    .pin-box p{{font-size:.8rem;color:var(--muted);margin-bottom:20px}}
-    .pin-input{{width:120px;text-align:center;font-size:1.8rem;letter-spacing:.4em;font-weight:700;padding:8px 12px;border:2px solid var(--border);border-radius:10px;font-family:'Nunito',sans-serif;color:var(--text);outline:none}}
-    .pin-input:focus{{border-color:var(--brand)}}
-    .pin-error{{color:#dc2626;font-size:.78rem;margin-top:10px;min-height:18px}}
-    .sched-header{{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}}
-    .sched-title{{font-family:'Nunito',sans-serif;font-size:1.2rem;font-weight:800;color:var(--text)}}
-    .sched-nav{{display:flex;align-items:center;gap:8px;margin-left:auto}}
-    .sched-nav-btn{{padding:6px 14px;border:1px solid var(--border);border-radius:20px;background:var(--white);color:var(--muted);cursor:pointer;font-size:.78rem;font-weight:600;transition:all .15s}}
-    .sched-nav-btn:hover{{border-color:var(--brand);color:var(--brand)}}
-    .sched-nav-btn.disabled{{opacity:.4;cursor:default;pointer-events:none}}
-    .sched-week-label{{font-size:.82rem;color:var(--muted);font-weight:600;min-width:90px;text-align:center}}
-    .sched-filter-row{{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap}}
-    .sched-filter-label{{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}}
-    .sched-filter-select{{flex:1;min-width:160px;max-width:280px;padding:9px 14px;border:1.5px solid var(--border);border-radius:10px;background:var(--white);color:var(--text);font-family:inherit;font-size:.88rem;font-weight:600;cursor:pointer;outline:none;transition:border-color .15s;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}}
-    .sched-filter-select:focus{{border-color:var(--brand)}}
-    body.dark .sched-filter-select{{background-color:var(--white);border-color:var(--border)}}
-    .sched-day{{margin-bottom:18px;background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden}}
-    .sched-day.today .sched-day-head{{background:var(--brand);color:#fff}}
-    .sched-day-head{{padding:9px 16px;font-size:.82rem;font-weight:700;background:var(--bg);color:var(--text);display:flex;align-items:center;gap:8px}}
-    .sched-today-badge{{background:#fff;color:var(--brand);font-size:.65rem;font-weight:800;padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:.05em}}
-    .sched-shifts{{padding:4px 0}}
-    .sched-shift{{display:flex;align-items:center;gap:12px;padding:9px 16px;border-bottom:1px solid var(--bg);font-size:.82rem}}
-    .sched-shift:last-child{{border-bottom:none}}
-    .sched-shift-name{{font-weight:600;color:var(--text);min-width:130px}}
-    .sched-shift-time{{color:var(--muted);white-space:nowrap}}
-    .sched-empty{{text-align:center;padding:48px 24px;color:var(--muted);font-size:.88rem}}
-    .sched-empty-icon{{font-size:2rem;margin-bottom:12px;opacity:.4}}
-    .sched-updated{{font-size:.7rem;color:var(--muted);text-align:right;margin-top:12px}}
-    .sched-note{{margin-top:16px;padding:10px 14px;background:#fffbeb;border:1px solid #fcd34d;border-radius:8px;font-size:.78rem;color:#92400e;line-height:1.5}}
   </style>
 </head>
 <body>
@@ -579,7 +473,7 @@ def build():
   </div>
 </header>
 <div class="export-bar">
-  <span class="export-bar-label">⬇ Export Strain Profiles:</span>
+  <span class="export-bar-label">⬇ Export .docx:</span>
   <button class="btn-export-avail" onclick="showExportPopup('legit-available-guide.docx')">✅ Available Now ({len(all_p)} products)</button>
   <button class="btn-export-all"   onclick="showExportPopup('legit-master-guide.docx')">📦 Master Cache (all strains)</button>
   <button class="btn-staff-guide"  onclick="openStaffGuide()" style="margin-left:auto">📖 Staff Guide</button>
@@ -601,7 +495,6 @@ def build():
   <div class="legend-item"><span class="strain-badge strain-cbd">CBD</span></div>
   <div class="legend-item"><span class="new-badge">New Today</span> Added today</div>
   <div class="legend-item"><span class="recent-badge">New (2d)</span> Within 3 days</div>
-  <div class="legend-item"><span class="sold-thc" style="background:#fde68a;color:#92400e;padding:2px 7px;border-radius:10px;font-size:.75rem;font-weight:600">🚫 Gone</span> Sold out in last 2 days</div>
   <div class="legend-item" style="margin-left:auto;color:var(--brand);font-weight:600">Tap any product for strain guide →</div>
 </div>
 <div class="tabs-wrap"><div class="tabs" id="tabs">{tab_btns}</div></div>
@@ -633,7 +526,7 @@ def build():
     </div>
     <div class="mood-status hidden" id="moodStatus"></div>
   </div>
-  {new_section}{sold_section}{sections}
+  {new_section}{sections}
   <div class="mood-zero hidden" id="moodZero">No products match this vibe right now — try another filter.</div>
 </main>
 <footer>
@@ -985,18 +878,12 @@ function exportGuide() {{
   *{{box-sizing:border-box;margin:0;padding:0}}
   body{{background:#e8e0d0;font-family:'Nunito Sans',sans-serif;padding:24px 16px;color:var(--text)}}
   .page{{max-width:720px;margin:0 auto}}
-  .header{{display:flex;align-items:center;gap:16px;margin-bottom:20px}}
+  .header{{display:flex;align-items:center;gap:16px;margin-bottom:28px}}
   .logo-badge{{background:var(--green);border-radius:14px;padding:10px 16px;display:flex;align-items:center;gap:8px}}
   .logo-badge .leaf{{font-size:20px}}
   .logo-badge .name{{font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;color:var(--pink);line-height:1.1;letter-spacing:.02em;text-transform:uppercase}}
   .header-title{{font-family:'Nunito',sans-serif;font-weight:900;font-size:26px;color:var(--dark-green);letter-spacing:.04em;text-transform:uppercase}}
   .header-sub{{font-size:12px;color:var(--green);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}}
-  .info-box{{background:white;border:2px solid var(--border-green);border-radius:12px;padding:14px 18px;margin-bottom:22px;font-size:12.5px;line-height:1.6;color:#333}}
-  .info-box strong{{color:var(--dark-green);font-family:'Nunito',sans-serif}}
-  .info-box .info-title{{font-family:'Nunito',sans-serif;font-weight:900;font-size:14px;color:var(--dark-green);margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em}}
-  .info-grid{{display:grid;grid-template-columns:1fr 1fr;gap:4px 20px;margin-top:6px}}
-  .info-grid div::before{{content:'→ ';color:#888}}
-  .info-note{{margin-top:10px;padding-top:8px;border-top:1px solid #e0d8cc;font-size:11.5px;color:#777}}
   .sg-card{{background:white;border:3px solid var(--border-green);border-radius:16px;padding:18px 22px;margin-bottom:18px}}
   .sg-name{{font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;text-align:center;text-transform:uppercase;letter-spacing:.05em;color:var(--dark-green);margin-bottom:2px}}
   .sg-type{{text-align:center;font-size:12.5px;font-weight:700;color:#555;margin-bottom:4px}}
@@ -1010,7 +897,7 @@ function exportGuide() {{
   .sg-row strong{{font-weight:700;color:var(--dark-green);font-family:'Nunito',sans-serif;font-size:12.5px}}
   .profile-item-remove{{display:none}}
   .sg-row span{{font-size:10px;color:#888;font-weight:400}}
-  @media print{{body{{background:white;padding:0}}.sg-card{{break-inside:avoid}}.info-box{{break-inside:avoid}}}}
+  @media print{{body{{background:white;padding:0}}.sg-card{{break-inside:avoid}}}}
   ${{EXPORT_POPUP_CSS}}
 </style>
 </head>
@@ -1020,48 +907,6 @@ ${{EXPORT_POPUP_HTML}}
   <div class="header">
     <div class="logo-badge"><span class="leaf">🍃</span><div class="name">LEGIT<br>CANNABIS</div></div>
     <div><div class="header-title">Strain Guide</div><div class="header-sub">Staff Reference · ${{today}}</div></div>
-  </div>
-  <div class="info-box">
-    <div class="info-title">🍃 Legit Staff Buddy — Staff Guide</div>
-
-    <div style="margin-bottom:12px;">
-      <strong>Access:</strong> capitanminovel.github.io/legit-buddy-api<br>
-      <strong>Schedule PIN:</strong> 0420
-    </div>
-
-    <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--dark-green);margin-bottom:6px;">🔄 Menu Updates</div>
-    <div style="margin-bottom:12px;">
-      The menu is automatically checked and updated <strong>4 times daily</strong>:<br>
-      <strong>9:00 AM · 1:00 PM · 4:30 PM · 10:00 PM CST</strong><br>
-      New products and sold-out items reflect within the hour of each update.
-    </div>
-
-    <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--dark-green);margin-bottom:6px;">✨ New Arrivals</div>
-    <div style="margin-bottom:12px;">
-      Products added to the menu within the last <strong>3 days</strong> are highlighted with a green "New Today" or "New (Xd ago)" badge at the top of the page.
-    </div>
-
-    <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--dark-green);margin-bottom:6px;">🚫 Sold Out Tracker</div>
-    <div style="margin-bottom:12px;">
-      Items that left the menu within the last <strong>2 days</strong> appear in the amber "Sold Out" section so you know what recently went out of stock.
-    </div>
-
-    <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--dark-green);margin-bottom:6px;">🔍 Search &amp; Filter</div>
-    <div style="margin-bottom:12px;">
-      Use the search bar to find products by name, brand, terpene, or effect. Filter by category (Flower, Pre-Roll, Vapes, Edibles) using the tabs. Use the <strong>Mood Filter</strong> to recommend products by effect — Relax, Focus, Sleep, Social, and more.
-    </div>
-
-    <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--dark-green);margin-bottom:6px;">📋 Strain Guide &amp; Profile</div>
-    <div style="margin-bottom:12px;">
-      Tap any product card to view its full strain profile — lineage, terpenes, therapeutic uses, aroma, and mood ratings. Press <strong>＋ Add to Profile</strong> to save strains to your personal list, then use <strong>⬇ Export Strain Profiles</strong> to download a printable guide.
-    </div>
-
-    <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--dark-green);margin-bottom:6px;">📅 Staff Schedule</div>
-    <div style="margin-bottom:12px;">
-      Enter PIN <strong>0420</strong> to view the staff schedule. Navigate weeks using the Previous/Next buttons. Use the staff filter chips to view individual schedules. Tap <strong>📷 View Original Schedule Images</strong> to see the source photos.
-    </div>
-
-    <div class="info-note">⚠ The schedule reflects the original as sent. If changes were made after it was sent, refer to the <strong>physical schedule posted at work</strong>.</div>
   </div>
   ${{cards}}
 </div>
@@ -1261,12 +1106,10 @@ function applyFilters() {{
     }}
   }});
 
-  // Divider + new-arrivals + sold-out sections (all-only)
+  // Divider + new-arrivals section
   document.querySelectorAll('.section-divider').forEach(d => {{
     d.classList.toggle('hidden', activeCat !== 'all');
   }});
-  const soldSec = document.querySelector('.sold-section');
-  if (soldSec) soldSec.classList.toggle('hidden', activeCat !== 'all');
 
   // Show "no results" message
   document.getElementById('moodZero').classList.toggle('hidden', totalVisible > 0);
@@ -1302,7 +1145,6 @@ function clearSearch() {{
 }}
 
 function filterCat(btn) {{
-  hideSchedule();
   document.querySelectorAll('.tab').forEach(b => b.classList.remove('on'));
   btn.classList.add('on');
   activeCat = btn.dataset.cat;
@@ -1548,214 +1390,6 @@ function toggleDark() {{
     }});
   }}
 }})();
-</script>
-
-<!-- ── PIN overlay ── -->
-<div class="pin-overlay hidden" id="pinOverlay">
-  <div class="pin-box" id="pinBox">
-    <h2>Staff Access</h2>
-    <p>Enter your code to view the schedule</p>
-    <input class="pin-input" id="pinInput" type="password" maxlength="4"
-           inputmode="numeric" placeholder="••••" autocomplete="off"
-           oninput="checkPin(this.value)">
-    <div class="pin-error" id="pinError"></div>
-  </div>
-  <div class="pin-box hidden" id="pinCaution">
-    <h2>⚠ Use With Caution</h2>
-    <p style="margin:12px 0 18px;font-size:.9rem;line-height:1.6;color:#555;">This reflects the schedule as originally sent.<br><br>If changes were made after it was sent, refer to the <strong>physical schedule posted at work</strong>.</p>
-    <button onclick="dismissCaution()" style="background:#3d5c2e;color:#fff;border:none;border-radius:20px;padding:10px 28px;font-size:.9rem;font-weight:700;cursor:pointer;width:100%;">Got it — View Schedule</button>
-  </div>
-</div>
-
-<!-- ── Schedule section (injected into main by JS) ── -->
-<template id="scheduleTemplate">
-  <section id="scheduleSection">
-    <div style="background:#fef3c7;border:2px solid #f59e0b;border-radius:10px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;gap:10px;font-size:.85rem;color:#92400e;font-weight:600;">
-      🚧 <span><strong>Schedule — Work in Progress.</strong> Always verify shifts against the source images below or the physical schedule posted at work.</span>
-    </div>
-    <div class="sched-img-section">
-      <p class="sched-img-label">May 2026</p>
-      <img src="schedule-may.jpg" alt="May schedule" class="sched-img">
-      <p class="sched-img-label" style="margin-top:20px">June 2026</p>
-      <img src="schedule-june.jpg" alt="June schedule" class="sched-img">
-    </div>
-  </section>
-</template>
-
-<script>
-const SCHEDULE = {schedule_js};
-const SCHED_PIN = '0420';
-let schedOffset   = 0;   // days from today (multiples of 7)
-let schedPerson   = 'all';
-let schedUnlocked = false;
-
-function openScheduleTab(btn) {{
-  if (schedUnlocked || sessionStorage.getItem('sched-ok') === '1') {{
-    schedUnlocked = true;
-    showSchedule(btn);
-    return;
-  }}
-  document.getElementById('pinOverlay').classList.remove('hidden');
-  document.getElementById('pinInput').value = '';
-  document.getElementById('pinError').textContent = '';
-  setTimeout(() => document.getElementById('pinInput').focus(), 80);
-  // store btn ref to activate after unlock
-  window._schedBtn = btn;
-}}
-
-function checkPin(val) {{
-  if (val.length < 4) return;
-  if (val === SCHED_PIN) {{
-    sessionStorage.setItem('sched-ok', '1');
-    schedUnlocked = true;
-    document.getElementById('pinBox').classList.add('hidden');
-    document.getElementById('pinCaution').classList.remove('hidden');
-  }} else {{
-    document.getElementById('pinError').textContent = 'Incorrect code';
-    document.getElementById('pinInput').value = '';
-  }}
-}}
-
-function dismissCaution() {{
-  document.getElementById('pinOverlay').classList.add('hidden');
-  document.getElementById('pinBox').classList.remove('hidden');
-  document.getElementById('pinCaution').classList.add('hidden');
-  document.getElementById('pinInput').value = '';
-  showSchedule(window._schedBtn);
-}}
-
-function showSchedule(btn) {{
-  // Activate tab
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
-  if (btn) btn.classList.add('on');
-  // Hide product content, show schedule
-  document.querySelectorAll('.section,.new-arrivals-section,.sold-section,.section-divider,.mood-bar,.legend').forEach(el => {{
-    el.style.display = 'none';
-  }});
-  let sec = document.getElementById('scheduleSection');
-  if (!sec) {{
-    const tpl = document.getElementById('scheduleTemplate');
-    const clone = tpl.content.cloneNode(true);
-    document.querySelector('main').appendChild(clone);
-    sec = document.getElementById('scheduleSection');
-  }}
-  sec.classList.add('active');
-  renderSchedule();
-}}
-
-function hideSchedule() {{
-  const sec = document.getElementById('scheduleSection');
-  if (sec) sec.classList.remove('active');
-  document.querySelectorAll('.section,.new-arrivals-section,.sold-section,.section-divider,.mood-bar,.legend').forEach(el => {{
-    el.style.display = '';
-  }});
-}}
-
-function toggleSchedImages(btn) {{
-  const wrap = document.getElementById('schedImages');
-  const hidden = wrap.classList.toggle('hidden');
-  btn.classList.toggle('open', !hidden);
-  btn.querySelector('.sched-img-toggle-sub').textContent = hidden
-    ? 'Tap to see the source calendar photos — always verify shifts here'
-    : 'Tap to hide images';
-}}
-
-function schedNav(days) {{
-  const newOffset = schedOffset + days;
-  // Don't go more than 35 days back or 7 days forward
-  if (newOffset < -35 || newOffset > 7) return;
-  schedOffset = newOffset;
-  renderSchedule();
-}}
-
-function setSchedPerson(name) {{
-  schedPerson = name;
-  renderSchedule();
-}}
-
-function renderSchedule() {{
-  const shifts = SCHEDULE.shifts || [];
-  const today  = new Date();
-  today.setHours(0,0,0,0);
-
-  // Week window: schedOffset days from today
-  const windowStart = new Date(today);
-  windowStart.setDate(windowStart.getDate() + schedOffset);
-  const windowEnd = new Date(windowStart);
-  windowEnd.setDate(windowEnd.getDate() + 6);
-
-  // Nav label
-  const fmt = d => d.toLocaleDateString('en-US', {{month:'short', day:'numeric'}});
-  document.getElementById('schedWeekLabel').textContent = fmt(windowStart) + ' – ' + fmt(windowEnd);
-
-  // Nav buttons
-  document.getElementById('schedPrevBtn').classList.toggle('disabled', schedOffset <= -35);
-  document.getElementById('schedNextBtn').classList.toggle('disabled', schedOffset >= 7);
-
-  // Build person dropdown (populate once)
-  const people = ['all', ...Array.from(new Set(shifts.map(s => s.name))).sort()];
-  const sel = document.getElementById('schedPersonSelect');
-  if (sel.options.length <= 1) {{
-    people.slice(1).forEach(p => {{
-      const opt = document.createElement('option');
-      opt.value = p;
-      opt.textContent = p;
-      sel.appendChild(opt);
-    }});
-  }}
-  sel.value = schedPerson;
-
-  // Render 7 days
-  const daysEl = document.getElementById('schedDays');
-  daysEl.innerHTML = '';
-  for (let i = 0; i < 7; i++) {{
-    const day = new Date(windowStart);
-    day.setDate(day.getDate() + i);
-    const dayStr = day.toISOString().slice(0,10);
-    const isToday = day.getTime() === today.getTime();
-
-    const dayShifts = shifts.filter(s => {{
-      if (s.date !== dayStr) return false;
-      return schedPerson === 'all' || s.name === schedPerson;
-    }});
-
-    const dayEl = document.createElement('div');
-    dayEl.className = 'sched-day' + (isToday ? ' today' : '');
-
-    const headEl = document.createElement('div');
-    headEl.className = 'sched-day-head';
-    headEl.innerHTML = day.toLocaleDateString('en-US', {{weekday:'long', month:'short', day:'numeric'}})
-      + (isToday ? ' <span class="sched-today-badge">Today</span>' : '');
-    dayEl.appendChild(headEl);
-
-    if (dayShifts.length === 0) {{
-      const emp = document.createElement('div');
-      emp.className = 'sched-shift';
-      emp.style.color = 'var(--muted)';
-      emp.style.fontStyle = 'italic';
-      emp.style.fontSize = '.78rem';
-      emp.textContent = 'No shifts scheduled';
-      dayEl.appendChild(emp);
-    }} else {{
-      const t2m = t => {{ const m=t.match(/(\d+):(\d+)\s*(AM|PM)/i); if(!m)return 0; let h=+m[1],pm=m[3].toUpperCase()==='PM'; if(pm&&h!==12)h+=12; if(!pm&&h===12)h=0; return h*60+(+m[2]); }};
-      dayShifts.sort((a,b) => t2m(a.start||'') - t2m(b.start||''));
-      dayShifts.forEach(s => {{
-        const row = document.createElement('div');
-        row.className = 'sched-shift';
-        row.innerHTML = `<span class="sched-shift-name">${{s.name}}</span>`
-          + `<span class="sched-shift-time">${{s.start}} – ${{s.end}}</span>`;
-        dayEl.appendChild(row);
-      }});
-    }}
-    daysEl.appendChild(dayEl);
-  }}
-
-  // Last updated
-  const upd = document.getElementById('schedUpdated');
-  if (SCHEDULE.last_updated) {{
-    upd.textContent = 'Schedule last updated: ' + new Date(SCHEDULE.last_updated).toLocaleString('en-US', {{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'}});
-  }}
-}}
 </script>
 </body>
 </html>"""
