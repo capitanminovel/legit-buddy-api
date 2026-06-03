@@ -54,6 +54,9 @@ body.dark .card-img {
   background: #1a1a1a;
   border-bottom-color: transparent;
 }
+/* Dim the emoji placeholder so it doesn't fight the dark bg */
+body.dark .no-img { opacity: .25; filter: grayscale(1); }
+
 body.dark header,
 body.dark .tabs-wrap,
 body.dark .legend,
@@ -69,10 +72,39 @@ body.dark .mood-chip           { background: #111111; border-color: #1e1e1e; }
 body.dark .mood-chip:hover     { border-color: #4ade80; }
 body.dark .mood-chip.on        { background: #0a2016; color: #4ade80; border-color: #4ade80; }
 body.dark .tier                { background: #1a1a1a; border-color: #1e1e1e; }
-body.dark .terp                { background: #0a1a10; color: #4ade80; border-color: #1a3a22; }
+body.dark .terp                { background: #0a1a10; color: #4ade80; border-color: #1a3a22; cursor: help; }
 body.dark .price-single        { color: #4ade80; }
 body.dark .new-arrivals-section { background: linear-gradient(135deg,#0a1a10,#0a0a0a); border-color: #1e3a24; }
 body.dark .sold-row            { background: #0a0a0a; }
+
+/* ── Section title accent bars by category ── */
+body.dark [data-cat="flower"]   .section-title { border-left: 3px solid #4ade80; padding-left: 12px; }
+body.dark [data-cat="pre-roll"] .section-title { border-left: 3px solid #fb923c; padding-left: 12px; }
+body.dark [data-cat="vapes"]    .section-title { border-left: 3px solid #38bdf8; padding-left: 12px; }
+body.dark [data-cat="edibles"]  .section-title { border-left: 3px solid #e879f9; padding-left: 12px; }
+
+/* ── Tab count badges ── */
+.tab-count {
+  display: inline-block;
+  background: #1e1e1e;
+  color: #9ca3af;
+  font-size: .65rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 10px;
+  margin-left: 4px;
+  vertical-align: middle;
+  letter-spacing: 0;
+}
+body.dark .tab.on .tab-count  { background: #0a2016; color: #4ade80; }
+
+/* ── Sticky search row (moved into tabs-wrap by JS) ── */
+.tabs-wrap .search-row {
+  padding: 6px 24px 10px;
+  border-top: 1px solid #1e1e1e;
+  max-width: 640px;
+}
+.tabs-wrap .search-row .search-wrap { max-width: 100%; }
 
 /* ── Hide "tap for details" hint — people know to tap ── */
 .card-detail-hint { display: none !important; }
@@ -108,7 +140,7 @@ body  { font-size: 15px; line-height: 1.5; }
 .strain-badge, .new-badge, .recent-badge { font-size: .68rem; padding: 3px 9px; }
 .potency-pill { font-size: .72rem; padding: 3px 8px; }
 
-/* ── Terpene chips — slightly more prominent ── */
+/* ── Terpene chips ── */
 .terp {
   font-size: .72rem;
   padding: 4px 10px;
@@ -162,26 +194,77 @@ body  { font-size: 15px; line-height: 1.5; }
   .tab         { padding: 12px 13px; min-height: 44px; }
   .mood-chip   { padding: 8px 10px; min-height: 38px; font-size: .76rem; }
   .header-inner { gap: 10px; }
+
+  .tabs-wrap .search-row { padding: 6px 12px 10px; }
 }
 </style>
 """
 
-# Auto-enable dark mode (force it on for dev)
-FORCE_DARK = """
+# Force dark + sticky search + tab counts + terpene tooltips
+DEV_JS = """
 <script>
 (function() {
   document.documentElement.classList.add('dark-pending');
   document.addEventListener('DOMContentLoaded', function() {
+
+    // ── Force dark mode ──
     document.body.classList.add('dark');
     var btn = document.getElementById('darkToggle');
     if (btn) btn.textContent = '☀️ Light';
+
+    // ── Move search row into sticky tabs-wrap ──
+    var searchRow = document.querySelector('.mood-bar .search-row');
+    var tabsWrap  = document.querySelector('.tabs-wrap');
+    if (searchRow && tabsWrap) {
+      tabsWrap.appendChild(searchRow);
+    }
+
+    // ── Tab count badges ──
+    var tabs = document.querySelectorAll('.tab[data-cat]');
+    tabs.forEach(function(tab) {
+      var cat = tab.dataset.cat;
+      var total;
+      if (cat === 'all') {
+        total = document.querySelectorAll('.card').length;
+      } else {
+        var section = document.querySelector('.section[data-cat="' + cat + '"]');
+        if (!section) return;
+        var countEl = section.querySelector('[data-total]');
+        if (!countEl) return;
+        total = countEl.dataset.total;
+      }
+      var badge = document.createElement('span');
+      badge.className = 'tab-count';
+      badge.textContent = total;
+      tab.appendChild(badge);
+    });
+
+    // ── Terpene tooltips ──
+    var TERP = {
+      'Myrcene':       'Earthy, musky · sedating, muscle relaxant',
+      'Caryophyllene': 'Spicy, peppery · anti-inflammatory, CB2 agonist',
+      'Limonene':      'Citrus · mood-lifting, stress relief',
+      'Pinene':        'Pine · alertness, memory retention',
+      'Linalool':      'Floral, lavender · calming, anti-anxiety',
+      'Terpinolene':   'Floral, herbal · cerebral, creative',
+      'Ocimene':       'Sweet, herbal · uplifting',
+      'Humulene':      'Earthy, woody · appetite suppressant',
+      'Bisabolol':     'Floral, nutty · soothing, anti-irritant',
+      'Geraniol':      'Rose, floral · relaxing, neuroprotective',
+      'Valencene':     'Citrus, sweet · anti-inflammatory',
+    };
+    document.querySelectorAll('.terp').forEach(function(el) {
+      var name = el.textContent.trim();
+      if (TERP[name]) el.title = name + ' — ' + TERP[name];
+    });
+
   });
 })();
 </script>
 """
 
 # Inject before </head>
-html = html.replace("</head>", DEV_CSS + FORCE_DARK + "\n</head>", 1)
+html = html.replace("</head>", DEV_CSS + DEV_JS + "\n</head>", 1)
 
 # Inject dev banner before </body>
 html = html.replace("</body>", DEV_BANNER + "\n</body>", 1)
