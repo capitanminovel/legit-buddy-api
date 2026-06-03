@@ -289,84 +289,106 @@
   </style>
 
 <style id="dev-overrides">
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   Research-backed design: dark-first, WCAG-compliant,
-   system fonts, Spotify/Apple Music card patterns.
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
-/* ── Force dark mode on load ── */
+/* ── System fonts ── */
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; }
 
-/* ── Proper dark palette (Material Design 3 / Apple HIG) ──
-   #16a34a fails contrast on dark (3.2:1) — use #4ade80 for interactive text  */
+/* ── Pure black palette — OLED, Netflix/Apple TV elevation model ── */
 body.dark {
-  --brand:       #4ade80;   /* interactive green, 7.8:1 on #0d0d0d — AA */
-  --brand-lt:    #0d2015;   /* subtle tinted surface */
-  --text:        #ffffff;   /* primary text, 19:1 — AAA */
-  --muted:       #9ca3af;   /* metadata/hints, 6.2:1 — AA */
-  --border:      #2d2d2d;   /* standard borders */
-  --bg:          #0d0d0d;   /* OLED-optimised primary background */
-  --white:       #1a1a1a;   /* elevated surface (cards, header) */
-  --indica:      #a78bfa;
-  --sativa:      #fbbf24;
-  --hybrid:      #38bdf8;
-  --cbd:         #60a5fa;
-  --cbg:         #818cf8;
-  --new:         #4ade80;
+  --brand:    #4ade80;   /* 7.8:1 on #000 — WCAG AA */
+  --brand-lt: #0a1f12;
+  --text:     #ffffff;   /* 21:1 — AAA */
+  --muted:    #9ca3af;   /* 6.2:1 — AA */
+  --border:   #1e1e1e;
+  --bg:       #000000;   /* pure black */
+  --white:    #111111;   /* card surface — floats over black */
+  --indica:   #a78bfa;
+  --sativa:   #fbbf24;
+  --hybrid:   #38bdf8;
+  --cbd:      #60a5fa;
+  --cbg:      #818cf8;
+  --new:      #4ade80;
 }
 
-/* ── Tertiary surface for hover / selected states ── */
-body.dark .card:hover          { background: #262626; }
+/* ── Borderless elevation model — cards float on black via shadow only ── */
+body.dark .card {
+  border-color: transparent;
+  box-shadow: 0 2px 10px rgba(0,0,0,.7);
+}
+body.dark .card:hover {
+  background: #1a1a1a;
+  box-shadow: 0 10px 36px rgba(0,0,0,.9);
+  transform: translateY(-3px);
+}
+body.dark .card-img {
+  background: #1a1a1a;
+  border-bottom-color: transparent;
+}
+body.dark header,
+body.dark .tabs-wrap,
+body.dark .legend,
+body.dark footer     { background: #0a0a0a; border-color: #1e1e1e; }
+body.dark .mood-bar  { background: #111111; border-color: #1e1e1e; }
+
+/* ── Interactive states ── */
 body.dark .tab:hover           { color: #4ade80; }
 body.dark .tab.on              { color: #4ade80; border-bottom-color: #4ade80; }
-body.dark .search-input:focus  { background: #262626; border-color: #4ade80; }
-body.dark .mood-chip.on        { background: #1a3d2b; color: #4ade80; border-color: #4ade80; }
-body.dark .tier                { background: #262626; border-color: #2d2d2d; }
-body.dark .terp                { background: #0d2015; color: #4ade80; border-color: #1e4a2a; }
-
-/* Price in accent green on dark */
+body.dark .search-input        { background: #111111; border-color: #1e1e1e; }
+body.dark .search-input:focus  { background: #1a1a1a; border-color: #4ade80; }
+body.dark .mood-chip           { background: #111111; border-color: #1e1e1e; }
+body.dark .mood-chip:hover     { border-color: #4ade80; }
+body.dark .mood-chip.on        { background: #0a2016; color: #4ade80; border-color: #4ade80; }
+body.dark .tier                { background: #1a1a1a; border-color: #1e1e1e; }
+body.dark .terp                { background: #0a1a10; color: #4ade80; border-color: #1a3a22; }
 body.dark .price-single        { color: #4ade80; }
+body.dark .new-arrivals-section { background: linear-gradient(135deg,#0a1a10,#0a0a0a); border-color: #1e3a24; }
+body.dark .sold-row            { background: #0a0a0a; }
+
+/* ── Hide "tap for details" hint — people know to tap ── */
+.card-detail-hint { display: none !important; }
 
 /* ── Base ── */
-:root   { --radius: 14px; }
-body    { font-size: 15px; line-height: 1.5; }
+:root { --radius: 14px; }
+body  { font-size: 15px; line-height: 1.5; }
 
-/* ── Header — taller, more breathing room ── */
+/* ── Header ── */
 .header-inner { height: 70px; gap: 16px; }
 
 /* ── Tabs ── */
 .tab { padding: 14px 18px; font-size: .86rem; }
 
-/* ── Card grid — Spotify-style 2-col on mobile, auto on desktop ── */
+/* ── Card grid ── */
 .grid {
   grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
   gap: 20px;
 }
 .card {
   border-radius: var(--radius);
-  transition: box-shadow .15s ease-out, transform .15s ease-out, background .15s;
-}
-.card:hover {
-  box-shadow: 0 8px 28px rgba(0,0,0,.25);
-  transform: translateY(-2px);
+  transition: box-shadow .18s ease-out, transform .18s ease-out, background .18s;
 }
 
 /* ── Card body ── */
 .card-img    { height: 190px; }
 .card-body   { padding: 14px 16px 16px; gap: 6px; }
-.card-name   { font-size: 1rem; font-weight: 700; line-height: 1.35; letter-spacing: -.01em; }
-.card-brand  { font-size: .75rem; letter-spacing: .5px; }
+.card-name   { font-size: 1rem; font-weight: 700; line-height: 1.3; letter-spacing: -.01em; }
+.card-brand  { font-size: .75rem; letter-spacing: .4px; }
 .card-weight { font-size: .76rem; }
 
 /* ── Badges ── */
 .strain-badge, .new-badge, .recent-badge { font-size: .68rem; padding: 3px 9px; }
 .potency-pill { font-size: .72rem; padding: 3px 8px; }
 
-/* ── Terpene chips ── */
-.terp { font-size: .7rem; padding: 3px 9px; border-radius: 12px; }
+/* ── Terpene chips — slightly more prominent ── */
+.terp {
+  font-size: .72rem;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  letter-spacing: .2px;
+}
 
-/* ── Pricing — larger, bolder, accent green ── */
-.price-single { font-size: 1.1rem; font-weight: 800; color: var(--brand); }
+/* ── Pricing ── */
+.price-single { font-size: 1.15rem; font-weight: 800; color: var(--brand); }
 .tier         { font-size: .74rem; padding: 4px 9px; }
 .tier span    { font-size: .64rem; }
 
@@ -384,7 +406,7 @@ body    { font-size: 15px; line-height: 1.5; }
 /* ── Sections ── */
 .section       { margin-bottom: 56px; }
 .section-head  { margin-bottom: 22px; }
-.section-title { font-size: 1.2rem; letter-spacing: -.02em; }
+.section-title { font-size: 1.2rem; font-weight: 800; letter-spacing: -.02em; }
 .section-count { font-size: .82rem; }
 
 /* ── Sold-out ── */
@@ -398,20 +420,17 @@ body    { font-size: 15px; line-height: 1.5; }
 /* ── Legend ── */
 .legend { font-size: .76rem; gap: 14px; padding: 10px 24px; }
 
-/* ── Detail hint ── */
-.card-detail-hint { font-size: .65rem; letter-spacing: .3px; }
-
-/* ── Mobile: always 2-col, 44px touch targets ── */
+/* ── Mobile: 2-col, 44px touch targets ── */
 @media (max-width: 640px) {
   body { font-size: 14.5px; }
 
-  .grid        { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .card-img    { height: 150px; }
-  .card-body   { padding: 11px 11px 13px; gap: 5px; }
-  .card-name   { font-size: .92rem; }
+  .grid      { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .card-img  { height: 145px; }
+  .card-body { padding: 10px 10px 12px; gap: 5px; }
+  .card-name { font-size: .91rem; }
 
   .tab         { padding: 12px 13px; min-height: 44px; }
-  .mood-chip   { padding: 8px 10px;  min-height: 38px; font-size: .76rem; }
+  .mood-chip   { padding: 8px 10px; min-height: 38px; font-size: .76rem; }
   .header-inner { gap: 10px; }
 }
 </style>
@@ -443,7 +462,7 @@ body    { font-size: 15px; line-height: 1.5; }
     </div>
     <button class="dark-toggle" id="darkToggle" onclick="toggleDark()">🌙 Dark</button>
     <div class="header-meta">
-      <div>Last updated: <strong>Wed, Jun 03 2026 — 05:38 PM CST</strong></div>
+      <div>Last updated: <strong>Wed, Jun 03 2026 — 05:44 PM CST</strong></div>
       <div>27 products in stock</div>
     </div>
   </div>
@@ -808,11 +827,11 @@ body    { font-size: 15px; line-height: 1.5; }
   <div class="mood-zero hidden" id="moodZero">No products match this vibe right now — try another filter.</div>
 </main>
 <footer>
-  Last updated: Wed, Jun 03 2026 — 05:38 PM CST &nbsp;·&nbsp; 27 products in stock &nbsp;·&nbsp; MN Legit Cannabis South Metro
+  Last updated: Wed, Jun 03 2026 — 05:44 PM CST &nbsp;·&nbsp; 27 products in stock &nbsp;·&nbsp; MN Legit Cannabis South Metro
 </footer>
 <div class="footer-sticky">
   <span class="fs-stock">27 products in stock</span>
-  <span class="fs-updated">Updated Wed, Jun 03 2026 — 05:38 PM CST</span>
+  <span class="fs-updated">Updated Wed, Jun 03 2026 — 05:44 PM CST</span>
 </div>
 
 <!-- Moods info modal -->
