@@ -220,42 +220,55 @@ def build():
       --brand:#1a7a4a;--brand-lt:#e8f5ee;--text:#111827;--muted:#6b7280;
       --border:#e5e7eb;--bg:#f3f4f6;--white:#ffffff;
       --indica:#7c3aed;--sativa:#d97706;--hybrid:#0891b2;--cbd:#2563eb;--cbg:#6366f1;
-      --new:#16a34a;--radius:10px;
+      --new:#16a34a;--radius:14px;
       --sg-green:#3d5c2e;--sg-pink:#e88fa2;--sg-cream:#f5f0e8;
       --sg-dark:#2a3f1f;--sg-border:#4a7030;
     }}
     body.dark{{
-      --brand:#4ade80;--brand-lt:#14261e;--text:#e2e8f0;--muted:#94a3b8;
-      --border:#2d3f32;--bg:#0d1a11;--white:#132019;
+      --brand:#4ade80;--brand-lt:#0a1f12;--text:#ffffff;--muted:#9ca3af;
+      --border:#1e1e1e;--bg:#000000;--white:#111111;
       --indica:#a78bfa;--sativa:#fbbf24;--hybrid:#38bdf8;--cbd:#60a5fa;--cbg:#818cf8;
       --new:#4ade80;
     }}
-    body.dark header,body.dark .tabs-wrap,body.dark .legend,body.dark footer{{background:var(--white);border-color:var(--border)}}
-    body.dark .card{{background:#1a2d20;border-color:var(--border)}}
-    body.dark .mood-bar{{background:#1a2d20;border-color:var(--border)}}
-    body.dark .mood-chip{{background:#132019;color:var(--text);border-color:var(--border)}}
-    body.dark .mood-chip:hover{{background:#1e3826;border-color:var(--brand)}}
-    body.dark .search-input{{background:#132019;color:var(--text);border-color:var(--border)}}
-    body.dark .search-input:focus{{background:#1a2d20;border-color:var(--brand)}}
-    body.dark .new-arrivals-section{{background:linear-gradient(135deg,#132019,#0d1f14);border-color:#2d4a35}}
-    body.dark .sold-section{{background:linear-gradient(135deg,#1c1505,#1f1a08);border-color:#78350f}}
-    body.dark .sold-row{{background:rgba(255,255,255,.05)}}
-    body.dark .terp{{background:#0d2015;color:#4ade80;border-color:#1e4a2a}}
-    body.dark .tier{{background:#132019;border-color:var(--border)}}
+    body.dark header,body.dark .tabs-wrap,body.dark .legend,body.dark footer{{background:#0a0a0a;border-color:#1e1e1e}}
+    body.dark .card{{background:#111111;border-color:transparent;box-shadow:0 2px 10px rgba(0,0,0,.7)}}
+    body.dark .card:hover{{background:#1a1a1a;box-shadow:0 10px 36px rgba(0,0,0,.9)}}
+    body.dark .card-img{{background:#1a1a1a;border-bottom-color:transparent}}
+    body.dark .no-img{{opacity:.25;filter:grayscale(1)}}
+    body.dark .mood-bar{{background:#111111;border-color:#1e1e1e}}
+    body.dark .mood-chip{{background:#111111;color:var(--text);border-color:#1e1e1e}}
+    body.dark .mood-chip:hover{{border-color:#4ade80}}
+    body.dark .mood-chip.on{{background:#0a2016;color:#4ade80;border-color:#4ade80}}
+    body.dark .search-input{{background:#111111;color:var(--text);border-color:#1e1e1e}}
+    body.dark .search-input:focus{{background:#1a1a1a;border-color:#4ade80}}
+    body.dark .new-arrivals-section{{background:linear-gradient(135deg,#0a1a10,#0a0a0a);border-color:#1e3a24}}
+    body.dark .sold-section{{background:#0a0a0a;border-color:#1e1e1e}}
+    body.dark .sold-row{{background:#0a0a0a}}
+    body.dark .terp{{background:#0a1a10;color:#4ade80;border-color:#1a3a22;cursor:help}}
+    body.dark .tier{{background:#1a1a1a;border-color:#1e1e1e}}
+    body.dark .price-single{{color:#4ade80}}
     body.dark .card.match-strong{{border-left:5px solid #4ade80;box-shadow:-2px 0 10px rgba(74,222,128,.3)}}
     body.dark .card.match-good{{border-left:5px solid #fbbf24;box-shadow:none}}
     body.dark .card.match-weak{{border-left:5px solid #475569;box-shadow:none}}
-    body.dark .top-bar{{background:#0d2015}}
-    body.dark .modal-box,.dark .profile-box{{background:#1a2d20}}
-    body.dark .sg-card{{background:#1e3826;border-color:#3a6040}}
+    body.dark .top-bar{{background:#000000}}
+    body.dark .modal-box,.dark .profile-box{{background:#111111}}
+    body.dark .sg-card{{background:#1a1a1a;border-color:#1e1e1e}}
     body.dark .sg-name,.dark .sg-row strong{{color:#c8f5d4}}
     body.dark .sg-row{{color:#b2c9b8}}
-    body.dark .profile-box{{background:#132019}}
-    body.dark .profile-header{{background:#132019;border-color:#2d4a35}}
-    body{{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px}}
+    body.dark .profile-box{{background:#111111}}
+    body.dark .profile-header{{background:#111111;border-color:#1e1e1e}}
+    body.dark [data-cat="flower"] .section-title{{border-left:3px solid #4ade80;padding-left:12px}}
+    body.dark [data-cat="pre-roll"] .section-title{{border-left:3px solid #fb923c;padding-left:12px}}
+    body.dark [data-cat="vapes"] .section-title{{border-left:3px solid #38bdf8;padding-left:12px}}
+    body.dark [data-cat="edibles"] .section-title{{border-left:3px solid #e879f9;padding-left:12px}}
+    .tab-count{{display:inline-block;background:#1e1e1e;color:#9ca3af;font-size:.65rem;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:4px;vertical-align:middle;letter-spacing:0}}
+    body.dark .tab.on .tab-count{{background:#0a2016;color:#4ade80}}
+    .tabs-wrap .search-row{{padding:6px 24px 10px;border-top:1px solid #1e1e1e;max-width:640px}}
+    .tabs-wrap .search-row .search-wrap{{max-width:100%}}
+    body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:15px}}
     .top-bar{{background:var(--brand);color:#fff;text-align:center;font-size:.75rem;padding:6px;letter-spacing:.3px}}
     header{{background:var(--white);border-bottom:1px solid var(--border);padding:0 24px;position:sticky;top:0;z-index:30}}
-    .header-inner{{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:20px;height:64px}}
+    .header-inner{{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:16px;height:70px}}
     .logo{{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.05rem;color:var(--brand);text-decoration:none;white-space:nowrap}}
     .logo-leaf{{width:34px;height:34px;background:var(--brand);border-radius:50% 50% 50% 0;display:flex;align-items:center;justify-content:center;font-size:1rem;color:#fff;flex-shrink:0}}
     .mascot-wrap{{flex-shrink:0;cursor:default;user-select:none;display:flex;align-items:center}}
@@ -268,22 +281,21 @@ def build():
     .tabs-wrap{{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:64px;z-index:20}}
     .tabs{{max-width:1400px;margin:0 auto;display:flex;gap:2px;overflow-x:auto;padding:0 24px;scrollbar-width:none}}
     .tabs::-webkit-scrollbar{{display:none}}
-    .tab{{flex-shrink:0;padding:12px 16px;border:none;background:none;font-family:inherit;font-size:.82rem;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap}}
+    .tab{{flex-shrink:0;padding:14px 18px;border:none;background:none;font-family:inherit;font-size:.86rem;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap}}
     .tab:hover{{color:var(--brand)}}
     .tab.on{{color:var(--brand);border-bottom-color:var(--brand)}}
     .legend{{display:flex;gap:14px;flex-wrap:wrap;align-items:center;padding:10px 24px;background:var(--white);border-bottom:1px solid var(--border);font-size:.74rem;color:var(--muted)}}
     .legend-item{{display:flex;align-items:center;gap:5px}}
     main{{max-width:1400px;margin:0 auto;padding:28px 24px 100px}}
-    .section{{margin-bottom:44px}}
-    .section-head{{display:flex;align-items:baseline;gap:10px;margin-bottom:18px}}
-    .section-title{{font-size:1.1rem;font-weight:700}}
-    .section-count{{font-size:.8rem;color:var(--muted)}}
-    .grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}}
-    .card{{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .15s,transform .15s;cursor:pointer}}
-    .card:hover{{box-shadow:0 4px 16px rgba(0,0,0,.12);transform:translateY(-2px)}}
-    .card:hover .card-detail-hint{{opacity:1}}
-    .card-detail-hint{{font-size:.67rem;color:var(--brand);font-weight:600;text-align:center;padding:4px 0 0;opacity:0;transition:opacity .15s;letter-spacing:.2px}}
-    .card-img{{position:relative;background:#f9fafb;border-bottom:1px solid var(--border);height:170px;overflow:hidden;display:flex;align-items:center;justify-content:center}}
+    .section{{margin-bottom:56px}}
+    .section-head{{display:flex;align-items:baseline;gap:10px;margin-bottom:22px}}
+    .section-title{{font-size:1.2rem;font-weight:800;letter-spacing:-.02em}}
+    .section-count{{font-size:.82rem;color:var(--muted)}}
+    .grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:20px}}
+    .card{{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .18s ease-out,transform .18s ease-out,background .18s;cursor:pointer}}
+    .card:hover{{box-shadow:0 8px 28px rgba(0,0,0,.15);transform:translateY(-3px)}}
+    .card-detail-hint{{display:none}}
+    .card-img{{position:relative;background:#f9fafb;border-bottom:1px solid var(--border);height:190px;overflow:hidden;display:flex;align-items:center;justify-content:center}}
     .card-img img{{width:100%;height:100%;object-fit:cover;display:block}}
     .no-img{{font-size:3.2rem;color:#d1d5db}}
     .badges{{position:absolute;top:8px;left:8px;display:flex;flex-direction:column;gap:4px}}
@@ -296,16 +308,16 @@ def build():
     .potency-row{{position:absolute;bottom:8px;right:8px;display:flex;gap:4px}}
     .potency-pill{{background:rgba(0,0,0,.65);color:#fff;font-size:.67rem;font-weight:600;padding:2px 6px;border-radius:4px}}
     .potency-pill.thc{{background:rgba(22,163,74,.85)}}.potency-pill.cbd{{background:rgba(37,99,235,.85)}}
-    .card-body{{padding:12px 13px 14px;flex:1;display:flex;flex-direction:column;gap:4px}}
-    .card-brand{{font-size:.72rem;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.3px}}
-    .card-name{{font-size:.9rem;font-weight:600;line-height:1.3;color:var(--text)}}
+    .card-body{{padding:14px 16px 16px;flex:1;display:flex;flex-direction:column;gap:6px}}
+    .card-brand{{font-size:.73rem;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.4px}}
+    .card-name{{font-size:1rem;font-weight:700;line-height:1.3;letter-spacing:-.01em;color:var(--text)}}
     .card-weight{{font-size:.74rem;color:var(--muted)}}
     .terp-row{{display:flex;gap:4px;flex-wrap:wrap;margin-top:3px}}
-    .terp{{font-size:.65rem;background:#f0fdf4;color:var(--brand);border:1px solid #bbf7d0;padding:1px 6px;border-radius:10px}}
+    .terp{{font-size:.72rem;background:#f0fdf4;color:var(--brand);border:1px solid #bbf7d0;padding:4px 10px;border-radius:12px;font-weight:600;letter-spacing:.2px}}
     .effects-row{{display:flex;gap:4px;flex-wrap:wrap;margin-top:2px}}
     .effect{{font-size:.65rem;background:#eff6ff;color:#3b82f6;border:1px solid #bfdbfe;padding:1px 6px;border-radius:10px}}
     .price-section{{margin-top:auto;padding-top:10px}}
-    .price-single{{font-size:1rem;font-weight:700;color:var(--brand)}}
+    .price-single{{font-size:1.15rem;font-weight:800;color:var(--brand)}}
     .price-tiers{{display:flex;gap:5px;flex-wrap:wrap}}
     .tier{{font-size:.7rem;font-weight:500;border:1px solid var(--border);border-radius:5px;padding:3px 7px;color:var(--text);background:#fafafa}}
     .tier span{{display:block;font-size:.62rem;color:var(--muted)}}
@@ -400,7 +412,7 @@ def build():
 
     @media(max-width:640px){{
       header{{padding:0 14px}}.tabs{{padding:0 14px}}main{{padding:18px 14px 100px}}.legend{{padding:10px 14px}}
-      .grid{{grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px}}.card-img{{height:140px}}
+      .grid{{grid-template-columns:repeat(2,1fr);gap:10px}}.card-img{{height:145px}}
       .mood-bar{{padding:12px 14px}}.mood-chips{{gap:5px}}.mood-chip{{font-size:.73rem;padding:5px 10px}}
     }}
 
@@ -1548,6 +1560,51 @@ function toggleDark() {{
     }});
   }}
 }})();
+
+document.addEventListener('DOMContentLoaded', function() {{
+  // Move search row into sticky tabs-wrap so it stays visible while scrolling
+  var searchRow = document.querySelector('.mood-bar .search-row');
+  var tabsWrap  = document.querySelector('.tabs-wrap');
+  if (searchRow && tabsWrap) tabsWrap.appendChild(searchRow);
+
+  // Tab count badges
+  document.querySelectorAll('.tab[data-cat]').forEach(function(tab) {{
+    var cat = tab.dataset.cat;
+    var total;
+    if (cat === 'all') {{
+      total = document.querySelectorAll('.card').length;
+    }} else {{
+      var section = document.querySelector('.section[data-cat="' + cat + '"]');
+      if (!section) return;
+      var countEl = section.querySelector('[data-total]');
+      if (!countEl) return;
+      total = countEl.dataset.total;
+    }}
+    var badge = document.createElement('span');
+    badge.className = 'tab-count';
+    badge.textContent = total;
+    tab.appendChild(badge);
+  }});
+
+  // Terpene tooltips
+  var TERP = {{
+    'Myrcene':       'Earthy, musky · sedating, muscle relaxant',
+    'Caryophyllene': 'Spicy, peppery · anti-inflammatory, CB2 agonist',
+    'Limonene':      'Citrus · mood-lifting, stress relief',
+    'Pinene':        'Pine · alertness, memory retention',
+    'Linalool':      'Floral, lavender · calming, anti-anxiety',
+    'Terpinolene':   'Floral, herbal · cerebral, creative',
+    'Ocimene':       'Sweet, herbal · uplifting',
+    'Humulene':      'Earthy, woody · appetite suppressant',
+    'Bisabolol':     'Floral, nutty · soothing, anti-irritant',
+    'Geraniol':      'Rose, floral · relaxing, neuroprotective',
+    'Valencene':     'Citrus, sweet · anti-inflammatory',
+  }};
+  document.querySelectorAll('.terp').forEach(function(el) {{
+    var name = el.textContent.trim();
+    if (TERP[name]) el.title = name + ' — ' + TERP[name];
+  }});
+}});
 </script>
 
 <!-- ── PIN overlay ── -->
