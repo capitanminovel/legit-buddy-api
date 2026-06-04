@@ -549,8 +549,9 @@ def try_playwright() -> list[dict]:
 # ── Database helpers ──────────────────────────────────────────────────────────
 
 def _normalize(s: str) -> str:
-    """Strip accents so 'Avió' and 'Avion' hash to the same key."""
-    return unicodedata.normalize("NFD", s).encode("ascii", "ignore").decode().lower().strip()
+    """Strip accents and trailing punctuation so keys stay stable across minor name changes."""
+    s = unicodedata.normalize("NFD", s).encode("ascii", "ignore").decode().lower().strip()
+    return s.rstrip(" -–—.,")
 
 def product_key(p: dict) -> str:
     key = f"{_normalize(p.get('name',''))}-{_normalize(p.get('brand',''))}"

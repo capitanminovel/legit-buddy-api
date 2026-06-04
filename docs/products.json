@@ -240,40 +240,6 @@
       "first_seen": "2026-05-21T08:52:30.945545-06:00",
       "last_seen": "2026-06-03T18:13:26.218266-06:00"
     },
-    "8ddb5a864d39": {
-      "name": "Blueberry Muffin",
-      "brand": "Grasslandz",
-      "category": "pre-roll",
-      "strain_type": "Hybrid (Indica)",
-      "thc": "17.9%",
-      "cbd": "0.3%",
-      "cbg": "",
-      "cbn": "",
-      "terpenes": [
-        "Myrcene",
-        "Limonene",
-        "Caryophyllene"
-      ],
-      "effects": [],
-      "flavors": [
-        "Blueberry",
-        "Herbal",
-        "Sweet",
-        "Vanilla",
-        "Butter",
-        "Nutty"
-      ],
-      "weight": "1 G",
-      "price": "$18.00",
-      "price_tiers": {
-        "gram": "$18.00"
-      },
-      "in_stock": false,
-      "image": "https://media-prime.sweedpos.com/store/prime/1776206164_512e1557-5093-470c-8843-89df37bf4a54.png",
-      "description": "Purple Panty Dropper x Blueberry.",
-      "first_seen": "2026-05-21T08:52:30.945545-06:00",
-      "last_seen": "2026-06-02T15:48:10.658551-06:00"
-    },
     "d024338fee18": {
       "name": "Soap",
       "brand": "Campfire Cannabis",
@@ -1268,117 +1234,6 @@
       "first_seen": "2026-05-21T08:52:30.945545-06:00",
       "last_seen": "2026-05-28T12:26:00.779757-06:00"
     },
-    "ce49eae04ae2": {
-      "name": "Froot by the Foot",
-      "brand": "Avi\u00f3",
-      "category": "pre-roll",
-      "strain_type": "Hybrid (Indica)",
-      "thc": "20.1%",
-      "cbd": "0.3%",
-      "cbg": "",
-      "cbn": "",
-      "terpenes": [
-        "Myrcene",
-        "Limonene",
-        "Caryophyllene"
-      ],
-      "effects": [
-        "Body High",
-        "Calming",
-        "Relaxing",
-        "Happy"
-      ],
-      "flavors": [
-        "Fruity",
-        "Spice",
-        "Sweet",
-        "Candy"
-      ],
-      "weight": "1 G",
-      "price": "$18.00",
-      "price_tiers": {
-        "gram": "$18.00"
-      },
-      "in_stock": false,
-      "image": "https://media-prime.sweedpos.com/store/prime/1779044973_efa87939-7c8f-4e49-a299-3894fae52ba8.png",
-      "description": "Mythic OG X Candy Cane",
-      "first_seen": "2026-05-24T08:00:00.000000-06:00",
-      "last_seen": "2026-06-03T15:46:45.156422-06:00"
-    },
-    "45acbd932aeb": {
-      "name": "Zesty Parm",
-      "brand": "Avi\u00f3",
-      "category": "pre-roll",
-      "strain_type": "Hybrid (Sativa)",
-      "thc": "17.2%",
-      "cbd": "0.2%",
-      "cbg": "",
-      "cbn": "",
-      "terpenes": [
-        "Myrcene",
-        "Limonene",
-        "Caryophyllene"
-      ],
-      "effects": [
-        "Calming",
-        "Focused",
-        "Relaxing",
-        "Happy"
-      ],
-      "flavors": [
-        "Herbal",
-        "Lemon",
-        "Pepper",
-        "Pine",
-        "Skunk"
-      ],
-      "weight": "1 G",
-      "price": "$18.00",
-      "price_tiers": {
-        "gram": "$18.00"
-      },
-      "in_stock": false,
-      "image": "https://media-prime.sweedpos.com/store/prime/1779044713_09d2b1db-2789-4def-87c4-c5f17f6fb77b.png",
-      "description": "Cherry Kush x (Lemon Tree Papaya x GMO) x Fro'Do",
-      "first_seen": "2026-05-24T08:00:00.000000-06:00",
-      "last_seen": "2026-06-03T15:46:45.156422-06:00"
-    },
-    "956c29d611b1": {
-      "name": "Frodo Sqeeze",
-      "brand": "Avi\u00f3",
-      "category": "pre-roll",
-      "strain_type": "Hybrid (Sativa)",
-      "thc": "17.1%",
-      "cbd": "0.3%",
-      "cbg": "",
-      "cbn": "",
-      "terpenes": [
-        "Myrcene",
-        "Limonene",
-        "Terpinene"
-      ],
-      "effects": [
-        "Calming",
-        "Focused",
-        "Relaxing",
-        "Happy"
-      ],
-      "flavors": [
-        "Fruity",
-        "Pine",
-        "Spice"
-      ],
-      "weight": "1 G",
-      "price": "$18.00",
-      "price_tiers": {
-        "gram": "$18.00"
-      },
-      "in_stock": false,
-      "image": "https://media-prime.sweedpos.com/store/prime/1779045231_bbdbe5cc-61c4-4a49-ad04-b3aa64e0492d.png",
-      "description": "(Fro\u2019Do x Alaskan Yeti) x LilMissHS",
-      "first_seen": "2026-05-24T08:00:00.000000-06:00",
-      "last_seen": "2026-06-03T15:46:45.156422-06:00"
-    },
     "0332f6000648": {
       "name": "Bangkok Purple",
       "brand": "Campfire Cannabis",
@@ -1561,7 +1416,7 @@
       "last_seen": "2026-06-03T18:13:26.218266-06:00"
     },
     "dad815e9d863": {
-      "name": "Blueberry Muffin -",
+      "name": "Blueberry Muffin",
       "brand": "Grasslandz",
       "category": "pre-roll",
       "strain_type": "Hybrid (Indica)",
@@ -1591,7 +1446,7 @@
       "in_stock": true,
       "image": "https://media-prime.sweedpos.com/store/prime/1776206164_512e1557-5093-470c-8843-89df37bf4a54.png",
       "description": "Purple Panty Dropper x Blueberry.",
-      "first_seen": "2026-06-02T18:10:40.792774-06:00",
+      "first_seen": "2026-05-21T08:52:30.945545-06:00",
       "last_seen": "2026-06-03T18:13:26.218266-06:00"
     },
     "1072e363f968": {
@@ -1680,7 +1535,7 @@
     },
     "e958853503bb": {
       "name": "Froot by the Foot",
-      "brand": "Avi\u00f3",
+      "brand": "Avió",
       "category": "pre-roll",
       "strain_type": "Hybrid (Indica)",
       "thc": "20.1%",
@@ -1712,12 +1567,12 @@
       "in_stock": true,
       "image": "https://media-prime.sweedpos.com/store/prime/1779044973_efa87939-7c8f-4e49-a299-3894fae52ba8.png",
       "description": "Mythic OG X Candy Cane",
-      "first_seen": "2026-06-03T18:13:26.218266-06:00",
+      "first_seen": "2026-05-24T08:00:00.000000-06:00",
       "last_seen": "2026-06-03T18:13:26.218266-06:00"
     },
     "62d25dc9d10f": {
       "name": "Zesty Parm",
-      "brand": "Avi\u00f3",
+      "brand": "Avió",
       "category": "pre-roll",
       "strain_type": "Hybrid (Sativa)",
       "thc": "17.2%",
@@ -1750,12 +1605,12 @@
       "in_stock": true,
       "image": "https://media-prime.sweedpos.com/store/prime/1779044713_09d2b1db-2789-4def-87c4-c5f17f6fb77b.png",
       "description": "Cherry Kush x (Lemon Tree Papaya x GMO) x Fro'Do",
-      "first_seen": "2026-06-03T18:13:26.218266-06:00",
+      "first_seen": "2026-05-24T08:00:00.000000-06:00",
       "last_seen": "2026-06-03T18:13:26.218266-06:00"
     },
     "87fe23eebf9e": {
       "name": "Frodo Sqeeze",
-      "brand": "Avi\u00f3",
+      "brand": "Avió",
       "category": "pre-roll",
       "strain_type": "Hybrid (Sativa)",
       "thc": "17.1%",
@@ -1785,8 +1640,8 @@
       },
       "in_stock": true,
       "image": "https://media-prime.sweedpos.com/store/prime/1779045231_bbdbe5cc-61c4-4a49-ad04-b3aa64e0492d.png",
-      "description": "(Fro\u2019Do x Alaskan Yeti) x LilMissHS",
-      "first_seen": "2026-06-03T18:13:26.218266-06:00",
+      "description": "(Fro’Do x Alaskan Yeti) x LilMissHS",
+      "first_seen": "2026-05-24T08:00:00.000000-06:00",
       "last_seen": "2026-06-03T18:13:26.218266-06:00"
     }
   },
