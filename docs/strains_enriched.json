@@ -865,5 +865,56 @@
       "just_happy": 6,
       "aphrodisiac": 5
     }
+  },
+  "fcef6afb069c": {
+    "lineage": "Blueberry (DJ Short) x Haze (Sacred Seeds / Nevil's Haze lineage) — popularized by DJ Short and widely distributed through Santa Cruz-area breeders",
+    "therapeutic": "Depression, anxiety, mild pain, fatigue, stress, ADHD, creative blocks, mood disorders",
+    "negative": "Dry mouth, dry eyes, mild paranoia or anxiety at higher doses, occasional headache, may feel overstimulating for THC-sensitive users",
+    "aroma": "A sweet, sun-ripened blueberry sweetness leads the nose, layered with earthy herbal undertones and a bright, slightly piney freshness reminiscent of a berry patch in a forest clearing.",
+    "misc": "Blue Dream is one of the most iconic and commercially successful hybrids in the United States, dominating dispensary shelves throughout the 2010s and earning widespread recognition for its balanced, approachable high. At 13.4% THC this particular batch skews on the lighter, more approachable end of the typical 17–24% range commonly seen, making it well-suited for daytime use, beginners, or microdosers seeking gentle euphoria without heavy sedation. The Myrcene-forward terpene profile adds a grounding body ease to what is otherwise a cerebrally energizing sativa-leaning experience, and the 0.33g pre-roll format is ideal for a measured, functional session.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 4,
+      "lift_up": 3,
+      "get_creative": 7,
+      "get_social": 3,
+      "pain_body": 5,
+      "just_happy": 4,
+      "aphrodisiac": 3
+    }
+  },
+  "130803345c65": {
+    "lineage": "Misty x Unknown Sativa (Nirvana Seeds)",
+    "therapeutic": "Stress relief, mild anxiety, depression, fatigue, mood elevation, mild pain management",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, possible dizziness in low-tolerance users",
+    "aroma": "A lush, fruit-forward bouquet of ripe mixed berries and floral sweetness opens up first, followed by a soft, earthy herbal undertone reminiscent of chamomile or green tea with a faint musky depth courtesy of Myrcene and Farnesene.",
+    "misc": "Medusa, also known as 'The Nirvana Strain,' was developed by Nirvana Seeds and is rooted in the classic Misty hybrid, itself a cross of White Widow and Shiva Shanti II. Typical THC expression runs moderate at 12–18%, making this dizgo 2-pack at 12.6% a smooth, accessible entry point ideal for daytime or early evening use without heavy sedation. The evenly balanced hybrid profile, accented by Ocimene's sweet herbaceousness and Caryophyllene's mild spice, makes it well-suited for social settings or creative relaxation, particularly appealing to consumers seeking euphoria and calm without couch-lock.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 4,
+      "lift_up": 3,
+      "get_creative": 2,
+      "get_social": 3,
+      "pain_body": 6,
+      "just_happy": 4,
+      "aphrodisiac": 3
+    }
+  },
+  "67cddfb4cd43": {
+    "lineage": "Atlas Star × Cotton Candy (Dizgo / proprietary hybrid cross; Cotton Candy lineage traces to Power Plant × Haze via Nirvana Seeds)",
+    "therapeutic": "Insomnia, anxiety, chronic stress, mild pain relief, muscle tension, mood elevation",
+    "negative": "Dry mouth, dry eyes, potential grogginess or next-day sedation at higher doses, mild paranoia in THC-sensitive users, couch-lock with heavy consumption",
+    "aroma": "A sweet, candy-forward bouquet greets the nose first — think spun sugar and ripe citrus zest — followed by a warm, doughy cookie undertone with subtle earthy musk courtesy of the myrcene base. The finish lingers with a light floral-tropical sweetness that keeps the profile approachable and dessert-like.",
+    "misc": "Top Gun is a Dizgo-branded indica-leaning hybrid pre-roll cross combining the relaxing, star-powered Atlas Star with the famously sweet Cotton Candy strain, resulting in a mellow yet gently focused experience suited for evening and late-night use. At 17% THC with minimal CBD (0.2%), this is a moderate-potency option ideal for intermediate consumers seeking wind-down relief without full sedation right away. The terpene trio of Myrcene, Limonene, and Caryophyllene synergizes to produce calming, anti-anxiety, and anti-inflammatory effects — making this 2-pack a solid choice for stress relief after work or as a sleep-prep ritual.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 4,
+      "lift_up": 6,
+      "get_creative": 2,
+      "get_social": 5,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
   }
 }
