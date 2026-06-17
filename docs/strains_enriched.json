@@ -1239,5 +1239,56 @@
       "just_happy": 5,
       "aphrodisiac": 4
     }
+  },
+  "2fc15c23d6c8": {
+    "lineage": "Durban Poison S1 (self-pollinated Durban Poison) × AVL (Appalachian Valley Line, a regional sativa-dominant cultivar); produced by Campfire Cannabis",
+    "therapeutic": "Depression, fatigue, ADD/ADHD, stress, mild anxiety, creative blocks, low motivation",
+    "negative": "Dry mouth, dry eyes, mild paranoia or racing thoughts at higher doses, potential overstimulation in anxiety-prone users, not recommended for evening use",
+    "aroma": "Terp Poison opens with a bright, zesty citrus burst layered over a sharp diesel fuel backbone, with a subtle floral sweetness from the ocimene that rounds out the nose. As the bud breaks apart, earthy anise-like undertones inherited from the Durban Poison lineage emerge alongside a faintly spicy, herbal complexity.",
+    "misc": "This sativa-leaning hybrid leans heavily on its Durban Poison S1 heritage, delivering a clean, cerebral, and uplifting experience consistent with South African landrace genetics. At 18.9% THC, Terp Poison sits in a moderate-to-strong range ideal for experienced daytime consumers seeking energy and focus without heavy sedation. Buds typically display light green, elongated structure with amber trichomes and a pronounced terpene-rich frost; best consumed in the morning or early afternoon for productivity-oriented sessions.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 4,
+      "lift_up": 4,
+      "get_creative": 2,
+      "get_social": 3,
+      "pain_body": 6,
+      "just_happy": 4,
+      "aphrodisiac": 3
+    }
+  },
+  "f78909fb37f2": {
+    "lineage": "Distillate-based edible (Hybrid cannabis oil extract); no specific strain lineage — formulated with high-potency THC distillate by Voyageur",
+    "therapeutic": "Stress relief, anxiety reduction, mild pain management, appetite stimulation, relaxation",
+    "negative": "Extreme caution advised at 99.5% THC potency — very high risk of overconsumption, paranoia, anxiety, dizziness, dry mouth, impaired coordination, and prolonged psychoactive effects especially for new or low-tolerance users",
+    "aroma": "As a strawberry-flavored edible, expect a sweet, candy-like strawberry aroma with artificial fruit notes reminiscent of strawberry hard candy or jam. The underlying cannabis scent is largely masked by flavoring agents.",
+    "misc": "This is a high-potency THC edible product by Voyageur, dosed at 99.5% THC concentration — consumers should pay close attention to the mg-per-serving listed on the packaging rather than the percentage figure. Onset for edibles typically ranges from 30 to 90 minutes, and effects can last 4 to 8 hours, so patience between doses is critical. Recommended strictly for experienced consumers; beginners should start with the lowest possible dose (2.5–5mg THC) and wait at least two hours before redosing.",
+    "mood_ratings": {
+      "wind_down": 3,
+      "anxiety_relief": 3,
+      "lift_up": 3,
+      "get_creative": 3,
+      "get_social": 3,
+      "pain_body": 3,
+      "just_happy": 3,
+      "aphrodisiac": 3
+    }
+  },
+  "89e1c139f216": {
+    "lineage": "Zkittlez x Moonbow (Zkittlez x Do-Si-Dos) — likely bred or popularized by Ethos Genetics or affiliated cultivators; full lineage traces back to Grape Ape x Grapefruit (Zkittlez) crossed with OG Kush Breath x Zkittlez (Do-Si-Dos lineage contributing to Moonbow)",
+    "therapeutic": "Stress relief, anxiety reduction, mild pain management, mood elevation, appetite stimulation, fatigue",
+    "negative": "Dry mouth, dry eyes, potential dizziness or mild paranoia at high doses due to elevated THC (84.6%), not recommended for novice consumers in large quantities, possible couch-lock with overconsumption",
+    "aroma": "A vibrant burst of tropical fruit and mixed berry candy greets the nose first, followed by a bright citrus zest of lemon and lime that gives way to subtle floral undertones courtesy of linalool, evoking the experience of cracking open a bag of rainbow-colored candy.",
+    "misc": "Rainbow Belts has gained significant popularity on the West Coast for its dessert-like flavor profile and balanced hybrid effects that lean slightly euphoric and uplifting before settling into relaxed body ease. At 84.6% THC in vape form, this is a high-potency concentrate best suited for experienced consumers; micro-dosing is advised for those with lower tolerance. The Zkittlez and Moonbow parentage consistently produces vibrant, candy-forward terpene profiles, and this strain is best enjoyed during late afternoon or early evening social settings.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 8,
+      "lift_up": 5,
+      "get_creative": 3,
+      "get_social": 5,
+      "pain_body": 4,
+      "just_happy": 7,
+      "aphrodisiac": 6
+    }
   }
 }
