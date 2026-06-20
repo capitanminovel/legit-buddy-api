@@ -28,6 +28,33 @@
   },
   {
     "category": "pre-roll",
+    "page": 31,
+    "top_level": "dict",
+    "keys": [
+      "filters",
+      "searchFilters",
+      "sortingMethods",
+      "attributes",
+      "source",
+      "promos",
+      "page",
+      "pageSize",
+      "total",
+      "list"
+    ],
+    "list_key": "filters",
+    "list_len": 16,
+    "item_keys": [
+      "key",
+      "type",
+      "options",
+      "uiLabel",
+      "expandedByDefault",
+      "presentation"
+    ]
+  },
+  {
+    "category": "edibles",
     "page": 33,
     "top_level": "dict",
     "keys": [
@@ -43,34 +70,7 @@
       "list"
     ],
     "list_key": "filters",
-    "list_len": 17,
-    "item_keys": [
-      "key",
-      "type",
-      "options",
-      "uiLabel",
-      "expandedByDefault",
-      "presentation"
-    ]
-  },
-  {
-    "category": "edibles",
-    "page": 36,
-    "top_level": "dict",
-    "keys": [
-      "filters",
-      "searchFilters",
-      "sortingMethods",
-      "attributes",
-      "source",
-      "promos",
-      "page",
-      "pageSize",
-      "total",
-      "list"
-    ],
-    "list_key": "filters",
-    "list_len": 11,
+    "list_len": 10,
     "item_keys": [
       "key",
       "type",
@@ -82,7 +82,7 @@
   },
   {
     "category": "vapes",
-    "page": 36,
+    "page": 33,
     "top_level": "dict",
     "keys": [
       "filters",
