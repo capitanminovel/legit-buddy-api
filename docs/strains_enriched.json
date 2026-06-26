@@ -1426,5 +1426,73 @@
       "just_happy": 4,
       "aphrodisiac": 3
     }
+  },
+  "e019a1dcc69b": {
+    "lineage": "Chem Dog Funk x Auto Varin Lime Sour (Campfire Cannabis)",
+    "therapeutic": "Stress relief, muscle tension, anxiety, mild pain management, mood elevation, fatigue",
+    "negative": "Dry mouth, dry eyes, potential paranoia at high doses, couch-lock with heavy consumption, not recommended for low-tolerance users",
+    "aroma": "An intensely pungent, barnyard-funk nose hits first with deep diesel fuel and burned rubber, giving way to a sharp, sour citrus bite reminiscent of lime zest cutting through layers of damp earth and chemical gas. The overall bouquet is bold, complex, and unrelenting — a true nod to its Chemdog heritage.",
+    "misc": "Bred by Campfire Cannabis, Barnyard High Test pulls its gassy, chemically funky character from the legendary Chemdog lineage while the Auto Varin Lime Sour parentage contributes a tart citrus sharpness and likely contributes to its broad cannabinoid spectrum. At 22% THC, this is a potent option best reserved for experienced consumers, making it ideal as an evening or late-afternoon strain when deep relaxation and euphoric unbothering are the goal. Buds are expected to be dense and resinous with a frosty trichome coat, reflecting its high cannabinoid content and robust terpene profile dominated by the earthy-sedating Myrcene, mood-lifting Limonene, and spicy-peppery Caryophyllene.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 4,
+      "lift_up": 6,
+      "get_creative": 3,
+      "get_social": 5,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
+  },
+  "544546f4af9b": {
+    "lineage": "Tropicana Cookies x Cherry Cookies (Tropicana Cookies = Girl Scout Cookies x Tangie; Cherry Cookies = Girl Scout Cookies x Cherry Pie) — developed within the Cookies Fam genetic ecosystem",
+    "therapeutic": "Stress relief, mood elevation, mild anxiety management, fatigue, depression, creative blocks, mild pain relief",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, possible increased heart rate in THC-sensitive consumers, may be too stimulating for those prone to anxiety",
+    "aroma": "Sharp, zesty citrus bursts forward immediately on the nose, layered with sun-ripened sweet cherry and a subtle backdrop of earthy, toasted nuttiness. The finish is bright and tangy with a candy-like sweetness that lingers pleasantly after the initial citrus punch.",
+    "misc": "Tropicana Cherry sits comfortably in the 15–22% THC range across various phenotypes, making this 15.4% cut approachable for newer consumers while still delivering noticeable effects. Campfire Cannabis presents this strain with oversized forest-green buds featuring rich purple undertones, vivid amber pistils, and a dense frosting of white trichomes that signal quality resin production. Best enjoyed during daytime or early afternoon hours — ideal for creative projects, social outings, or outdoor activities where an uplifted, focused mindset is welcome.",
+    "mood_ratings": {
+      "wind_down": 2,
+      "anxiety_relief": 4,
+      "lift_up": 8,
+      "get_creative": 9,
+      "get_social": 7,
+      "pain_body": 4,
+      "just_happy": 5,
+      "aphrodisiac": 5
+    }
+  },
+  "bcda70086ab4": {
+    "lineage": "Grape Pie x Wedding Crasher (Grape Pie = Grape Stomper x Cherry Pie; Wedding Crasher = Wedding Cake x Purple Punch) — breeding attribution associated with Symbiotic Genetics",
+    "therapeutic": "Insomnia, chronic pain, muscle tension, anxiety, stress relief, appetite stimulation, mild depression",
+    "negative": "Dry mouth, dry eyes, potential dizziness at higher doses, couch-lock, may cause heavy sedation — use caution if operating machinery or if sensitive to indica-dominant effects",
+    "aroma": "A lush, dessert-forward bouquet of ripe crushed grapes and sweet cherry jam layered over creamy vanilla frosting, with a subtle earthy spice and nutty undertone that lingers on the exhale. The overall scent profile is rich, smooth, and indulgent — reminiscent of a chilled fruit tart dusted with sugar.",
+    "misc": "Grape Cream Cake is a visually striking cultivar with bright neon-green buds accented by vivid orange pistils and a heavy coating of purple-tinted trichomes, reflecting its Purple Punch heritage. At 22.3% THC with a dominant myrcene, linalool, and caryophyllene terpene profile, this strain is best reserved for evening or nighttime use when full relaxation and sedation are welcome. Consumers new to indica-heavy hybrids should start slow, as the creeping body effect can intensify significantly 20–30 minutes post-inhalation.",
+    "mood_ratings": {
+      "wind_down": 9,
+      "anxiety_relief": 7,
+      "lift_up": 2,
+      "get_creative": 2,
+      "get_social": 2,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
+  },
+  "299f063bcfee": {
+    "lineage": "Cinderella 99 x Jack Herer x Skunk #1 — believed to have roots in Haze genetics as well; popularized by Dutch breeders in Amsterdam, with Soma Seeds and other Netherlands-based cultivators commonly credited for stabilizing the modern Amnesia Haze lineage",
+    "therapeutic": "Stress relief, depression, fatigue, anxiety (low doses), lack of focus, mood disorders, mild pain, creative blocks",
+    "negative": "Dry mouth, dry eyes, paranoia or anxiety at high doses, dizziness, racing thoughts — not recommended for novice users or those sensitive to high-THC sativa-dominant cultivars; avoid before sleep",
+    "aroma": "A sharp, zesty burst of fresh lemon and citrus peel opens immediately, layered beneath with earthy pine resin and a faintly sweet, spicy undertone that lingers on the exhale — bright, clean, and invigorating throughout.",
+    "misc": "Amnesia (often marketed as Amnesia Haze) is one of Amsterdam's most celebrated coffee shop staples, winning 1st place at the Cannabis Cup 2014 and the Sativa Cup 2012, cementing its legendary status in the cannabis community. In its flower form it typically tests between 20–25% THC, making this 85.5% vape concentrate a significantly more potent delivery format requiring cautious, measured dosing — especially for occasional consumers. Best suited for daytime or early afternoon use, this strain excels during creative projects, social gatherings, or active outdoor activities where mental energy and euphoric uplift are desired.",
+    "mood_ratings": {
+      "wind_down": 2,
+      "anxiety_relief": 4,
+      "lift_up": 8,
+      "get_creative": 9,
+      "get_social": 7,
+      "pain_body": 3,
+      "just_happy": 5,
+      "aphrodisiac": 5
+    }
   }
 }
