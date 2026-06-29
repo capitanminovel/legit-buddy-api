@@ -1511,5 +1511,39 @@
       "just_happy": 6,
       "aphrodisiac": 5
     }
+  },
+  "65ec8d5fbc0c": {
+    "lineage": "True OG x Strawberry Banana x Blackberry (Northpark selection; True OG derived from Kush lineage, Strawberry Banana from Serious Seeds via Banana OG x Strawberry OG, Blackberry from DJ Short / Nirvana heritage)",
+    "therapeutic": "Stress relief, mild anxiety reduction, fatigue, mood elevation, mild pain management, creative blocks, low-grade depression",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, occasional headache in sensitive users, overconsumption may cause drowsiness despite energetic classification",
+    "aroma": "Gummi Bears opens with a burst of ripe mixed berries and sun-warmed citrus zest, underpinned by a doughy sweetness reminiscent of candy and fresh fruit punch. Subtle earthy pine and a faint peppery spice from the caryophyllene linger on the exhale, keeping the profile grounded and complex.",
+    "misc": "Gummi Bears is a Northpark house hybrid selection bred to deliver a balanced, approachable experience with its moderate 18.2% THC — well-suited for intermediate consumers or cautious beginners. Buds typically display dense, chunky structure with bright green coloration, orange pistils, and a generous trichome coating that reflects its OG heritage. Best consumed during late morning or early afternoon when the energetic and focused effects can be fully utilized without disrupting evening sleep.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 4,
+      "lift_up": 6,
+      "get_creative": 7,
+      "get_social": 5,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
+  },
+  "05f86efba14c": {
+    "lineage": "Amnesia S1 x Black Lime GMO (one component) blended with Cherry Kush x (Lemon Tree/Papaya x GMO) (second component); a Northpark proprietary house blend combining Amnesia Haze self-cross genetics, Black Lime Reserve, GMO (Garlic Cookies), Cherry Kush, Lemon Tree, and Papaya lineage",
+    "therapeutic": "Stress relief, mild chronic pain, anxiety reduction, mood elevation, appetite stimulation, mild insomnia support",
+    "negative": "Dry mouth, dry eyes, possible mild paranoia at higher doses for THC-sensitive consumers, mild dizziness; couch-lock potential increases with prolonged use due to indica-leaning terpene profile",
+    "aroma": "A complex and layered nose opens with bright citrus and tart lemon zest underpinned by ripe tropical fruit and sweet berry, before settling into a pungent diesel and funky garlic-earth base inherited from the GMO genetics. The overall bouquet is simultaneously fruity and fuel-forward, with a sweet candy finish that lingers pleasantly.",
+    "misc": "This is a Northpark in-house blended pre-roll combining two distinct genetic crosses to create a balanced indica-leaning hybrid experience; at 14.2% THC it sits on the moderate end, making it approachable for intermediate consumers while remaining functional rather than sedating. The blend likely produces dense, resinous flower with purple-tinged hues and orange pistils from the Cherry Kush and Papaya parentage. Best suited for late afternoon or early evening use when relaxation is desired without full sedation.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 4,
+      "lift_up": 6,
+      "get_creative": 2,
+      "get_social": 5,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
   }
 }
