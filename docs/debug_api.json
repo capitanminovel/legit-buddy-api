@@ -1,7 +1,7 @@
 [
   {
     "category": "flower",
-    "page": 23,
+    "page": 22,
     "top_level": "dict",
     "keys": [
       "filters",
@@ -28,7 +28,7 @@
   },
   {
     "category": "pre-roll",
-    "page": 29,
+    "page": 28,
     "top_level": "dict",
     "keys": [
       "filters",
@@ -55,7 +55,7 @@
   },
   {
     "category": "edibles",
-    "page": 29,
+    "page": 28,
     "top_level": "dict",
     "keys": [
       "filters",
@@ -82,7 +82,7 @@
   },
   {
     "category": "vapes",
-    "page": 29,
+    "page": 28,
     "top_level": "dict",
     "keys": [
       "filters",
