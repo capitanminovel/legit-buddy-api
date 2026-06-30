@@ -1545,5 +1545,56 @@
       "just_happy": 5,
       "aphrodisiac": 4
     }
+  },
+  "66477ce1c142": {
+    "lineage": "Purple Kush x Lemon Skunk (Campfire Cannabis)",
+    "therapeutic": "Stress relief, mild anxiety, creative blocks, mild depression, fatigue, appetite stimulation",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, potential drowsiness as effects progress into the indica-leaning come-down",
+    "aroma": "Bright bursts of zesty lemon candy and sweet citrus peel open the nose, gradually giving way to soft berry sweetness and a grounding layer of earthy, floral undertones. The overall aromatic experience is refreshing and uplifting, reminiscent of a freshly squeezed pink lemonade with a subtle kushy depth.",
+    "misc": "Pink Lemonade is a Campfire Cannabis offering bred from the classic indica Purple Kush and the energetic, citrus-forward Lemon Skunk — a pairing that balances relaxing body warmth with a bright, mood-lifting head effect. At 18.2% THC it sits in an approachable mid-to-upper range, making it well-suited for intermediate consumers looking for daytime creativity or a relaxed late-afternoon session without heavy sedation. Minty-green spade-shaped buds are visually striking with light orange pistils and a dense coating of golden trichomes; best enjoyed in the late afternoon or early evening when creative focus and gentle relaxation are equally welcome.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 3,
+      "lift_up": 4,
+      "get_creative": 7,
+      "get_social": 3,
+      "pain_body": 4,
+      "just_happy": 4,
+      "aphrodisiac": 2
+    }
+  },
+  "4ae59f844af9": {
+    "lineage": "Tahoe OG x Runtz (Campfire Cannabis / breeder unconfirmed; Runtz itself is Zkittlez x Gelato by Cookies Fam)",
+    "therapeutic": "Stress relief, anxiety reduction, mild to moderate chronic pain, muscle tension, insomnia onset, mood elevation, appetite stimulation",
+    "negative": "Dry mouth, dry eyes, potential dizziness or paranoia at high doses due to elevated THC (24.3%), possible couch-lock with heavy consumption, not recommended for low-tolerance users before physical activity",
+    "aroma": "Rich, dank earth anchored by classic kush and woody pine opens the nose, quickly layered with bright bursts of sweet citrus and tropical fruit that give it a creamy, almost dessert-like complexity. A subtle floral spice from linalool and a faint herbal whisper from humulene and ocimene round out the finish.",
+    "misc": "Lit OG blends the legendary potency and deep body sedation of Tahoe OG with the sweet, creamy fruit profile and euphoric lift of Runtz, resulting in an indica-dominant hybrid that punches well above average at 24.3% THC. Oversized olive-green nugs with purple accents, dense orange pistils, and a thick trichome frost make this a visually striking flower. Best consumed in the evening or late afternoon for winding down — the initial euphoric clarity is approachable, but the long-wave body relaxation makes this a poor choice for daytime productivity.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 8,
+      "lift_up": 5,
+      "get_creative": 3,
+      "get_social": 5,
+      "pain_body": 5,
+      "just_happy": 7,
+      "aphrodisiac": 6
+    }
+  },
+  "c609701a342f": {
+    "lineage": "Mango-flavored THC gummy edible by Voyageur — not a flower strain. No genetic lineage applicable; this is a manufactured edible product with extracted cannabis oil.",
+    "therapeutic": "Stress relief, mild to moderate pain management, anxiety reduction, sleep aid, appetite stimulation, mood elevation",
+    "negative": "Delayed onset (30–120 minutes) may lead to overconsumption; dry mouth, dry eyes, increased heart rate, paranoia or anxiety at high doses, impaired coordination and cognitive function, prolonged intoxication (4–8 hours)",
+    "aroma": "As a gummy edible, the sensory experience is flavor-forward rather than aromatic — expect a sweet, tropical mango candy scent with little to no detectable cannabis odor, making it discreet and palatable.",
+    "misc": "Each gummy contains 10mg THC, a standard single dose recommended for beginner to intermediate consumers. New users should start with half a gummy (5mg) and wait at least 90 minutes before redosing, as edible effects vary greatly based on metabolism, body weight, and tolerance. The 94.1% THC figure reflects the concentration of the extract used, not the per-gummy dose — each piece delivers a well-controlled 10mg serving for predictable, consistent effects.",
+    "mood_ratings": {
+      "wind_down": 3,
+      "anxiety_relief": 3,
+      "lift_up": 3,
+      "get_creative": 2,
+      "get_social": 2,
+      "pain_body": 3,
+      "just_happy": 3,
+      "aphrodisiac": 2
+    }
   }
 }
