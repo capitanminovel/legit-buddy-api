@@ -82,7 +82,7 @@
   },
   {
     "category": "vapes",
-    "page": 31,
+    "page": 30,
     "top_level": "dict",
     "keys": [
       "filters",
@@ -97,7 +97,7 @@
       "list"
     ],
     "list_key": "filters",
-    "list_len": 16,
+    "list_len": 4,
     "item_keys": [
       "key",
       "type",
