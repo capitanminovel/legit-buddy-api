@@ -1613,5 +1613,22 @@
       "just_happy": 5,
       "aphrodisiac": 4
     }
+  },
+  "2457a561c047": {
+    "lineage": "Infused edible product — no specific cannabis strain lineage; formulated with distillate or broad-spectrum extract by Nebula brand. Genetic lineage not applicable for this edible format.",
+    "therapeutic": "Mild to moderate pain relief, stress and anxiety reduction, appetite stimulation, sleep aid at higher doses, mood elevation",
+    "negative": "Delayed onset (30–90 minutes) may lead to overconsumption; dry mouth, increased heart rate, dizziness, anxiety or paranoia at high doses, couch-lock, impaired coordination — avoid driving or operating machinery",
+    "aroma": "As a gummy bar, expect a bright and tangy cherry-forward sweetness layered with zesty lime citrus, creating a candy-like confection aroma reminiscent of classic fruit chews. The scent is clean, artificial-fruity, and dessert-like with no notable cannabis odor.",
+    "misc": "Each bar contains 100mg total THC with 10mg per serving (10 servings per bar), making it well-suited for beginner to intermediate consumers using one piece at a time. Nebula formats this as a standard low-dose entry point — beginners should start with half a serving (5mg) and wait at least 90 minutes before redosing. At 91.6% THC potency in the extract used, this product is highly concentrated at the formulation stage, so precise dosing per piece is critical for a comfortable experience.",
+    "mood_ratings": {
+      "wind_down": 3,
+      "anxiety_relief": 3,
+      "lift_up": 3,
+      "get_creative": 3,
+      "get_social": 3,
+      "pain_body": 3,
+      "just_happy": 3,
+      "aphrodisiac": 3
+    }
   }
 }
