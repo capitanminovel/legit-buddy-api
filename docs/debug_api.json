@@ -1,7 +1,34 @@
 [
   {
     "category": "flower",
-    "page": 21,
+    "page": 23,
+    "top_level": "dict",
+    "keys": [
+      "filters",
+      "searchFilters",
+      "sortingMethods",
+      "attributes",
+      "source",
+      "promos",
+      "page",
+      "pageSize",
+      "total",
+      "list"
+    ],
+    "list_key": "filters",
+    "list_len": 18,
+    "item_keys": [
+      "key",
+      "type",
+      "options",
+      "uiLabel",
+      "expandedByDefault",
+      "presentation"
+    ]
+  },
+  {
+    "category": "pre-roll",
+    "page": 29,
     "top_level": "dict",
     "keys": [
       "filters",
@@ -27,35 +54,8 @@
     ]
   },
   {
-    "category": "pre-roll",
-    "page": 26,
-    "top_level": "dict",
-    "keys": [
-      "filters",
-      "searchFilters",
-      "sortingMethods",
-      "attributes",
-      "source",
-      "promos",
-      "page",
-      "pageSize",
-      "total",
-      "list"
-    ],
-    "list_key": "filters",
-    "list_len": 16,
-    "item_keys": [
-      "key",
-      "type",
-      "options",
-      "uiLabel",
-      "expandedByDefault",
-      "presentation"
-    ]
-  },
-  {
     "category": "edibles",
-    "page": 27,
+    "page": 31,
     "top_level": "dict",
     "keys": [
       "filters",
@@ -82,7 +82,7 @@
   },
   {
     "category": "vapes",
-    "page": 27,
+    "page": 31,
     "top_level": "dict",
     "keys": [
       "filters",

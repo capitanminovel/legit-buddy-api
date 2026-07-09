@@ -1630,5 +1630,39 @@
       "just_happy": 3,
       "aphrodisiac": 3
     }
+  },
+  "7e6663765314": {
+    "lineage": "Lemon Skunk x Purple Kush (Campfire Cannabis); Lemon Skunk itself is a cross of two Skunk phenotypes selected for lemon traits, while Purple Kush is a pure indica landrace cross of Hindu Kush x Purple Afghani originating from Oakland, CA",
+    "therapeutic": "Stress relief, mild depression, mental fatigue, lack of focus, mood elevation, mild anxiety, creative blocks",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, potential for mild headache in sensitive users; not ideal for those prone to anxiety as the energetic uplift may feel overstimulating",
+    "aroma": "A bright and zesty burst of fresh-squeezed lemon and grapefruit rind greets the nose immediately, underpinned by a subtly sweet, floral herbal quality from the ocimene and a faint piney earthiness that adds depth and balance. The overall bouquet is clean, refreshing, and citrus-forward with just enough skunky sweetness from its Lemon Skunk heritage to keep it interesting.",
+    "misc": "Pink Lemonade as a variety is most commonly attributed to breeders working with West Coast citrus and kush genetics, and Campfire Cannabis has packaged this phenotype as a approachable hybrid pre-roll sitting at 18.2% THC — a moderate-to-solid potency suitable for intermediate consumers. Buds typically display light green coloration with occasional purple undertones inherited from the Purple Kush parent, coated in a moderate layer of trichomes. Best consumed during daytime or early afternoon hours given its energetic and focus-driven effect profile, making it a strong choice for creative work, social activities, or outdoor adventures.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 3,
+      "lift_up": 4,
+      "get_creative": 7,
+      "get_social": 3,
+      "pain_body": 4,
+      "just_happy": 4,
+      "aphrodisiac": 2
+    }
+  },
+  "46c01c7585d2": {
+    "lineage": "Edible product — no genetic strain lineage applicable. Blue Raspberry is a flavored gummy format by Voyageur, dosed at 10mg THC per gummy with 10 gummies per pack (100mg total THC).",
+    "therapeutic": "Stress relief, mild to moderate pain management, anxiety reduction, sleep support, appetite stimulation, mood elevation",
+    "negative": "Overconsumption risk due to delayed onset (30–120 minutes); potential anxiety or paranoia at high doses, dry mouth, increased heart rate, impaired coordination and cognition, not recommended for cannabis-naive users to exceed one gummy without waiting",
+    "aroma": "As a gummy edible, the sensory experience is flavor-forward rather than aromatic — expect a sweet, candy-like blue raspberry scent reminiscent of artificial berry confections with a tart, fruity finish. There is no cannabis aroma present in the final product.",
+    "misc": "Each gummy contains a precise 10mg THC dose, making this product well-suited for both beginner and experienced consumers who prefer portion control. New users should start with half a gummy (5mg) and wait at least 90 minutes before redosing to avoid overconsumption. Voyageur's gummy format offers a discreet, smoke-free consumption method ideal for on-the-go use or social settings where discretion is preferred.",
+    "mood_ratings": {
+      "wind_down": 3,
+      "anxiety_relief": 3,
+      "lift_up": 3,
+      "get_creative": 3,
+      "get_social": 3,
+      "pain_body": 3,
+      "just_happy": 3,
+      "aphrodisiac": 3
+    }
   }
 }
