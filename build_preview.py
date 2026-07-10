@@ -1100,7 +1100,13 @@ document.addEventListener('DOMContentLoaded', function() {{
     var cat = tab.dataset.cat;
     var total;
     if (cat === 'all') {{
-      total = document.querySelectorAll('.card').length;
+      // Sum per-category totals rather than counting every .card — new-arrival
+      // cards are intentionally rendered twice (once in the New banner, once
+      // in their category section), which would double-count them here.
+      total = 0;
+      document.querySelectorAll('.section-count[data-total]').forEach(function(el) {{
+        total += parseInt(el.dataset.total, 10) || 0;
+      }});
     }} else {{
       var section = document.querySelector('.section[data-cat="' + cat + '"]');
       if (!section) return;
