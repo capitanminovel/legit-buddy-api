@@ -4,3 +4,4 @@ __pycache__/
 scrape.log
 .env
 preview.html
+docs/debug_api.json

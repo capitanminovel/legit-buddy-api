@@ -17,6 +17,9 @@ from pathlib import Path
 
 import anthropic
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+
 PRODUCTS_PATH = Path(__file__).parent / "docs" / "products.json"
 STRAINS_PATH  = Path(__file__).parent / "docs" / "strains_enriched.json"
 

@@ -8,8 +8,11 @@ on:
     - cron: '0 19 * * *'
     # 4:30 PM CST = 22:30 UTC
     - cron: '30 22 * * *'
-    # 10:00 PM CST = 04:00 UTC
-    - cron: '0 4 * * *'
+
+    # targets ~7:00 AM CST (sched 5:00 AM CST = 11:00 UTC, ~2hr delay)
+    - cron: '0 11 * * *'
+    # targets ~8:00 PM CST (sched 6:30 PM CST = 00:30 UTC, ~1.5hr delay)
+    - cron: '30 0 * * *'
   workflow_dispatch:   # click "Run workflow" in GitHub any time
 
 permissions:
@@ -33,7 +36,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests beautifulsoup4 lxml playwright anthropic python-docx
+          pip install -r requirements.txt
           playwright install chromium --with-deps
 
       - name: Run scraper
@@ -52,7 +55,6 @@ jobs:
           git config user.name  "Legit Buddy Bot"
           git config user.email "actions@github.com"
           git add docs/products.json docs/index.html docs/strains_enriched.json
-          git add docs/debug_api.json 2>/dev/null || true
           git diff --staged --quiet && echo "No changes" && exit 0
           git commit -m "🌿 Menu update $(date -u '+%Y-%m-%d %H:%M UTC')"
           git push origin HEAD

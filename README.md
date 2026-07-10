@@ -6,7 +6,7 @@ Live menu: **[capitanminovel.github.io/legit-buddy-api](https://capitanminovel.g
 
 ## What This Is
 
-A fully automated cannabis menu for MN Legit Cannabis South Metro. Every day at **4:30 PM CST** a GitHub Actions pipeline scrapes the live inventory from the Sweed POS system, enriches any new strains with AI-generated profiles, and publishes an updated static page to GitHub Pages. No server needed — it's just a folder of files.
+A fully automated cannabis menu for MN Legit Cannabis (South Metro). Several times a day a GitHub Actions pipeline scrapes the live inventory from the Sweed POS system, enriches any new strains with AI-generated profiles, and publishes an updated static page to GitHub Pages. No server needed — it's just a folder of files.
 
 ---
 
@@ -16,6 +16,8 @@ A fully automated cannabis menu for MN Legit Cannabis South Metro. Every day at 
 - Use the **category tabs** (Flower · Pre-Roll · Vapes · Edibles) to filter by type.
 - Tap any product card to open its **Strain Guide** — lineage, therapeutic uses, aroma, terpenes, and misc notes.
 - The **✨ New in the Last 3 Days** section at the top highlights recently added inventory.
+- The **🚫 Sold Out** section shows what left the menu in the last 2 days.
+- Use the **Type** chips (All / Indica / Sativa / Hybrid) to filter by strain type.
 
 ### Mood Filter ("Find Your Vibe")
 Click any mood chip to instantly filter and rank products for that use case:
@@ -43,24 +45,11 @@ Tap **ℹ️ How it works** next to the mood chips for the full science breakdow
 ### Search
 Type anything into the search bar — `anxiety`, `PTSD`, `sleep`, `pain`, `Myrcene`, `citrus`, `creative` — and it searches across terpene profiles, therapeutic uses, aroma descriptions, and lineage.
 
-### Building a Strain Guide (Staff Reference Doc)
-1. Tap a product card → opens the Strain Guide modal.
-2. Press **＋ Add to Profile** for each strain you want to include.
-3. When done, open the **📋 My Profile** button (floating, bottom-right).
-4. Press **⬇ Download Strain Guide** — saves an HTML file you can open in Word.
-
-### Downloading Full Strain Guides (.docx)
-Two pre-built Word documents are available from the export bar below the header:
-
-| Button | Contents |
-|---|---|
-| ✅ Available Now | Every product currently in stock, sorted Flower → Pre-Roll → Vapes |
-| 📦 Master Cache | Every strain ever enriched (including past products), same sort |
-
-Click either button → Giphy popup → **Let's Go** → `.docx` downloads directly. Open in Microsoft Word or Google Docs.
-
 ### Dark Mode
-Toggle with the **🌙 Dark** button in the header. Preference is saved across visits.
+Toggle with the **🌙 Dark** button in the header. Preference is saved across visits (dark is the default until a visitor switches to light).
+
+### Staff Guide
+Tap **📖 Staff Guide** in the header for an in-page reference on how the menu, search, and mood scoring work.
 
 ---
 
@@ -134,17 +123,15 @@ When Claude ratings are present in `strains_enriched.json`, they override the co
 
 ### Python (3.11+)
 ```
-pip install requests beautifulsoup4 lxml playwright anthropic python-docx
+pip install -r requirements.txt
 playwright install chromium --with-deps
 ```
 
 | Package | Used For |
 |---|---|
 | `requests` | Sweed POS API calls |
-| `beautifulsoup4` / `lxml` | HTML parsing fallback |
-| `playwright` | Headless browser scraping |
+| `playwright` | Headless browser scraping (also used as a DOM fallback if the direct API is blocked) |
 | `anthropic` | Claude API — strain enrichment + mood ratings |
-| `python-docx` | Generating `.docx` strain guide files |
 
 ### API Keys
 | Secret | Where to Set | Used By |
@@ -152,7 +139,7 @@ playwright install chromium --with-deps
 | `ANTHROPIC_API_KEY` | GitHub → Settings → Secrets → Actions | `enrich_strains.py` |
 
 ### GitHub Actions
-The pipeline runs automatically every day. To trigger it manually:  
+The pipeline runs automatically several times a day. To trigger it manually:
 **GitHub → Actions → Daily Menu Scrape → Run workflow**
 
 This is useful after:
@@ -167,31 +154,15 @@ This is useful after:
 legit-buddy-api/
 ├── scraper.py               # Pulls live inventory from Sweed POS API
 ├── enrich_strains.py        # Calls Claude API to enrich + rate new strains
-├── build_preview.py         # Builds docs/index.html + both .docx exports
-├── generate_strain_doc.py   # One-time script: appends strains to existing .docx
+├── build_preview.py         # Builds docs/index.html
+├── test_api.py              # Pre-flight check — is the Sweed API reachable right now?
 │
 ├── docs/
-│   ├── products.json              # Scraped inventory (auto-updated daily)
-│   ├── strains_enriched.json      # Claude-enriched strain profiles + mood ratings
-│   ├── index.html                 # Published GitHub Pages site (auto-built)
-│   ├── legit-available-guide.docx # In-stock strain guide (auto-built)
-│   ├── legit-master-guide.docx    # All-time strain cache (auto-built)
-│   └── terpenes_research.md       # Reference: 22 terpenes with citations
+│   ├── products.json           # Scraped inventory (auto-updated)
+│   ├── strains_enriched.json   # Claude-enriched strain profiles + mood ratings
+│   ├── index.html              # Published GitHub Pages site (auto-built)
+│   └── terpenes_research.md    # Reference: terpenes with citations
 │
 └── .github/workflows/
-    └── daily-scrape.yml           # Automated pipeline (4:30 PM CST daily)
+    └── daily-scrape.yml        # Automated pipeline (runs several times daily)
 ```
-
----
-
-## Updating the Strain Profiles Doc
-
-To append newly available strains to the master Word document:
-
-```bash
-python generate_strain_doc.py
-```
-
-Output: `docs/Strain_Profiles_Updated.docx`
-
-The script skips any strains already in the original document and groups new ones by **FLOWER / PRE-ROLL / VAPES** (edibles excluded). Formatting matches the existing document exactly — no style changes.

@@ -14,6 +14,9 @@ from datetime import datetime
 
 import requests
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+
 STORE_DOMAIN = "shop.mnlegitcannabis.com"
 MENU_URL     = f"https://{STORE_DOMAIN}/south-metro/menu"
 API_URL      = f"https://{STORE_DOMAIN}/_api/Products/GetProductList"
