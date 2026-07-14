@@ -497,6 +497,7 @@ def build():
 </header>
 <div class="export-bar">
   <button class="btn-staff-guide"  onclick="openStaffGuide()" style="margin-left:auto">📖 Staff Guide</button>
+  <button class="btn-staff-guide" onclick="openTerpeneGuide()">🧪 Terpenes &amp; Cannabinoids 101</button>
 </div>
 <div class="tabs-wrap"><div class="tabs" id="tabs">{tab_btns}</div></div>
 <main>
@@ -571,6 +572,17 @@ def build():
       <button class="sg-guide-close" onclick="closeStaffGuide()">✕</button>
     </div>
     <div id="staffGuideContent"></div>
+  </div>
+</div>
+
+<!-- Terpenes & Cannabinoids 101 modal -->
+<div class="sg-guide-overlay hidden" id="terpeneGuideModal" onclick="if(event.target===this)closeTerpeneGuide()">
+  <div class="sg-guide-box">
+    <div class="sg-guide-head">
+      <span class="sg-guide-title">🧪 Terpenes &amp; Cannabinoids 101</span>
+      <button class="sg-guide-close" onclick="closeTerpeneGuide()">✕</button>
+    </div>
+    <div id="terpeneGuideContent"></div>
   </div>
 </div>
 
@@ -940,7 +952,7 @@ function filterType(btn) {{
 }}
 
 
-document.addEventListener('keydown', e => {{ if (e.key === 'Escape') {{ closeModal(); closeMoodsInfo(); closeStaffGuide(); }} }});
+document.addEventListener('keydown', e => {{ if (e.key === 'Escape') {{ closeModal(); closeMoodsInfo(); closeStaffGuide(); closeTerpeneGuide(); }} }});
 
 // ── Moods info modal ──
 const MOOD_INFO = [
@@ -1071,6 +1083,89 @@ function openStaffGuide() {{
 
 function closeStaffGuide() {{
   document.getElementById('staffGuideModal').classList.add('hidden');
+  document.body.style.overflow = '';
+}}
+
+// ── Terpenes & Cannabinoids 101 modal ──
+function openTerpeneGuide() {{
+  const container = document.getElementById('terpeneGuideContent');
+  container.innerHTML = `
+    <div class="sg-guide-section">
+      <div class="sg-guide-section-title">🌿 The 8 Terpenes We Filter By</div>
+      <div class="sg-guide-card">
+        <div class="sg-guide-card-head"><span class="sg-guide-card-icon">🥭</span><span class="sg-guide-card-name">Myrcene</span></div>
+        <div class="sg-guide-card-body"><em>Smells like:</em> earthy, musky, mango.<br><strong>Body-heavy and sedating</strong> — the classic "couch-lock" terpene. Good for sleep and muscle relaxation.</div>
+      </div>
+      <div class="sg-guide-card">
+        <div class="sg-guide-card-head"><span class="sg-guide-card-icon">🍋</span><span class="sg-guide-card-name">Limonene</span></div>
+        <div class="sg-guide-card-body"><em>Smells like:</em> bright citrus, lemon peel.<br><strong>Mood-lifting and stress-easing.</strong> A good pick for someone who wants to feel up, not knocked out.</div>
+      </div>
+      <div class="sg-guide-card">
+        <div class="sg-guide-card-head"><span class="sg-guide-card-icon">🌶️</span><span class="sg-guide-card-name">Caryophyllene</span></div>
+        <div class="sg-guide-card-body"><em>Smells like:</em> black pepper, cloves, diesel.<br><strong>The one terpene that works like a cannabinoid</strong> — it binds the same CB2 receptors THC and CBD do. Good for pain and inflammation, non-intoxicating on its own.</div>
+      </div>
+      <div class="sg-guide-card">
+        <div class="sg-guide-card-head"><span class="sg-guide-card-icon">💜</span><span class="sg-guide-card-name">Linalool</span></div>
+        <div class="sg-guide-card-body"><em>Smells like:</em> lavender, floral.<br><strong>Calming and anxiety-easing.</strong> Pairs with myrcene for sleep, with caryophyllene for calm pain relief.</div>
+      </div>
+      <div class="sg-guide-card">
+        <div class="sg-guide-card-head"><span class="sg-guide-card-icon">🌲</span><span class="sg-guide-card-name">Pinene</span></div>
+        <div class="sg-guide-card-body"><em>Smells like:</em> pine needles, fresh forest.<br><strong>Alertness and clarity.</strong> Thought to counter the "foggy" short-term memory effect of THC — good for staying sharp.</div>
+      </div>
+      <div class="sg-guide-card">
+        <div class="sg-guide-card-head"><span class="sg-guide-card-icon">🌸</span><span class="sg-guide-card-name">Terpinolene</span></div>
+        <div class="sg-guide-card-body"><em>Smells like:</em> complex — floral, herbal, a little citrus.<br><strong>Uplifting and cerebral.</strong> Less common — rare enough that it's a signature of a strain when it shows up first on the label.</div>
+      </div>
+      <div class="sg-guide-card">
+        <div class="sg-guide-card-head"><span class="sg-guide-card-icon">🍺</span><span class="sg-guide-card-name">Humulene</span></div>
+        <div class="sg-guide-card-body"><em>Smells like:</em> hoppy, earthy, woody (the smell of a good IPA).<br><strong>Anti-inflammatory and, unusually, appetite-suppressing</strong> — most cannabis compounds do the opposite.</div>
+      </div>
+      <div class="sg-guide-card">
+        <div class="sg-guide-card-head"><span class="sg-guide-card-icon">🌿</span><span class="sg-guide-card-name">Ocimene</span></div>
+        <div class="sg-guide-card-body"><em>Smells like:</em> sweet, herbal, a little minty (the basil note).<br><strong>Energizing and decongestant.</strong> Very volatile — one of the first aromas to fade once flower is ground up or exposed to air.</div>
+      </div>
+    </div>
+
+    <div class="sg-guide-section">
+      <div class="sg-guide-section-title">🧬 Cannabinoids &amp; How They Work With THC</div>
+      <div class="sg-guide-card">
+        <div class="sg-guide-card-head"><span class="sg-guide-card-icon">🌀</span><span class="sg-guide-card-name">THC</span></div>
+        <div class="sg-guide-card-body">The main psychoactive cannabinoid — it's what gets someone "high." Binds directly to CB1 receptors in the brain. Everything else on this list either supports it, softens it, or is a byproduct of it.</div>
+      </div>
+      <div class="sg-guide-card">
+        <div class="sg-guide-card-head"><span class="sg-guide-card-icon">🍃</span><span class="sg-guide-card-name">CBD</span></div>
+        <div class="sg-guide-card-body">Non-intoxicating. Doesn't get you high on its own, and in the same product it can actually <strong>take the edge off THC</strong> — less anxious, less racy, more relaxed. This is why a 1:1 THC:CBD product feels gentler than straight THC at the same dose.</div>
+      </div>
+      <div class="sg-guide-card">
+        <div class="sg-guide-card-head"><span class="sg-guide-card-icon">🌱</span><span class="sg-guide-card-name">CBG</span></div>
+        <div class="sg-guide-card-body">Called the "mother cannabinoid" — every other cannabinoid (including THC and CBD) is made from it earlier in the plant's growth. Non-intoxicating; customers report a clear-headed, focused calm.</div>
+      </div>
+      <div class="sg-guide-card">
+        <div class="sg-guide-card-head"><span class="sg-guide-card-icon">🌙</span><span class="sg-guide-card-name">CBN</span></div>
+        <div class="sg-guide-card-body">Forms as THC <strong>ages and breaks down</strong> — older or more oxidized flower has more of it. Mildly intoxicating, commonly associated with sleepy/sedating effects, though the research backing that is thinner than customers assume.</div>
+      </div>
+      <div class="sg-guide-card">
+        <div class="sg-guide-card-head"><span class="sg-guide-card-icon">⚡</span><span class="sg-guide-card-name">THCV</span></div>
+        <div class="sg-guide-card-body">Chemically close to THC but behaves differently — at typical doses some describe it as more clear-headed and energetic than THC, with less appetite stimulation (possibly the opposite). Uncommon; only a handful of strains express much of it.</div>
+      </div>
+    </div>
+
+    <div class="sg-guide-section">
+      <div class="sg-guide-card">
+        <div class="sg-guide-card-body"><strong>The short version for a customer:</strong> THC drives the high. CBD softens it. Terpenes shape the character of it — sedating vs. uplifting, foggy vs. sharp, anxious vs. calm — largely independent of how strong the THC is. That's the "entourage effect": the whole-plant combination feels different than any one compound alone.<br><br>
+          <div class="sg-guide-note">⚠️ This is a plain-language explainer for staff to use with customers — not medical advice. Individual response to cannabis varies a lot person to person. For the full research citations behind these claims, see <code>terpenes_research.md</code> in the repo.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="height:20px"></div>
+  `;
+  document.getElementById('terpeneGuideModal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}}
+
+function closeTerpeneGuide() {{
+  document.getElementById('terpeneGuideModal').classList.add('hidden');
   document.body.style.overflow = '';
 }}
 
