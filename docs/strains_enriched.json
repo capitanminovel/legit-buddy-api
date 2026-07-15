@@ -1851,5 +1851,39 @@
       "just_happy": 5,
       "aphrodisiac": 3
     }
+  },
+  "7dc21413016f": {
+    "lineage": "Blueberry (DJ Short) x Haze (Sacred Seeds / Nevil's Haze lineage)",
+    "therapeutic": "Stress, depression, anxiety, fatigue, mild pain, lack of focus, mood disorders",
+    "negative": "Dry mouth, dry eyes, mild paranoia or anxiety at higher doses, occasional dizziness, may cause restlessness in THC-sensitive users",
+    "aroma": "A lush, sweet bouquet of fresh blueberries and ripe mixed berries leads the nose, supported by a soft floral undertone from linalool and bisabolol, before giving way to a earthy, piney herbal backbone with faint woody spice on the exhale.",
+    "misc": "Blue Dream is one of the most iconic and widely recognized strains in the United States, originating in California and beloved for its balanced sativa-leaning effects that don't overwhelm. At 18.9% THC, this batch falls within the strain's typical range of 17–24%, making it approachable for intermediate consumers; novices should start slow given its cerebral intensity. Buds typically present as medium-to-large, dense yet slightly airy with a classic Haze structure, coated in a generous layer of frosty trichomes with vivid orange pistils weaving through blue-green calyxes — best enjoyed during daytime or early evening for creative work, social activities, or active relaxation.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 7,
+      "lift_up": 4,
+      "get_creative": 6,
+      "get_social": 3,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
+  },
+  "2e0d4955a026": {
+    "lineage": "Mythic OG x Field Cookies x Gravenstein (dizgo proprietary TriCross blend; Mythic OG is likely an OG Kush phenotype, Field Cookies draws from GSC/Girl Scout Cookies lineage, Gravenstein is a rare apple-inspired cultivar with OG and haze heritage)",
+    "therapeutic": "Stress relief, mild chronic pain, muscle tension, mood elevation, mild anxiety, fatigue, creative blocks",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, possible couch-lock in sensitive users, drowsiness if overconsumed",
+    "aroma": "A complex and inviting bouquet opens with bright citrus and zesty lemon rind layered over sweet, candy-like cookie dough undertones, while earthy pine, a whisper of anise, and a grounding black pepper spice weave through the finish. The floral and herbal notes from bisabolol and linalool add a subtle softening quality, making the overall scent profile feel both uplifting and warmly resinous.",
+    "misc": "This dizgo TriCross pre-roll series showcases an in-house hybrid cross leaning indica, likely bred for balanced recreational and light therapeutic use at a solid 20.4% THC. The three-cultivar cross approach suggests dizgo aimed for complexity in both effect and flavor, ideal for evening or late-afternoon use when creativity and physical relaxation are both desired. Bud structure would typically reflect dense, resin-coated indica-leaning nugs with a frosty trichome layer and occasional amber hairs; consumers new to indica hybrids should start with one of the 0.33g mini pre-rolls and assess tolerance before redosing.",
+    "mood_ratings": {
+      "wind_down": 9,
+      "anxiety_relief": 7,
+      "lift_up": 4,
+      "get_creative": 2,
+      "get_social": 3,
+      "pain_body": 5,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
   }
 }
