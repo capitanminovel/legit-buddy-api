@@ -1885,5 +1885,39 @@
       "just_happy": 6,
       "aphrodisiac": 5
     }
+  },
+  "77b09cca66d5": {
+    "lineage": "Blue Mammoth Auto x Blue Dream x Amnesia (dizgo); Blue Mammoth Auto derives from Blueberry x Mammoth Auto, Blue Dream from Blueberry x Haze (DJ Short / Archive Seed Bank lineage), and Amnesia from a complex Haze-dominant heritage including South Asian and Jamaican landraces",
+    "therapeutic": "Stress relief, anxiety management, mild depression, creative blocks, fatigue, mild pain, mood elevation",
+    "negative": "Dry mouth, dry eyes, possible mild paranoia or racing thoughts in THC-sensitive users, mild dizziness at higher consumption; not ideal for those prone to anxiety due to Haze-lineage cerebral stimulation",
+    "aroma": "Orion opens with a bright, sweet burst of blueberry and tropical fruit carried on a fresh piney backbone, with soft floral and herbal whispers of lavender and anise that deepen as the bud warms in hand. A subtle earthy musk from its Myrcene base rounds out the bouquet, lending a grounding depth beneath the candy-sweet brightness.",
+    "misc": "Crafted by dizgo, Orion is a balanced hybrid sitting at 16.6% THC — approachable for intermediate consumers while still delivering notable effect. Buds are typically dense with a frosty trichome coating, showing deep greens with hints of violet inherited from its Blueberry ancestry. Best enjoyed in the afternoon or early evening when creativity and calm are equally welcome, making it ideal for social settings, artistic pursuits, or unwinding after work without full sedation.",
+    "mood_ratings": {
+      "wind_down": 9,
+      "anxiety_relief": 7,
+      "lift_up": 3,
+      "get_creative": 5,
+      "get_social": 2,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
+  },
+  "e60ddf03c0b8": {
+    "lineage": "Northern Lights x Alien OG (Northern Lights: Sensi Seeds / Alien OG: Cali Connection, itself a cross of Tahoe OG x Alien Kush)",
+    "therapeutic": "Stress relief, anxiety reduction, mild pain management, insomnia, depression, appetite stimulation",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, potential sedation or couch-lock with heavy consumption, dizziness in low-tolerance users",
+    "aroma": "A pungent and complex bouquet opens with zesty lemon-citrus and sweet floral notes, undercut by earthy herbal skunkiness and a spicy, fuel-like depth inherited from the OG lineage. The overall profile is bright yet grounding, with a lingering sour-sweet finish on the exhale.",
+    "misc": "Alien Lights is a well-balanced hybrid leaning slightly indica in effect profile, combining Northern Lights' legendary relaxation and resin production with Alien OG's cerebral euphoria and citrusy OG funk. At 20.1% THC it delivers a moderately potent experience — ideal for evening or late-afternoon use when unwinding is the goal. Consumers can expect dense, frosty buds with deep green hues and amber trichomes; beginners should start with a half pre-roll given the potential for sedation at full doses.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 3,
+      "get_creative": 3,
+      "get_social": 3,
+      "pain_body": 5,
+      "just_happy": 4,
+      "aphrodisiac": 3
+    }
   }
 }
