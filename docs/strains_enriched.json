@@ -2106,5 +2106,73 @@
       "just_happy": 3,
       "aphrodisiac": 3
     }
+  },
+  "41432d0e9df7": {
+    "lineage": "Misty x Unknown Sativa (likely a sativa-leaning hybrid cross; Misty itself is a classic indica-dominant strain bred by Sensi Seeds, derived from White Widow x Skunk #1 x Northern Lights)",
+    "therapeutic": "Stress relief, anxiety reduction, mild depression, mental fatigue, mood elevation, mild pain management",
+    "negative": "Dry mouth, dry eyes, mild anxiety or racing thoughts at higher doses due to sativa influence, occasional dizziness",
+    "aroma": "Medusa opens with a burst of ripe mixed berries and sweet floral notes carried by Ocimene and Farnesene, giving it an almost perfumed, fruity elegance. Underlying earthiness and a subtle spicy warmth from Myrcene and Caryophyllene ground the bouquet, lending a herbal tea-like depth on the exhale.",
+    "misc": "Produced by Dizgo, Medusa is a balanced hybrid leaning slightly sativa in effect profile despite its Misty lineage, which traditionally skews indica. The terpene combination of Ocimene and Farnesene is relatively uncommon and contributes to its distinctly uplifting, energetic onset followed by a smooth, relaxing comedown — making it well-suited for daytime to early evening use. Consumers seeking creativity, social engagement, or stress relief without heavy sedation will find this strain particularly approachable.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 4,
+      "lift_up": 3,
+      "get_creative": 2,
+      "get_social": 2,
+      "pain_body": 6,
+      "just_happy": 3,
+      "aphrodisiac": 3
+    }
+  },
+  "5bcaf1fdea9a": {
+    "lineage": "Atlas Star × Cotton Candy (Dizgo); Atlas Star is believed to carry Northern Lights and Haze genetics, while Cotton Candy descends from Power Plant × Lavender, contributing sweet, candy-forward terpene expression",
+    "therapeutic": "Insomnia, anxiety, chronic stress, mild pain relief, muscle tension, mood elevation, appetite stimulation",
+    "negative": "Dry mouth, dry eyes, potential drowsiness or couch-lock especially at higher doses, mild dizziness in low-tolerance users, not recommended before tasks requiring sharp mental alertness",
+    "aroma": "A lush wave of sweet citrus zest opens the nose, quickly giving way to warm, doughy cookie undertones and a sugary candy finish reminiscent of fruit-flavored confections. Earthy, spicy base notes from Caryophyllene add subtle depth and grounding complexity beneath the sweetness.",
+    "misc": "Dizgo produces these as mini pre-rolls designed for accessible, on-the-go sessions at 0.33g each, ideal for moderate consumers or those microdosing their evening routine. As an indica-leaning hybrid, Top Gun is best suited for late afternoon or nighttime use, where its calming and sleepy effects can fully unwind the body and mind. The Myrcene-dominant terpene profile reinforces the sedative lean, making this a solid choice for consumers seeking relaxation and sleep support without an overwhelming psychedelic headspace.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 4,
+      "lift_up": 6,
+      "get_creative": 2,
+      "get_social": 5,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
+  },
+  "82c3fbd4d5ce": {
+    "lineage": "Likely a proprietary or house hybrid from Dizgo, possibly derived from crosses within the OG/Kush and sweet fruity lineage families; specific parentage not publicly disclosed — marketed as an original 'drift' cultivar by the Dizgo brand",
+    "therapeutic": "Stress relief, anxiety reduction, mild insomnia, muscle tension, mood elevation, chronic fatigue, mild pain management",
+    "negative": "Dry mouth, dry eyes, potential sedation at higher doses, mild couch-lock as the body high deepens, may cause grogginess if used before sleep for light consumers",
+    "aroma": "Orion opens with a bright, candy-sweet fruitiness underscored by fresh alpine pine, drifting into soft floral and herbal whispers courtesy of linalool and bisabolol — finishing with a subtle earthy musk that grounds the entire bouquet.",
+    "misc": "Dizgo is a brand known for approachable, lifestyle-forward cannabis products; Orion's terpene profile — led by myrcene and linalool with ocimene and farnesene adding floral-fruity lift — suggests a THC range likely in the 20–26% window typical for polished hybrid pre-rolls. Best consumed in the late afternoon or evening when the expansive euphoric onset can gracefully transition into relaxed, unhurried body ease. Ideal for consumers seeking a smooth, well-rounded hybrid experience without aggressive sedation or overwhelming cerebral intensity.",
+    "mood_ratings": {
+      "wind_down": 9,
+      "anxiety_relief": 7,
+      "lift_up": 3,
+      "get_creative": 5,
+      "get_social": 2,
+      "pain_body": 5,
+      "just_happy": 4,
+      "aphrodisiac": 4
+    }
+  },
+  "5480132b60c3": {
+    "lineage": "Amnesia Haze x Lemon Skunk x Sin Tra Dos (likely Amnesia x Lemon x [Sin Tra Dos hybrid background]); F1 hybrid developed by Dizgo, suggesting a first-generation cross bred for consistency and vigor",
+    "therapeutic": "Stress relief, mild anxiety, depression, fatigue, mood elevation, social anxiety",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, potential dizziness for low-tolerance users",
+    "aroma": "A bright and zesty burst of citrus lemon dominates the nose, undercut by a damp earthiness and sharp pine resin. Spicy peppery undertones emerge on the exhale, giving the overall scent a complex, herbaceous depth.",
+    "misc": "Hyperion F1 by Dizgo is a deliberately bred first-generation hybrid, leveraging the uplifting, cerebral sativa energy of Amnesia Haze lineage balanced by the grounding influence of Sin Tra Dos. THC content on similar Dizgo F1 cuts typically ranges between 20-26%. Best suited for daytime to early evening use when socializing, creative work, or mood enhancement is desired; the 0.5g pre-roll format makes it ideal for microdosing the experience before committing to a full session.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 4,
+      "lift_up": 3,
+      "get_creative": 7,
+      "get_social": 3,
+      "pain_body": 5,
+      "just_happy": 4,
+      "aphrodisiac": 3
+    }
   }
 }
