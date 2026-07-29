@@ -2174,5 +2174,56 @@
       "just_happy": 4,
       "aphrodisiac": 3
     }
+  },
+  "36274ec423f9": {
+    "lineage": "Chem Dog Funk x Auto Varin Lime Sour (Campfire Cannabis)",
+    "therapeutic": "Stress relief, anxiety reduction, muscle tension, mild pain management, mood elevation, fatigue",
+    "negative": "Dry mouth, dry eyes, possible paranoia or anxiety at high doses, couch-lock with heavy consumption, not recommended for low-tolerance consumers",
+    "aroma": "An assertive wave of diesel fuel and damp earth hits first, followed by a pungent barnyard musk that gives way to a sharp, sour citrus edge reminiscent of burnt rubber and lime zest. The overall profile is bold, funky, and deeply gassy with a lingering earthy finish that clings to the palate.",
+    "misc": "Bred by Campfire Cannabis, Barnyard High Test is a high-potency hybrid sitting at 22% THC, making it best suited for experienced consumers comfortable with strong, fast-acting effects. The dominant terpene stack of Myrcene, Caryophyllene, and Limonene drives its relaxing yet euphoric character, while Ocimene and Nerolidol add subtle floral and woody depth to the funk-forward base. Best consumed in the evening or on a low-commitment afternoon, this strain is ideal for unwinding after physical exertion or for those seeking a deeply grounding, unbothered headspace without full sedation.",
+    "mood_ratings": {
+      "wind_down": 9,
+      "anxiety_relief": 7,
+      "lift_up": 4,
+      "get_creative": 6,
+      "get_social": 3,
+      "pain_body": 5,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
+  },
+  "98a681e686c1": {
+    "lineage": "Chem's Sister x Sour Dubb x Chocolate Diesel (Original Glue / GG4, bred by GG Strains LLC, originally created by Joesy Whales and Lone Watie)",
+    "therapeutic": "Insomnia, chronic pain, muscle tension, stress, anxiety, appetite loss, depression",
+    "negative": "Dry mouth, dry eyes, couch-lock at high doses, potential dizziness or paranoia in low-tolerance users, heavy sedation may impair productivity",
+    "aroma": "A pungent blast of chemical diesel and sour earthiness opens immediately, giving way to rich undertones of dark roasted coffee, mocha, and a whisper of sweet pine that lingers on the exhale.",
+    "misc": "GG4 is one of the most decorated strains in modern cannabis, winning multiple Cannabis Cup titles and becoming a benchmark hybrid worldwide; Campfire Cannabis's 19.7% THC expression is consistent with typical GG4 phenotypes which range from 18–25% THC. The fluffy olive-green buds are characteristic of the strain — dense trichome coverage gives them a frosted, almost white appearance with rust-colored pistils. This is a firmly evening or nighttime strain best suited for winding down, managing pain before bed, or deep relaxation; novice consumers should start slow as the effects build gradually and can become intensely sedative.",
+    "mood_ratings": {
+      "wind_down": 9,
+      "anxiety_relief": 7,
+      "lift_up": 4,
+      "get_creative": 6,
+      "get_social": 3,
+      "pain_body": 5,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
+  },
+  "37ed2df9ba3b": {
+    "lineage": "Kush Mintz x Alien Cookies (Alien Labs x Capulator collaboration; Kush Mintz itself is Animal Mints x Bubba Kush, bred by Seed Junky Genetics; Alien Cookies by Alien Labs)",
+    "therapeutic": "Stress relief, anxiety reduction, mild depression, appetite stimulation, muscle tension, chronic pain, fatigue, social anxiety",
+    "negative": "Dry mouth, dry eyes, possible paranoia or anxiety at high doses in THC-sensitive users, mild dizziness, overconsumption may lead to couch-lock despite active-leaning profile",
+    "aroma": "Cap Junky opens with a sharp blast of fresh spearmint and cool menthol layered over pungent gassy diesel, with a subtle backbone of sweet pine resin and earthy Kush funk that deepens as the flower warms. Floral whispers of lavender and bisabolol soften the edges, creating a complex, multi-dimensional nose that is simultaneously refreshing and dank.",
+    "misc": "Cap Junky was popularized through Capulator (breeder of MAC strains) and Alien Labs, earning significant buzz in connoisseur circles for its elite terpene complexity and consistent high-potency output typically ranging from 24–30% THC. Campfire Cannabis presents this as a pre-roll showcasing dense, resin-caked forest-green buds with vivid orange pistils and a thick blanket of milky-to-amber trichomes indicative of peak harvest timing. Best suited for late afternoon or early evening use when you want an energetic social uplift that gradually transitions into calm body relaxation without full sedation; novice consumers should approach this 26% THC offering with caution and low initial puffing.",
+    "mood_ratings": {
+      "wind_down": 9,
+      "anxiety_relief": 7,
+      "lift_up": 4,
+      "get_creative": 6,
+      "get_social": 3,
+      "pain_body": 5,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
   }
 }
