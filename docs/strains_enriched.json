@@ -2361,5 +2361,39 @@
       "just_happy": 3,
       "aphrodisiac": 2
     }
+  },
+  "9bb53aea5568": {
+    "lineage": "CBG-dominant formula with THC blend; not a traditional flower strain — this is a formulated vape/gummy product by Minny Grown using CBG isolate or broad-spectrum CBG extract paired with THC distillate. No traditional genetic lineage applies.",
+    "therapeutic": "Stress relief, mild anxiety reduction, mental clarity, mood elevation, focus support, mild pain management, inflammation reduction (CBG is noted for anti-inflammatory properties)",
+    "negative": "Dry mouth, mild dizziness at higher doses, potential mild anxiety if THC sensitivity is present, not recommended for first-time users unfamiliar with THC+CBG combinations without starting low",
+    "aroma": "Given the 'Peach of a Day' branding, this product likely carries a bright, sun-ripened peach aroma with sweet fruity top notes and a light floral undertone. The CBG base contributes a subtly earthy, herbal backdrop that grounds the overall sensory profile.",
+    "misc": "Minny Grown is a Minnesota-based cannabis brand known for accessible, wellness-forward products. Each unit delivers 5mg THC + 2.5mg CBG, a beginner-to-intermediate dose ideal for daytime use given the uplifting effect profile. CBG (cannabigerol) is often called the 'mother cannabinoid' and is prized for promoting focus and calm without sedation, making this a strong choice for functional daytime consumers.",
+    "mood_ratings": {
+      "wind_down": 3,
+      "anxiety_relief": 3,
+      "lift_up": 3,
+      "get_creative": 3,
+      "get_social": 3,
+      "pain_body": 3,
+      "just_happy": 3,
+      "aphrodisiac": 3
+    }
+  },
+  "e17dca802bff": {
+    "lineage": "N/A — This is a rolling paper product, not a cannabis strain. Blazy Susan 1 1/4 Cones are pre-rolled paper cones, not a flower, concentrate, or infused product.",
+    "therapeutic": "N/A — No cannabinoids present. This is a rolling accessory only.",
+    "negative": "No cannabis-related side effects. Users should be aware that all rolling papers produce combustion byproducts when burned; those with respiratory sensitivities should use caution when smoking anything.",
+    "aroma": "These cones are unflavored and unbleached, made from pink-dyed natural paper, imparting virtually no detectable aroma of their own. The slow-burn formula is designed to be neutral so it does not interfere with the natural terpene profile of whatever cannabis is packed inside.",
+    "misc": "Blazy Susan is a well-known smoking accessories brand recognized for their signature pink rolling papers and cones. The 1 1/4 size is a standard cone format fitting approximately 0.75–1g of ground cannabis, and the 6-pack is ideal for casual consumers or sampling. This product was miscategorized as a vape — it is a pre-rolled cone accessory. Consumers should pair these with their preferred strain for the full experience.",
+    "mood_ratings": {
+      "wind_down": 1,
+      "anxiety_relief": 1,
+      "lift_up": 1,
+      "get_creative": 1,
+      "get_social": 1,
+      "pain_body": 1,
+      "just_happy": 1,
+      "aphrodisiac": 1
+    }
   }
 }
