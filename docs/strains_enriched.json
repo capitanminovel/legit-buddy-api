@@ -2429,5 +2429,39 @@
       "just_happy": 5,
       "aphrodisiac": 4
     }
+  },
+  "a8168fbccf54": {
+    "lineage": "Animal Mints x Kush Mints (The Soap lineage; original breeding attributed to Seed Junky Genetics, with The Soap popularized through Cookies Fam circles)",
+    "therapeutic": "Stress relief, anxiety reduction, mood elevation, mild pain management, fatigue, creative blocks, low-grade depression",
+    "negative": "Dry mouth, dry eyes, possible anxiety or paranoia at high doses, mild dizziness in low-tolerance users, overconsumption may cause restlessness due to sativa-leaning profile",
+    "aroma": "A sharp, fuel-forward mintiness opens first, followed by a bright burst of sour citrus and sweet pine resin, with a lingering undercurrent of spicy cheese and earthy diesel that gives the nose a complex, almost soapy-clean finish. The overall character is pungent and invigorating, with a cool herbal lift reminiscent of fresh spearmint and lemon zest.",
+    "misc": "The Soap is a well-regarded hybrid bred from two powerhouse Kush-lineage strains, Animal Mints and Kush Mints, both originating from Seed Junky Genetics, making it a terpene-rich, resin-heavy cultivar that typically tests between 20-26% THC. Campfire Cannabis presents this as an oversized, visually striking flower with mint-green buds, vivid orange pistils, and a dense golden-white trichome blanket indicative of excellent resin production. Best consumed during morning to early afternoon hours given its energetic, focus-enhancing sativa lean — ideal for creative projects, social settings, or active daytime use; novice consumers should start slow given the 22.1% THC potency.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 7,
+      "lift_up": 5,
+      "get_creative": 3,
+      "get_social": 4,
+      "pain_body": 5,
+      "just_happy": 6,
+      "aphrodisiac": 6
+    }
+  },
+  "683ea2f806a4": {
+    "lineage": "Hi-Octane phenotype (Purple Octane) — Hi-Octane is derived from OG Kush Breath x High Octane OG, with Purple Octane being a select phenotype expressing strong anthocyanin pigmentation and deep indica characteristics; bred/selected by Campfire Cannabis",
+    "therapeutic": "Insomnia, chronic pain, muscle tension, anxiety, stress relief, appetite stimulation, headaches, depression",
+    "negative": "Dry mouth, dry eyes, couch-lock at higher doses, potential dizziness or paranoia in THC-sensitive users, heavy sedation may impair productivity — not recommended for daytime use or new consumers",
+    "aroma": "A bold and intoxicating nose opens with sweet grape wine and ripe dark berries before giving way to a sharp, fuel-driven diesel kick layered with cracked black pepper and earthy, floral undertones. The finish is savory-sweet and lingers with a frosty, almost spiced complexity that reflects its rich terpene stack.",
+    "misc": "Purple Octane is a potent indica-dominant phenotype selected from the Hi-Octane lineage, featuring dense forest-green buds heavily washed in deep purple hues, vivid orange pistils, and a thick blanket of frosted trichomes indicative of its high resin production. At 23.2% THC, it sits in a strong consumer range best suited for experienced users seeking powerful evening or nighttime relief. Its terpene profile — led by Myrcene, Caryophyllene, and Linalool — drives the sedative, body-heavy experience, making this pre-roll an excellent choice for unwinding after demanding days or combating sleep difficulties.",
+    "mood_ratings": {
+      "wind_down": 9,
+      "anxiety_relief": 7,
+      "lift_up": 4,
+      "get_creative": 3,
+      "get_social": 3,
+      "pain_body": 6,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
   }
 }
