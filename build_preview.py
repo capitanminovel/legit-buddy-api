@@ -141,14 +141,13 @@ def build():
         new_cards = "".join(build_card(p, k) for k, p in new_items)
         n = len(new_items)
         new_section = f"""
-    <section class="section new-arrivals-section" data-cat="all">
+    <section class="new-arrivals-section hidden" data-cat="new-arrivals">
       <div class="new-arrivals-head">
         <span class="new-arrivals-title">✨ New in the Last 3 Days</span>
         <span class="new-arrivals-count" data-total="{n}">{n} product{"s" if n!=1 else ""}</span>
       </div>
       <div class="grid">{new_cards}</div>
-    </section>
-    <div class="section-divider" data-cat="all"></div>"""
+    </section>"""
 
     sold_items = sorted(
         [(k, p) for k, p in db["products"].items()
@@ -175,16 +174,19 @@ def build():
         rows = "".join(sold_row(p) for _, p in sold_items)
         n = len(sold_items)
         sold_section = f"""
-    <section class="sold-section" data-cat="all">
+    <section class="sold-section hidden" data-cat="sold-out">
       <div class="sold-head">
         <span class="sold-title">🚫 Sold Out — Last 2 Days</span>
-        <span class="sold-count">{n} item{"s" if n!=1 else ""}</span>
+        <span class="sold-count" data-total="{n}">{n} item{"s" if n!=1 else ""}</span>
       </div>
       <div class="sold-list">{rows}</div>
-    </section>
-    <div class="section-divider" data-cat="all"></div>"""
+    </section>"""
 
     tab_btns = '<button class="tab on" data-cat="all" onclick="filterCat(this)">All Products</button>\n'
+    if new_items:
+        tab_btns += '<button class="tab" data-cat="new-arrivals" onclick="filterCat(this)">✨ New Arrivals</button>\n'
+    if sold_items:
+        tab_btns += '<button class="tab" data-cat="sold-out" onclick="filterCat(this)">🚫 Sold Out</button>\n'
     tab_btns += "\n".join(
         f'<button class="tab" data-cat="{c.lower()}" onclick="filterCat(this)">{cat_icon(c)} {c}</button>'
         for c in sorted(cats)
@@ -342,7 +344,6 @@ def build():
     .sold-strain{{font-size:.65rem;padding:2px 6px}}
     .sold-thc{{font-size:.75rem;color:#92400e;font-weight:600;background:#fde68a;padding:2px 7px;border-radius:10px}}
     .sold-when{{margin-left:auto;font-size:.75rem;color:#b45309;font-weight:700;white-space:nowrap}}
-    .section-divider{{height:2px;background:linear-gradient(90deg,var(--brand-lt),transparent);margin:0 0 36px;border-radius:1px}}
     .hidden{{display:none!important}}
 
     /* ── Mood / Effect filter bar ── */
@@ -781,9 +782,13 @@ function applyFilters() {{
   document.querySelectorAll('.card').forEach(card => {{
     const key = card.dataset.key;
 
-    // Category check
-    const section = card.closest('.section');
-    const catOk = activeCat === 'all' || (section && section.dataset.cat === activeCat);
+    // Category check — new-arrivals cards are duplicates of cards already
+    // shown in their real category section, so they only count under their
+    // own "New Arrivals" tab, never lumped into "All Products".
+    const section = card.closest('.section, .new-arrivals-section');
+    const catOk = activeCat === 'all'
+      ? !!card.closest('.section')
+      : (section && section.dataset.cat === activeCat);
 
     // Strain type check
     const typeOk = !activeType || (card.dataset.strain || '') === activeType;
@@ -876,15 +881,24 @@ function applyFilters() {{
     }}
   }});
 
-  // Divider + new-arrivals + sold-out sections (all-only)
-  document.querySelectorAll('.section-divider').forEach(d => {{
-    d.classList.toggle('hidden', activeCat !== 'all');
-  }});
+  // New Arrivals + Sold Out — each is its own tab now, not shown under All Products
+  const newSec = document.querySelector('.new-arrivals-section');
+  if (newSec) {{
+    newSec.classList.toggle('hidden', activeCat !== 'new-arrivals');
+    const vis = newSec.querySelectorAll('.card:not(.hidden)').length;
+    const countEl = newSec.querySelector('[data-total]');
+    if (countEl) {{
+      const total = countEl.dataset.total;
+      countEl.textContent = mood
+        ? `${{vis}} / ${{total}} matching`
+        : `${{total}} product${{total == 1 ? '' : 's'}}`;
+    }}
+  }}
   const soldSec = document.querySelector('.sold-section');
-  if (soldSec) soldSec.classList.toggle('hidden', activeCat !== 'all');
+  if (soldSec) soldSec.classList.toggle('hidden', activeCat !== 'sold-out');
 
-  // Show "no results" message
-  document.getElementById('moodZero').classList.toggle('hidden', totalVisible > 0);
+  // Show "no results" message (Sold Out has no .card elements, so it never counts here)
+  document.getElementById('moodZero').classList.toggle('hidden', totalVisible > 0 || activeCat === 'sold-out');
 
   // Update status bar
   const statusEl = document.getElementById('moodStatus');
@@ -1010,7 +1024,7 @@ function openStaffGuide() {{
       <div class="sg-guide-section-title">📱 Using the Menu</div>
       <div class="sg-guide-card">
         <div class="sg-guide-card-head"><span class="sg-guide-card-icon">🗂️</span><span class="sg-guide-card-name">Category Tabs</span></div>
-        <div class="sg-guide-card-body">Tap <strong>Flower · Pre-Roll · Vapes · Edibles</strong> at the top to filter by type. Products added in the last 3 days appear in the <strong>✨ New</strong> section automatically.</div>
+        <div class="sg-guide-card-body">Tap <strong>Flower · Pre-Roll · Vapes · Edibles</strong> at the top to filter by type. Products added in the last 3 days show up under the <strong>✨ New Arrivals</strong> tab automatically.</div>
       </div>
       <div class="sg-guide-card">
         <div class="sg-guide-card-head"><span class="sg-guide-card-icon">🔍</span><span class="sg-guide-card-name">Search</span></div>
@@ -1215,7 +1229,7 @@ document.addEventListener('DOMContentLoaded', function() {{
         total += parseInt(el.dataset.total, 10) || 0;
       }});
     }} else {{
-      var section = document.querySelector('.section[data-cat="' + cat + '"]');
+      var section = document.querySelector('main [data-cat="' + cat + '"]');
       if (!section) return;
       var countEl = section.querySelector('[data-total]');
       if (!countEl) return;
