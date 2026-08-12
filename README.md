@@ -13,10 +13,10 @@ A fully automated cannabis menu for MN Legit Cannabis (South Metro). Several tim
 ## For Staff: Using the Menu Page
 
 ### Browsing Products
-- Use the **category tabs** (Flower · Pre-Roll · Vapes · Edibles) to filter by type.
+- Use the **tabs** (All Products · New Arrivals · Sold Out · Flower · Pre-Roll · Vapes · Edibles) to filter by type.
 - Tap any product card to open its **Strain Guide** — lineage, therapeutic uses, aroma, terpenes, and misc notes.
-- The **✨ New in the Last 3 Days** section at the top highlights recently added inventory.
-- The **🚫 Sold Out** section shows what left the menu in the last 2 days.
+- The **✨ New Arrivals** tab shows inventory added in the last 3 days.
+- The **🚫 Sold Out** tab shows what left the menu in the last 2 days.
 - Use the **Type** chips (All / Indica / Sativa / Hybrid) to filter by strain type.
 
 ### Mood Filter ("Find Your Vibe")

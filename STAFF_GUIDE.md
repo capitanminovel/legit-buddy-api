@@ -14,7 +14,7 @@ This is the internal menu and strain reference tool for MN Legit Cannabis (South
 
 ### Finding Products
 
-At the top of the page you'll see category tabs — **Flower, Pre-Roll, Vapes, Edibles**. Tap any tab to filter down to just that category. Any products added in the last 3 days appear in a highlighted **New** section at the top, and products that sold out in the last 2 days appear in a **Sold Out** section. Use the **Type** chips (All / Indica / Sativa / Hybrid) to filter by strain type.
+At the top of the page you'll see tabs — **All Products, New Arrivals, Sold Out, Flower, Pre-Roll, Vapes, Edibles**. Tap any tab to filter down to just that set. **New Arrivals** shows products added in the last 3 days; **Sold Out** shows products that sold out in the last 2 days. Use the **Type** chips (All / Indica / Sativa / Hybrid) to filter by strain type.
 
 Tap any product card to open its full strain profile — lineage, therapeutic uses, aroma, terpenes, and general notes.
 
