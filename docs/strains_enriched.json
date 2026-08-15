@@ -2480,5 +2480,22 @@
       "just_happy": 6,
       "aphrodisiac": 5
     }
+  },
+  "9c3f0baab696": {
+    "lineage": "This is a flavored cannabis vape/edible product (Kiwi Watermelon flavored gummies) by Minny Grown — no specific strain lineage applies. The formulation features a THC + CBC (cannabichromene) blend rather than a named cultivar.",
+    "therapeutic": "Mild stress relief, mood elevation, minor inflammation support (CBC has noted anti-inflammatory properties), anxiety management at low doses, general wellness microdosing",
+    "negative": "Dry mouth, possible mild dizziness in THC-sensitive users, CBC may cause drowsiness in some individuals, not recommended for those with low THC tolerance without physician guidance, avoid if pregnant or nursing",
+    "aroma": "As a gummy product, expect a bright, candy-forward scent of sweet tropical kiwi layered with juicy watermelon — reminiscent of a summer fruit punch. The aroma is clean, artificial-fruit sweet with no notable cannabis odor.",
+    "misc": "Minny Grown is a Minnesota-based cannabis brand focused on accessible, compliant hemp-derived products. At 5mg THC per gummy, this is a beginner-to-intermediate dose ideal for microdosing or casual social use — new consumers should start with half a gummy. The inclusion of CBC (cannabichromene) at 2.5mg per piece adds a minor entourage effect component, with research suggesting CBC may amplify mood-enhancing and anti-inflammatory properties of THC without intoxicating effects on its own.",
+    "mood_ratings": {
+      "wind_down": 3,
+      "anxiety_relief": 3,
+      "lift_up": 3,
+      "get_creative": 2,
+      "get_social": 2,
+      "pain_body": 3,
+      "just_happy": 3,
+      "aphrodisiac": 2
+    }
   }
 }
