@@ -2514,5 +2514,39 @@
       "just_happy": 5,
       "aphrodisiac": 4
     }
+  },
+  "c317a8353f11": {
+    "lineage": "Gelato phenotype (Sativa-leaning cut) — Gelato itself is Sunset Sherbet x Thin Mint Girl Scout Cookies (Cookie Fam Genetics / Sherbinski)",
+    "therapeutic": "Stress relief, depression, fatigue, mood elevation, mild anxiety, appetite stimulation, low-grade pain management",
+    "negative": "Dry mouth, dry eyes, mild paranoia or racing thoughts at high doses (especially for THC-sensitive consumers), potential headache with overconsumption",
+    "aroma": "A richly inviting bouquet of ripe guava and tropical citrus rises first, layered over a creamy, sweet berry base reminiscent of fresh sherbet. Underneath the fruit-forward sweetness lurks a subtle gassy diesel edge and faint spice that adds depth and complexity to the exhale.",
+    "misc": "Guava is a sativa-expressing phenotype of the legendary Gelato line, preserved and cultivated by Campfire Cannabis, carrying that lineage's signature trichome density and bag appeal in heart-shaped, frosty olive-green buds laced with vivid orange pistils. At 28.8% THC this is a potent offering best suited for experienced consumers, ideal for daytime or early-evening social settings where focus and uplifted energy are desired. Novice users should start with one small puff and wait due to the high THC content and gradually building euphoric onset.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 7,
+      "lift_up": 5,
+      "get_creative": 3,
+      "get_social": 4,
+      "pain_body": 5,
+      "just_happy": 6,
+      "aphrodisiac": 6
+    }
+  },
+  "3d870e458d1a": {
+    "lineage": "MAC (Miracle Alien Cookies) x Grape Stomper (Chemdawg Sour Diesel x Purple Elephant) — MAC bred by Capulator; MAC Stomper cross attributed to independent breeders within the craft cannabis community",
+    "therapeutic": "Insomnia, stress relief, anxiety, chronic pain, muscle tension, depression, appetite stimulation",
+    "negative": "Dry mouth, dry eyes, potential dizziness at higher doses, possible couch-lock, may be too sedating for daytime use or low-tolerance consumers",
+    "aroma": "A lush, grape-forward bouquet opens with ripe purple fruit and spicy berry notes, layered beneath a bright squeeze of sour lemon and a subtle floral sweetness reminiscent of lavender. Earthy, piney undertones ground the aroma with a light resinous depth that lingers pleasantly after the jar is opened.",
+    "misc": "MAC Stomper combines the exotic, creamy genetics of Capulator's celebrated MAC with the bold grape and berry profile of Grape Stomper, resulting in a visually striking cultivar with rounded olive-green buds accented by deep purple hues, vivid orange pistils, and a heavy coating of purple-tinted trichomes suggesting strong resin production. At 22.2% THC, this is a moderately potent hybrid that leans indica in effect progression — beginning with a mood-lifting euphoric onset before settling into deep, tranquil physical relaxation, making it best suited for evening or nighttime use. Consumers new to indica-leaning hybrids should start slow, as the creeping body effect can intensify and lead to sleepiness, while experienced users will appreciate its well-rounded flavor complexity and stress-dissolving qualities.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 8,
+      "lift_up": 5,
+      "get_creative": 4,
+      "get_social": 4,
+      "pain_body": 3,
+      "just_happy": 7,
+      "aphrodisiac": 6
+    }
   }
 }
