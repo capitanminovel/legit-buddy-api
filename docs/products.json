@@ -95,7 +95,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1776125748_1967fee6-b134-46df-be58-112f3ed44b4f.jpg",
       "description": "Cap Junky is a high-potency cross of Kush Mintz x Alien Cookies, delivering a powerful yet balanced hybrid experience. Fast-acting and intense, this strain opens with an uplifting cerebral rush before settling into a smooth, full-body relaxation that stays active rather than overly sedating.\n\nThe flavor blends sweet fruit with cool menthol and floral notes, while the aroma carries fresh mint, pine, and gassy diesel undertones.\n\nDense forest-green buds feature bright orange hairs and a thick coating of milky amber trichomes, showcasing its premium potency.",
       "first_seen": "2026-05-21T08:52:30.945545-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "c7bc9b6b18c2": {
       "name": "Fight Club",
@@ -275,14 +275,14 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1786403079_61172c6e-dc0a-46e4-8e91-cf8671df296f.png",
       "description": "The Soap is a vibrant cross of Animal Mints x Kush Mints, delivering bold flavor with an energetic, mood-lifting experience. This sativa-leaning hybrid hits quickly, offering an uplifting headspace paired with light, stimulating body effects.\n\nIts terpene profile blends sour citrus and sweet woody pine with hints of spicy cheese and pungent diesel. The aroma carries a sharp, minty-fuel character with a bright citrus edge.\n\nOversized mint-green buds feature orange hairs and a thick coating of golden-white trichomes.",
       "first_seen": "2026-05-21T08:52:30.945545-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "1ff4b7efe819": {
       "name": "Purple Octane",
       "brand": "Campfire Cannabis",
       "category": "flower",
       "strain_type": "Hybrid (Indica)",
-      "thc": "",
+      "thc": "23.2%",
       "cbd": "",
       "cbg": "",
       "cbn": "",
@@ -322,7 +322,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1773943932_5dac97fa-c50f-4d32-93a3-c8dfb3ecf6f7.jpg",
       "description": "Purple Octane is a potent phenotype of Hi-Octane, delivering rich flavor with deep indica-driven effects. This strain builds gradually, beginning with a lifted, euphoric headspace before settling into a heavy, full-body relaxation.\n\nIts terpene profile blends sweet grape wine with spicy diesel and peppery undertones, creating a bold, savory-sweet aroma. As the experience deepens, it leans calming and sleepy, making it ideal for evening use.\n\nDense forest-green buds showcase purple hues, orange hairs, and a thick coating of frosty trichomes.",
       "first_seen": "2026-08-04T21:42:43.306925-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "6ba39e627a58": {
       "name": "Egg Roll",
@@ -894,7 +894,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779114569_497c70f5-9901-4f96-a16e-d251d3ee1792.jpg",
       "description": "Girl Scout Cookies X Sherbet",
       "first_seen": "2026-08-04T21:42:43.306925-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "dbcb7ab15506": {
       "name": "Halle Berry",
@@ -3595,7 +3595,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1783781417_6fbcbe10-d976-4c4c-9af3-3bf6466eeb54.png",
       "description": "Blueberry x Haze",
       "first_seen": "2026-08-04T21:42:43.306925-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "6bba413e0823": {
       "name": "PR Frodo Squeeze",
@@ -3828,7 +3828,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1782752305_6b7a2945-cfe7-4665-a180-9aefe4629cce.jpg",
       "description": "(Amnesia S1 x Black Lime GMO) blended with a (Cherry Kush x [Lemon Tree/Papaya x GMO])",
       "first_seen": "2026-08-04T21:42:43.306925-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "9ab1ca36ee93": {
       "name": "PR Medusa 2pk (0.5 G ea)",
@@ -3864,7 +3864,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1780943941_12810ac6-d471-4ee1-87a9-fcf40ff92c78.png",
       "description": "Medusa, more commonly referred to as \u201cThe Nirvana Strain,\u201d is a hybrid of the cult favorite Misty strain with an unknown sativa to indica ratio. However, it is thought to be evenly balanced due to its powerful combination of sativa and indica effects that complement each other perfectly.",
       "first_seen": "2026-07-14T17:25:11.162828-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "18602e9414ae": {
       "name": "PR Fog Dog 3pk (1 G ea)",
@@ -4108,7 +4108,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1784141206_04ede23c-5078-40e0-b899-1bf10b2152e7.png",
       "description": "Blue Mammoth Auto x Blue Dream x Amnesia",
       "first_seen": "2026-07-16T14:03:28.511190-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "e60ddf03c0b8": {
       "name": "PR Alien Lights",
@@ -4264,7 +4264,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1784936301_9942f0bb-4867-48c9-a579-71fd4118e830.png",
       "description": "Hawaiian-Romulan \u00d7 Island Sweet Skunk\n\nGolden Goat offers bright tropical fruit and citrus layered with earthy herbs and sweet spice. provides a deep body relaxation, soothing stress relief and a calm grounded finish.",
       "first_seen": "2026-07-27T17:34:27.527824-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "ab5cd04e09ac": {
       "name": "Papaya Fuel",
@@ -4336,7 +4336,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1784936280_2fc1f2bf-1769-4e18-885a-466ce43995ef.png",
       "description": "Dosidos x Gelonade\n\nIllemonati is a sharp, elevated lemon-forward flavor with a refined balance of bright citrus and subtle sweetness. It opens with a bold, zesty lemon burst, then settles into a smooth, slightly creamy finish that feels polished, modern, and distinctly upscale.",
       "first_seen": "2026-07-27T17:34:27.527824-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "86b0436cfaed": {
       "name": "Orangade",
@@ -4371,7 +4371,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1784936246_914ef449-51f4-4848-bf15-c3206817b541.png",
       "description": "Tangie X Purple Punch\n\nOrangade is a crisp, sweet tangerine flavor that balances bright orange zest with a smooth, floral finish. It\u2019s refreshing and lively on the inhale, with a subtle creamy undertone that softens the citrus bite into a clean, polished profile.",
       "first_seen": "2026-07-27T17:34:27.527824-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "1c6f7ed4366a": {
       "name": "PR Wilfunk",
@@ -4408,7 +4408,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1784936140_3d1159fa-fa95-4d03-901a-eb9b52495631.png",
       "description": "GMO \u00d7 Jet Fuel \u00d7 Wilson\n\nWilfunk blends sweet lemon, berry and earthy flavors with uplifting, euphoric effects. This balanced hybrid delivers a cheerful head high and smooth body relaxation, perfect for daytime creativity or social sessions.",
       "first_seen": "2026-07-27T17:34:27.527824-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "767aca7b0b33": {
       "name": "PR Frosted Runtz 5pk (0.5 G ea)",
@@ -4520,7 +4520,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1784936066_b5b98131-f424-4693-85a6-d3edfa9de9cb.png",
       "description": "Hawaiian-Romulan \u00d7 Island Sweet Skunk\n\nGolden Goat offers bright tropical fruit and citrus layered with earthy herbs and sweet spice. provides a deep body relaxation, soothing stress relief and a calm grounded finish.",
       "first_seen": "2026-08-04T21:42:43.306925-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "41432d0e9df7": {
       "name": "Medusa",
@@ -4559,7 +4559,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1785259545_ab487fbd-25aa-4ef0-8007-76268298975f.avif",
       "description": "Misty strain with an unknown sativa to indica strain",
       "first_seen": "2026-07-28T10:44:07.918614-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "5bcaf1fdea9a": {
       "name": "PR Top Gun 3pk (0.33 G ea)",
@@ -4639,7 +4639,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1785259704_86691a93-22c1-40d2-ab08-ec4be8e30423.png",
       "description": "Orion is known as a \"drift\" strain. It leads with euphoric calm, balancing sweetness and strength for a deep, unhurried high that feels expansive rather than heavy. Orion is profiled as a balanced, uniform hybrid that marries uplifting mental- clarity with subsequent body-high tranquility.",
       "first_seen": "2026-08-04T21:42:43.306925-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "5480132b60c3": {
       "name": "PR Hyperion F1  2pk (0.5 G ea)",
@@ -4675,7 +4675,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1780943941_12810ac6-d471-4ee1-87a9-fcf40ff92c78.png",
       "description": "Amnesia, Lemon, and Sin Tra",
       "first_seen": "2026-07-28T10:44:07.918614-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "36274ec423f9": {
       "name": "PR Barnyard High Test",
@@ -4765,7 +4765,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1780242398_b6816263-5775-481c-9aad-e3bc3a5b318c.png",
       "description": "GG4, also known as Original Glue, is a potent cross of Chem\u00e2\u20ac\u2122s Sister x Sour Dubb x Chocolate Diesel. This indica-leaning hybrid is known for its heavy, full-body relaxation paired with a euphoric cerebral lift that builds gradually.\n\nIts terpene profile features bold chemical diesel notes layered with earthy mocha and subtle spice. As the effects deepen, they lean calming and sedative, making GG4 well-suited for evening use.\n\nFluffy olive-green buds showcase amber hairs and a thick coating of bright white trichomes.",
       "first_seen": "2026-07-29T14:13:32.550239-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "37ed2df9ba3b": {
       "name": "PR Cap Junky",
@@ -4853,7 +4853,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1785428310_efc9adeb-eaae-49eb-829c-592eac3ab886.jpg",
       "description": "Cotton Candy X Gravenstein OG strains",
       "first_seen": "2026-07-30T14:15:22.498418-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "771387d4f9c1": {
       "name": "Frodo Squeeze",
@@ -5000,7 +5000,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1780242398_b6816263-5775-481c-9aad-e3bc3a5b318c.png",
       "description": "Runtz is a balanced cross of Zkittlez x Gelato, celebrated for its candy-like flavor and smooth, full-bodied effects. This hybrid settles in shortly after inhale, offering a calming cerebral lift before easing into deep, soothing body relaxation.\n\nIts terpene profile bursts with tropical citrus, sour berries, and sweet pineapple, finished with a lightly pungent edge. The experience leans euphoric and tranquil, making it ideal for unwinding in the evening.\n\nDense olive-green buds feature purple undertones, orange hairs, and a frosty coating of crystal trichomes.",
       "first_seen": "2026-08-06T18:41:39.346312-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "9e75b0be3925": {
       "name": "PR Blue Dream 2pk (0.5 G ea)",
@@ -5045,7 +5045,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1780943941_12810ac6-d471-4ee1-87a9-fcf40ff92c78.png",
       "description": "Blueberry and Haze",
       "first_seen": "2026-08-07T13:53:17.369319-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "f02e0d58623d": {
       "name": "Sky High Watermelon",
@@ -5201,7 +5201,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1786372267_2d866728-1c5b-418c-bf55-f03418591da0.png",
       "description": "OG Kush Breath X Mendo Montage",
       "first_seen": "2026-08-11T14:00:30.224634-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "a8168fbccf54": {
       "name": "PR Soap",
@@ -5253,7 +5253,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1776546533_e9c72af9-a9e5-4dfb-9a19-3abf0c149a5b.png",
       "description": "The Soap is a vibrant cross of Animal Mints x Kush Mints, delivering bold flavor with an energetic, mood-lifting experience. This sativa-leaning hybrid hits quickly, offering an uplifting headspace paired with light, stimulating body effects.\n\nIts terpene profile blends sour citrus and sweet woody pine with hints of spicy cheese and pungent diesel. The aroma carries a sharp, minty-fuel character with a bright citrus edge.\n\nOversized mint-green buds feature orange hairs and a thick coating of golden-white trichomes.",
       "first_seen": "2026-08-12T14:01:43.166987-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "683ea2f806a4": {
       "name": "PR Purple Octane",
@@ -5300,7 +5300,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1776546533_e9c72af9-a9e5-4dfb-9a19-3abf0c149a5b.png",
       "description": "Purple Octane is a potent phenotype of Hi-Octane, delivering rich flavor with deep indica-driven effects. This strain builds gradually, beginning with a lifted, euphoric headspace before settling into a heavy, full-body relaxation.\n\nIts terpene profile blends sweet grape wine with spicy diesel and peppery undertones, creating a bold, savory-sweet aroma. As the experience deepens, it leans calming and sleepy, making it ideal for evening use.\n\nDense forest-green buds showcase purple hues, orange hairs, and a thick coating of frosty trichomes.",
       "first_seen": "2026-08-12T14:01:43.166987-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "555838c3db02": {
       "name": "Fuel Dog",
@@ -5342,7 +5342,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1786650118_b979786a-1d4f-437b-86ef-263d11f9982d.jpg",
       "description": "Chemdawg (Sour Diesel x OG Kush) x Fuel OG (Headband x Diesel)\n\nSativa dominant hybrid with a 70/30 mix.",
       "first_seen": "2026-08-13T17:11:52.577609-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "9c3f0baab696": {
       "name": "Kabetogama Kiwi Watermelon",
@@ -5406,7 +5406,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1786371795_4e31979d-b0b7-47de-817f-960ac2902d5c.png",
       "description": "Strain info: Blueberry Muffin & Pineapple Trainwreck\n\n\nThese mini pre-rolls are larger than your average mini at half a gram per pre-roll. They come in a glass jar, which is perfect for preserving your remaining pre-rolls after opening.",
       "first_seen": "2026-08-17T16:50:16.733276-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "c317a8353f11": {
       "name": "Guava",
@@ -5454,7 +5454,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1776125778_06a87b2d-edf3-4ecc-b9d0-dccc2668e295.jpg",
       "description": "Guava is a sativa-leaning phenotype of Gelato, known for its vibrant flavor and uplifting character. This strain builds gradually, delivering a bright wave of euphoria paired with sharp focus and enhanced sociability.\n\nIts terpene profile blends sweet, creamy berries with sour tropical citrus and ripe guava notes, finished with subtle hints of spice and light diesel. The aroma mirrors its sweet-and-sour fruit profile with a gassy edge.\n\nHeart-shaped olive-green buds feature bright orange hairs and a frosty coating of white trichomes.",
       "first_seen": "2026-08-18T13:28:26.709930-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "3d870e458d1a": {
       "name": "PR MAC Stomper",
@@ -5499,7 +5499,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1787065982_35b44c14-a42f-4712-a3b3-e88e865903bd.avif",
       "description": "MAC Stomper is a flavorful cross of MAC x Grape Stomper, delivering rich fruit notes with calming indica effects. This strain settles in gradually, lifting the mood before easing into deep physical relaxation that leans tranquil and sleep-friendly.\n\nIts terpene profile features fresh mixed berries, spicy grape, and hints of sour lemon, rounded out by floral and earthy undertones. The aroma carries a grape-forward richness with subtle spice.\n\nRounded olive-green buds display purple accents, orange hairs, and a frosty coating of purple-tinted trichomes.",
       "first_seen": "2026-08-18T13:28:26.709930-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "2e3e2768df4a": {
       "name": "PR Purple Ice Water",
@@ -5532,7 +5532,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1786648656_6bdf8454-6ac7-4e83-aecd-4edbe8706ec2.jpg",
       "description": "Ice Cream Cake \u00d7 Grape Cream Cake\n\nPurple Ice Water features frosty purple buds and rich dessert flavors. This indica-dominant hybrid delivers uplifting euphoria followed by deeply relaxing, sedative effects perfect for evening unwinding.",
       "first_seen": "2026-08-19T19:59:04.388801-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "537d8ef842f6": {
       "name": "Jokerz",
@@ -5618,7 +5618,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1787186598_01bb89bf-1344-4773-9f88-508bd2c2414b.png",
       "description": "Blackberry with an unknown indica, Dead Head OG, or OG Kush\n\nFrostberry Fuel is a rare, resin-heavy hybrid cannabis strain that combines sugary berry sweetness with sharp, caustic diesel and gas notes. It features dense, trichome-drenched buds and delivers a balanced effect that starts with a bright mental lift before settling into deep physical relaxation.",
       "first_seen": "2026-08-20T16:55:36.516836-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     },
     "af8f7bea7194": {
       "name": "PR Purple Lemonade 2 pk (0.5 G ea)",
@@ -5648,9 +5648,9 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1785259704_86691a93-22c1-40d2-ab08-ec4be8e30423.png",
       "description": "Unknown Purple X an unknown Citrus strain with Californian and Afghan lines\n\nPurple Lemonade is an ndica-dominant hybrid strain. Famous for its striking violet-purple buds, bright orange hairs, and sweet citrus-lemon flavor, it delivers an initial mood lift that transitions into deep body relaxation.",
       "first_seen": "2026-08-20T16:55:36.516836-06:00",
-      "last_seen": "2026-08-21T19:56:32.742262-06:00"
+      "last_seen": "2026-08-22T05:26:17.590317-06:00"
     }
   },
-  "last_updated": "2026-08-21T19:56:32.742383-06:00",
+  "last_updated": "2026-08-22T05:26:17.590450-06:00",
   "store": "South Metro"
 }
