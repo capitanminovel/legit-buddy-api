@@ -67,7 +67,11 @@ def build_card(p, key):
 
     thc_pill = f'<span class="potency-pill thc">THC {p["thc"]}</span>' if p.get("thc") else ""
     cbd_pill = f'<span class="potency-pill cbd">CBD {p["cbd"]}</span>' if p.get("cbd") else ""
-    potency  = f'<div class="potency-row">{thc_pill}{cbd_pill}</div>' if (thc_pill or cbd_pill) else ""
+    if p.get("coa_status") == "confirmed" and p.get("total_terpenes_pct"):
+        coa_pill = f'<span class="potency-pill coa" title="Total terpenes, lab-tested this batch">COA {p["total_terpenes_pct"]}</span>'
+    else:
+        coa_pill = '<span class="potency-pill coa-missing" title="No lab-tested terpene % on file for this batch">No COA</span>'
+    potency  = f'<div class="potency-row">{thc_pill}{cbd_pill}{coa_pill}</div>'
 
     terps  = "".join(f'<span class="terp">{t}</span>' for t in (p.get("terpenes") or [])[:4])
     terp_h = f'<div class="terp-row">{terps}</div>' if terps else ""
@@ -305,6 +309,7 @@ def build():
     .potency-row{{position:absolute;bottom:8px;right:8px;display:flex;gap:4px}}
     .potency-pill{{background:rgba(0,0,0,.65);color:#fff;font-size:.67rem;font-weight:600;padding:2px 6px;border-radius:4px}}
     .potency-pill.thc{{background:rgba(22,163,74,.85)}}.potency-pill.cbd{{background:rgba(37,99,235,.85)}}
+    .potency-pill.coa{{background:rgba(22,163,74,.55)}}.potency-pill.coa-missing{{background:rgba(120,120,120,.6)}}
     .card-body{{padding:14px 16px 16px;flex:1;display:flex;flex-direction:column;gap:6px}}
     .card-brand{{font-size:.73rem;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.4px}}
     .card-name{{font-size:1rem;font-weight:700;line-height:1.3;letter-spacing:-.01em;color:var(--text)}}
@@ -690,23 +695,18 @@ function derivedEffects(terpenes) {{
   return [...set];
 }}
 
-// Terpene position → concentration proxy (earlier in COA list = dominant)
-function terpenePositionScore(tx, moodTerpenes) {{
-  return moodTerpenes.reduce((sum, mt) => {{
-    const idx = tx.indexOf(mt);
-    if (idx === -1) return sum;
-    if (idx === 0)  return sum + 4.0;   // dominant terpene — very strong signal
-    if (idx <= 1)   return sum + 2.5;   // secondary
-    if (idx <= 3)   return sum + 1.5;   // tertiary
-    return sum + 0.75;                  // minor trace
-  }}, 0);
+// Presence-only fallback (used only when a Claude mood_ratings entry is
+// missing). Sweed's terpene list has no concentration order — earlier
+// position is NOT dominance — so this counts matches, it doesn't rank them.
+function terpenePresenceScore(tx, moodTerpenes) {{
+  return moodTerpenes.reduce((sum, mt) => sum + (tx.includes(mt) ? 2.5 : 0), 0);
 }}
 
 function moodScore(card, mood) {{
   if (!mood) return 0;
   const tx      = (card.dataset.terpenes || '').split(',').filter(Boolean);
   const derived = derivedEffects(tx);
-  const terpScore   = terpenePositionScore(tx, mood.terpenes);
+  const terpScore   = terpenePresenceScore(tx, mood.terpenes);
   const effectScore = mood.effects.filter(e => derived.includes(e)).length * 0.8;
   // Scale to 0-10 with realistic spread: max raw ~8-9 → caps at 10
   return Math.min(10, Math.round((terpScore + effectScore) * 10 / 9));
@@ -734,11 +734,15 @@ function buildSgCard(key) {{
 
   const tx      = p.terpenes || [];
   const derived = derivedEffects(tx);
+  const coaRow  = p.coa_status === 'confirmed' && p.total_terpenes_pct
+    ? `<div class="sg-row"><strong>COA:</strong> ✓ Confirmed — total terpenes ${{p.total_terpenes_pct}} this batch${{p.tac_pct ? ' · TAC ' + p.tac_pct : ''}}</div>`
+    : `<div class="sg-row"><strong>COA:</strong> No lab-tested terpene % on file for this batch — terpene names below may be a general strain reference, not confirmed for this specific batch.</div>`;
   const rows = [
     s.lineage    ? `<div class="sg-row"><strong>Lineage:</strong> ${{s.lineage}}</div>` : '',
     derived.length ? `<div class="sg-row"><strong>Effects</strong> <span style="font-size:10px;color:#888;font-weight:400">(from COA terpenes)</span><strong>:</strong> ${{fmtList(derived)}}</div>` : '',
     p.flavors?.length ? `<div class="sg-row"><strong>Flavors:</strong> ${{fmtList(p.flavors)}}</div>` : '',
     tx.length    ? `<div class="sg-row"><strong>Terpenes:</strong> ${{fmtList(tx)}}</div>` : '',
+    coaRow,
     s.therapeutic ? `<div class="sg-row"><strong>Therapeutic:</strong> ${{s.therapeutic}}</div>` : '',
     s.negative   ? `<div class="sg-row"><strong>Negative:</strong> ${{s.negative}}</div>` : '',
     s.aroma      ? `<div class="sg-row"><strong>Aroma:</strong> ${{s.aroma}}</div>` : '',
@@ -1075,16 +1079,9 @@ function openStaffGuide() {{
     <div class="sg-guide-section">
       <div class="sg-guide-section-title">🎯 How Mood Scores Are Calculated</div>
       <div class="sg-guide-card">
-        <div class="sg-guide-card-body">Scores are <strong>position-weighted</strong> — terpene order on the COA reflects concentration (highest first). The dominant terpene contributes far more than a trace one:<br><br>
-          <table class="sg-guide-table">
-            <tr><th>COA Position</th><th>Points</th></tr>
-            <tr><td>1st (dominant)</td><td>4.0 pts</td></tr>
-            <tr><td>2nd</td><td>2.5 pts</td></tr>
-            <tr><td>3rd</td><td>1.5 pts</td></tr>
-            <tr><td>4th+ (minor)</td><td>0.75 pts</td></tr>
-          </table><br>
-          Example — <strong>Pain &amp; Body</strong>: Caryophyllene is the only terpene proven to activate CB2 receptors (pain/inflammation). Listed 1st → likely scores 7–8. Listed 3rd → scores 4–5. Absent → max 5 regardless of other terpenes.<br><br>
-          <em>Claude AI provides its own 1–10 rating using this same logic plus its knowledge of each strain. When Claude ratings exist, they take priority over the formula.</em>
+        <div class="sg-guide-card-body">Scores are <strong>presence-based</strong> — each mood has a set of terpenes that matter, and the score reflects how many of them are on the COA. Sweed reports terpenes as a detected/not-detected list, not a ranked-by-concentration one, so <strong>list order carries no meaning</strong> and is never used as a signal.<br><br>
+          Example — <strong>Pain &amp; Body</strong>: Caryophyllene is the only terpene proven to activate CB2 receptors (pain/inflammation). Present with 2 supporting terpenes (Myrcene, Humulene) → scores high. Present alone → mid-range. Absent → max 5 regardless of other terpenes.<br><br>
+          <em>Claude AI provides its own 1–10 rating using this same presence-based logic plus its knowledge of each strain. When Claude ratings exist, they take priority over the on-page fallback formula (which only runs for a strain Claude hasn't rated yet).</em>
         </div>
       </div>
     </div>

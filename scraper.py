@@ -176,6 +176,7 @@ def _normalize_sweed_product(raw: dict) -> dict | None:
 
     variants    = raw.get("variants") or []
     thc = cbd   = ""
+    total_terpenes_pct = tac_pct = ""
     price = weight = ""
     price_tiers: dict = {}
     in_stock    = False
@@ -194,6 +195,12 @@ def _normalize_sweed_product(raw: dict) -> dict | None:
             thc = _pct(str(lab["thc"]["value"][0]))
         if not cbd and (lab.get("cbd") or {}).get("value"):
             cbd = _pct(str(lab["cbd"]["value"][0]))
+        # Aggregate COA values — Sweed only exposes a total across all detected
+        # terpenes, never a per-compound percentage (confirmed against live API).
+        if not total_terpenes_pct and (lab.get("terpenes") or {}).get("value"):
+            total_terpenes_pct = _pct(str(lab["terpenes"]["value"][0]))
+        if not tac_pct and (lab.get("tac") or {}).get("value"):
+            tac_pct = _pct(str(lab["tac"]["value"][0]))
 
         if v_price:
             key = _WEIGHT_TO_TIER.get(v_name.lower().replace(" ", ""),
@@ -203,10 +210,18 @@ def _normalize_sweed_product(raw: dict) -> dict | None:
                 price  = _price(v_price)
                 weight = v_name
 
+    # "confirmed" only when THIS batch has a lab-tested total-terpene %.
+    # The strain.terpenes name list is not proof of that on its own — it can be
+    # present even when labTests.terpenes is null (a static/legacy strain tag,
+    # not necessarily from this batch's COA).
+    coa_status = "confirmed" if total_terpenes_pct else "no_coa"
+
     return {
         "name": name, "brand": brand, "category": category,
         "strain_type": strain_type, "thc": thc, "cbd": cbd,
         "cbg": "", "cbn": "",
+        "total_terpenes_pct": total_terpenes_pct, "tac_pct": tac_pct,
+        "coa_status": coa_status,
         "terpenes": terpenes, "effects": effects, "flavors": flavors,
         "weight": weight, "price": price, "price_tiers": price_tiers,
         "in_stock": in_stock, "image": image,
@@ -437,6 +452,7 @@ def _dom_scrape_page(page) -> list[dict]:
             "category": category, "strain_type": strain,
             "thc": _str(p.get("thc", "")), "cbd": _str(p.get("cbd", "")),
             "cbg": "", "cbn": "",
+            "total_terpenes_pct": "", "tac_pct": "", "coa_status": "no_coa",
             "terpenes": [], "effects": [], "flavors": [],
             "weight": _str(p.get("weight", "")),
             "price": _str(p.get("price", "")), "price_tiers": {},

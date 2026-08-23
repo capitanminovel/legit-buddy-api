@@ -53,31 +53,37 @@ RATINGS_PROMPT = """You are a cannabis terpene pharmacology expert. Rate this st
 
 CRITICAL RULES — read carefully:
 1. Base scores ONLY on the COA terpenes listed. Never assume terpenes not listed.
-2. Terpene ORDER matters — terpene listed first is most concentrated (dominant). Weight dominant terpenes heavily.
+2. The terpene list below is an UNORDERED set of terpenes detected in this batch's COA.
+   Sweed's API reports presence/absence only — it does NOT report concentration or
+   rank terpenes by dominance, so list position carries no meaning. Do not treat any
+   terpene as "dominant" based on where it appears in the list.
 3. You MUST spread scores across the full 1-10 range. Do NOT cluster at 7-10.
    - Most strains should score 3-6 for most moods.
-   - 8-10 means this strain is EXCEPTIONAL for that mood — 2+ dominant terpenes align perfectly.
-   - 1-2 means the key terpenes for that mood are absent or only traces.
-4. If a key terpene is listed 4th or later, treat it as a minor contributor (+1-2 pts max).
+   - 8-10 means this strain is EXCEPTIONAL for that mood — 2+ of the mood's key terpenes are present.
+   - 1-2 means the key terpenes for that mood are absent entirely.
+4. If Total Terpene % is known, use it only as a mild overall-intensity modifier — a
+   higher total suggests more pronounced effects generally, a low or unknown total
+   means score conservatively. This never overrides rule 1 (presence still required).
 5. A strain cannot score 8+ on more than 3 moods. Force trade-offs.
 
 Strain: {name}
 Type: {strain_type}
-COA Terpenes (in order, 1st = dominant): {terpenes}
+COA Terpenes detected (unordered — presence only, no concentration data): {terpenes}
+Total Terpene % (COA, if known): {total_terpenes_pct}
 Lineage: {lineage}
 
-Mood scoring keys (terpenes listed are the ONLY relevant ones):
-- wind_down: Myrcene (#1 driver), Linalool, Caryophyllene. No Myrcene/Linalool → max 4.
-- anxiety_relief: Linalool (#1), Caryophyllene (#2), Limonene. No Linalool → max 5.
-- lift_up: Limonene (#1), Terpinolene, Ocimene, Valencene. No Limonene/Terpinolene → max 4.
-- get_creative: Pinene (#1, alpha or beta), Terpinolene. No Pinene → max 5.
-- get_social: Limonene (#1), Terpinolene. No both → max 4.
-- pain_body: Caryophyllene (#1 driver, CB2 agonist), Myrcene, Humulene. No Caryophyllene → max 5.
+Mood scoring keys (terpenes listed are the ONLY relevant ones; presence-based, not ranked):
+- wind_down: Myrcene, Linalool, Caryophyllene. No Myrcene/Linalool → max 4.
+- anxiety_relief: Linalool, Caryophyllene, Limonene. No Linalool → max 5.
+- lift_up: Limonene, Terpinolene, Ocimene, Valencene. No Limonene/Terpinolene → max 4.
+- get_creative: Pinene (alpha or beta), Terpinolene. No Pinene → max 5.
+- get_social: Limonene, Terpinolene. No both → max 4.
+- pain_body: Caryophyllene (CB2 agonist), Myrcene, Humulene. No Caryophyllene → max 5.
 - just_happy: Limonene + Linalool together → high. Missing either → max 6.
-- aphrodisiac: Limonene (#1), Linalool (#2), Geraniol, Caryophyllene, Terpinolene. Needs 2+ → 7+.
+- aphrodisiac: Limonene, Linalool, Geraniol, Caryophyllene, Terpinolene. Needs 2+ → 7+.
 
-Example calibration for a strain with Myrcene dominant, Caryophyllene secondary, trace Limonene:
-wind_down:8, anxiety_relief:5, lift_up:3, get_creative:1, get_social:2, pain_body:6, just_happy:4, aphrodisiac:3
+Example calibration for a strain with Myrcene, Caryophyllene, and trace-level Limonene present, Total Terpene % low/unknown:
+wind_down:6, anxiety_relief:4, lift_up:2, get_creative:1, get_social:2, pain_body:5, just_happy:3, aphrodisiac:2
 
 Respond with ONLY valid JSON (no markdown, no explanation):
 {{"wind_down":0,"anxiety_relief":0,"lift_up":0,"get_creative":0,"get_social":0,"pain_body":0,"just_happy":0,"aphrodisiac":0}}"""
@@ -122,6 +128,7 @@ def rate_moods(client: anthropic.Anthropic, product: dict, enriched: dict) -> di
         name=product.get("name", ""),
         strain_type=product.get("strain_type", ""),
         terpenes=", ".join(product.get("terpenes") or []) or "unknown",
+        total_terpenes_pct=product.get("total_terpenes_pct") or "unknown",
         lineage=enriched.get("lineage", ""),
         therapeutic=enriched.get("therapeutic", ""),
     )
