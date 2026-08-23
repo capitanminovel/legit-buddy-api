@@ -26,6 +26,7 @@ MYRCENE, LINALOOL, CARYOPHYLLENE = "myrcene", "linalool", "caryophyllene"
 LIMONENE, TERPINOLENE = "limonene", "terpinolene"
 OCIMENE, VALENCENE, PINENE = "ocimene", "valencene", "pinene"
 HUMULENE, GERANIOL = "humulene", "geraniol"
+NEROLIDOL, GUAIOL, BISABOLOL, CAMPHENE = "nerolidol", "guaiol", "bisabolol", "camphene"
 
 _PINENE_ALIASES = {"pinene", "a pinene", "b pinene", "alpha pinene", "beta pinene"}
 
@@ -39,16 +40,27 @@ def _terp_set(terpenes: list[str]) -> set[str]:
 
 def _wind_down(t):
     primaries = sum(x in t for x in (MYRCENE, LINALOOL))
-    sec = CARYOPHYLLENE in t
-    if primaries == 0: return 4 if sec else 2
-    if primaries == 1: return 6 if sec else 4
-    return 9 if sec else 8
+    sec = min(sum(x in t for x in (CARYOPHYLLENE, NEROLIDOL)), 2)
+    if primaries == 0: return {0: 2, 1: 3, 2: 4}[sec]
+    if primaries == 1: return {0: 4, 1: 5, 2: 6}[sec]
+    return {0: 8, 1: 8, 2: 9}[sec]
 
 def _anxiety_relief(t):
+    # Kamal et al. 2018: trans-Nerolidol is the strongest documented anxiolytic
+    # correlate (stronger than Linalool/Caryophyllene) — treated as a primary here.
+    primaries = sum(x in t for x in (NEROLIDOL, LINALOOL))
     sec = sum(x in t for x in (CARYOPHYLLENE, LIMONENE))
-    if LINALOOL not in t:
-        return {0: 1, 1: 3, 2: 5}[sec]
-    return {0: 6, 1: 8, 2: 9}[sec]
+    if primaries == 0:
+        score = {0: 1, 1: 3, 2: 5}[sec]
+    elif primaries == 1:
+        score = {0: 6, 1: 7, 2: 8}[sec]
+    else:
+        score = {0: 8, 1: 9, 2: 9}[sec]
+    # Kamal et al. 2018: Guaiol is NEGATIVELY correlated with anxiety relief
+    # (possibly anxiogenic) — cap regardless of everything else present.
+    if GUAIOL in t:
+        score = min(score, 4)
+    return score
 
 def _lift_up(t):
     primaries = sum(x in t for x in (LIMONENE, TERPINOLENE))
@@ -67,9 +79,11 @@ def _get_social(t):
     return {0: 2, 1: 5, 2: 8}[primaries]
 
 def _pain_body(t):
-    sec = min(sum(x in t for x in (MYRCENE, HUMULENE)), 2)
-    if CARYOPHYLLENE not in t: return {0: 1, 1: 3, 2: 5}[sec]
-    return {0: 6, 1: 8, 2: 9}[sec]
+    # Gadotti et al. 2021: Bisabolol and Camphene share the same Cav3.2
+    # pain-channel mechanism as Myrcene/Humulene's more general anti-inflammatory role.
+    sec = min(sum(x in t for x in (MYRCENE, HUMULENE, BISABOLOL, CAMPHENE)), 3)
+    if CARYOPHYLLENE not in t: return {0: 1, 1: 2, 2: 4, 3: 5}[sec]
+    return {0: 6, 1: 7, 2: 8, 3: 9}[sec]
 
 def _just_happy(t):
     if LIMONENE in t and LINALOOL in t: return 8

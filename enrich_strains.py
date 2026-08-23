@@ -72,18 +72,74 @@ COA Terpenes detected (unordered — presence only, no concentration data): {ter
 Total Terpene % (COA, if known): {total_terpenes_pct}
 Lineage: {lineage}
 
-Mood scoring keys (terpenes listed are the ONLY relevant ones; presence-based, not ranked):
-- wind_down: Myrcene, Linalool, Caryophyllene. No Myrcene/Linalool → max 4.
-- anxiety_relief: Linalool, Caryophyllene, Limonene. No Linalool → max 5.
+Mood scoring keys (terpenes listed are the ONLY relevant ones; presence-based, not ranked).
+Sources: docs/terpenes_research.md in this repo (Russo 2011/2019, Kamal et al. 2018,
+Gertsch et al. 2008, Gadotti et al. 2021, Miyazawa & Yamafuji 2005, Komori et al. 1995).
+- wind_down: Myrcene, Linalool (primary — sedative/muscle-relaxant per Russo 2011).
+  Caryophyllene, Nerolidol (secondary — also sedative per research doc). No Myrcene/Linalool → max 4.
+- anxiety_relief: Nerolidol, Linalool (primary — Kamal 2018 found trans-Nerolidol the
+  STRONGEST anxiolytic correlate, ahead of Linalool/Caryophyllene). Caryophyllene, Limonene
+  (secondary). No Nerolidol/Linalool → max 5. Guaiol present → Kamal 2018 found Guaiol
+  NEGATIVELY correlated with anxiety relief (possibly anxiogenic) — cap this mood at 4
+  regardless of other terpenes present.
 - lift_up: Limonene, Terpinolene, Ocimene, Valencene. No Limonene/Terpinolene → max 4.
 - get_creative: Pinene (alpha or beta), Terpinolene. No Pinene → max 5.
 - get_social: Limonene, Terpinolene. No both → max 4.
-- pain_body: Caryophyllene (CB2 agonist), Myrcene, Humulene. No Caryophyllene → max 5.
+- pain_body: Caryophyllene (CB2 agonist, primary). Myrcene, Humulene, Bisabolol, Camphene
+  (secondary — Bisabolol and Camphene share the same Cav3.2 pain-channel mechanism per
+  Gadotti et al. 2021). No Caryophyllene → max 5.
 - just_happy: Limonene + Linalool together → high. Missing either → max 6.
 - aphrodisiac: Limonene, Linalool, Geraniol, Caryophyllene, Terpinolene. Needs 2+ → 7+.
 
 Example calibration for a strain with Myrcene, Caryophyllene, and trace-level Limonene present, Total Terpene % low/unknown:
 wind_down:6, anxiety_relief:4, lift_up:2, get_creative:1, get_social:2, pain_body:5, just_happy:3, aphrodisiac:2
+
+Respond with ONLY valid JSON (no markdown, no explanation):
+{{"wind_down":0,"anxiety_relief":0,"lift_up":0,"get_creative":0,"get_social":0,"pain_body":0,"just_happy":0,"aphrodisiac":0}}"""
+
+# Used only when the product has NO COA terpene data at all (empty terpenes list).
+# Falling back to the presence-based rubric above would floor every mood to its
+# "absent" score, which looks like "bad for everything" when the truth is "no data."
+# Products in this path always carry coa_status=no_coa on the live menu, so this
+# is visibly marked as an estimate rather than a lab result.
+RESEARCH_RATINGS_PROMPT = """You are a cannabis strain researcher. This product has NO
+COA terpene test on file — Sweed's system has no lab-confirmed terpene data for this batch.
+
+Instead of lab data, use your general knowledge of cannabis genetics: identify the strain
+by name/lineage if you can (breeder databases, seed bank catalogs, grower/cultivar
+information, known phenotype reports), and estimate its TYPICAL terpene profile and
+resulting mood ratings from that.
+
+CRITICAL RULES:
+1. If you can identify this specific strain/genetics with reasonable confidence, use its
+   well-documented typical terpene profile to rate moods, same logic as COA-based rating
+   (see mood-terpene keys below).
+2. If you do NOT recognize this strain/brand and have no confident genetics information,
+   do NOT guess extremes. Default to neutral, moderate scores (4-6) across all moods —
+   honest uncertainty, not a fabricated profile.
+3. A strain cannot score 8+ on more than 3 moods. Force trade-offs.
+4. This is explicitly an ESTIMATE, not a lab result — be conservative. Prefer scores in
+   the 3-7 range; reserve 8-10 only for genetics you are genuinely confident about.
+
+Product: {name}
+Brand: {brand}
+Category: {category}
+Type: {strain_type}
+Lineage (from strain-profile step, if identified): {lineage}
+Therapeutic notes (from strain-profile step, if any): {therapeutic}
+
+Mood-terpene keys, for reference if you identify a typical profile (same as COA-based
+rating — sources: docs/terpenes_research.md, Russo 2011/2019, Kamal et al. 2018,
+Gertsch et al. 2008, Gadotti et al. 2021):
+- wind_down: Myrcene, Linalool primary; Caryophyllene, Nerolidol secondary.
+- anxiety_relief: Nerolidol, Linalool primary (Nerolidol is the strongest documented
+  anxiolytic correlate); Caryophyllene, Limonene secondary. Guaiol present → cap at 4.
+- lift_up: Limonene, Terpinolene primary; Ocimene, Valencene secondary.
+- get_creative: Pinene primary; Terpinolene secondary.
+- get_social: Limonene, Terpinolene.
+- pain_body: Caryophyllene primary; Myrcene, Humulene, Bisabolol, Camphene secondary.
+- just_happy: Limonene + Linalool together.
+- aphrodisiac: Limonene, Linalool, Geraniol, Caryophyllene, Terpinolene — needs 2+.
 
 Respond with ONLY valid JSON (no markdown, no explanation):
 {{"wind_down":0,"anxiety_relief":0,"lift_up":0,"get_creative":0,"get_social":0,"pain_body":0,"just_happy":0,"aphrodisiac":0}}"""
@@ -124,14 +180,27 @@ def enrich_product(client: anthropic.Anthropic, key: str, product: dict) -> dict
 
 
 def rate_moods(client: anthropic.Anthropic, product: dict, enriched: dict) -> dict | None:
-    prompt = RATINGS_PROMPT.format(
-        name=product.get("name", ""),
-        strain_type=product.get("strain_type", ""),
-        terpenes=", ".join(product.get("terpenes") or []) or "unknown",
-        total_terpenes_pct=product.get("total_terpenes_pct") or "unknown",
-        lineage=enriched.get("lineage", ""),
-        therapeutic=enriched.get("therapeutic", ""),
-    )
+    has_coa_terpenes = bool(product.get("terpenes"))
+    if has_coa_terpenes:
+        prompt = RATINGS_PROMPT.format(
+            name=product.get("name", ""),
+            strain_type=product.get("strain_type", ""),
+            terpenes=", ".join(product.get("terpenes") or []),
+            total_terpenes_pct=product.get("total_terpenes_pct") or "unknown",
+            lineage=enriched.get("lineage", ""),
+            therapeutic=enriched.get("therapeutic", ""),
+        )
+    else:
+        # No COA terpene data at all — fall back to genetics-knowledge estimation
+        # instead of flooring every mood score (see RESEARCH_RATINGS_PROMPT).
+        prompt = RESEARCH_RATINGS_PROMPT.format(
+            name=product.get("name", ""),
+            brand=product.get("brand", ""),
+            category=product.get("category", ""),
+            strain_type=product.get("strain_type", ""),
+            lineage=enriched.get("lineage", "unknown"),
+            therapeutic=enriched.get("therapeutic", "unknown"),
+        )
     try:
         msg = client.messages.create(
             model="claude-sonnet-4-6",
@@ -178,19 +247,40 @@ def run():
     else:
         print("All products already enriched — skipping profile step.")
 
-    # Step 2: add mood ratings to any strain that is missing them
+    # Step 2: add mood ratings to any strain that is missing them.
+    # For COA-backed products, rating depends only on (terpenes, total_terpenes_pct) —
+    # many share an identical profile (same strain sold as flower/pre-roll/etc), so
+    # cache by that signature to avoid paying for the same rating twice. No-COA
+    # products skip the cache (see below) since they're rated individually by name.
     needs_ratings = [k for k in existing if "mood_ratings" not in existing[k]]
     if needs_ratings:
         print(f"\nRating moods for {len(needs_ratings)} strain(s)...")
+        signature_cache: dict[tuple, dict] = {}
+        api_calls = 0
         for key in needs_ratings:
             product = db["products"].get(key, {"name": key})
-            print(f"  → {product.get('name')}")
-            ratings = rate_moods(client, product, existing[key])
+            terpenes = product.get("terpenes") or []
+            # No-COA products go through the research-based prompt, which depends
+            # on the product's own name/lineage, not a shared "empty" signature —
+            # caching those would wrongly copy one strain's rating onto another.
+            sig = ((tuple(sorted(terpenes)), product.get("total_terpenes_pct") or "")
+                   if terpenes else None)
+            if sig is not None and sig in signature_cache:
+                ratings = signature_cache[sig]
+                print(f"  → {product.get('name')} (cached, same terpene profile)")
+            else:
+                print(f"  → {product.get('name')}")
+                ratings = rate_moods(client, product, existing[key])
+                api_calls += 1
+                if ratings and sig is not None:
+                    signature_cache[sig] = ratings
             if ratings:
                 existing[key]["mood_ratings"] = ratings
                 print(f"    ✓ {ratings}")
                 with open(STRAINS_PATH, "w") as f:
                     json.dump(existing, f, indent=2, ensure_ascii=False)
+        print(f"\n{api_calls} API call(s) for {len(needs_ratings)} strain(s) "
+              f"({len(needs_ratings) - api_calls} reused via cache).")
     else:
         print("All mood ratings already present.")
 
