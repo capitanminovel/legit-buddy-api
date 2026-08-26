@@ -16,74 +16,6 @@
       "aphrodisiac": 5
     }
   },
-  "9bd115b860af": {
-    "lineage": "Alien Cookies x Kush Mints #11 (Capulator / Cap Junky Genetics)",
-    "therapeutic": "Stress, anxiety, depression, chronic pain, appetite stimulation",
-    "negative": "Dry mouth, dry eyes, possible paranoia in sensitive users at high doses",
-    "aroma": "Pungent fuel and diesel, sweet pine, cooling menthol, spiced earth, faint fruity finish",
-    "misc": "Bred by renowned breeder Capulator (creator of MAC). Often cited as one of the best modern hybrids. THC 22–30%+. Fast-hitting cerebral rush followed by warm body relaxation. Popular in dispensaries nationwide for consistent potency and terpene expression.",
-    "mood_ratings": {
-      "wind_down": 7,
-      "anxiety_relief": 4,
-      "lift_up": 5,
-      "get_creative": 6,
-      "get_social": 4,
-      "pain_body": 7,
-      "just_happy": 6,
-      "aphrodisiac": 5
-    }
-  },
-  "c7bc9b6b18c2": {
-    "lineage": "The Soap x Velvet Runtz (Campfire Cannabis in-house cross)",
-    "therapeutic": "Stress, fatigue, depression, mild chronic pain, creative blocks",
-    "negative": "Dry mouth, dry eyes, occasional anxiety at high doses",
-    "aroma": "Clean soapy citrus, sweet mixed berry, light diesel backbone, faint pine and earthy woods",
-    "misc": "House cross by Campfire Cannabis combining The Soap's clean citrus with Velvet Runtz candy sweetness. THC 20–25%. Versatile hybrid — sativa-leaning first hour then settles into relaxed body state. Great for daytime creative work or afternoon social sessions.",
-    "mood_ratings": {
-      "wind_down": 4,
-      "anxiety_relief": 4,
-      "lift_up": 8,
-      "get_creative": 7,
-      "get_social": 7,
-      "pain_body": 5,
-      "just_happy": 5,
-      "aphrodisiac": 6
-    }
-  },
-  "2223f6ee76a3": {
-    "lineage": "Tahoe OG x Runtz",
-    "therapeutic": "Insomnia, chronic pain, stress, anxiety, muscle tension",
-    "negative": "Dry mouth, dry eyes, heavy sedation — not for daytime use",
-    "aroma": "Earthy OG pine with sweet candy citrus, creamy tropical undertones, classic kush musk base",
-    "misc": "Combines Tahoe OG's heavy-hitting indica body stone with Runtz's sweet candy genetics. THC 25–30%. Dense frosty buds. The OG backbone delivers reliable potency and full-body relaxation while Runtz adds dessert sweetness. Best for evening wind-down or pre-sleep.",
-    "mood_ratings": {
-      "wind_down": 6,
-      "anxiety_relief": 6,
-      "lift_up": 4,
-      "get_creative": 2,
-      "get_social": 4,
-      "pain_body": 5,
-      "just_happy": 7,
-      "aphrodisiac": 6
-    }
-  },
-  "f9a02875b44a": {
-    "lineage": "MAC (Miracle Alien Cookies) x Grape Stomper (Gage Green Seeds)",
-    "therapeutic": "Chronic pain, stress, insomnia, mood disorders, nausea",
-    "negative": "Dry mouth, dry eyes, couch-lock at high doses",
-    "aroma": "Creamy grape candy, sweet apple, citrus zest, light floral, earthy funk on the finish",
-    "misc": "Cross of two award-winning genetics. MAC contributes creamy citrus and potency; Grape Stomper adds grape and fruit sweetness. THC 24–29%. Available in half-ounce — great value buy. Dense, trichome-heavy flowers with deep purple and green hues. Best for evening use.",
-    "mood_ratings": {
-      "wind_down": 7,
-      "anxiety_relief": 6,
-      "lift_up": 2,
-      "get_creative": 5,
-      "get_social": 2,
-      "pain_body": 6,
-      "just_happy": 4,
-      "aphrodisiac": 4
-    }
-  },
   "8ddb5a864d39": {
     "lineage": "Purple Panty Dropper x Blueberry (Humboldt Seed Co.)",
     "therapeutic": "Stress, anxiety, mild pain, insomnia, depression, appetite",
@@ -101,40 +33,6 @@
       "aphrodisiac": 5
     }
   },
-  "d024338fee18": {
-    "lineage": "Animal Mints x Kush Mints (Seed Junky Genetics)",
-    "therapeutic": "Depression, fatigue, stress, anxiety, mild chronic pain",
-    "negative": "Dry mouth, dry eyes, possible anxiety at high doses in novice users",
-    "aroma": "Clean floral soap, fresh mint, citrus zest, light cheese notes, pine — one of the most distinctive and refreshing terpene profiles in cannabis",
-    "misc": "Created by Seed Junky Genetics. Famously described as smelling like fresh soap or floral laundry detergent — a truly unique, clean aroma. THC 20–26%. Euphoric and uplifting with a clean, lasting head high. Strong daytime strain for focus and creativity.",
-    "mood_ratings": {
-      "wind_down": 6,
-      "anxiety_relief": 6,
-      "lift_up": 5,
-      "get_creative": 2,
-      "get_social": 4,
-      "pain_body": 6,
-      "just_happy": 7,
-      "aphrodisiac": 6
-    }
-  },
-  "1ff4b7efe819": {
-    "lineage": "(Biscotti x Sherb BX1) x Jealousy F2 (Compound Genetics / Seed Junky)",
-    "therapeutic": "Insomnia, chronic pain, stress, appetite stimulation, muscle tension",
-    "negative": "Dry mouth, dry eyes, heavy sedation — not for daytime use",
-    "aroma": "Sweet grape diesel, rich berry, creamy dessert notes, faint chemical fuel on exhale",
-    "misc": "Premium cross of high-end genetics. Biscotti x Sherb BX1 provides the creamy dessert foundation; Jealousy F2 adds potency and deep purple coloration. THC 25–30%+. Dense purple-tinted buds with heavy resin coverage. Hard-hitting indica-dominant — reserved for evening or experienced users.",
-    "mood_ratings": {
-      "wind_down": 7,
-      "anxiety_relief": 4,
-      "lift_up": 5,
-      "get_creative": 4,
-      "get_social": 4,
-      "pain_body": 6,
-      "just_happy": 6,
-      "aphrodisiac": 5
-    }
-  },
   "6ba39e627a58": {
     "lineage": "Chemdawg x Biscotti (Campfire Cannabis in-house cross)",
     "therapeutic": "Stress, depression, appetite stimulation, fatigue, social anxiety",
@@ -149,23 +47,6 @@
       "get_social": 5,
       "pain_body": 7,
       "just_happy": 6,
-      "aphrodisiac": 5
-    }
-  },
-  "265b210f94fe": {
-    "lineage": "Zkittlez x Gelato (Cookies Fam / Runtz brand)",
-    "therapeutic": "Stress, anxiety, depression, chronic pain, appetite stimulation",
-    "negative": "Dry mouth, dry eyes, possible sedation at high doses",
-    "aroma": "Tropical candy sweetness, pineapple citrus, fruity Zkittlez notes, creamy Gelato undertone, light spice on exhale",
-    "misc": "Bred by the Cookies Fam and widely regarded as one of the most influential strains of the 2020s. Named after the candy brand for its intense sweetness. THC 18–25%. Dense colorful buds. Rapid-hitting, well-balanced — euphoric head high paired with full-body relaxation. Nearly universally well-received.",
-    "mood_ratings": {
-      "wind_down": 6,
-      "anxiety_relief": 4,
-      "lift_up": 4,
-      "get_creative": 2,
-      "get_social": 4,
-      "pain_body": 6,
-      "just_happy": 5,
       "aphrodisiac": 5
     }
   },
@@ -371,23 +252,6 @@
       "pain_body": 6,
       "just_happy": 4,
       "aphrodisiac": 5
-    }
-  },
-  "7f7ffa3551e7": {
-    "lineage": "Girl Scout Cookies x Sherbet (Cookies Fam Genetics — Gelato #45 phenotype)",
-    "therapeutic": "Stress, depression, chronic pain, PTSD, nausea",
-    "negative": "Dry mouth, dry eyes, mild sedation at high doses",
-    "aroma": "Sweet berry and orange sherbet, creamy vanilla, herbal pepper, faint woody kush undertone",
-    "misc": "Gelato #45 is one of the most prized phenotypes from the original Gelato line by the Cookies Fam. Lower THC (15–20%) than newer genetics but world-class terpene expression and euphoric effects. Dense, colorful buds. Balanced hybrid that reads more indica at higher doses. Exceptional flavor-to-effect ratio.",
-    "mood_ratings": {
-      "wind_down": 3,
-      "anxiety_relief": 4,
-      "lift_up": 5,
-      "get_creative": 2,
-      "get_social": 4,
-      "pain_body": 6,
-      "just_happy": 4,
-      "aphrodisiac": 4
     }
   },
   "dbcb7ab15506": {
@@ -770,23 +634,6 @@
     "negative": "Dry mouth, dry eyes, mild dizziness at higher doses, potential couch-lock in sensitive users, mild paranoia in low-tolerance consumers due to THC content",
     "aroma": "A warm, bakery-fresh wave of sweet blueberries and vanilla cream rises first, underscored by a subtle earthiness and a faint herbal muskiness that grounds the sweetness like a buttered muffin fresh from the oven.",
     "misc": "Blueberry Muffin was bred and popularized by Humboldt Seed Organization and has gained significant recognition for its remarkably dessert-accurate flavor profile — rare among cannabis strains. At 17.9% THC this is a moderate-to-mid strength indica-leaning hybrid, ideal for evening or late-afternoon use when relaxation is the goal. Buds typically display deep forest greens with purple hues, dense trichome coverage, and vivid orange pistils; the Myrcene-forward terpene profile amplifies its sedating, body-relaxing qualities, making it particularly well-suited for unwinding after a long day.",
-    "mood_ratings": {
-      "wind_down": 6,
-      "anxiety_relief": 4,
-      "lift_up": 4,
-      "get_creative": 2,
-      "get_social": 4,
-      "pain_body": 6,
-      "just_happy": 5,
-      "aphrodisiac": 5
-    }
-  },
-  "1072e363f968": {
-    "lineage": "Biscotti x Sour Dubb x Chocolate Diesel (Seed Junky Genetics, popularized by Doja Exclusive / Wizards of the Coast collaboration)",
-    "therapeutic": "Stress relief, anxiety reduction, depression, appetite stimulation, mild pain management, creative blocks, fatigue",
-    "negative": "Dry mouth, dry eyes, mild paranoia at high doses, potential couch-lock with heavy consumption, dizziness in low-tolerance users",
-    "aroma": "Permanent Marker hits the nose with a bold, fuel-forward rush of sharp diesel and gasoline that quickly opens up into sweet candy and floral undertones, reminiscent of a pungent, inky sweetness. A soapy, almost perfume-like quality lingers beneath the surface, complemented by subtle citrus brightness that keeps the profile complex and captivating.",
-    "misc": "Permanent Marker is a highly sought-after cultivar originally developed within the Seed Junky Genetics and Doja Exclusive circles, gaining significant hype on the West Coast cannabis scene for its striking bag appeal — typically presenting dense, chunky buds with deep purple hues, vivid orange pistils, and a heavy blanket of trichomes. At 22.5% THC this batch sits within a typical range of 22–30%+ seen across premium cuts, making it best suited for late-evening or nighttime use given its indica-leaning hybrid profile. Consumers new to this strain should start low, as its euphoric and creative onset can transition into deep relaxation and sedation, and it has earned a loyal following among connoisseurs who prize its unique blend of gassy, sweet, and soapy terpene complexity.",
     "mood_ratings": {
       "wind_down": 6,
       "anxiety_relief": 4,
@@ -1563,23 +1410,6 @@
       "aphrodisiac": 2
     }
   },
-  "4ae59f844af9": {
-    "lineage": "Tahoe OG x Runtz (Campfire Cannabis / breeder unconfirmed; Runtz itself is Zkittlez x Gelato by Cookies Fam)",
-    "therapeutic": "Stress relief, anxiety reduction, mild to moderate chronic pain, muscle tension, insomnia onset, mood elevation, appetite stimulation",
-    "negative": "Dry mouth, dry eyes, potential dizziness or paranoia at high doses due to elevated THC (24.3%), possible couch-lock with heavy consumption, not recommended for low-tolerance users before physical activity",
-    "aroma": "Rich, dank earth anchored by classic kush and woody pine opens the nose, quickly layered with bright bursts of sweet citrus and tropical fruit that give it a creamy, almost dessert-like complexity. A subtle floral spice from linalool and a faint herbal whisper from humulene and ocimene round out the finish.",
-    "misc": "Lit OG blends the legendary potency and deep body sedation of Tahoe OG with the sweet, creamy fruit profile and euphoric lift of Runtz, resulting in an indica-dominant hybrid that punches well above average at 24.3% THC. Oversized olive-green nugs with purple accents, dense orange pistils, and a thick trichome frost make this a visually striking flower. Best consumed in the evening or late afternoon for winding down — the initial euphoric clarity is approachable, but the long-wave body relaxation makes this a poor choice for daytime productivity.",
-    "mood_ratings": {
-      "wind_down": 6,
-      "anxiety_relief": 8,
-      "lift_up": 6,
-      "get_creative": 6,
-      "get_social": 5,
-      "pain_body": 5,
-      "just_happy": 6,
-      "aphrodisiac": 7
-    }
-  },
   "c609701a342f": {
     "lineage": "Mango-flavored THC gummy edible by Voyageur — not a flower strain. No genetic lineage applicable; this is a manufactured edible product with extracted cannabis oil.",
     "therapeutic": "Stress relief, mild to moderate pain management, anxiety reduction, sleep aid, appetite stimulation, mood elevation",
@@ -1663,23 +1493,6 @@
       "pain_body": 4,
       "just_happy": 5,
       "aphrodisiac": 4
-    }
-  },
-  "5c5d3effa041": {
-    "lineage": "Blueberry (DJ Short) x Haze (Original Haze / Santa Cruz Haze lineage) — popularized by DJ Short and widely phenohunted across California's Bay Area breeding scene",
-    "therapeutic": "Stress relief, depression, anxiety, mild pain, fatigue, creative blocks, ADHD symptom management",
-    "negative": "Dry mouth, dry eyes, occasional paranoia or anxiety at higher doses in THC-sensitive users, mild dizziness for beginners",
-    "aroma": "A bright and inviting bouquet of fresh blueberries and sweet berry jam layered over a subtle earthy, herbal base with soft floral and pine undertones. The Haze parentage adds a light spicy, incense-like depth that balances the sweetness beautifully.",
-    "misc": "Blue Dream is one of the most iconic and best-selling strains in the US, originating in Santa Cruz, California, and long dominating California dispensary menus. At 12.4% THC this batch sits on the milder end of Blue Dream's typical 17–24% range, making it an excellent choice for beginners or those seeking a functional, gentle daytime experience. Buds typically present as medium-to-large, fluffy and elongated with a sage-green hue, amber pistils, and a light dusting of trichomes — best enjoyed in the morning or afternoon for creative work, social activities, or a mood boost without heavy sedation.",
-    "mood_ratings": {
-      "wind_down": 7,
-      "anxiety_relief": 4,
-      "lift_up": 4,
-      "get_creative": 6,
-      "get_social": 3,
-      "pain_body": 6,
-      "just_happy": 5,
-      "aphrodisiac": 5
     }
   },
   "6bba413e0823": {
@@ -1784,23 +1597,6 @@
       "aphrodisiac": 5
     }
   },
-  "9ab1ca36ee93": {
-    "lineage": "Misty x Unknown Sativa (Nirvana Seeds)",
-    "therapeutic": "Stress relief, mild anxiety, mood elevation, fatigue, mild depression, muscle tension",
-    "negative": "Dry mouth, dry eyes, possible mild paranoia at higher doses, dizziness in sensitive users",
-    "aroma": "A soft and inviting bouquet of fresh berries and sweet floral notes opens the experience, underscored by a subtle earthy-herbal backdrop reminiscent of chamomile tea and light tropical fruit.",
-    "misc": "Medusa, bred by Nirvana Seeds, is a lesser-known but cherished hybrid derived from the classic Misty strain crossed with an unidentified sativa, earning it the nickname 'The Nirvana Strain' among enthusiasts. At 12.6% THC this is a moderate-potency offering well-suited for daytime to early evening use, making it approachable for newer consumers or those seeking gentle euphoria without heavy sedation. The terpene profile of Myrcene, Caryophyllene, Ocimene, and Farnesene contributes to its relaxing yet uplifting character, with Ocimene and Farnesene lending the distinctive sweet floral and fruity tea-like qualities that set this strain apart from more common hybrids.",
-    "mood_ratings": {
-      "wind_down": 6,
-      "anxiety_relief": 4,
-      "lift_up": 3,
-      "get_creative": 2,
-      "get_social": 2,
-      "pain_body": 5,
-      "just_happy": 3,
-      "aphrodisiac": 3
-    }
-  },
   "18602e9414ae": {
     "lineage": "Cotton Candy x Gravenstein OG (Northpark Genetics)",
     "therapeutic": "Stress relief, mild anxiety, depression, fatigue, appetite stimulation, mild pain management",
@@ -1886,23 +1682,6 @@
       "aphrodisiac": 5
     }
   },
-  "77b09cca66d5": {
-    "lineage": "Blue Mammoth Auto x Blue Dream x Amnesia (dizgo); Blue Mammoth Auto derives from Blueberry x Mammoth Auto, Blue Dream from Blueberry x Haze (DJ Short / Archive Seed Bank lineage), and Amnesia from a complex Haze-dominant heritage including South Asian and Jamaican landraces",
-    "therapeutic": "Stress relief, anxiety management, mild depression, creative blocks, fatigue, mild pain, mood elevation",
-    "negative": "Dry mouth, dry eyes, possible mild paranoia or racing thoughts in THC-sensitive users, mild dizziness at higher consumption; not ideal for those prone to anxiety due to Haze-lineage cerebral stimulation",
-    "aroma": "Orion opens with a bright, sweet burst of blueberry and tropical fruit carried on a fresh piney backbone, with soft floral and herbal whispers of lavender and anise that deepen as the bud warms in hand. A subtle earthy musk from its Myrcene base rounds out the bouquet, lending a grounding depth beneath the candy-sweet brightness.",
-    "misc": "Crafted by dizgo, Orion is a balanced hybrid sitting at 16.6% THC — approachable for intermediate consumers while still delivering notable effect. Buds are typically dense with a frosty trichome coating, showing deep greens with hints of violet inherited from its Blueberry ancestry. Best enjoyed in the afternoon or early evening when creativity and calm are equally welcome, making it ideal for social settings, artistic pursuits, or unwinding after work without full sedation.",
-    "mood_ratings": {
-      "wind_down": 7,
-      "anxiety_relief": 6,
-      "lift_up": 3,
-      "get_creative": 5,
-      "get_social": 2,
-      "pain_body": 6,
-      "just_happy": 4,
-      "aphrodisiac": 5
-    }
-  },
   "e60ddf03c0b8": {
     "lineage": "Northern Lights x Alien OG (Northern Lights: Sensi Seeds / Alien OG: Cali Connection, itself a cross of Tahoe OG x Alien Kush)",
     "therapeutic": "Stress relief, anxiety reduction, mild pain management, insomnia, depression, appetite stimulation",
@@ -1971,23 +1750,6 @@
       "aphrodisiac": 5
     }
   },
-  "3e08391004bb": {
-    "lineage": "Hawaiian-Romulan × Island Sweet Skunk (Original breeder attributed to a happy accident in Topeka, Kansas; popularized by multiple Colorado cultivators)",
-    "therapeutic": "Stress relief, anxiety reduction, mild to moderate pain, muscle tension, mood elevation, fatigue",
-    "negative": "Dry mouth, dry eyes, mild dizziness at higher doses, potential couch-lock with prolonged use due to indica-leaning effects",
-    "aroma": "A vibrant burst of tropical citrus — think ripe mango, lemon zest, and pineapple — anchored by a damp earthy undertone with hints of sweet spice and fresh herbs. The nose is bright and inviting upfront with a grounding herbal depth that lingers pleasantly.",
-    "misc": "Golden Goat was originally created accidentally around 2005 in Topeka, Kansas, when a male Island Sweet Skunk pollinated a Hawaiian-Romulan female; it became a celebrated strain on the Colorado cannabis scene. Typical THC range runs 16–23%, making this 17.3% expression a moderate and approachable entry point. Buds are typically dense and chunky with golden-amber pistils, frosty trichomes, and a pale green coloration that gives the strain its name — best consumed in the evening for its calming, body-focused finish.",
-    "mood_ratings": {
-      "wind_down": 6,
-      "anxiety_relief": 4,
-      "lift_up": 2,
-      "get_creative": 2,
-      "get_social": 2,
-      "pain_body": 7,
-      "just_happy": 3,
-      "aphrodisiac": 3
-    }
-  },
   "ab5cd04e09ac": {
     "lineage": "Critical #13 x Ice #2 (Unbound); Critical #13 is itself derived from Critical Mass genetics, while Ice #2 carries lineage rooted in Northern Lights, Skunk, and Afghani crosses, giving Papaya Fuel a well-rounded hybrid foundation with both indica resin production and sativa cerebral lift.",
     "therapeutic": "Stress relief, anxiety management, mild depression, fatigue, mood disorders, mild pain and tension, focus and mental clarity support",
@@ -2003,57 +1765,6 @@
       "pain_body": 5,
       "just_happy": 7,
       "aphrodisiac": 6
-    }
-  },
-  "9308d56b0b61": {
-    "lineage": "Dosidos x Gelonade (Dosidos = Girl Scout Cookies x Face Off OG; Gelonade = Gelato 41 x Lemon Tree) — likely bred or selected by Unbound or affiliated cultivators",
-    "therapeutic": "Stress relief, mild anxiety reduction, muscle tension, mood elevation, mild pain management, fatigue",
-    "negative": "Dry mouth, dry eyes, mild dizziness at higher doses, possible couch-lock sensitivity in low-tolerance users despite moderate THC",
-    "aroma": "Illemonati greets the nose with a sharp, electric lemon zest — almost like freshly grated lemon rind — underpinned by a soft, doughy sweetness reminiscent of lemon cream pastry. Subtle earthy and floral undertones from bisabolol and humulene round out the bouquet with a clean, refined finish.",
-    "misc": "At 10.1% THC, Illemonati sits on the moderate end of the potency spectrum, making it approachable for newer consumers while still delivering a functional, balanced indica-leaning hybrid experience. Buds are typically dense and frosty with lime-green hues, occasional purple undertones inherited from the Dosidos lineage, and a generous trichome coating that belies the modest THC percentage. Best suited for late afternoon or early evening use when relaxation is desired without full sedation — a solid choice for winding down socially or easing into a restful night.",
-    "mood_ratings": {
-      "wind_down": 4,
-      "anxiety_relief": 4,
-      "lift_up": 2,
-      "get_creative": 2,
-      "get_social": 2,
-      "pain_body": 6,
-      "just_happy": 3,
-      "aphrodisiac": 3
-    }
-  },
-  "86b0436cfaed": {
-    "lineage": "Tangie x Purple Punch (Unbound); Tangie itself is a cross of California Orange x Skunk-1, while Purple Punch is Larry OG x Granddaddy Purple",
-    "therapeutic": "Stress relief, mild anxiety, mood elevation, muscle tension, mild pain, appetite stimulation, end-of-day relaxation",
-    "negative": "Dry mouth, dry eyes, mild sedation at higher doses, potential couch-lock with overconsumption, possible dizziness in low-tolerance users",
-    "aroma": "A vibrant burst of fresh-squeezed tangerine and orange zest opens the nose, layered with sweet grape and berry undertones inherited from Purple Punch; as it settles, soft floral and creamy vanilla notes emerge, rounding out the profile with a lush, candy-like sweetness.",
-    "misc": "Orangade is a well-balanced indica-leaning hybrid that leans into its Tangie lineage for bright citrus energy while Purple Punch anchors it with a relaxing, body-forward finish, making it ideal for early evening use when you want to unwind without full sedation. Buds typically display dense, medium-sized nuggets with deep green coloring, occasional purple hues, and a generous coating of trichomes reflecting its Purple Punch heritage. At 18% THC, this strain is approachable for intermediate consumers and suitable for those seeking mood lift paired with physical relaxation rather than heavy intoxication.",
-    "mood_ratings": {
-      "wind_down": 6,
-      "anxiety_relief": 4,
-      "lift_up": 5,
-      "get_creative": 2,
-      "get_social": 4,
-      "pain_body": 6,
-      "just_happy": 5,
-      "aphrodisiac": 4
-    }
-  },
-  "1c6f7ed4366a": {
-    "lineage": "GMO (Garlic Cookies) x Jet Fuel (G6) x Wilson (unknown hybrid) — Unbound Cannabis; GMO is a phenotype of Chemdog x GSC (Girl Scout Cookies), Jet Fuel (G6) is derived from Aspen OG x High Country Diesel, Wilson lineage less documented but contributes uplifting sativa-leaning characteristics",
-    "therapeutic": "Stress relief, mild anxiety, mood elevation, creative block, social anxiety, mild pain and muscle tension, fatigue",
-    "negative": "Dry mouth, dry eyes, possible mild paranoia at higher doses, dizziness for low-tolerance users; relatively low THC at 11.7% makes overconsumption less likely but caution still advised for novice consumers",
-    "aroma": "A bright and inviting opening of zesty lemon and fresh citrus rind gives way to a sweet berry undertone, anchored by deep earthy and faintly garlicky diesel notes inherited from the GMO lineage. The overall scent profile is complex yet approachable — fruity and grounded with a subtle piney sharpness from the A-Pinene terpene.",
-    "misc": "Crafted by Unbound Cannabis, Wilfunk sits in a moderate THC range (11–13% typical) making it an accessible option for daytime users or those sensitive to high-potency flower. Buds are likely dense with a classic hybrid structure — medium-green with amber pistils and a moderate trichome coat reflecting its GMO and GSC heritage. Ideal for morning to early afternoon use, social gatherings, creative projects, or low-key outdoor activities where mental clarity and mild body ease are desired.",
-    "mood_ratings": {
-      "wind_down": 3,
-      "anxiety_relief": 4,
-      "lift_up": 6,
-      "get_creative": 6,
-      "get_social": 5,
-      "pain_body": 5,
-      "just_happy": 4,
-      "aphrodisiac": 5
     }
   },
   "767aca7b0b33": {
@@ -2090,40 +1801,6 @@
       "aphrodisiac": 6
     }
   },
-  "c5a1947eca64": {
-    "lineage": "Hawaiian-Romulan × Island Sweet Skunk (Original Golden Goat bred by Mr. Dank in Topeka, Kansas; accidental cross)",
-    "therapeutic": "Stress relief, anxiety reduction, muscle tension, mild pain management, mood elevation, fatigue",
-    "negative": "Dry mouth, dry eyes, occasional dizziness at higher doses, possible couch-lock due to indica-leaning profile and myrcene dominance",
-    "aroma": "A vibrant burst of tropical citrus and ripe pineapple opens the nose, quickly giving way to a grounding layer of damp earth, sweet spice, and subtle herbal funk reminiscent of fresh-cut grass and dried flowers.",
-    "misc": "Golden Goat is a well-regarded hybrid that originated as a happy accident in Kansas, gaining popularity for its balanced yet body-forward effects; typical THC range in commercial cultivars runs 16–24%, with this Unbound pre-roll sitting solidly at 21.2%. The buds are classically dense with golden-amber pistils, a heavy trichome frost, and hints of pale green, reflecting its sativa-heritage parents. Best consumed in the late afternoon or early evening when stress relief and physical relaxation are the priority without full sedation; the myrcene and caryophyllene terpene duo amplifies its body-melting, anti-inflammatory qualities.",
-    "mood_ratings": {
-      "wind_down": 6,
-      "anxiety_relief": 4,
-      "lift_up": 2,
-      "get_creative": 2,
-      "get_social": 2,
-      "pain_body": 7,
-      "just_happy": 3,
-      "aphrodisiac": 3
-    }
-  },
-  "41432d0e9df7": {
-    "lineage": "Misty x Unknown Sativa (likely a sativa-leaning hybrid cross; Misty itself is a classic indica-dominant strain bred by Sensi Seeds, derived from White Widow x Skunk #1 x Northern Lights)",
-    "therapeutic": "Stress relief, anxiety reduction, mild depression, mental fatigue, mood elevation, mild pain management",
-    "negative": "Dry mouth, dry eyes, mild anxiety or racing thoughts at higher doses due to sativa influence, occasional dizziness",
-    "aroma": "Medusa opens with a burst of ripe mixed berries and sweet floral notes carried by Ocimene and Farnesene, giving it an almost perfumed, fruity elegance. Underlying earthiness and a subtle spicy warmth from Myrcene and Caryophyllene ground the bouquet, lending a herbal tea-like depth on the exhale.",
-    "misc": "Produced by Dizgo, Medusa is a balanced hybrid leaning slightly sativa in effect profile despite its Misty lineage, which traditionally skews indica. The terpene combination of Ocimene and Farnesene is relatively uncommon and contributes to its distinctly uplifting, energetic onset followed by a smooth, relaxing comedown — making it well-suited for daytime to early evening use. Consumers seeking creativity, social engagement, or stress relief without heavy sedation will find this strain particularly approachable.",
-    "mood_ratings": {
-      "wind_down": 6,
-      "anxiety_relief": 4,
-      "lift_up": 3,
-      "get_creative": 2,
-      "get_social": 2,
-      "pain_body": 5,
-      "just_happy": 3,
-      "aphrodisiac": 3
-    }
-  },
   "5bcaf1fdea9a": {
     "lineage": "Atlas Star × Cotton Candy (Dizgo); Atlas Star is believed to carry Northern Lights and Haze genetics, while Cotton Candy descends from Power Plant × Lavender, contributing sweet, candy-forward terpene expression",
     "therapeutic": "Insomnia, anxiety, chronic stress, mild pain relief, muscle tension, mood elevation, appetite stimulation",
@@ -2139,40 +1816,6 @@
       "pain_body": 6,
       "just_happy": 5,
       "aphrodisiac": 5
-    }
-  },
-  "82c3fbd4d5ce": {
-    "lineage": "Likely a proprietary or house hybrid from Dizgo, possibly derived from crosses within the OG/Kush and sweet fruity lineage families; specific parentage not publicly disclosed — marketed as an original 'drift' cultivar by the Dizgo brand",
-    "therapeutic": "Stress relief, anxiety reduction, mild insomnia, muscle tension, mood elevation, chronic fatigue, mild pain management",
-    "negative": "Dry mouth, dry eyes, potential sedation at higher doses, mild couch-lock as the body high deepens, may cause grogginess if used before sleep for light consumers",
-    "aroma": "Orion opens with a bright, candy-sweet fruitiness underscored by fresh alpine pine, drifting into soft floral and herbal whispers courtesy of linalool and bisabolol — finishing with a subtle earthy musk that grounds the entire bouquet.",
-    "misc": "Dizgo is a brand known for approachable, lifestyle-forward cannabis products; Orion's terpene profile — led by myrcene and linalool with ocimene and farnesene adding floral-fruity lift — suggests a THC range likely in the 20–26% window typical for polished hybrid pre-rolls. Best consumed in the late afternoon or evening when the expansive euphoric onset can gracefully transition into relaxed, unhurried body ease. Ideal for consumers seeking a smooth, well-rounded hybrid experience without aggressive sedation or overwhelming cerebral intensity.",
-    "mood_ratings": {
-      "wind_down": 7,
-      "anxiety_relief": 6,
-      "lift_up": 3,
-      "get_creative": 5,
-      "get_social": 2,
-      "pain_body": 6,
-      "just_happy": 4,
-      "aphrodisiac": 5
-    }
-  },
-  "5480132b60c3": {
-    "lineage": "Amnesia Haze x Lemon Skunk x Sin Tra Dos (likely Amnesia x Lemon x [Sin Tra Dos hybrid background]); F1 hybrid developed by Dizgo, suggesting a first-generation cross bred for consistency and vigor",
-    "therapeutic": "Stress relief, mild anxiety, depression, fatigue, mood elevation, social anxiety",
-    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, potential dizziness for low-tolerance users",
-    "aroma": "A bright and zesty burst of citrus lemon dominates the nose, undercut by a damp earthiness and sharp pine resin. Spicy peppery undertones emerge on the exhale, giving the overall scent a complex, herbaceous depth.",
-    "misc": "Hyperion F1 by Dizgo is a deliberately bred first-generation hybrid, leveraging the uplifting, cerebral sativa energy of Amnesia Haze lineage balanced by the grounding influence of Sin Tra Dos. THC content on similar Dizgo F1 cuts typically ranges between 20-26%. Best suited for daytime to early evening use when socializing, creative work, or mood enhancement is desired; the 0.5g pre-roll format makes it ideal for microdosing the experience before committing to a full session.",
-    "mood_ratings": {
-      "wind_down": 6,
-      "anxiety_relief": 4,
-      "lift_up": 2,
-      "get_creative": 5,
-      "get_social": 2,
-      "pain_body": 6,
-      "just_happy": 3,
-      "aphrodisiac": 3
     }
   },
   "36274ec423f9": {
@@ -2192,23 +1835,6 @@
       "aphrodisiac": 5
     }
   },
-  "98a681e686c1": {
-    "lineage": "Chem's Sister x Sour Dubb x Chocolate Diesel (Original Glue / GG4, bred by GG Strains LLC, originally created by Joesy Whales and Lone Watie)",
-    "therapeutic": "Insomnia, chronic pain, muscle tension, stress, anxiety, appetite loss, depression",
-    "negative": "Dry mouth, dry eyes, couch-lock at high doses, potential dizziness or paranoia in low-tolerance users, heavy sedation may impair productivity",
-    "aroma": "A pungent blast of chemical diesel and sour earthiness opens immediately, giving way to rich undertones of dark roasted coffee, mocha, and a whisper of sweet pine that lingers on the exhale.",
-    "misc": "GG4 is one of the most decorated strains in modern cannabis, winning multiple Cannabis Cup titles and becoming a benchmark hybrid worldwide; Campfire Cannabis's 19.7% THC expression is consistent with typical GG4 phenotypes which range from 18–25% THC. The fluffy olive-green buds are characteristic of the strain — dense trichome coverage gives them a frosted, almost white appearance with rust-colored pistils. This is a firmly evening or nighttime strain best suited for winding down, managing pain before bed, or deep relaxation; novice consumers should start slow as the effects build gradually and can become intensely sedative.",
-    "mood_ratings": {
-      "wind_down": 8,
-      "anxiety_relief": 6,
-      "lift_up": 5,
-      "get_creative": 6,
-      "get_social": 4,
-      "pain_body": 7,
-      "just_happy": 6,
-      "aphrodisiac": 7
-    }
-  },
   "37ed2df9ba3b": {
     "lineage": "Kush Mintz x Alien Cookies (Alien Labs x Capulator collaboration; Kush Mintz itself is Animal Mints x Bubba Kush, bred by Seed Junky Genetics; Alien Cookies by Alien Labs)",
     "therapeutic": "Stress relief, anxiety reduction, mild depression, appetite stimulation, muscle tension, chronic pain, fatigue, social anxiety",
@@ -2223,23 +1849,6 @@
       "get_social": 4,
       "pain_body": 8,
       "just_happy": 6,
-      "aphrodisiac": 5
-    }
-  },
-  "855ba9c6f3e8": {
-    "lineage": "Cotton Candy x Gravenstein OG (Northpark)",
-    "therapeutic": "Stress relief, mild depression, fatigue, mood elevation, mild anxiety",
-    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, possible dizziness for low-tolerance users",
-    "aroma": "Fog Dog opens with a burst of sweet, candied fruit reminiscent of its Cotton Candy heritage, layered beneath a damp, earthy diesel funk from the Gravenstein OG side. Subtle floral rose notes weave through the exhale, creating a complex and inviting bouquet that is both sweet and grounding.",
-    "misc": "Fog Dog is a Northpark production blending the sugary, fruity character of Cotton Candy with the fuel-forward, resinous depth of Gravenstein OG, resulting in an indica-leaning hybrid well-suited for afternoon or early evening use when creativity and a lifted mood are desired. At 15% THC it sits in an approachable mid-range, making it a solid choice for intermediate consumers or those sensitive to high-potency cultivars who still want noticeable euphoric and creative effects. Buds are typically dense with a frosty trichome coating, showing forest green coloring accented by amber pistils, consistent with its OG and hybrid heritage.",
-    "mood_ratings": {
-      "wind_down": 6,
-      "anxiety_relief": 4,
-      "lift_up": 4,
-      "get_creative": 2,
-      "get_social": 4,
-      "pain_body": 6,
-      "just_happy": 5,
       "aphrodisiac": 5
     }
   },
@@ -2292,40 +1901,6 @@
       "pain_body": 4,
       "just_happy": 5,
       "aphrodisiac": 3
-    }
-  },
-  "6d899c88d36f": {
-    "lineage": "Zkittlez x Gelato (Cookies Fam / Runtz Crew, popularized by Cookies x Sherbinski collaboration)",
-    "therapeutic": "Stress relief, anxiety reduction, mild pain management, insomnia, appetite stimulation, mood elevation",
-    "negative": "Dry mouth, dry eyes, mild dizziness at higher doses, potential couch-lock, overconsumption may increase anxiety in sensitive users",
-    "aroma": "A vibrant bouquet of tropical citrus and sun-ripened berries greets the nose first, layered beneath with sweet candy and creamy pineapple notes. A subtle earthy, lightly pungent undertone rounds out the profile, courtesy of myrcene and caryophyllene working in tandem.",
-    "misc": "Runtz gained widespread fame after winning the 2020 Leafly Strain of the Year and is associated with the Cookies family of cultivars, typically testing between 19–29% THC in premium cuts — making this 17.3% expression a milder, approachable entry point. Dense olive-green buds with purple undertones, vivid orange pistils, and a heavy trichome frost reflect strong Gelato genetics and confirm quality cultivation from Campfire Cannabis. Best consumed in the early evening, this pre-roll is well-suited for users seeking relaxation and social ease without immediate sedation, though the sleepy effect noted in its profile suggests it transitions naturally into nighttime use.",
-    "mood_ratings": {
-      "wind_down": 7,
-      "anxiety_relief": 6,
-      "lift_up": 5,
-      "get_creative": 2,
-      "get_social": 4,
-      "pain_body": 6,
-      "just_happy": 7,
-      "aphrodisiac": 6
-    }
-  },
-  "9e75b0be3925": {
-    "lineage": "Blueberry (DJ Short) x Haze (Haze Bros / Sacred Seeds)",
-    "therapeutic": "Stress relief, depression, anxiety, fatigue, mild pain, creative blocks, mood elevation",
-    "negative": "Dry mouth, dry eyes, mild paranoia in sensitive users, occasional headache at higher doses, may cause anxiety in low-tolerance consumers due to sativa-leaning cerebral effects",
-    "aroma": "A sweet, sun-ripened blueberry bouquet greets the nose first, layered with floral lavender and fresh pine from the linalool and pinene, before giving way to an earthy, slightly spicy herbal undertone with soft vanilla and woodsy depth. The overall profile is inviting and approachable, balancing bright fruity sweetness with grounding herbal complexity.",
-    "misc": "Blue Dream is one of the most iconic and widely consumed strains in North American cannabis history, consistently ranking as a top-seller across legal markets for over a decade. At 14.4% THC this batch sits on the milder end of Blue Dream's typical 17–24% range, making it an excellent entry point for newer consumers or those seeking functional, clear-headed effects without overwhelming potency. Best enjoyed during daytime or early afternoon, these 0.5g pre-rolls from Dizgo are well-suited for creative projects, social settings, or outdoor activities where a gentle euphoric lift is desired without heavy sedation.",
-    "mood_ratings": {
-      "wind_down": 7,
-      "anxiety_relief": 4,
-      "lift_up": 4,
-      "get_creative": 6,
-      "get_social": 3,
-      "pain_body": 6,
-      "just_happy": 5,
-      "aphrodisiac": 5
     }
   },
   "f02e0d58623d": {
@@ -2413,40 +1988,6 @@
       "aphrodisiac": 5
     }
   },
-  "4ae2035b003f": {
-    "lineage": "OG Kush Breath (OGKB) x Mendo Montage (OG Kush Breath x Mendo Purps) — bred within the California craft cannabis tradition, closely associated with Gage Cannabis genetics and popularized through the California market",
-    "therapeutic": "Chronic pain, muscle tension, insomnia, anxiety, stress relief, appetite stimulation, mild depression",
-    "negative": "Dry mouth, dry eyes, mild dizziness at higher doses, couch-lock with heavy consumption, may cause drowsiness — not recommended for daytime productivity tasks",
-    "aroma": "A rich, dessert-like bouquet opens with sweet vanilla and caramel-candy notes layered over a deep earthy musk, with a subtle spiced herbal undertone that gives it a warm, almost bakery-like complexity. The OG lineage contributes a faint fuel-tinged backbone that grounds the sweetness and adds depth.",
-    "misc": "Mendo Breath is a well-regarded California indica-leaning hybrid typically testing between 17–22% THC, known for its strikingly sweet and confectionery terpene profile driven by the Mendo Montage parentage. Buds tend to be dense and resinous with deep green hues, occasional purple tones, and a heavy trichome coating. Best consumed in the evening or at night, this strain is ideal for users seeking full-body relaxation and stress relief without an overwhelming cerebral experience; beginners should approach with caution given its potent physical effects.",
-    "mood_ratings": {
-      "wind_down": 6,
-      "anxiety_relief": 4,
-      "lift_up": 4,
-      "get_creative": 2,
-      "get_social": 4,
-      "pain_body": 6,
-      "just_happy": 5,
-      "aphrodisiac": 5
-    }
-  },
-  "a8168fbccf54": {
-    "lineage": "Animal Mints x Kush Mints (The Soap lineage; original breeding attributed to Seed Junky Genetics, with The Soap popularized through Cookies Fam circles)",
-    "therapeutic": "Stress relief, anxiety reduction, mood elevation, mild pain management, fatigue, creative blocks, low-grade depression",
-    "negative": "Dry mouth, dry eyes, possible anxiety or paranoia at high doses, mild dizziness in low-tolerance users, overconsumption may cause restlessness due to sativa-leaning profile",
-    "aroma": "A sharp, fuel-forward mintiness opens first, followed by a bright burst of sour citrus and sweet pine resin, with a lingering undercurrent of spicy cheese and earthy diesel that gives the nose a complex, almost soapy-clean finish. The overall character is pungent and invigorating, with a cool herbal lift reminiscent of fresh spearmint and lemon zest.",
-    "misc": "The Soap is a well-regarded hybrid bred from two powerhouse Kush-lineage strains, Animal Mints and Kush Mints, both originating from Seed Junky Genetics, making it a terpene-rich, resin-heavy cultivar that typically tests between 20-26% THC. Campfire Cannabis presents this as an oversized, visually striking flower with mint-green buds, vivid orange pistils, and a dense golden-white trichome blanket indicative of excellent resin production. Best consumed during morning to early afternoon hours given its energetic, focus-enhancing sativa lean — ideal for creative projects, social settings, or active daytime use; novice consumers should start slow given the 22.1% THC potency.",
-    "mood_ratings": {
-      "wind_down": 7,
-      "anxiety_relief": 6,
-      "lift_up": 5,
-      "get_creative": 6,
-      "get_social": 4,
-      "pain_body": 7,
-      "just_happy": 6,
-      "aphrodisiac": 8
-    }
-  },
   "683ea2f806a4": {
     "lineage": "Hi-Octane phenotype (Purple Octane) — Hi-Octane is derived from OG Kush Breath x High Octane OG, with Purple Octane being a select phenotype expressing strong anthocyanin pigmentation and deep indica characteristics; bred/selected by Campfire Cannabis",
     "therapeutic": "Insomnia, chronic pain, muscle tension, anxiety, stress relief, appetite stimulation, headaches, depression",
@@ -2498,40 +2039,6 @@
       "aphrodisiac": 4
     }
   },
-  "ccfb5c460e1e": {
-    "lineage": "Blueberry Muffin x Pineapple Trainwreck — Blueberry Muffin is a cross of Blueberry and Purple Panty Dropper (Humboldt Seed Organization); Pineapple Trainwreck is a cross of Pineapple and Trainwreck, combining NorCal sativa-dominant genetics with tropical phenotype expression",
-    "therapeutic": "Stress relief, mild anxiety reduction, chronic fatigue, mood elevation, mild pain management, appetite stimulation",
-    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, potential couch-lock if overconsumed, drowsiness for low-tolerance users",
-    "aroma": "A vibrant and inviting blend of ripe blueberries and sweet baked goods layered over a sharp tropical pineapple brightness, with a faintly sour citrus finish that lingers pleasantly on the nose. The myrcene-forward base gives it a slightly earthy, doughy depth that grounds the fruity top notes.",
-    "misc": "Pineapple Muffin is a flavorful indica-leaning hybrid that typically tests in the 18–22% THC range, making this 20.1% batch right on point for moderate to experienced consumers. Buds tend to display dense, frosty green nugs with hints of purple and orange pistils — a nod to its Blueberry Muffin parentage. Best suited for late afternoon or early evening use when you want to unwind without fully shutting down; the focused and tingly effects make it a solid choice for creative relaxation or social settings.",
-    "mood_ratings": {
-      "wind_down": 6,
-      "anxiety_relief": 4,
-      "lift_up": 4,
-      "get_creative": 2,
-      "get_social": 4,
-      "pain_body": 6,
-      "just_happy": 5,
-      "aphrodisiac": 5
-    }
-  },
-  "c317a8353f11": {
-    "lineage": "Gelato phenotype (Sativa-leaning cut) — Gelato itself is Sunset Sherbet x Thin Mint Girl Scout Cookies (Cookie Fam Genetics / Sherbinski)",
-    "therapeutic": "Stress relief, depression, fatigue, mood elevation, mild anxiety, appetite stimulation, low-grade pain management",
-    "negative": "Dry mouth, dry eyes, mild paranoia or racing thoughts at high doses (especially for THC-sensitive consumers), potential headache with overconsumption",
-    "aroma": "A richly inviting bouquet of ripe guava and tropical citrus rises first, layered over a creamy, sweet berry base reminiscent of fresh sherbet. Underneath the fruit-forward sweetness lurks a subtle gassy diesel edge and faint spice that adds depth and complexity to the exhale.",
-    "misc": "Guava is a sativa-expressing phenotype of the legendary Gelato line, preserved and cultivated by Campfire Cannabis, carrying that lineage's signature trichome density and bag appeal in heart-shaped, frosty olive-green buds laced with vivid orange pistils. At 28.8% THC this is a potent offering best suited for experienced consumers, ideal for daytime or early-evening social settings where focus and uplifted energy are desired. Novice users should start with one small puff and wait due to the high THC content and gradually building euphoric onset.",
-    "mood_ratings": {
-      "wind_down": 7,
-      "anxiety_relief": 6,
-      "lift_up": 5,
-      "get_creative": 3,
-      "get_social": 4,
-      "pain_body": 6,
-      "just_happy": 7,
-      "aphrodisiac": 6
-    }
-  },
   "3d870e458d1a": {
     "lineage": "MAC (Miracle Alien Cookies) x Grape Stomper (Chemdawg Sour Diesel x Purple Elephant) — MAC bred by Capulator; MAC Stomper cross attributed to independent breeders within the craft cannabis community",
     "therapeutic": "Insomnia, stress relief, anxiety, chronic pain, muscle tension, depression, appetite stimulation",
@@ -2546,23 +2053,6 @@
       "get_social": 4,
       "pain_body": 4,
       "just_happy": 6,
-      "aphrodisiac": 5
-    }
-  },
-  "2e3e2768df4a": {
-    "lineage": "Ice Cream Cake x Grape Cream Cake (Unbound / likely derived from Seed Junky Genetics and Compound Genetics lineage; Ice Cream Cake = Wedding Cake x Gelato #33; Grape Cream Cake = Grape Pie x Ice Cream Cake)",
-    "therapeutic": "Stress relief, anxiety reduction, mild to moderate pain, insomnia, appetite stimulation, muscle tension, evening mood elevation",
-    "negative": "Dry mouth, dry eyes, potential dizziness or paranoia in low-tolerance users, couch-lock at higher doses, drowsiness may impair productivity — not recommended for daytime use",
-    "aroma": "Purple Ice Water opens with a lush wave of sweet grape candy and vanilla cream, reminiscent of a berry sorbet melting into warm cake batter. Beneath the dessert-forward top notes lie subtle earthy musk and a faint floral spice that grounds the sweetness beautifully.",
-    "misc": "This indica-dominant hybrid sits at a moderate 16.8% THC, making it approachable for intermediate consumers while still delivering noticeable sedative and euphoric effects. Buds are characteristically dense and frosted with trichomes, often displaying deep purple hues driven by anthocyanin expression, consistent with its Grape Cream Cake parentage. Best consumed in the evening or before bed; the Myrcene-heavy terpene profile amplifies body relaxation, while Limonene lifts the initial mood before Caryophyllene adds a grounding, anti-inflammatory quality to the experience.",
-    "mood_ratings": {
-      "wind_down": 6,
-      "anxiety_relief": 4,
-      "lift_up": 4,
-      "get_creative": 2,
-      "get_social": 4,
-      "pain_body": 6,
-      "just_happy": 5,
       "aphrodisiac": 5
     }
   },
@@ -2583,7 +2073,126 @@
       "aphrodisiac": 6
     }
   },
-  "5f43441b977d": {
+  "sw242332": {
+    "lineage": "Animal Mints x Kush Mints (Seed Junky Genetics)",
+    "therapeutic": "Depression, fatigue, stress, anxiety, mild chronic pain",
+    "negative": "Dry mouth, dry eyes, possible anxiety at high doses in novice users",
+    "aroma": "Clean floral soap, fresh mint, citrus zest, light cheese notes, pine — one of the most distinctive and refreshing terpene profiles in cannabis",
+    "misc": "Created by Seed Junky Genetics. Famously described as smelling like fresh soap or floral laundry detergent — a truly unique, clean aroma. THC 20–26%. Euphoric and uplifting with a clean, lasting head high. Strong daytime strain for focus and creativity.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 6,
+      "lift_up": 5,
+      "get_creative": 2,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 7,
+      "aphrodisiac": 6
+    }
+  },
+  "sw291860": {
+    "lineage": "Gelato phenotype (Sativa-leaning cut) — Gelato itself is Sunset Sherbet x Thin Mint Girl Scout Cookies (Cookie Fam Genetics / Sherbinski)",
+    "therapeutic": "Stress relief, depression, fatigue, mood elevation, mild anxiety, appetite stimulation, low-grade pain management",
+    "negative": "Dry mouth, dry eyes, mild paranoia or racing thoughts at high doses (especially for THC-sensitive consumers), potential headache with overconsumption",
+    "aroma": "A richly inviting bouquet of ripe guava and tropical citrus rises first, layered over a creamy, sweet berry base reminiscent of fresh sherbet. Underneath the fruit-forward sweetness lurks a subtle gassy diesel edge and faint spice that adds depth and complexity to the exhale.",
+    "misc": "Guava is a sativa-expressing phenotype of the legendary Gelato line, preserved and cultivated by Campfire Cannabis, carrying that lineage's signature trichome density and bag appeal in heart-shaped, frosty olive-green buds laced with vivid orange pistils. At 28.8% THC this is a potent offering best suited for experienced consumers, ideal for daytime or early-evening social settings where focus and uplifted energy are desired. Novice users should start with one small puff and wait due to the high THC content and gradually building euphoric onset.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 6,
+      "lift_up": 5,
+      "get_creative": 3,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 7,
+      "aphrodisiac": 6
+    }
+  },
+  "sw291861": {
+    "lineage": "Alien Cookies x Kush Mints #11 (Capulator / Cap Junky Genetics)",
+    "therapeutic": "Stress, anxiety, depression, chronic pain, appetite stimulation",
+    "negative": "Dry mouth, dry eyes, possible paranoia in sensitive users at high doses",
+    "aroma": "Pungent fuel and diesel, sweet pine, cooling menthol, spiced earth, faint fruity finish",
+    "misc": "Bred by renowned breeder Capulator (creator of MAC). Often cited as one of the best modern hybrids. THC 22–30%+. Fast-hitting cerebral rush followed by warm body relaxation. Popular in dispensaries nationwide for consistent potency and terpene expression.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 4,
+      "lift_up": 5,
+      "get_creative": 6,
+      "get_social": 4,
+      "pain_body": 7,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
+  },
+  "sw432697": {
+    "lineage": "Misty x Unknown Sativa (likely a sativa-leaning hybrid cross; Misty itself is a classic indica-dominant strain bred by Sensi Seeds, derived from White Widow x Skunk #1 x Northern Lights)",
+    "therapeutic": "Stress relief, anxiety reduction, mild depression, mental fatigue, mood elevation, mild pain management",
+    "negative": "Dry mouth, dry eyes, mild anxiety or racing thoughts at higher doses due to sativa influence, occasional dizziness",
+    "aroma": "Medusa opens with a burst of ripe mixed berries and sweet floral notes carried by Ocimene and Farnesene, giving it an almost perfumed, fruity elegance. Underlying earthiness and a subtle spicy warmth from Myrcene and Caryophyllene ground the bouquet, lending a herbal tea-like depth on the exhale.",
+    "misc": "Produced by Dizgo, Medusa is a balanced hybrid leaning slightly sativa in effect profile despite its Misty lineage, which traditionally skews indica. The terpene combination of Ocimene and Farnesene is relatively uncommon and contributes to its distinctly uplifting, energetic onset followed by a smooth, relaxing comedown — making it well-suited for daytime to early evening use. Consumers seeking creativity, social engagement, or stress relief without heavy sedation will find this strain particularly approachable.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 3,
+      "get_creative": 2,
+      "get_social": 2,
+      "pain_body": 5,
+      "just_happy": 3,
+      "aphrodisiac": 3
+    }
+  },
+  "sw416268": {
+    "lineage": "Blueberry (DJ Short) x Haze (Original Haze / Santa Cruz Haze lineage) — popularized by DJ Short and widely phenohunted across California's Bay Area breeding scene",
+    "therapeutic": "Stress relief, depression, anxiety, mild pain, fatigue, creative blocks, ADHD symptom management",
+    "negative": "Dry mouth, dry eyes, occasional paranoia or anxiety at higher doses in THC-sensitive users, mild dizziness for beginners",
+    "aroma": "A bright and inviting bouquet of fresh blueberries and sweet berry jam layered over a subtle earthy, herbal base with soft floral and pine undertones. The Haze parentage adds a light spicy, incense-like depth that balances the sweetness beautifully.",
+    "misc": "Blue Dream is one of the most iconic and best-selling strains in the US, originating in Santa Cruz, California, and long dominating California dispensary menus. At 12.4% THC this batch sits on the milder end of Blue Dream's typical 17–24% range, making it an excellent choice for beginners or those seeking a functional, gentle daytime experience. Buds typically present as medium-to-large, fluffy and elongated with a sage-green hue, amber pistils, and a light dusting of trichomes — best enjoyed in the morning or afternoon for creative work, social activities, or a mood boost without heavy sedation.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 4,
+      "lift_up": 4,
+      "get_creative": 6,
+      "get_social": 3,
+      "pain_body": 6,
+      "just_happy": 5,
+      "aphrodisiac": 5
+    }
+  },
+  "sw426391": {
+    "lineage": "Hawaiian-Romulan × Island Sweet Skunk (Original breeder attributed to a happy accident in Topeka, Kansas; popularized by multiple Colorado cultivators)",
+    "therapeutic": "Stress relief, anxiety reduction, mild to moderate pain, muscle tension, mood elevation, fatigue",
+    "negative": "Dry mouth, dry eyes, mild dizziness at higher doses, potential couch-lock with prolonged use due to indica-leaning effects",
+    "aroma": "A vibrant burst of tropical citrus — think ripe mango, lemon zest, and pineapple — anchored by a damp earthy undertone with hints of sweet spice and fresh herbs. The nose is bright and inviting upfront with a grounding herbal depth that lingers pleasantly.",
+    "misc": "Golden Goat was originally created accidentally around 2005 in Topeka, Kansas, when a male Island Sweet Skunk pollinated a Hawaiian-Romulan female; it became a celebrated strain on the Colorado cannabis scene. Typical THC range runs 16–23%, making this 17.3% expression a moderate and approachable entry point. Buds are typically dense and chunky with golden-amber pistils, frosty trichomes, and a pale green coloration that gives the strain its name — best consumed in the evening for its calming, body-focused finish.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 2,
+      "get_creative": 2,
+      "get_social": 2,
+      "pain_body": 7,
+      "just_happy": 3,
+      "aphrodisiac": 3
+    }
+  },
+  "sw444439": {
+    "lineage": "Cotton Candy x Gravenstein OG (Northpark)",
+    "therapeutic": "Stress relief, mild depression, fatigue, mood elevation, mild anxiety",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, possible dizziness for low-tolerance users",
+    "aroma": "Fog Dog opens with a burst of sweet, candied fruit reminiscent of its Cotton Candy heritage, layered beneath a damp, earthy diesel funk from the Gravenstein OG side. Subtle floral rose notes weave through the exhale, creating a complex and inviting bouquet that is both sweet and grounding.",
+    "misc": "Fog Dog is a Northpark production blending the sugary, fruity character of Cotton Candy with the fuel-forward, resinous depth of Gravenstein OG, resulting in an indica-leaning hybrid well-suited for afternoon or early evening use when creativity and a lifted mood are desired. At 15% THC it sits in an approachable mid-range, making it a solid choice for intermediate consumers or those sensitive to high-potency cultivars who still want noticeable euphoric and creative effects. Buds are typically dense with a frosty trichome coating, showing forest green coloring accented by amber pistils, consistent with its OG and hybrid heritage.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 4,
+      "get_creative": 2,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 5,
+      "aphrodisiac": 5
+    }
+  },
+  "sw462448": {
     "lineage": "Blackberry x (Dead Head OG or OG Kush) — likely a cross of Blackberry (a classic indica-dominant hybrid from Nirvana Seeds, itself derived from Black Domina x Raspberry Cough lineage) with either Dead Head OG (a potent OG Kush phenotype popularized by Cali breeders) or a traditional OG Kush cut; exact breeder of Frostberry Fuel attributed to Nineteen Pines",
     "therapeutic": "Stress relief, anxiety reduction, mild depression, chronic pain, muscle tension, appetite stimulation, insomnia (late-stage sedation), fatigue (early effects)",
     "negative": "Dry mouth, dry eyes, mild paranoia in THC-sensitive users, potential couch-lock at higher doses, dizziness for novice consumers, possible grogginess if consumed before sleep",
@@ -2600,7 +2209,347 @@
       "aphrodisiac": 5
     }
   },
-  "af8f7bea7194": {
+  "sw334018": {
+    "lineage": "Girl Scout Cookies x Sherbet (Cookies Fam Genetics — Gelato #45 phenotype)",
+    "therapeutic": "Stress, depression, chronic pain, PTSD, nausea",
+    "negative": "Dry mouth, dry eyes, mild sedation at high doses",
+    "aroma": "Sweet berry and orange sherbet, creamy vanilla, herbal pepper, faint woody kush undertone",
+    "misc": "Gelato #45 is one of the most prized phenotypes from the original Gelato line by the Cookies Fam. Lower THC (15–20%) than newer genetics but world-class terpene expression and euphoric effects. Dense, colorful buds. Balanced hybrid that reads more indica at higher doses. Exceptional flavor-to-effect ratio.",
+    "mood_ratings": {
+      "wind_down": 3,
+      "anxiety_relief": 4,
+      "lift_up": 5,
+      "get_creative": 2,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 4,
+      "aphrodisiac": 4
+    }
+  },
+  "sw426389": {
+    "lineage": "Dosidos x Gelonade (Dosidos = Girl Scout Cookies x Face Off OG; Gelonade = Gelato 41 x Lemon Tree) — likely bred or selected by Unbound or affiliated cultivators",
+    "therapeutic": "Stress relief, mild anxiety reduction, muscle tension, mood elevation, mild pain management, fatigue",
+    "negative": "Dry mouth, dry eyes, mild dizziness at higher doses, possible couch-lock sensitivity in low-tolerance users despite moderate THC",
+    "aroma": "Illemonati greets the nose with a sharp, electric lemon zest — almost like freshly grated lemon rind — underpinned by a soft, doughy sweetness reminiscent of lemon cream pastry. Subtle earthy and floral undertones from bisabolol and humulene round out the bouquet with a clean, refined finish.",
+    "misc": "At 10.1% THC, Illemonati sits on the moderate end of the potency spectrum, making it approachable for newer consumers while still delivering a functional, balanced indica-leaning hybrid experience. Buds are typically dense and frosty with lime-green hues, occasional purple undertones inherited from the Dosidos lineage, and a generous trichome coating that belies the modest THC percentage. Best suited for late afternoon or early evening use when relaxation is desired without full sedation — a solid choice for winding down socially or easing into a restful night.",
+    "mood_ratings": {
+      "wind_down": 4,
+      "anxiety_relief": 4,
+      "lift_up": 2,
+      "get_creative": 2,
+      "get_social": 2,
+      "pain_body": 6,
+      "just_happy": 3,
+      "aphrodisiac": 3
+    }
+  },
+  "sw426388": {
+    "lineage": "Tangie x Purple Punch (Unbound); Tangie itself is a cross of California Orange x Skunk-1, while Purple Punch is Larry OG x Granddaddy Purple",
+    "therapeutic": "Stress relief, mild anxiety, mood elevation, muscle tension, mild pain, appetite stimulation, end-of-day relaxation",
+    "negative": "Dry mouth, dry eyes, mild sedation at higher doses, potential couch-lock with overconsumption, possible dizziness in low-tolerance users",
+    "aroma": "A vibrant burst of fresh-squeezed tangerine and orange zest opens the nose, layered with sweet grape and berry undertones inherited from Purple Punch; as it settles, soft floral and creamy vanilla notes emerge, rounding out the profile with a lush, candy-like sweetness.",
+    "misc": "Orangade is a well-balanced indica-leaning hybrid that leans into its Tangie lineage for bright citrus energy while Purple Punch anchors it with a relaxing, body-forward finish, making it ideal for early evening use when you want to unwind without full sedation. Buds typically display dense, medium-sized nuggets with deep green coloring, occasional purple hues, and a generous coating of trichomes reflecting its Purple Punch heritage. At 18% THC, this strain is approachable for intermediate consumers and suitable for those seeking mood lift paired with physical relaxation rather than heavy intoxication.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 5,
+      "get_creative": 2,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
+  },
+  "sw419586": {
+    "lineage": "Blue Mammoth Auto x Blue Dream x Amnesia (dizgo); Blue Mammoth Auto derives from Blueberry x Mammoth Auto, Blue Dream from Blueberry x Haze (DJ Short / Archive Seed Bank lineage), and Amnesia from a complex Haze-dominant heritage including South Asian and Jamaican landraces",
+    "therapeutic": "Stress relief, anxiety management, mild depression, creative blocks, fatigue, mild pain, mood elevation",
+    "negative": "Dry mouth, dry eyes, possible mild paranoia or racing thoughts in THC-sensitive users, mild dizziness at higher consumption; not ideal for those prone to anxiety due to Haze-lineage cerebral stimulation",
+    "aroma": "Orion opens with a bright, sweet burst of blueberry and tropical fruit carried on a fresh piney backbone, with soft floral and herbal whispers of lavender and anise that deepen as the bud warms in hand. A subtle earthy musk from its Myrcene base rounds out the bouquet, lending a grounding depth beneath the candy-sweet brightness.",
+    "misc": "Crafted by dizgo, Orion is a balanced hybrid sitting at 16.6% THC — approachable for intermediate consumers while still delivering notable effect. Buds are typically dense with a frosty trichome coating, showing deep greens with hints of violet inherited from its Blueberry ancestry. Best enjoyed in the afternoon or early evening when creativity and calm are equally welcome, making it ideal for social settings, artistic pursuits, or unwinding after work without full sedation.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 6,
+      "lift_up": 3,
+      "get_creative": 5,
+      "get_social": 2,
+      "pain_body": 6,
+      "just_happy": 4,
+      "aphrodisiac": 5
+    }
+  },
+  "sw242117": {
+    "lineage": "Zkittlez x Gelato (Cookies Fam / Runtz brand)",
+    "therapeutic": "Stress, anxiety, depression, chronic pain, appetite stimulation",
+    "negative": "Dry mouth, dry eyes, possible sedation at high doses",
+    "aroma": "Tropical candy sweetness, pineapple citrus, fruity Zkittlez notes, creamy Gelato undertone, light spice on exhale",
+    "misc": "Bred by the Cookies Fam and widely regarded as one of the most influential strains of the 2020s. Named after the candy brand for its intense sweetness. THC 18–25%. Dense colorful buds. Rapid-hitting, well-balanced — euphoric head high paired with full-body relaxation. Nearly universally well-received.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 4,
+      "get_creative": 2,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 5,
+      "aphrodisiac": 5
+    }
+  },
+  "sw242323": {
+    "lineage": "Tahoe OG x Runtz",
+    "therapeutic": "Insomnia, chronic pain, stress, anxiety, muscle tension",
+    "negative": "Dry mouth, dry eyes, heavy sedation — not for daytime use",
+    "aroma": "Earthy OG pine with sweet candy citrus, creamy tropical undertones, classic kush musk base",
+    "misc": "Combines Tahoe OG's heavy-hitting indica body stone with Runtz's sweet candy genetics. THC 25–30%. Dense frosty buds. The OG backbone delivers reliable potency and full-body relaxation while Runtz adds dessert sweetness. Best for evening wind-down or pre-sleep.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 6,
+      "lift_up": 4,
+      "get_creative": 2,
+      "get_social": 4,
+      "pain_body": 5,
+      "just_happy": 7,
+      "aphrodisiac": 6
+    }
+  },
+  "sw242343": {
+    "lineage": "Biscotti x Sour Dubb x Chocolate Diesel (Seed Junky Genetics, popularized by Doja Exclusive / Wizards of the Coast collaboration)",
+    "therapeutic": "Stress relief, anxiety reduction, depression, appetite stimulation, mild pain management, creative blocks, fatigue",
+    "negative": "Dry mouth, dry eyes, mild paranoia at high doses, potential couch-lock with heavy consumption, dizziness in low-tolerance users",
+    "aroma": "Permanent Marker hits the nose with a bold, fuel-forward rush of sharp diesel and gasoline that quickly opens up into sweet candy and floral undertones, reminiscent of a pungent, inky sweetness. A soapy, almost perfume-like quality lingers beneath the surface, complemented by subtle citrus brightness that keeps the profile complex and captivating.",
+    "misc": "Permanent Marker is a highly sought-after cultivar originally developed within the Seed Junky Genetics and Doja Exclusive circles, gaining significant hype on the West Coast cannabis scene for its striking bag appeal — typically presenting dense, chunky buds with deep purple hues, vivid orange pistils, and a heavy blanket of trichomes. At 22.5% THC this batch sits within a typical range of 22–30%+ seen across premium cuts, making it best suited for late-evening or nighttime use given its indica-leaning hybrid profile. Consumers new to this strain should start low, as its euphoric and creative onset can transition into deep relaxation and sedation, and it has earned a loyal following among connoisseurs who prize its unique blend of gassy, sweet, and soapy terpene complexity.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 4,
+      "get_creative": 2,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 5,
+      "aphrodisiac": 5
+    }
+  },
+  "sw242346": {
+    "lineage": "MAC (Miracle Alien Cookies) x Grape Stomper (Gage Green Seeds)",
+    "therapeutic": "Chronic pain, stress, insomnia, mood disorders, nausea",
+    "negative": "Dry mouth, dry eyes, couch-lock at high doses",
+    "aroma": "Creamy grape candy, sweet apple, citrus zest, light floral, earthy funk on the finish",
+    "misc": "Cross of two award-winning genetics. MAC contributes creamy citrus and potency; Grape Stomper adds grape and fruit sweetness. THC 24–29%. Available in half-ounce — great value buy. Dense, trichome-heavy flowers with deep purple and green hues. Best for evening use.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 6,
+      "lift_up": 2,
+      "get_creative": 5,
+      "get_social": 2,
+      "pain_body": 6,
+      "just_happy": 4,
+      "aphrodisiac": 4
+    }
+  },
+  "sw242348": {
+    "lineage": "(Biscotti x Sherb BX1) x Jealousy F2 (Compound Genetics / Seed Junky)",
+    "therapeutic": "Insomnia, chronic pain, stress, appetite stimulation, muscle tension",
+    "negative": "Dry mouth, dry eyes, heavy sedation — not for daytime use",
+    "aroma": "Sweet grape diesel, rich berry, creamy dessert notes, faint chemical fuel on exhale",
+    "misc": "Premium cross of high-end genetics. Biscotti x Sherb BX1 provides the creamy dessert foundation; Jealousy F2 adds potency and deep purple coloration. THC 25–30%+. Dense purple-tinted buds with heavy resin coverage. Hard-hitting indica-dominant — reserved for evening or experienced users.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 4,
+      "lift_up": 5,
+      "get_creative": 4,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
+  },
+  "sw242349": {
+    "lineage": "The Soap x Velvet Runtz (Campfire Cannabis in-house cross)",
+    "therapeutic": "Stress, fatigue, depression, mild chronic pain, creative blocks",
+    "negative": "Dry mouth, dry eyes, occasional anxiety at high doses",
+    "aroma": "Clean soapy citrus, sweet mixed berry, light diesel backbone, faint pine and earthy woods",
+    "misc": "House cross by Campfire Cannabis combining The Soap's clean citrus with Velvet Runtz candy sweetness. THC 20–25%. Versatile hybrid — sativa-leaning first hour then settles into relaxed body state. Great for daytime creative work or afternoon social sessions.",
+    "mood_ratings": {
+      "wind_down": 4,
+      "anxiety_relief": 4,
+      "lift_up": 8,
+      "get_creative": 7,
+      "get_social": 7,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 6
+    }
+  },
+  "sw381984": {
+    "lineage": "Likely a proprietary or house hybrid from Dizgo, possibly derived from crosses within the OG/Kush and sweet fruity lineage families; specific parentage not publicly disclosed — marketed as an original 'drift' cultivar by the Dizgo brand",
+    "therapeutic": "Stress relief, anxiety reduction, mild insomnia, muscle tension, mood elevation, chronic fatigue, mild pain management",
+    "negative": "Dry mouth, dry eyes, potential sedation at higher doses, mild couch-lock as the body high deepens, may cause grogginess if used before sleep for light consumers",
+    "aroma": "Orion opens with a bright, candy-sweet fruitiness underscored by fresh alpine pine, drifting into soft floral and herbal whispers courtesy of linalool and bisabolol — finishing with a subtle earthy musk that grounds the entire bouquet.",
+    "misc": "Dizgo is a brand known for approachable, lifestyle-forward cannabis products; Orion's terpene profile — led by myrcene and linalool with ocimene and farnesene adding floral-fruity lift — suggests a THC range likely in the 20–26% window typical for polished hybrid pre-rolls. Best consumed in the late afternoon or evening when the expansive euphoric onset can gracefully transition into relaxed, unhurried body ease. Ideal for consumers seeking a smooth, well-rounded hybrid experience without aggressive sedation or overwhelming cerebral intensity.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 6,
+      "lift_up": 3,
+      "get_creative": 5,
+      "get_social": 2,
+      "pain_body": 6,
+      "just_happy": 4,
+      "aphrodisiac": 5
+    }
+  },
+  "sw451080": {
+    "lineage": "Blueberry (DJ Short) x Haze (Haze Bros / Sacred Seeds)",
+    "therapeutic": "Stress relief, depression, anxiety, fatigue, mild pain, creative blocks, mood elevation",
+    "negative": "Dry mouth, dry eyes, mild paranoia in sensitive users, occasional headache at higher doses, may cause anxiety in low-tolerance consumers due to sativa-leaning cerebral effects",
+    "aroma": "A sweet, sun-ripened blueberry bouquet greets the nose first, layered with floral lavender and fresh pine from the linalool and pinene, before giving way to an earthy, slightly spicy herbal undertone with soft vanilla and woodsy depth. The overall profile is inviting and approachable, balancing bright fruity sweetness with grounding herbal complexity.",
+    "misc": "Blue Dream is one of the most iconic and widely consumed strains in North American cannabis history, consistently ranking as a top-seller across legal markets for over a decade. At 14.4% THC this batch sits on the milder end of Blue Dream's typical 17–24% range, making it an excellent entry point for newer consumers or those seeking functional, clear-headed effects without overwhelming potency. Best enjoyed during daytime or early afternoon, these 0.5g pre-rolls from Dizgo are well-suited for creative projects, social settings, or outdoor activities where a gentle euphoric lift is desired without heavy sedation.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 4,
+      "lift_up": 4,
+      "get_creative": 6,
+      "get_social": 3,
+      "pain_body": 6,
+      "just_happy": 5,
+      "aphrodisiac": 5
+    }
+  },
+  "sw451772": {
+    "lineage": "Blueberry Muffin x Pineapple Trainwreck — Blueberry Muffin is a cross of Blueberry and Purple Panty Dropper (Humboldt Seed Organization); Pineapple Trainwreck is a cross of Pineapple and Trainwreck, combining NorCal sativa-dominant genetics with tropical phenotype expression",
+    "therapeutic": "Stress relief, mild anxiety reduction, chronic fatigue, mood elevation, mild pain management, appetite stimulation",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, potential couch-lock if overconsumed, drowsiness for low-tolerance users",
+    "aroma": "A vibrant and inviting blend of ripe blueberries and sweet baked goods layered over a sharp tropical pineapple brightness, with a faintly sour citrus finish that lingers pleasantly on the nose. The myrcene-forward base gives it a slightly earthy, doughy depth that grounds the fruity top notes.",
+    "misc": "Pineapple Muffin is a flavorful indica-leaning hybrid that typically tests in the 18–22% THC range, making this 20.1% batch right on point for moderate to experienced consumers. Buds tend to display dense, frosty green nugs with hints of purple and orange pistils — a nod to its Blueberry Muffin parentage. Best suited for late afternoon or early evening use when you want to unwind without fully shutting down; the focused and tingly effects make it a solid choice for creative relaxation or social settings.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 4,
+      "get_creative": 2,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 5,
+      "aphrodisiac": 5
+    }
+  },
+  "sw426359": {
+    "lineage": "Hawaiian-Romulan × Island Sweet Skunk (Original Golden Goat bred by Mr. Dank in Topeka, Kansas; accidental cross)",
+    "therapeutic": "Stress relief, anxiety reduction, muscle tension, mild pain management, mood elevation, fatigue",
+    "negative": "Dry mouth, dry eyes, occasional dizziness at higher doses, possible couch-lock due to indica-leaning profile and myrcene dominance",
+    "aroma": "A vibrant burst of tropical citrus and ripe pineapple opens the nose, quickly giving way to a grounding layer of damp earth, sweet spice, and subtle herbal funk reminiscent of fresh-cut grass and dried flowers.",
+    "misc": "Golden Goat is a well-regarded hybrid that originated as a happy accident in Kansas, gaining popularity for its balanced yet body-forward effects; typical THC range in commercial cultivars runs 16–24%, with this Unbound pre-roll sitting solidly at 21.2%. The buds are classically dense with golden-amber pistils, a heavy trichome frost, and hints of pale green, reflecting its sativa-heritage parents. Best consumed in the late afternoon or early evening when stress relief and physical relaxation are the priority without full sedation; the myrcene and caryophyllene terpene duo amplifies its body-melting, anti-inflammatory qualities.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 2,
+      "get_creative": 2,
+      "get_social": 2,
+      "pain_body": 7,
+      "just_happy": 3,
+      "aphrodisiac": 3
+    }
+  },
+  "sw295680": {
+    "lineage": "Animal Mints x Kush Mints (The Soap lineage; original breeding attributed to Seed Junky Genetics, with The Soap popularized through Cookies Fam circles)",
+    "therapeutic": "Stress relief, anxiety reduction, mood elevation, mild pain management, fatigue, creative blocks, low-grade depression",
+    "negative": "Dry mouth, dry eyes, possible anxiety or paranoia at high doses, mild dizziness in low-tolerance users, overconsumption may cause restlessness due to sativa-leaning profile",
+    "aroma": "A sharp, fuel-forward mintiness opens first, followed by a bright burst of sour citrus and sweet pine resin, with a lingering undercurrent of spicy cheese and earthy diesel that gives the nose a complex, almost soapy-clean finish. The overall character is pungent and invigorating, with a cool herbal lift reminiscent of fresh spearmint and lemon zest.",
+    "misc": "The Soap is a well-regarded hybrid bred from two powerhouse Kush-lineage strains, Animal Mints and Kush Mints, both originating from Seed Junky Genetics, making it a terpene-rich, resin-heavy cultivar that typically tests between 20-26% THC. Campfire Cannabis presents this as an oversized, visually striking flower with mint-green buds, vivid orange pistils, and a dense golden-white trichome blanket indicative of excellent resin production. Best consumed during morning to early afternoon hours given its energetic, focus-enhancing sativa lean — ideal for creative projects, social settings, or active daytime use; novice consumers should start slow given the 22.1% THC potency.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 6,
+      "lift_up": 5,
+      "get_creative": 6,
+      "get_social": 4,
+      "pain_body": 7,
+      "just_happy": 6,
+      "aphrodisiac": 8
+    }
+  },
+  "sw367338": {
+    "lineage": "Amnesia Haze x Lemon Skunk x Sin Tra Dos (likely Amnesia x Lemon x [Sin Tra Dos hybrid background]); F1 hybrid developed by Dizgo, suggesting a first-generation cross bred for consistency and vigor",
+    "therapeutic": "Stress relief, mild anxiety, depression, fatigue, mood elevation, social anxiety",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, potential dizziness for low-tolerance users",
+    "aroma": "A bright and zesty burst of citrus lemon dominates the nose, undercut by a damp earthiness and sharp pine resin. Spicy peppery undertones emerge on the exhale, giving the overall scent a complex, herbaceous depth.",
+    "misc": "Hyperion F1 by Dizgo is a deliberately bred first-generation hybrid, leveraging the uplifting, cerebral sativa energy of Amnesia Haze lineage balanced by the grounding influence of Sin Tra Dos. THC content on similar Dizgo F1 cuts typically ranges between 20-26%. Best suited for daytime to early evening use when socializing, creative work, or mood enhancement is desired; the 0.5g pre-roll format makes it ideal for microdosing the experience before committing to a full session.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 2,
+      "get_creative": 5,
+      "get_social": 2,
+      "pain_body": 6,
+      "just_happy": 3,
+      "aphrodisiac": 3
+    }
+  },
+  "sw347758": {
+    "lineage": "Chem's Sister x Sour Dubb x Chocolate Diesel (Original Glue / GG4, bred by GG Strains LLC, originally created by Joesy Whales and Lone Watie)",
+    "therapeutic": "Insomnia, chronic pain, muscle tension, stress, anxiety, appetite loss, depression",
+    "negative": "Dry mouth, dry eyes, couch-lock at high doses, potential dizziness or paranoia in low-tolerance users, heavy sedation may impair productivity",
+    "aroma": "A pungent blast of chemical diesel and sour earthiness opens immediately, giving way to rich undertones of dark roasted coffee, mocha, and a whisper of sweet pine that lingers on the exhale.",
+    "misc": "GG4 is one of the most decorated strains in modern cannabis, winning multiple Cannabis Cup titles and becoming a benchmark hybrid worldwide; Campfire Cannabis's 19.7% THC expression is consistent with typical GG4 phenotypes which range from 18–25% THC. The fluffy olive-green buds are characteristic of the strain — dense trichome coverage gives them a frosted, almost white appearance with rust-colored pistils. This is a firmly evening or nighttime strain best suited for winding down, managing pain before bed, or deep relaxation; novice consumers should start slow as the effects build gradually and can become intensely sedative.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 6,
+      "lift_up": 5,
+      "get_creative": 6,
+      "get_social": 4,
+      "pain_body": 7,
+      "just_happy": 6,
+      "aphrodisiac": 7
+    }
+  },
+  "sw449615": {
+    "lineage": "Zkittlez x Gelato (Cookies Fam / Runtz Crew, popularized by Cookies x Sherbinski collaboration)",
+    "therapeutic": "Stress relief, anxiety reduction, mild pain management, insomnia, appetite stimulation, mood elevation",
+    "negative": "Dry mouth, dry eyes, mild dizziness at higher doses, potential couch-lock, overconsumption may increase anxiety in sensitive users",
+    "aroma": "A vibrant bouquet of tropical citrus and sun-ripened berries greets the nose first, layered beneath with sweet candy and creamy pineapple notes. A subtle earthy, lightly pungent undertone rounds out the profile, courtesy of myrcene and caryophyllene working in tandem.",
+    "misc": "Runtz gained widespread fame after winning the 2020 Leafly Strain of the Year and is associated with the Cookies family of cultivars, typically testing between 19–29% THC in premium cuts — making this 17.3% expression a milder, approachable entry point. Dense olive-green buds with purple undertones, vivid orange pistils, and a heavy trichome frost reflect strong Gelato genetics and confirm quality cultivation from Campfire Cannabis. Best consumed in the early evening, this pre-roll is well-suited for users seeking relaxation and social ease without immediate sedation, though the sleepy effect noted in its profile suggests it transitions naturally into nighttime use.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 6,
+      "lift_up": 5,
+      "get_creative": 2,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 7,
+      "aphrodisiac": 6
+    }
+  },
+  "sw451776": {
+    "lineage": "OG Kush Breath (OGKB) x Mendo Montage (OG Kush Breath x Mendo Purps) — bred within the California craft cannabis tradition, closely associated with Gage Cannabis genetics and popularized through the California market",
+    "therapeutic": "Chronic pain, muscle tension, insomnia, anxiety, stress relief, appetite stimulation, mild depression",
+    "negative": "Dry mouth, dry eyes, mild dizziness at higher doses, couch-lock with heavy consumption, may cause drowsiness — not recommended for daytime productivity tasks",
+    "aroma": "A rich, dessert-like bouquet opens with sweet vanilla and caramel-candy notes layered over a deep earthy musk, with a subtle spiced herbal undertone that gives it a warm, almost bakery-like complexity. The OG lineage contributes a faint fuel-tinged backbone that grounds the sweetness and adds depth.",
+    "misc": "Mendo Breath is a well-regarded California indica-leaning hybrid typically testing between 17–22% THC, known for its strikingly sweet and confectionery terpene profile driven by the Mendo Montage parentage. Buds tend to be dense and resinous with deep green hues, occasional purple tones, and a heavy trichome coating. Best consumed in the evening or at night, this strain is ideal for users seeking full-body relaxation and stress relief without an overwhelming cerebral experience; beginners should approach with caution given its potent physical effects.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 4,
+      "get_creative": 2,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 5,
+      "aphrodisiac": 5
+    }
+  },
+  "sw426348": {
+    "lineage": "GMO (Garlic Cookies) x Jet Fuel (G6) x Wilson (unknown hybrid) — Unbound Cannabis; GMO is a phenotype of Chemdog x GSC (Girl Scout Cookies), Jet Fuel (G6) is derived from Aspen OG x High Country Diesel, Wilson lineage less documented but contributes uplifting sativa-leaning characteristics",
+    "therapeutic": "Stress relief, mild anxiety, mood elevation, creative block, social anxiety, mild pain and muscle tension, fatigue",
+    "negative": "Dry mouth, dry eyes, possible mild paranoia at higher doses, dizziness for low-tolerance users; relatively low THC at 11.7% makes overconsumption less likely but caution still advised for novice consumers",
+    "aroma": "A bright and inviting opening of zesty lemon and fresh citrus rind gives way to a sweet berry undertone, anchored by deep earthy and faintly garlicky diesel notes inherited from the GMO lineage. The overall scent profile is complex yet approachable — fruity and grounded with a subtle piney sharpness from the A-Pinene terpene.",
+    "misc": "Crafted by Unbound Cannabis, Wilfunk sits in a moderate THC range (11–13% typical) making it an accessible option for daytime users or those sensitive to high-potency flower. Buds are likely dense with a classic hybrid structure — medium-green with amber pistils and a moderate trichome coat reflecting its GMO and GSC heritage. Ideal for morning to early afternoon use, social gatherings, creative projects, or low-key outdoor activities where mental clarity and mild body ease are desired.",
+    "mood_ratings": {
+      "wind_down": 3,
+      "anxiety_relief": 4,
+      "lift_up": 6,
+      "get_creative": 6,
+      "get_social": 5,
+      "pain_body": 5,
+      "just_happy": 4,
+      "aphrodisiac": 5
+    }
+  },
+  "sw462450": {
     "lineage": "Unknown Purple strain (likely Purple Kush or Granddaddy Purple lineage) x Unknown Citrus strain with Californian (OG/Cookies lineage) and Afghan genetics (Dizgo / breeder unknown)",
     "therapeutic": "Stress relief, mild anxiety, muscle tension, insomnia, mood disorders, mild pain management, appetite stimulation",
     "negative": "Dry mouth, dry eyes, mild dizziness at higher doses, potential couch-lock, may cause drowsiness — not recommended for daytime productivity tasks",
@@ -2615,6 +2564,57 @@
       "pain_body": 6,
       "just_happy": 6,
       "aphrodisiac": 4
+    }
+  },
+  "sw454614": {
+    "lineage": "Ice Cream Cake x Grape Cream Cake (Unbound / likely derived from Seed Junky Genetics and Compound Genetics lineage; Ice Cream Cake = Wedding Cake x Gelato #33; Grape Cream Cake = Grape Pie x Ice Cream Cake)",
+    "therapeutic": "Stress relief, anxiety reduction, mild to moderate pain, insomnia, appetite stimulation, muscle tension, evening mood elevation",
+    "negative": "Dry mouth, dry eyes, potential dizziness or paranoia in low-tolerance users, couch-lock at higher doses, drowsiness may impair productivity — not recommended for daytime use",
+    "aroma": "Purple Ice Water opens with a lush wave of sweet grape candy and vanilla cream, reminiscent of a berry sorbet melting into warm cake batter. Beneath the dessert-forward top notes lie subtle earthy musk and a faint floral spice that grounds the sweetness beautifully.",
+    "misc": "This indica-dominant hybrid sits at a moderate 16.8% THC, making it approachable for intermediate consumers while still delivering noticeable sedative and euphoric effects. Buds are characteristically dense and frosted with trichomes, often displaying deep purple hues driven by anthocyanin expression, consistent with its Grape Cream Cake parentage. Best consumed in the evening or before bed; the Myrcene-heavy terpene profile amplifies body relaxation, while Limonene lifts the initial mood before Caryophyllene adds a grounding, anti-inflammatory quality to the experience.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 4,
+      "get_creative": 2,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 5,
+      "aphrodisiac": 5
+    }
+  },
+  "sw367327": {
+    "lineage": "Misty x Unknown Sativa (Nirvana Seeds)",
+    "therapeutic": "Stress relief, mild anxiety, mood elevation, fatigue, mild depression, muscle tension",
+    "negative": "Dry mouth, dry eyes, possible mild paranoia at higher doses, dizziness in sensitive users",
+    "aroma": "A soft and inviting bouquet of fresh berries and sweet floral notes opens the experience, underscored by a subtle earthy-herbal backdrop reminiscent of chamomile tea and light tropical fruit.",
+    "misc": "Medusa, bred by Nirvana Seeds, is a lesser-known but cherished hybrid derived from the classic Misty strain crossed with an unidentified sativa, earning it the nickname 'The Nirvana Strain' among enthusiasts. At 12.6% THC this is a moderate-potency offering well-suited for daytime to early evening use, making it approachable for newer consumers or those seeking gentle euphoria without heavy sedation. The terpene profile of Myrcene, Caryophyllene, Ocimene, and Farnesene contributes to its relaxing yet uplifting character, with Ocimene and Farnesene lending the distinctive sweet floral and fruity tea-like qualities that set this strain apart from more common hybrids.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 3,
+      "get_creative": 2,
+      "get_social": 2,
+      "pain_body": 5,
+      "just_happy": 3,
+      "aphrodisiac": 3
+    }
+  },
+  "sw291862": {
+    "lineage": "Tahoe OG x Runtz (Campfire Cannabis / breeder unconfirmed; Runtz itself is Zkittlez x Gelato by Cookies Fam)",
+    "therapeutic": "Stress relief, anxiety reduction, mild to moderate chronic pain, muscle tension, insomnia onset, mood elevation, appetite stimulation",
+    "negative": "Dry mouth, dry eyes, potential dizziness or paranoia at high doses due to elevated THC (24.3%), possible couch-lock with heavy consumption, not recommended for low-tolerance users before physical activity",
+    "aroma": "Rich, dank earth anchored by classic kush and woody pine opens the nose, quickly layered with bright bursts of sweet citrus and tropical fruit that give it a creamy, almost dessert-like complexity. A subtle floral spice from linalool and a faint herbal whisper from humulene and ocimene round out the finish.",
+    "misc": "Lit OG blends the legendary potency and deep body sedation of Tahoe OG with the sweet, creamy fruit profile and euphoric lift of Runtz, resulting in an indica-dominant hybrid that punches well above average at 24.3% THC. Oversized olive-green nugs with purple accents, dense orange pistils, and a thick trichome frost make this a visually striking flower. Best consumed in the evening or late afternoon for winding down — the initial euphoric clarity is approachable, but the long-wave body relaxation makes this a poor choice for daytime productivity.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 8,
+      "lift_up": 6,
+      "get_creative": 6,
+      "get_social": 5,
+      "pain_body": 5,
+      "just_happy": 6,
+      "aphrodisiac": 7
     }
   }
 }
