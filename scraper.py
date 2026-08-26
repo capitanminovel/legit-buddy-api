@@ -587,8 +587,29 @@ def save_db(db: dict):
     with open(DATA_FILE, "w") as f: json.dump(db, f, indent=2)
     log(f"Saved → {DATA_FILE}")
 
+RESTOCK_GAP_DAYS = 2  # matches build_preview.py's SOLD_DAYS: that's the same window
+                      # after which a sold-out item drops off the "Sold Out" tab, so
+                      # a product that's been gone longer than this and comes back
+                      # is treated as a fresh arrival rather than inheriting its old
+                      # (possibly months-stale) first_seen.
+
+def _days_since(iso_str: str, now: datetime) -> float:
+    if not iso_str:
+        return float("inf")
+    return (now - datetime.fromisoformat(iso_str)).total_seconds() / 86400
+
+def _is_restock(old: dict, new: dict, now: datetime) -> bool:
+    """True if `old` was out of stock long enough that `new` reappearing in
+    stock should reset first_seen instead of carrying over the ancient one.
+    Requires old→out, new→in, and a gap past RESTOCK_GAP_DAYS so a same-day
+    stock-check hiccup doesn't reset first_seen on every scrape."""
+    if old.get("in_stock", True) or not new.get("in_stock", False):
+        return False
+    return _days_since(old.get("last_seen", ""), now) > RESTOCK_GAP_DAYS
+
 def merge(db: dict, fresh: list[dict]) -> dict:
-    now  = datetime.now(CST).isoformat()
+    now_dt = datetime.now(CST)
+    now    = now_dt.isoformat()
     data = db.get("products", {})
     seen = set()
     for p in fresh:
@@ -597,11 +618,16 @@ def merge(db: dict, fresh: list[dict]) -> dict:
         if pid not in data:
             p["first_seen"] = now
             log(f"  NEW: {p['name']}")
-        elif data[pid].get("category") != p.get("category"):
-            p["first_seen"] = now
-            log(f"  CATEGORY CHANGE ({data[pid].get('category')} → {p.get('category')}): {p['name']}")
         else:
-            p["first_seen"] = data[pid]["first_seen"]
+            old = data[pid]
+            if old.get("category") != p.get("category"):
+                p["first_seen"] = now
+                log(f"  CATEGORY CHANGE ({old.get('category')} → {p.get('category')}): {p['name']}")
+            elif _is_restock(old, p, now_dt):
+                p["first_seen"] = now
+                log(f"  RESTOCKED (out {_days_since(old.get('last_seen',''), now_dt):.1f}d): {p['name']}")
+            else:
+                p["first_seen"] = old["first_seen"]
         p["last_seen"] = now
         data[pid] = p
     for pid, p in data.items():
