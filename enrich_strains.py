@@ -17,6 +17,8 @@ from pathlib import Path
 
 import anthropic
 
+import scraper
+
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
@@ -228,6 +230,22 @@ def run():
     if STRAINS_PATH.exists():
         with open(STRAINS_PATH) as f:
             existing = json.load(f)
+
+    # Migrate strain profiles from the old name+brand text key onto Sweed's
+    # product-id key (scraper.py switched product_key() on 2026-08-26) —
+    # otherwise every already-enriched product looks new and gets re-enriched.
+    migrated = 0
+    for key, product in db["products"].items():
+        if key in existing:
+            continue
+        legacy = scraper._legacy_key(product)
+        if legacy != key and legacy in existing:
+            existing[key] = existing.pop(legacy)
+            migrated += 1
+    if migrated:
+        print(f"Migrated {migrated} strain profile(s) to new product-id keys.")
+        with open(STRAINS_PATH, "w") as f:
+            json.dump(existing, f, indent=2, ensure_ascii=False)
 
     client = anthropic.Anthropic(api_key=api_key)
 
