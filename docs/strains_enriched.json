@@ -2039,23 +2039,6 @@
       "aphrodisiac": 4
     }
   },
-  "3d870e458d1a": {
-    "lineage": "MAC (Miracle Alien Cookies) x Grape Stomper (Chemdawg Sour Diesel x Purple Elephant) — MAC bred by Capulator; MAC Stomper cross attributed to independent breeders within the craft cannabis community",
-    "therapeutic": "Insomnia, stress relief, anxiety, chronic pain, muscle tension, depression, appetite stimulation",
-    "negative": "Dry mouth, dry eyes, potential dizziness at higher doses, possible couch-lock, may be too sedating for daytime use or low-tolerance consumers",
-    "aroma": "A lush, grape-forward bouquet opens with ripe purple fruit and spicy berry notes, layered beneath a bright squeeze of sour lemon and a subtle floral sweetness reminiscent of lavender. Earthy, piney undertones ground the aroma with a light resinous depth that lingers pleasantly after the jar is opened.",
-    "misc": "MAC Stomper combines the exotic, creamy genetics of Capulator's celebrated MAC with the bold grape and berry profile of Grape Stomper, resulting in a visually striking cultivar with rounded olive-green buds accented by deep purple hues, vivid orange pistils, and a heavy coating of purple-tinted trichomes suggesting strong resin production. At 22.2% THC, this is a moderately potent hybrid that leans indica in effect progression — beginning with a mood-lifting euphoric onset before settling into deep, tranquil physical relaxation, making it best suited for evening or nighttime use. Consumers new to indica-leaning hybrids should start slow, as the creeping body effect can intensify and lead to sleepiness, while experienced users will appreciate its well-rounded flavor complexity and stress-dissolving qualities.",
-    "mood_ratings": {
-      "wind_down": 5,
-      "anxiety_relief": 4,
-      "lift_up": 5,
-      "get_creative": 5,
-      "get_social": 4,
-      "pain_body": 4,
-      "just_happy": 6,
-      "aphrodisiac": 5
-    }
-  },
   "537d8ef842f6": {
     "lineage": "White Runtz x Jet Fuel Gelato (White Runtz: Zkittlez x Gelato; Jet Fuel Gelato: High Octane OG x Gelato #45) — popularized by Compound Genetics and associated breeders in the exotic/connoisseur market",
     "therapeutic": "Insomnia, stress relief, anxiety, appetite stimulation, mild pain management, mood disorders, depression",
@@ -2784,6 +2767,40 @@
       "get_social": 4,
       "pain_body": 6,
       "just_happy": 4,
+      "aphrodisiac": 5
+    }
+  },
+  "sw460367": {
+    "lineage": "MAC (Miracle Alien Cookies) x Grape Stomper (Chemdawg Sour Diesel x Purple Elephant) — MAC bred by Capulator; MAC Stomper cross attributed to independent breeders within the craft cannabis community",
+    "therapeutic": "Insomnia, stress relief, anxiety, chronic pain, muscle tension, depression, appetite stimulation",
+    "negative": "Dry mouth, dry eyes, potential dizziness at higher doses, possible couch-lock, may be too sedating for daytime use or low-tolerance consumers",
+    "aroma": "A lush, grape-forward bouquet opens with ripe purple fruit and spicy berry notes, layered beneath a bright squeeze of sour lemon and a subtle floral sweetness reminiscent of lavender. Earthy, piney undertones ground the aroma with a light resinous depth that lingers pleasantly after the jar is opened.",
+    "misc": "MAC Stomper combines the exotic, creamy genetics of Capulator's celebrated MAC with the bold grape and berry profile of Grape Stomper, resulting in a visually striking cultivar with rounded olive-green buds accented by deep purple hues, vivid orange pistils, and a heavy coating of purple-tinted trichomes suggesting strong resin production. At 22.2% THC, this is a moderately potent hybrid that leans indica in effect progression — beginning with a mood-lifting euphoric onset before settling into deep, tranquil physical relaxation, making it best suited for evening or nighttime use. Consumers new to indica-leaning hybrids should start slow, as the creeping body effect can intensify and lead to sleepiness, while experienced users will appreciate its well-rounded flavor complexity and stress-dissolving qualities.",
+    "mood_ratings": {
+      "wind_down": 5,
+      "anxiety_relief": 4,
+      "lift_up": 5,
+      "get_creative": 5,
+      "get_social": 4,
+      "pain_body": 4,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
+  },
+  "sw495979": {
+    "lineage": "Likely derived from Lavender (Soma Seeds) x Gelato or similar indica-leaning hybrid cross; exact breeder lineage for Campfire Cannabis's Bubble Bath phenotype is not widely documented in public strain databases",
+    "therapeutic": "Anxiety relief, stress reduction, mild pain management, insomnia support, mood elevation, muscle tension",
+    "negative": "Dry mouth, dry eyes, possible mild dizziness at higher doses, mild sedation if overconsumed, potential for couch-lock in sensitive users",
+    "aroma": "Bubble Bath offers a soft, floral bouquet anchored by lavender and citrus zest, courtesy of its dominant Linalool and Limonene terpenes. Underlying notes of earthy spice and herbal hops from Caryophyllene and Humulene round out the profile, giving it a clean, spa-like aromatic character.",
+    "misc": "Campfire Cannabis is a Maine-based craft cultivator known for small-batch, quality-focused grows. At 20.2% THC, Bubble Bath sits in a moderate-to-strong range suitable for intermediate consumers, producing dense, resin-coated buds with likely purple and green hues reflecting its indica lineage. Best enjoyed in the evening or late afternoon for unwinding after a long day, as the calming and relaxing effects make it ideal for decompression without full sedation.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 6,
+      "lift_up": 4,
+      "get_creative": 2,
+      "get_social": 3,
+      "pain_body": 6,
+      "just_happy": 6,
       "aphrodisiac": 5
     }
   }
