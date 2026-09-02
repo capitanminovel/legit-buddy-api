@@ -1070,23 +1070,6 @@
       "aphrodisiac": 5
     }
   },
-  "72e775ab419b": {
-    "lineage": "Sunset Sherbet x Girl Scout Cookies x Gelato (likely Gelato #33 or #41) — originally bred by Cookies Fam / Sherbinski genetics, with this particular phenotype selected by Redwood County Weed Co",
-    "therapeutic": "Stress relief, mild anxiety, depression, creative blocks, fatigue, mild pain, mood disorders",
-    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, possible dizziness for low-tolerance users, may cause overconsumption temptation due to smooth smoke profile",
-    "aroma": "A bright, citrus-forward nose of zesty lemon and ripe cherry bursts upfront, layered beneath with creamy sweetness and a subtle piney earthiness that grounds the fruity complexity. On the exhale, faint tropical and woody undertones emerge, reminiscent of a freshly zested dessert with a sour candy finish.",
-    "misc": "Lemon Cherry Gelato is a widely celebrated hybrid popularized through the Cookies family of genetics and has gained significant shelf presence across legal markets for its dessert-like appeal and balanced effects. At 15.4% THC this batch sits on the moderate end of the spectrum, making it approachable for intermediate consumers without overwhelming novices, though the dominant Myrcene may amplify sedation at higher doses. Buds typically present dense, frosty structures with deep purple and green hues, vivid orange pistils, and a heavy trichome coating — best suited for afternoon or early evening creative sessions.",
-    "mood_ratings": {
-      "wind_down": 6,
-      "anxiety_relief": 4,
-      "lift_up": 4,
-      "get_creative": 2,
-      "get_social": 4,
-      "pain_body": 6,
-      "just_happy": 5,
-      "aphrodisiac": 5
-    }
-  },
   "2fc15c23d6c8": {
     "lineage": "Durban Poison S1 (self-pollinated Durban Poison) × AVL (Appalachian Valley Line, a regional sativa-dominant cultivar); produced by Campfire Cannabis",
     "therapeutic": "Depression, fatigue, ADD/ADHD, stress, mild anxiety, creative blocks, low motivation",
@@ -2801,6 +2784,23 @@
       "get_social": 3,
       "pain_body": 6,
       "just_happy": 6,
+      "aphrodisiac": 5
+    }
+  },
+  "sw371172": {
+    "lineage": "Sunset Sherbet x Girl Scout Cookies x Gelato (likely Gelato #33 or #41) — originally bred by Cookies Fam / Sherbinski genetics, with this particular phenotype selected by Redwood County Weed Co",
+    "therapeutic": "Stress relief, mild anxiety, depression, creative blocks, fatigue, mild pain, mood disorders",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, possible dizziness for low-tolerance users, may cause overconsumption temptation due to smooth smoke profile",
+    "aroma": "A bright, citrus-forward nose of zesty lemon and ripe cherry bursts upfront, layered beneath with creamy sweetness and a subtle piney earthiness that grounds the fruity complexity. On the exhale, faint tropical and woody undertones emerge, reminiscent of a freshly zested dessert with a sour candy finish.",
+    "misc": "Lemon Cherry Gelato is a widely celebrated hybrid popularized through the Cookies family of genetics and has gained significant shelf presence across legal markets for its dessert-like appeal and balanced effects. At 15.4% THC this batch sits on the moderate end of the spectrum, making it approachable for intermediate consumers without overwhelming novices, though the dominant Myrcene may amplify sedation at higher doses. Buds typically present dense, frosty structures with deep purple and green hues, vivid orange pistils, and a heavy trichome coating — best suited for afternoon or early evening creative sessions.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 4,
+      "get_creative": 2,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 5,
       "aphrodisiac": 5
     }
   }
