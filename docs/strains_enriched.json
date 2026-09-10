@@ -186,23 +186,6 @@
       "aphrodisiac": 5
     }
   },
-  "9934b135c2db": {
-    "lineage": "Not strain-specific — THC distillate infused gummies",
-    "therapeutic": "Chronic pain, insomnia, stress, anxiety — long-lasting body-focused relief (4–8 hours)",
-    "negative": "Delayed onset 30–90 min. Do NOT re-dose too early. Dry mouth, possible paranoia if over-consumed. Start low.",
-    "aroma": "N/A — raspberry candy flavor",
-    "misc": "Grasslandz brand. 100mg total THC per package — 10mg per piece (10 pieces). Lab-tested distillate. Edibles provide longer-lasting, body-focused effects vs inhalation. Onset 30–90 min, peak 2–4 hrs, total duration 4–8 hrs. Ideal for sleep and extended pain relief. New consumers: start with 5mg (half piece).",
-    "mood_ratings": {
-      "wind_down": 6,
-      "anxiety_relief": 5,
-      "lift_up": 4,
-      "get_creative": 4,
-      "get_social": 4,
-      "pain_body": 6,
-      "just_happy": 5,
-      "aphrodisiac": 3
-    }
-  },
   "45e8067b787c": {
     "lineage": "Black Dahlia x Ace of Spades (Stargaze premium vape line)",
     "therapeutic": "Stress, mild pain, mood disorders, anxiety, relaxation",
@@ -594,23 +577,6 @@
       "aphrodisiac": 8
     }
   },
-  "dd494fcaec3c": {
-    "lineage": "Edible product — exact strain genetics not specified; 'Sour Blueberry' likely draws inspiration from Sour Diesel x Blueberry (DJ Short's Blueberry) hybrid flavor profiles used in formulation",
-    "therapeutic": "Stress relief, mild to moderate pain management, anxiety reduction, appetite stimulation, mood elevation, insomnia support at higher doses",
-    "negative": "Overconsumption risk due to high potency concentrate (94.2% THC distillate); possible dry mouth, paranoia, dizziness, anxiety, or couch-lock — especially for new or low-tolerance users; delayed onset (30–120 min) increases accidental overconsumption risk",
-    "aroma": "As an edible, expect a candy-forward scent blending sweet ripe blueberry with a tangy sour citrus bite. The flavor profile is likely dominated by artificial or natural fruit flavoring designed to mimic a blueberry sour candy experience.",
-    "misc": "Each piece contains 10mg THC — a standard single serving recommended for most adults; beginners should start with 2.5–5mg (half or quarter piece). The 94.2% THC figure refers to the distillate concentrate used in formulation, not the per-piece dose. Wait at least 90 minutes before re-dosing to accurately assess effects. Grasslandz is a cannabis brand focused on accessible, consistent dosing in edible form.",
-    "mood_ratings": {
-      "wind_down": 6,
-      "anxiety_relief": 5,
-      "lift_up": 6,
-      "get_creative": 5,
-      "get_social": 5,
-      "pain_body": 5,
-      "just_happy": 6,
-      "aphrodisiac": 4
-    }
-  },
   "51e2e4ac77bd": {
     "lineage": "Edible product — no specific strain lineage available. Mango Fuego is a branded gummy by Munchies De Mayo, formulated with cannabis distillate or extract; genetic origin of source cannabis is undisclosed. Note: THC percentage listed (183.6%) appears to be a data entry error — actual dosing is 10mg THC per piece, 200mg THC per package (20 pieces).",
     "therapeutic": "Mild stress relief, mood elevation, appetite stimulation, minor pain relief, social anxiety reduction",
@@ -949,23 +915,6 @@
       "pain_body": 6,
       "just_happy": 3,
       "aphrodisiac": 3
-    }
-  },
-  "c3ac2c3375ab": {
-    "lineage": "Jacked Up (Jack Herer x Timewreck) coated in Super Boof kief (Purple Panty Dropper x Black Cherry Gelato; noting store lists Purple Panty Dropper x Blueberry as their Super Boof variation) — a complex sativa-leaning hybrid cross blending NL5/Haze/Shiva Skunk ancestry from Jack Herer, Trainwreck genetics from Timewreck, and fruity indica depth from the Super Boof kief layer",
-    "therapeutic": "Stress relief, depression, fatigue, mood elevation, mild pain management, focus and creativity support, social anxiety",
-    "negative": "Dry mouth, dry eyes, potential anxiety or paranoia at high doses due to elevated THC and sativa dominance, mild headache possible, not recommended for novice users or those sensitive to THC",
-    "aroma": "A vibrant and complex bouquet opens with bright citrus zest and fresh berries, layered over a dank, earthy musk from the myrcene-heavy base. Sweet blueberry and grape notes from the Super Boof kief weave through a spicy, piney backbone inherited from the Jack Herer lineage, finishing with a subtle woody warmth.",
-    "misc": "This keif-coated pre-roll is a premium format product from Lakeside Canna, combining the energetic, cerebral buzz of Jacked Up with the flavorful, resin-rich enhancement of Super Boof kief — pushing THC to a potent 24.9%, well above typical flower averages. The kief coating adds visible trichome density and a noticeable boost in both potency and terpene expression, making this best suited for experienced consumers. Ideal for daytime or early evening use — particularly well-suited for creative projects, social gatherings, or outdoor activities where uplifted energy and mental engagement are desired.",
-    "mood_ratings": {
-      "wind_down": 6,
-      "anxiety_relief": 4,
-      "lift_up": 4,
-      "get_creative": 2,
-      "get_social": 4,
-      "pain_body": 6,
-      "just_happy": 5,
-      "aphrodisiac": 5
     }
   },
   "5cc9edab9f48": {
@@ -2802,6 +2751,142 @@
       "pain_body": 6,
       "just_happy": 5,
       "aphrodisiac": 5
+    }
+  },
+  "sw362513": {
+    "lineage": "Jacked Up (Jack Herer x Timewreck) coated in Super Boof kief (Purple Panty Dropper x Black Cherry Gelato; noting store lists Purple Panty Dropper x Blueberry as their Super Boof variation) — a complex sativa-leaning hybrid cross blending NL5/Haze/Shiva Skunk ancestry from Jack Herer, Trainwreck genetics from Timewreck, and fruity indica depth from the Super Boof kief layer",
+    "therapeutic": "Stress relief, depression, fatigue, mood elevation, mild pain management, focus and creativity support, social anxiety",
+    "negative": "Dry mouth, dry eyes, potential anxiety or paranoia at high doses due to elevated THC and sativa dominance, mild headache possible, not recommended for novice users or those sensitive to THC",
+    "aroma": "A vibrant and complex bouquet opens with bright citrus zest and fresh berries, layered over a dank, earthy musk from the myrcene-heavy base. Sweet blueberry and grape notes from the Super Boof kief weave through a spicy, piney backbone inherited from the Jack Herer lineage, finishing with a subtle woody warmth.",
+    "misc": "This keif-coated pre-roll is a premium format product from Lakeside Canna, combining the energetic, cerebral buzz of Jacked Up with the flavorful, resin-rich enhancement of Super Boof kief — pushing THC to a potent 24.9%, well above typical flower averages. The kief coating adds visible trichome density and a noticeable boost in both potency and terpene expression, making this best suited for experienced consumers. Ideal for daytime or early evening use — particularly well-suited for creative projects, social gatherings, or outdoor activities where uplifted energy and mental engagement are desired.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 4,
+      "get_creative": 2,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 5,
+      "aphrodisiac": 5
+    }
+  },
+  "sw334004": {
+    "lineage": "Not strain-specific — THC distillate infused gummies",
+    "therapeutic": "Chronic pain, insomnia, stress, anxiety — long-lasting body-focused relief (4–8 hours)",
+    "negative": "Delayed onset 30–90 min. Do NOT re-dose too early. Dry mouth, possible paranoia if over-consumed. Start low.",
+    "aroma": "N/A — raspberry candy flavor",
+    "misc": "Grasslandz brand. 100mg total THC per package — 10mg per piece (10 pieces). Lab-tested distillate. Edibles provide longer-lasting, body-focused effects vs inhalation. Onset 30–90 min, peak 2–4 hrs, total duration 4–8 hrs. Ideal for sleep and extended pain relief. New consumers: start with 5mg (half piece).",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 5,
+      "lift_up": 4,
+      "get_creative": 4,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 5,
+      "aphrodisiac": 3
+    }
+  },
+  "sw362501": {
+    "lineage": "Edible product — exact strain genetics not specified; 'Sour Blueberry' likely draws inspiration from Sour Diesel x Blueberry (DJ Short's Blueberry) hybrid flavor profiles used in formulation",
+    "therapeutic": "Stress relief, mild to moderate pain management, anxiety reduction, appetite stimulation, mood elevation, insomnia support at higher doses",
+    "negative": "Overconsumption risk due to high potency concentrate (94.2% THC distillate); possible dry mouth, paranoia, dizziness, anxiety, or couch-lock — especially for new or low-tolerance users; delayed onset (30–120 min) increases accidental overconsumption risk",
+    "aroma": "As an edible, expect a candy-forward scent blending sweet ripe blueberry with a tangy sour citrus bite. The flavor profile is likely dominated by artificial or natural fruit flavoring designed to mimic a blueberry sour candy experience.",
+    "misc": "Each piece contains 10mg THC — a standard single serving recommended for most adults; beginners should start with 2.5–5mg (half or quarter piece). The 94.2% THC figure refers to the distillate concentrate used in formulation, not the per-piece dose. Wait at least 90 minutes before re-dosing to accurately assess effects. Grasslandz is a cannabis brand focused on accessible, consistent dosing in edible form.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 5,
+      "lift_up": 6,
+      "get_creative": 5,
+      "get_social": 5,
+      "pain_body": 5,
+      "just_happy": 6,
+      "aphrodisiac": 4
+    }
+  },
+  "sw498171": {
+    "lineage": "Rainbow Sherbert x Pink Guava (Dark Heart Nursery / popularized by numerous cultivators; Zoap is also widely attributed to Rainbow Sherbert #11 x Pink Guava, with cuts circulating through the California market)",
+    "therapeutic": "Stress relief, anxiety reduction, mood elevation, mild pain management, mental fatigue, depression, creative blocks",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, potential dizziness for low-tolerance users, possible overconsumption risk due to smooth smoke masking potency",
+    "aroma": "Zoap opens with an immediately striking bouquet of floral soap and sweet candied cherry, undercut by a doughy confectionary richness reminiscent of sherbet and bubblegum. As the buds are broken apart, a sharp, gassy dark fruit note emerges alongside fresh citrus zest and subtle earthy pine, creating a complex, layered sensory experience that lives up to the strain's name.",
+    "misc": "Zoap has become a highly sought-after West Coast hybrid, celebrated for its exceptionally resinous, trichome-drenched buds that shimmer with dense frost and showcase deep greens with purple-tinged accents. With THC typically ranging from 22–28%, it punches well above average and is best suited for experienced consumers or those with moderate tolerance. Island Pezi's cut is ideal for afternoon or early evening use — delivering enough cerebral lift and creative energy to stay functional while the body-relaxing effects prevent tension from accumulating.",
+    "mood_ratings": {
+      "wind_down": 5,
+      "anxiety_relief": 6,
+      "lift_up": 6,
+      "get_creative": 7,
+      "get_social": 5,
+      "pain_body": 6,
+      "just_happy": 7,
+      "aphrodisiac": 6
+    }
+  },
+  "sw498160": {
+    "lineage": "Cotton Candy (Power Plant x Lavender) — commonly attributed to Delicious Seeds; kief coating sourced from Cotton Candy trim/flower to enhance potency and terpene expression",
+    "therapeutic": "Stress relief, mild anxiety reduction, mood elevation, fatigue, mild pain management, appetite stimulation",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, potential dizziness for low-tolerance users, may cause temporary short-term memory disruption",
+    "aroma": "True to its name, Cotton Candy bursts with a sugary-sweet carnival aroma layered over floral lavender and earthy undertones, with subtle hints of berry and vanilla rounding out the nose. The added kief coating amplifies the terpene richness, lending an extra layer of sweet, resinous depth on the inhale.",
+    "misc": "Cotton Candy was originally developed by Delicious Seeds and has won multiple Cannabis Cup awards for its distinctive sweet flavor profile and balanced hybrid effects. At 23.5% THC bolstered by the kief coating, this pre-roll punches above its base flower weight, making it better suited for intermediate to experienced consumers rather than beginners. Ideal for afternoon or early evening use — social, creative, and relaxing without being fully sedating, making it perfect for outdoor activities like the campfire and lakeside hangs this product references.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 6,
+      "lift_up": 6,
+      "get_creative": 5,
+      "get_social": 6,
+      "pain_body": 5,
+      "just_happy": 7,
+      "aphrodisiac": 5
+    }
+  },
+  "sw498183": {
+    "lineage": "Blueberry Cookies x Cherry OG (Nebula / proprietary blend — Blueberry Cookies derived from Blueberry x Girl Scout Cookies lineage; Cherry OG traced to Cherry Thai x Afghani x Lost Coast OG heritage)",
+    "therapeutic": "Stress relief, anxiety reduction, mild pain management, insomnia, appetite stimulation, mood elevation",
+    "negative": "Dry mouth, dry eyes, possible dizziness or headache at high THC concentrations (84%), couch-lock with prolonged use, not recommended for THC-sensitive users or beginners",
+    "aroma": "A vibrant, candy-sweet burst of ripe cherry and wild blueberry opens the profile, chased by a zesty lime coolness reminiscent of a frozen popsicle on a summer day. Beneath the fruity top notes lies a subtle earthy, cookie-dough sweetness inherited from its GSC-adjacent genetics.",
+    "misc": "Rocket Pop is a Nebula-branded indica-dominant hybrid vape formulated for a nostalgic, dessert-forward experience, available in 1G cartridge and disposable formats. At 84% THC, this is a high-potency concentrate best suited for experienced consumers seeking deep relaxation with a mood-lifting edge — ideal for evening or late-afternoon use. The playful, popsicle-inspired terpene profile and balanced indica effects make it a popular choice for unwinding without full sedation, though new users should dose conservatively.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 6,
+      "lift_up": 4,
+      "get_creative": 4,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 6,
+      "aphrodisiac": 4
+    }
+  },
+  "sw498207": {
+    "lineage": "Triangle Kush x Animal Mints (Animal Mintz) — popularized by Seed Junky Genetics; Animal Mints itself is Blue Power x Animal Cookies, making Wedding Cake a complex indica-dominant hybrid with deep OG and Cookie family roots",
+    "therapeutic": "Insomnia, chronic pain, stress and anxiety relief, appetite stimulation, muscle tension, depression",
+    "negative": "Dry mouth, dry eyes, dizziness or paranoia at high doses, couch-lock, grogginess — not recommended for daytime use or low-tolerance consumers due to 85.1% THC concentrate potency",
+    "aroma": "Wedding Cake delivers a rich, doughy sweetness reminiscent of vanilla frosting and freshly baked sugar cookies, undercut by sharp earthy pepper and a subtle tang of sour cream or kefir. The nose is complex and dessert-forward, with warm spice lingering on the exhale.",
+    "misc": "Bred and popularized by Seed Junky Genetics, Wedding Cake (also known as Pink Cookies) gained widespread recognition after winning the 2018 Leafly Strain of the Year. As a vape concentrate at 85.1% THC, this product is intended for experienced consumers — start with one to two second draws and wait several minutes before redosing. Best used in the evening or before bed given its heavily sedative and relaxing effect profile.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 7,
+      "lift_up": 4,
+      "get_creative": 4,
+      "get_social": 4,
+      "pain_body": 8,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
+  },
+  "sw498209": {
+    "lineage": "Grape Ape x Moscato (likely derived from Grape Ape crossed with a sweet, fruity hybrid; exact breeder unconfirmed, possibly developed by Grasslandz or a West Coast cultivator)",
+    "therapeutic": "Stress relief, anxiety reduction, mild pain management, mood elevation, appetite stimulation",
+    "negative": "Dry mouth, dry eyes, potential dizziness at high doses due to elevated THC (77.1%), mild paranoia in THC-sensitive users, possible couch-lock with heavy consumption",
+    "aroma": "Grape Moscato opens with a lush, sweet bouquet of ripe Concord grapes and moscato wine, layered with notes of fresh berries, subtle floral muscat, and a light candy-like sweetness on the exhale. The overall aromatic profile is dessert-forward and indulgent, reminiscent of a chilled glass of sparkling grape juice.",
+    "misc": "Grape Moscato is a balanced hybrid delivered via Grasslandz vape format, with a high THC concentration of 77.1% making it suitable for experienced consumers rather than beginners. The strain is best enjoyed in the evening or late afternoon, offering a relaxed yet mildly euphoric experience consistent with its Grape Ape heritage. New users should exercise caution with dosing given the elevated THC content, starting with one or two short puffs and waiting several minutes before redosing.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 6,
+      "lift_up": 4,
+      "get_creative": 3,
+      "get_social": 4,
+      "pain_body": 5,
+      "just_happy": 6,
+      "aphrodisiac": 4
     }
   }
 }
