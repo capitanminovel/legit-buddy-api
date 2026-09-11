@@ -1648,23 +1648,6 @@
       "aphrodisiac": 5
     }
   },
-  "ab5cd04e09ac": {
-    "lineage": "Critical #13 x Ice #2 (Unbound); Critical #13 is itself derived from Critical Mass genetics, while Ice #2 carries lineage rooted in Northern Lights, Skunk, and Afghani crosses, giving Papaya Fuel a well-rounded hybrid foundation with both indica resin production and sativa cerebral lift.",
-    "therapeutic": "Stress relief, anxiety management, mild depression, fatigue, mood disorders, mild pain and tension, focus and mental clarity support",
-    "negative": "Dry mouth, dry eyes, possible mild anxiety or racing thoughts at higher doses in sensitive users, light-headedness; not recommended for those prone to THC-induced anxiety due to sativa dominance",
-    "aroma": "Papaya Fuel opens with a bright burst of tropical citrus and ripe stone fruit, reminiscent of fresh papaya and tangerine zest, layered beneath soft floral lavender undertones courtesy of its prominent linalool content. A subtle earthy, slightly spicy base rounds out the nose, giving it depth beyond its sweet first impression.",
-    "misc": "Produced by Unbound, Papaya Fuel sits at approximately 20-22% THC, making it a moderately potent option well-suited for intermediate consumers. Buds typically present as dense, medium-sized nugs with a vivid green hue, amber pistils, and a generous trichome coating reflective of its resinous Ice #2 heritage. Best consumed during daytime or early evening hours when its uplifting, clear-headed profile can be fully appreciated without interfering with sleep.",
-    "mood_ratings": {
-      "wind_down": 6,
-      "anxiety_relief": 6,
-      "lift_up": 4,
-      "get_creative": 2,
-      "get_social": 4,
-      "pain_body": 5,
-      "just_happy": 7,
-      "aphrodisiac": 6
-    }
-  },
   "767aca7b0b33": {
     "lineage": "Zkittlez x Gelato (Runtz by Cookies Fam / Berner's Cookies)",
     "therapeutic": "Stress relief, anxiety, mild pain, mood elevation, fatigue, appetite stimulation",
@@ -2938,6 +2921,74 @@
       "pain_body": 4,
       "just_happy": 3,
       "aphrodisiac": 2
+    }
+  },
+  "sw426314": {
+    "lineage": "Critical #13 x Ice #2 (Unbound); Critical #13 is itself derived from Critical Mass genetics, while Ice #2 carries lineage rooted in Northern Lights, Skunk, and Afghani crosses, giving Papaya Fuel a well-rounded hybrid foundation with both indica resin production and sativa cerebral lift.",
+    "therapeutic": "Stress relief, anxiety management, mild depression, fatigue, mood disorders, mild pain and tension, focus and mental clarity support",
+    "negative": "Dry mouth, dry eyes, possible mild anxiety or racing thoughts at higher doses in sensitive users, light-headedness; not recommended for those prone to THC-induced anxiety due to sativa dominance",
+    "aroma": "Papaya Fuel opens with a bright burst of tropical citrus and ripe stone fruit, reminiscent of fresh papaya and tangerine zest, layered beneath soft floral lavender undertones courtesy of its prominent linalool content. A subtle earthy, slightly spicy base rounds out the nose, giving it depth beyond its sweet first impression.",
+    "misc": "Produced by Unbound, Papaya Fuel sits at approximately 20-22% THC, making it a moderately potent option well-suited for intermediate consumers. Buds typically present as dense, medium-sized nugs with a vivid green hue, amber pistils, and a generous trichome coating reflective of its resinous Ice #2 heritage. Best consumed during daytime or early evening hours when its uplifting, clear-headed profile can be fully appreciated without interfering with sleep.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 6,
+      "lift_up": 4,
+      "get_creative": 2,
+      "get_social": 4,
+      "pain_body": 5,
+      "just_happy": 7,
+      "aphrodisiac": 6
+    }
+  },
+  "sw521475": {
+    "lineage": "Chemdawg × (Hindu Kush × Lemon Thai) — widely attributed to a phenotype discovered in Florida in the early 1990s, later popularized by growers in Southern California; exact original breeder disputed though often associated with Matt 'Bubba' Berger and Josh D (Josh D Farms)",
+    "therapeutic": "Stress relief, anxiety reduction, chronic pain, headaches and migraines, appetite stimulation, mild depression, insomnia (in higher doses)",
+    "negative": "Dry mouth, dry eyes, potential anxiety or paranoia at higher doses or in low-tolerance users, mild dizziness, couch-lock if overconsumed",
+    "aroma": "OG Kush opens with a sharp, resinous blast of earthy pine and damp forest floor, undercut by a tangy lemon-fuel pungency reminiscent of Chemdawg's chemical heritage. As it settles, warm woody spice and a skunky herbal musk emerge, creating a complex, unmistakable old-school West Coast profile.",
+    "misc": "OG Kush is arguably the most influential strain in modern cannabis history, serving as the genetic backbone for dozens of iconic hybrids including GSC, Headband, and Bubba Kush. At 18.7% THC this batch sits in the moderate-to-strong range — ideal for intermediate consumers or seasoned users seeking relaxation without overwhelming sedation. Buds are typically dense and chunky with olive-green coloring, amber trichomes, and burnt-orange pistils; best enjoyed in the late afternoon or evening for its balance of euphoric uplift and body-melting calm.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 4,
+      "get_creative": 2,
+      "get_social": 3,
+      "pain_body": 6,
+      "just_happy": 4,
+      "aphrodisiac": 4
+    }
+  },
+  "sw521405": {
+    "lineage": "Chemdawg × (Hindu Kush × Lemon Thai) — OG Kush is widely attributed to breeder Bubba Bernstein / Matt Berger, originally cultivated in Florida in the early 1990s before being brought to Southern California where Josh D and others popularized it; the exact origins remain somewhat disputed but the Chemdawg × Hindu Kush × Lemon Thai cross is the most widely accepted genetic account",
+    "therapeutic": "Stress relief, anxiety reduction, chronic pain management, appetite stimulation, mild insomnia, depression, muscle tension, headaches",
+    "negative": "Dry mouth, dry eyes, paranoia at higher doses, mild dizziness, couch-lock potential with heavy consumption, may increase anxiety in THC-sensitive users",
+    "aroma": "OG Kush opens with a pungent blast of damp earth and fuel-laced pine, underscored by a tangy lemon-citrus sharpness that cuts through the funk. As it settles, warm woody spice and a skunky herbal musk round out the nose, giving it that unmistakably classic West Coast profile.",
+    "misc": "OG Kush is arguably the most influential strain in modern cannabis genetics, serving as a foundational parent to dozens of legendary cultivars including GSC, Headband, and Tahoe OG. At 20.3% THC this 5-pack of 0.5g pre-rolls from Unbound is well-suited for evening or late-afternoon use when relaxation and social ease are the goal. Consumers should start slow if tolerance is moderate, as the Indica-leaning hybrid character can deepen into sedation — making it ideal for unwinding, social hangs, or stimulating appetite before a meal.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 4,
+      "get_creative": 2,
+      "get_social": 3,
+      "pain_body": 6,
+      "just_happy": 4,
+      "aphrodisiac": 4
+    }
+  },
+  "sw521436": {
+    "lineage": "GMO (Garlic Cookies) × Jet Fuel Gelato; GMO = Girl Scout Cookies × Chemdawg (Divine Genetics); Jet Fuel Gelato = Jet Fuel (G6) × Gelato 45 (Sherbinski/Cookie Fam lineage)",
+    "therapeutic": "Stress relief, muscle tension, anxiety, insomnia, appetite stimulation, mild chronic pain, mood elevation",
+    "negative": "Dry mouth, dry eyes, heavy couch-lock at high doses, potential paranoia or dizziness in THC-sensitive users, overconsumption may lead to sedation and grogginess",
+    "aroma": "An aggressive, pungent wave of garlic, diesel fuel, and savory earth hits first, quickly giving way to a creamy, sweet undertone with hints of fresh cut grass and subtle chemical funk. The GMO parentage dominates the nose with a deeply funky, almost musty complexity that lingers long after exhale.",
+    "misc": "First Class Funk is bred with strong influence from Divine Genetics' GMO line and carries the creamy Gelato backbone of Jet Fuel Gelato, making it a potent, well-rounded hybrid leaning slightly indica in effect profile. At 31.1% THC, this is a high-potency offering best suited for experienced consumers and recommended for evening or nighttime use given its sedating, body-heavy finish. The pre-roll format in 0.5g mini packs from Unbound makes it approachable for dosing control, though newcomers should start with one small session and assess tolerance before redosing.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 6,
+      "lift_up": 4,
+      "get_creative": 4,
+      "get_social": 4,
+      "pain_body": 7,
+      "just_happy": 5,
+      "aphrodisiac": 4
     }
   }
 }
