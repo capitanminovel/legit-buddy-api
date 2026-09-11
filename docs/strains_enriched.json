@@ -50,23 +50,6 @@
       "aphrodisiac": 5
     }
   },
-  "99326fcf9900": {
-    "lineage": "GMO (Garlic Cookies) x Han-Solo Burger (Skunk House Genetics)",
-    "therapeutic": "Inflammation, chronic pain, insomnia, stress, appetite stimulation",
-    "negative": "Dry mouth, dry eyes, heavy sedation — not for daytime use. Can be overwhelming for novices.",
-    "aroma": "Pungent gas and diesel, spicy savory garlic notes, sour lemon, hints of cheese and fuel — unmistakably GMO-forward",
-    "misc": "Bred by Skunk House Genetics. Also known as GMO BX. One of the hardest-hitting indicas on the market — THC 25–30%+. Fast-acting, long-lasting body stone. Best reserved for evening or end-of-day use. Not for new consumers.",
-    "mood_ratings": {
-      "wind_down": 8,
-      "anxiety_relief": 6,
-      "lift_up": 4,
-      "get_creative": 6,
-      "get_social": 3,
-      "pain_body": 7,
-      "just_happy": 5,
-      "aphrodisiac": 5
-    }
-  },
   "6a06396da757": {
     "lineage": "Black Cherry Punch x Tropicana Cookies (Franchise Genetics)",
     "therapeutic": "Stress, depression, fatigue, mild pain, creative blocks",
@@ -218,23 +201,6 @@
       "pain_body": 6,
       "just_happy": 5,
       "aphrodisiac": 3
-    }
-  },
-  "d6623d889658": {
-    "lineage": "Grape Pie x Wedding Crasher x Ice Cream Cake (Bloom Seed Co.)",
-    "therapeutic": "Chronic pain, insomnia, stress relief, anxiety reduction",
-    "negative": "Couch-lock at high doses, dry mouth, dry eyes",
-    "aroma": "Sweet grape soda, ripe berry, whipped vanilla cream, doughy sweetness with faint gasoline on exhale",
-    "misc": "Bred by Harry Palms (Bloom Seed Co.), former head breeder at Oni Seed Co. THC typically 20–29%. Dense resinous buds with purple hues and heavy trichome coverage. Award-adjacent — recognized as a modern dessert strain classic. Strong indica-dominant effects best suited to evening use.",
-    "mood_ratings": {
-      "wind_down": 8,
-      "anxiety_relief": 6,
-      "lift_up": 2,
-      "get_creative": 2,
-      "get_social": 2,
-      "pain_body": 6,
-      "just_happy": 4,
-      "aphrodisiac": 5
     }
   },
   "dbcb7ab15506": {
@@ -2887,6 +2853,91 @@
       "pain_body": 5,
       "just_happy": 6,
       "aphrodisiac": 4
+    }
+  },
+  "sw242336": {
+    "lineage": "GMO (Garlic Cookies) x Han-Solo Burger (Skunk House Genetics)",
+    "therapeutic": "Inflammation, chronic pain, insomnia, stress, appetite stimulation",
+    "negative": "Dry mouth, dry eyes, heavy sedation — not for daytime use. Can be overwhelming for novices.",
+    "aroma": "Pungent gas and diesel, spicy savory garlic notes, sour lemon, hints of cheese and fuel — unmistakably GMO-forward",
+    "misc": "Bred by Skunk House Genetics. Also known as GMO BX. One of the hardest-hitting indicas on the market — THC 25–30%+. Fast-acting, long-lasting body stone. Best reserved for evening or end-of-day use. Not for new consumers.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 6,
+      "lift_up": 4,
+      "get_creative": 6,
+      "get_social": 3,
+      "pain_body": 7,
+      "just_happy": 5,
+      "aphrodisiac": 5
+    }
+  },
+  "sw335377": {
+    "lineage": "Grape Pie x Wedding Crasher x Ice Cream Cake (Bloom Seed Co.)",
+    "therapeutic": "Chronic pain, insomnia, stress relief, anxiety reduction",
+    "negative": "Couch-lock at high doses, dry mouth, dry eyes",
+    "aroma": "Sweet grape soda, ripe berry, whipped vanilla cream, doughy sweetness with faint gasoline on exhale",
+    "misc": "Bred by Harry Palms (Bloom Seed Co.), former head breeder at Oni Seed Co. THC typically 20–29%. Dense resinous buds with purple hues and heavy trichome coverage. Award-adjacent — recognized as a modern dessert strain classic. Strong indica-dominant effects best suited to evening use.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 6,
+      "lift_up": 2,
+      "get_creative": 2,
+      "get_social": 2,
+      "pain_body": 6,
+      "just_happy": 4,
+      "aphrodisiac": 5
+    }
+  },
+  "sw511181": {
+    "lineage": "GMO (Garlic Mushroom Onion) x Han Solo Burger — GMO is itself a cross of Girl Scout Cookies x Chemdog, while Han Solo Burger descends from Larry OG x Animal Cookies; Donny Burger was developed by Skunk House Genetics",
+    "therapeutic": "Chronic pain, muscle tension, insomnia, stress relief, anxiety reduction, appetite stimulation, depression, headaches, nausea",
+    "negative": "Dry mouth, dry eyes, couch-lock at higher doses, potential dizziness or paranoia in THC-sensitive users, sedation may impair productivity — not recommended for daytime use or novice consumers",
+    "aroma": "An intensely pungent, fuel-forward nose opens with sharp garlic and diesel gas before giving way to layers of aged cheese, funky fermented earthiness, and a subtle undercurrent of black licorice and sour citrus — deeply savory and unmistakably dank. The exhale carries a spicy, peppered finish with a faint rubbery chemical note that lingers on the palate.",
+    "misc": "Donny Burger was bred by Skunk House Genetics and has gained significant recognition in the Pacific Northwest craft cannabis scene for its exceptionally pungent GMO-forward terpene expression. Typical THC ranges fall between 22–28%, and the oversized neon-green nugs are visually striking with vivid orange pistils and a dense blanket of golden-white trichomes indicating exceptional resin production. Best consumed in the evening or late night — this is a strain well-suited for unwinding after a long day, social lounging with friends, or creative relaxation, though newcomers should approach the 23%+ THC potency with measured, low-and-slow consumption.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 6,
+      "lift_up": 4,
+      "get_creative": 2,
+      "get_social": 3,
+      "pain_body": 7,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
+  },
+  "sw511307": {
+    "lineage": "The Soap x Project 4516 (Campfire Cannabis); The Soap is believed to descend from Animal Mints x The Soap cut lineage, while Project 4516 is a proprietary breeding line — exact upstream genetics not fully disclosed publicly",
+    "therapeutic": "Stress relief, anxiety reduction, mild depression, muscle tension, insomnia (early onset), mood elevation",
+    "negative": "Dry mouth, dry eyes, possible mild paranoia at higher doses, light sedation that may impair focus in sensitive users, overconsumption may lead to couch-lock",
+    "aroma": "Bubble Bath opens with a distinctive clean, soapy floral bouquet layered over bright citrus and lavender, reminiscent of a luxurious bath product. Earthy, slightly spicy undertones from caryophyllene and humulene add grounding depth beneath the airy, sweet top notes.",
+    "misc": "Crafted by Campfire Cannabis, Bubble Bath is an indica-leaning hybrid sitting at approximately 20% THC, making it moderately potent and well-suited for intermediate consumers. Buds typically present dense, frosty structures with purple-tinged leaves and a generous trichome coating reflecting its quality breeding. Best consumed in the early evening or as a wind-down strain — the linalool-forward terpene profile promotes relaxation without immediate heavy sedation, making it ideal for transitioning from a stressful day into a calm, euphoric evening.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 6,
+      "lift_up": 4,
+      "get_creative": 2,
+      "get_social": 3,
+      "pain_body": 6,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
+  },
+  "sw511195": {
+    "lineage": "Do-Si-Dos x Purple Punch (In House Genetics); Do-Si-Dos is itself a cross of Girl Scout Cookies x Face Off OG, while Purple Punch descends from Larry OG x Granddaddy Purple",
+    "therapeutic": "Stress relief, chronic pain, muscle tension, insomnia, appetite stimulation, anxiety reduction",
+    "negative": "Dry mouth, dry eyes, pronounced couch-lock, sedation, dizziness at high doses, not recommended for daytime use or low-tolerance consumers",
+    "aroma": "A rich, candy-sweet burst of crushed purple grapes and ripe mixed berries opens first, followed by a creamy, doughy undertone reminiscent of fruit punch and vanilla pastry with a faint earthy finish.",
+    "misc": "Slurricane was bred by In House Genetics and quickly gained a devoted following for its potent yet approachable indica-leaning effects and dessert-like terpene profile. In this Stargaze vape formulation, THC sits at a high 79.3%, well above the typical flower range of 20–28%, making it best suited for experienced consumers; the dominant Limonene adds a subtle mood lift that balances the heavy body sedation, while Humulene contributes appetite-stimulating and anti-inflammatory properties. Best consumed in the evening or at night, this strain is a strong choice for unwinding, managing pain, or combating insomnia — newcomers should take low, measured puffs and allow several minutes between hits.",
+    "mood_ratings": {
+      "wind_down": 2,
+      "anxiety_relief": 4,
+      "lift_up": 4,
+      "get_creative": 2,
+      "get_social": 3,
+      "pain_body": 4,
+      "just_happy": 3,
+      "aphrodisiac": 2
     }
   }
 }
