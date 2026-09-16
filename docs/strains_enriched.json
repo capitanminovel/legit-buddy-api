@@ -2990,5 +2990,158 @@
       "just_happy": 5,
       "aphrodisiac": 4
     }
+  },
+  "c317a8353f11": {
+    "lineage": "Likely Gelato 41 x Zkittlez or a phenotype of Guava Gelato (potentially from Compound Genetics or Jungle Boys); some phenotypes trace back to Stardawg x Afghani crosses, though 'Guava' as a named strain has multiple interpretations across breeders",
+    "therapeutic": "Stress relief, mood elevation, mild anxiety reduction, fatigue, depression, creative blocks, appetite stimulation",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, potential for racing thoughts in anxiety-prone users, slight dizziness for low-tolerance consumers",
+    "aroma": "A burst of ripe tropical guava and sweet citrus dominates the nose, underscored by creamy, candy-like undertones and a faint earthiness on the exhale. The scent is lush and fruit-forward, evoking a fresh-cut tropical fruit stand with a subtle floral sweetness lingering in the background.",
+    "misc": "Guava strains are typically associated with West Coast cultivators and boutique breeders like Compound Genetics and Jungle Boys, who popularized tropical fruit-forward genetics. At 20.8% THC, this is a moderately potent sativa-leaning cultivar best suited for daytime or early afternoon use, ideal for social settings, creative work, or outdoor activities. Buds typically present dense, medium-sized nugs with vibrant green hues, occasional purple flashing, and a heavy coating of amber-tipped trichomes that signal its potency.",
+    "mood_ratings": {
+      "wind_down": 4,
+      "anxiety_relief": 5,
+      "lift_up": 7,
+      "get_creative": 5,
+      "get_social": 6,
+      "pain_body": 4,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
+  },
+  "9bd115b860af": {
+    "lineage": "Alien Cookies x Kush Mints 11 (Capulator x Seed Junky Genetics collaboration)",
+    "therapeutic": "Chronic pain, anxiety, depression, stress relief, appetite stimulation, mild insomnia",
+    "negative": "Dry mouth, dry eyes, potential anxiety or paranoia at high doses, dizziness, mental fogginess with overconsumption — use caution for low-tolerance users given high THC content",
+    "aroma": "Cap Junky bursts with a complex, pungent blend of sweet cookies dough, sharp diesel fuel, and earthy kush undertones. Bright citrus and minty top notes weave through a creamy, doughy base, leaving a fuel-laced sweetness on the exhale.",
+    "misc": "Cap Junky is a highly sought-after collaboration strain created by legendary breeders Capulator (MAC) and Seed Junky Genetics (Kush Mints), making it a prestige genetic cross that gained rapid cult status in connoisseur circles. Typical THC expression ranges from 25–30%, and buds are characteristically dense and frosty with deep green hues, purple undertones, and a heavy coating of trichomes that signal its potency. Best suited for evening or late-afternoon use, Cap Junky delivers a balanced but powerful hybrid experience — euphoric and cerebrally uplifting at onset before settling into deep full-body relaxation — recommended for experienced consumers.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 6,
+      "lift_up": 4,
+      "get_creative": 5,
+      "get_social": 4,
+      "pain_body": 7,
+      "just_happy": 5,
+      "aphrodisiac": 5
+    }
+  },
+  "d024338fee18": {
+    "lineage": "Animal Mints x Kush Mints (believed to be bred by Seed Junky Genetics or affiliated cultivators; exact breeder attribution varies by phenotype)",
+    "therapeutic": "Stress relief, depression, fatigue, mild anxiety, mood elevation, appetite stimulation",
+    "negative": "Dry mouth, dry eyes, paranoia at high doses, dizziness, potential anxiety in THC-sensitive users",
+    "aroma": "Soap delivers a strikingly clean, floral-meets-minty aroma reminiscent of fresh laundry and herbal soap, underpinned by earthy, kushy base notes. Subtle hints of vanilla and light gas round out the profile, giving it that distinctive 'soapy' character that inspired its name.",
+    "misc": "Soap is a relatively newer boutique strain gaining traction in craft cannabis markets, typically testing between 22–28% THC with dense, trichome-frosted buds displaying deep greens and occasional purple hues with vivid orange pistils. At 25.5% THC from Campfire Cannabis, this is a potent sativa-leaning cultivar best suited for daytime or early afternoon use when creative energy, focus, or social engagement is desired. Consumers new to high-THC sativas should start with a small dose, as the cerebral intensity can be overwhelming for the uninitiated.",
+    "mood_ratings": {
+      "wind_down": 5,
+      "anxiety_relief": 5,
+      "lift_up": 6,
+      "get_creative": 6,
+      "get_social": 6,
+      "pain_body": 6,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
+  },
+  "2223f6ee76a3": {
+    "lineage": "Likely OG Kush phenotype or OG Kush-derived cross; 'LIT OG' is associated with various OG Kush family genetics, possibly including Larry OG or a proprietary Campfire Cannabis cut of classic OG lineage (OG Kush heritage, exact cross unconfirmed)",
+    "therapeutic": "Chronic pain, insomnia, muscle tension, stress relief, appetite stimulation, anxiety reduction",
+    "negative": "Dry mouth, dry eyes, pronounced couch-lock, dizziness at high doses, potential paranoia for THC-sensitive users, heavy sedation — not recommended for daytime use or novice consumers",
+    "aroma": "LIT OG delivers a pungent, fuel-forward nose with deep notes of pine, damp earth, and lemon zest layered over a kushy, almost skunky musk. On the exhale, hints of spice and subtle wood round out the classic OG olfactory signature.",
+    "misc": "Campfire Cannabis is a Maine-based craft cultivator known for small-batch, quality-focused flower production. At 28.8% THC, LIT OG sits on the high-potency end of the OG spectrum and is best reserved for experienced consumers; buds are typically dense, resin-coated, and forest green with amber trichomes. This strain is ideally consumed in the evening or before bed given its heavy indica-dominant sedative profile.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 7,
+      "lift_up": 3,
+      "get_creative": 4,
+      "get_social": 3,
+      "pain_body": 8,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
+  },
+  "1ff4b7efe819": {
+    "lineage": "Hi-Octane (Chemdog x Legend OG) x Purple Punch (Larry OG x Granddaddy Purple) — likely developed by independent breeders, popularized in the California market",
+    "therapeutic": "Chronic pain, muscle tension, insomnia, anxiety, stress relief, appetite stimulation, headaches",
+    "negative": "Dry mouth, dry eyes, potential couch-lock at higher doses, dizziness in novice users, grogginess if used during daytime, possible paranoia in THC-sensitive individuals",
+    "aroma": "Purple Octane greets the nose with a bold, fuel-forward punch of diesel and sharp chemical notes inherited from its Chemdog lineage, quickly giving way to a lush sweetness of ripe grape, berry, and subtle floral undertones from the Purple Punch side. A faint earthy, woody base ties the whole bouquet together into a complex and deeply satisfying profile.",
+    "misc": "Purple Octane is a potent indica-dominant cross combining the gassy, heavy-hitting character of Hi-Octane with the fruity, sedating qualities of Purple Punch, typically testing between 21–26% THC. Buds tend to be dense and compact with deep purple hues, vivid orange pistils, and a heavy coating of frosty trichomes that reflect its top-shelf genetics. Best suited for evening or nighttime use, this strain is ideal for experienced consumers looking to unwind, decompress, and ease into deep, restful sleep.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 7,
+      "lift_up": 3,
+      "get_creative": 3,
+      "get_social": 3,
+      "pain_body": 8,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
+  },
+  "3e08391004bb": {
+    "lineage": "Hawaiian x Romulan x Island Sweet Skunk (originated in Topeka, Kansas, accidentally created by Mr. Dank)",
+    "therapeutic": "Stress relief, depression, anxiety, fatigue, mild pain, mood elevation, appetite stimulation",
+    "negative": "Dry mouth, dry eyes, occasional paranoia or anxiety at higher doses, dizziness in low-tolerance users",
+    "aroma": "Golden Goat bursts with a complex bouquet of sweet tropical citrus, ripe mango, and tangy lemon zest layered over a spicy, earthy undertone with hints of fresh pine. The scent is pungent and exotic, often described as reminiscent of a tropical fruit market with a subtle skunky finish.",
+    "misc": "Golden Goat is a sativa-dominant hybrid (60% sativa / 40% indica) despite the indica classification listed here — it was a happy accident cross that gained wide popularity in dispensaries across Colorado and beyond. Typical THC range runs between 16–23%, with this batch at 17.3% sitting in the moderate range. Buds are visually striking with pale green and pink hues dusted in golden trichomes, making it a distinctive and eye-catching flower; best consumed in the morning or afternoon for an energizing, euphoric experience rather than nighttime sedation.",
+    "mood_ratings": {
+      "wind_down": 4,
+      "anxiety_relief": 5,
+      "lift_up": 7,
+      "get_creative": 6,
+      "get_social": 7,
+      "pain_body": 4,
+      "just_happy": 7,
+      "aphrodisiac": 5
+    }
+  },
+  "72e775ab419b": {
+    "lineage": "Sunset Sherbet x Girl Scout Cookies x Cherry Pie (Backpack Boyz / Cookie Fam Genetics)",
+    "therapeutic": "Stress relief, anxiety reduction, mild pain management, appetite stimulation, mood elevation, depression",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, potential dizziness, couch-lock with overconsumption",
+    "aroma": "A vibrant burst of fresh-squeezed lemon zest and ripe sweet cherries greet the nose first, followed by a creamy gelato-like sweetness with subtle earthy and floral undertones. The exhale carries a smooth, dessert-forward finish reminiscent of citrus sorbet.",
+    "misc": "Lemon Cherry Gelato was popularized by Backpack Boyz in Los Angeles and has become one of the most sought-after hybrid strains of the early-to-mid 2020s, gaining significant social media traction and dispensary acclaim. Typical THC levels range from 20–33% in premium cuts, making this 18.3% expression a milder, more approachable version — ideal for intermediate consumers seeking euphoria without overwhelming sedation. Buds are characteristically dense and visually striking, displaying deep purple and forest green hues blanketed in frosty white trichomes with vivid orange pistils; best consumed in the evening or late afternoon for a balanced, relaxing yet mentally uplifting experience.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 6,
+      "lift_up": 7,
+      "get_creative": 5,
+      "get_social": 7,
+      "pain_body": 5,
+      "just_happy": 7,
+      "aphrodisiac": 5
+    }
+  },
+  "265b210f94fe": {
+    "lineage": "Zkittlez x Gelato (Cookies Fam / Runtz brand, originally bred by Yung LB and Sherbinski's collective)",
+    "therapeutic": "Stress relief, anxiety reduction, mild pain management, appetite stimulation, mood elevation, insomnia (higher doses)",
+    "negative": "Dry mouth, dry eyes, mild paranoia in sensitive users or at high doses, dizziness, couch-lock with overconsumption",
+    "aroma": "Runtz bursts with an intensely sweet, candy-like fragrance reminiscent of a tropical fruit punch mixed with creamy vanilla and sugary confection. Beneath the sweetness lies subtle earthy and floral undertones that add complexity and depth to its dessert-like bouquet.",
+    "misc": "Runtz gained mainstream notoriety after being named Leafly's Strain of the Year in 2020 and has since become one of the most recognized and imitated cultivars in cannabis culture. Authentic Runtz typically displays dense, multicolored buds ranging from deep purple to lime green, blanketed in a thick coating of frosty trichomes with vibrant orange pistils. At 21.3% THC from Campfire Cannabis, this batch sits solidly within the strain's typical 19–29% range, making it suitable for intermediate to experienced consumers — best enjoyed in the evening or on a relaxed afternoon for its euphoric, body-melting hybrid effects.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 6,
+      "lift_up": 7,
+      "get_creative": 5,
+      "get_social": 7,
+      "pain_body": 5,
+      "just_happy": 8,
+      "aphrodisiac": 6
+    }
+  },
+  "7ad7cf0c46a5": {
+    "lineage": "Likely a cross involving Wedding Cake (Triangle Kush x Animal Mints) and a Killer strain such as Killer Queen (G13 x Cinderella 99), though exact genetics vary by breeder; possibly a proprietary Trailhead Cannabis Company hybrid",
+    "therapeutic": "Stress relief, mild pain management, anxiety reduction, mood elevation, appetite stimulation, fatigue",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, potential dizziness for low-tolerance users, mild headache possible",
+    "aroma": "Killer Cupcake offers a sweet, doughy vanilla-cake aroma layered with hints of earthy skunk and subtle floral undertones. A light citrus zest cuts through the richness, giving it a bakery-fresh quality with just enough funk to remind you it's cannabis.",
+    "misc": "At 18.4% THC, Killer Cupcake sits in a moderate-to-solid potency range suitable for intermediate consumers looking for a balanced hybrid experience without overwhelming intensity. Buds are typically dense and frosted with trichomes, often displaying light green hues with amber pistils reflecting its Wedding Cake heritage. Best enjoyed in the late afternoon or evening for relaxed socializing or creative wind-down, as the hybrid balance leans slightly toward calming body effects without full sedation.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 6,
+      "lift_up": 5,
+      "get_creative": 4,
+      "get_social": 5,
+      "pain_body": 6,
+      "just_happy": 6,
+      "aphrodisiac": 4
+    }
   }
 }
