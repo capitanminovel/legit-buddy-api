@@ -3143,5 +3143,56 @@
       "just_happy": 6,
       "aphrodisiac": 4
     }
+  },
+  "sw537844": {
+    "lineage": "Uffda OG × Peach Bio (Tasty Gems / regional Pacific Northwest breeding program); Uffda OG is believed to carry OG Kush heritage, while Peach Bio contributes Bio Diesel and peach-phenotype genetics",
+    "therapeutic": "Stress relief, anxiety reduction, mild to moderate pain management, appetite stimulation, insomnia (late-stage use), muscle tension",
+    "negative": "Dry mouth, dry eyes, potential couch-lock at higher doses, mild paranoia in THC-sensitive users, drowsiness that may impair daytime productivity",
+    "aroma": "Swedish OG opens with a wave of sweet, ripe peach and stone fruit layered over a damp, earthy OG funk with subtle diesel undertones. As the flower is broken apart, a creamy, almost floral note emerges alongside a piney, kushy backbone that grounds the profile.",
+    "misc": "Produced by Tasty Gems, a craft cannabis brand known for small-batch, terpene-forward flower with attention to cure quality. At 21.9% THC, this is a moderately potent indica-leaning hybrid best suited for early evening or nighttime use when relaxation and unwinding are the goal. Buds are expected to display dense, indica-style structure with a frosty trichome coating, possible peach and purple hues depending on the phenotype, and a sticky, resinous texture consistent with OG-lineage genetics.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 6,
+      "lift_up": 4,
+      "get_creative": 4,
+      "get_social": 4,
+      "pain_body": 7,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
+  },
+  "sw537851": {
+    "lineage": "Grape Crinkle × Sour Stomper (Tasty Gems / independent craft breeding); Grape Crinkle is believed to descend from Grape Ape and OG Kush lines, while Sour Stomper carries genetics rooted in Sour Diesel and fruity hybrid crosses",
+    "therapeutic": "Stress relief, mild anxiety reduction, appetite stimulation, muscle tension, mild pain management, mood elevation",
+    "negative": "Dry mouth, dry eyes, mild dizziness at higher doses, potential couch-lock in sensitive users, grogginess if consumed before physical activity",
+    "aroma": "A striking combination of tart, fermented grape and sharp citrus-fuel notes greets the nose first, quickly giving way to a sweet, candy-like grape undertone with a faint earthy musk on the exhale. The sour and fruity interplay is lively and distinctive, reminiscent of a grape candy dipped in sour sugar.",
+    "misc": "Double Sour Grape is a craft indica-leaning hybrid from Tasty Gems, a brand focused on boutique, terpene-forward flower selections. At 15.9% THC it sits in a moderate potency range, making it approachable for intermediate consumers while still delivering a well-rounded, relaxing body effect paired with mild cerebral uplift. Buds typically present dense, grape-clustered structures with deep purple and green hues, coated in a frosty layer of trichomes; best suited for late afternoon or evening use.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 6,
+      "lift_up": 5,
+      "get_creative": 4,
+      "get_social": 5,
+      "pain_body": 6,
+      "just_happy": 6,
+      "aphrodisiac": 4
+    }
+  },
+  "sw537870": {
+    "lineage": "Donny Burger × Mendo Breath F2 (Burger Breath lineage); Donny Burger itself is a cross of GMO (Garlic Cookies) × Han Solo Burger (Member Berry × Forum Cut Girl Scout Cookies), while Mendo Breath is a cross of OG Kush Breath (OGKB) × Mendo Montage, originally bred by Gage Cannabis Co.",
+    "therapeutic": "Chronic pain, muscle tension, insomnia, anxiety, appetite stimulation, stress relief, mild depression",
+    "negative": "Dry mouth, dry eyes, heavy sedation, couch-lock, dizziness at higher doses, possible grogginess next day; not recommended for daytime use or high-functioning tasks",
+    "aroma": "A rich, dank blend of funky garlic and savory meat notes inherited from GMO genetics, layered over a creamy vanilla sweetness and earthy caramel undertones from Mendo Breath. The overall profile is pungent and indulgent, reminiscent of a sweet-savory dessert with a gassy, hashy finish.",
+    "misc": "Burger Breath is a relatively modern hybrid gaining traction in craft cannabis circles, typically testing between 22–28% THC in flower form, making the 0.0% THC listed here almost certainly a placeholder or compliance data artifact rather than the actual potency. Buds are typically dense and frosty with deep olive-green hues, amber pistils, and a thick trichome coating. Best consumed in the evening or at night given its heavy indica-leaning sedative effects; consumers new to high-potency indicas should start with a small puff and wait before redosing.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 7,
+      "lift_up": 3,
+      "get_creative": 3,
+      "get_social": 3,
+      "pain_body": 8,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
   }
 }
