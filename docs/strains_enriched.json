@@ -798,23 +798,6 @@
       "aphrodisiac": 5
     }
   },
-  "300fd57c06bd": {
-    "lineage": "Alien Cookies x Kush Mints #11 (Cap Junky originally bred by Capulator, popularized through Masonic Seeds; Alien Cookies derives from Alien Dawg x Girl Scout Cookies, while Kush Mints #11 is Animal Mints x Bubba Kush)",
-    "therapeutic": "Stress relief, mild anxiety reduction, muscle tension, mood elevation, fatigue, mild pain management, appetite stimulation",
-    "negative": "Dry mouth, dry eyes, possible dizziness or mild paranoia at higher doses, may cause couch-lock in sensitive users despite hybrid classification",
-    "aroma": "Cap Junky opens with a sharp, fuel-forward diesel blast layered over cool menthol and fresh pine, quickly giving way to creamy sweet vanilla-cookie undertones and a whisper of floral lavender — a complex, almost contradictory combination that rewards a slow inhale.",
-    "misc": "Cap Junky is a highly regarded craft cultivar originally developed by the breeder Capulator, known for producing dense, frosty buds with deep green and purple hues blanketed in trichomes. At 16.3% THC this is a moderately potent expression — approachable for intermediate consumers but still effective for seasoned users seeking a balanced hybrid experience. Best suited for late afternoon or early evening use when relaxation and a social, giggly mood are welcome without full sedation; the rich terpene profile including myrcene, linalool, and limonene reinforces its calming yet uplifting character.",
-    "mood_ratings": {
-      "wind_down": 7,
-      "anxiety_relief": 4,
-      "lift_up": 5,
-      "get_creative": 6,
-      "get_social": 4,
-      "pain_body": 7,
-      "just_happy": 6,
-      "aphrodisiac": 5
-    }
-  },
   "5d8f6c97b9ab": {
     "lineage": "Las Vegas Lemon Skunk x Member Berry (Redwood County Weed Co); Las Vegas Lemon Skunk is derived from Las Vegas Skunk x Lemon Skunk (DNA Genetics), while Member Berry is a cross of Skunkberry x Mandarin Sunset (Ethos Genetics)",
     "therapeutic": "Stress relief, mild anxiety reduction, mood elevation, mild pain management, fatigue, appetite stimulation",
@@ -3210,6 +3193,91 @@
       "pain_body": 6,
       "just_happy": 4,
       "aphrodisiac": 3
+    }
+  },
+  "sw331577": {
+    "lineage": "Alien Cookies x Kush Mints #11 (Cap Junky originally bred by Capulator, popularized through Masonic Seeds; Alien Cookies derives from Alien Dawg x Girl Scout Cookies, while Kush Mints #11 is Animal Mints x Bubba Kush)",
+    "therapeutic": "Stress relief, mild anxiety reduction, muscle tension, mood elevation, fatigue, mild pain management, appetite stimulation",
+    "negative": "Dry mouth, dry eyes, possible dizziness or mild paranoia at higher doses, may cause couch-lock in sensitive users despite hybrid classification",
+    "aroma": "Cap Junky opens with a sharp, fuel-forward diesel blast layered over cool menthol and fresh pine, quickly giving way to creamy sweet vanilla-cookie undertones and a whisper of floral lavender — a complex, almost contradictory combination that rewards a slow inhale.",
+    "misc": "Cap Junky is a highly regarded craft cultivar originally developed by the breeder Capulator, known for producing dense, frosty buds with deep green and purple hues blanketed in trichomes. At 16.3% THC this is a moderately potent expression — approachable for intermediate consumers but still effective for seasoned users seeking a balanced hybrid experience. Best suited for late afternoon or early evening use when relaxation and a social, giggly mood are welcome without full sedation; the rich terpene profile including myrcene, linalool, and limonene reinforces its calming yet uplifting character.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 4,
+      "lift_up": 5,
+      "get_creative": 6,
+      "get_social": 4,
+      "pain_body": 7,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
+  },
+  "sw331115": {
+    "lineage": "Ice Cream Cake x Blockberry (Redwood County Weed Co proprietary cross; Ice Cream Cake = Wedding Cake x Gelato #33 [Seed Junky Genetics]; Blockberry lineage rooted in berry-forward hybrids)",
+    "therapeutic": "Stress relief, mild anxiety reduction, mood elevation, fatigue, social anxiety, mild depression, appetite stimulation",
+    "negative": "Dry mouth, dry eyes, mild paranoia in THC-sensitive users, potential drowsiness as effects taper, headache at high consumption levels",
+    "aroma": "A luscious blend of ripe mixed berries and creamy vanilla rises upfront, layered with bright citrus zest and a subtle earthy musk beneath — reminiscent of a fresh berry sorbet with a squeeze of orange. Linalool adds a faint floral sweetness that softens the sour, fruity edges into a smooth, dessert-like finish.",
+    "misc": "Halle Berry is a house cultivar from Redwood County Weed Co, blending the creamy dessert profile of Ice Cream Cake with the bright, berry-forward character of Blockberry to create a sativa-leaning hybrid ideal for daytime or early evening social use. At 14% THC, it sits in an approachable mid-potency range, making it well-suited for novice to intermediate consumers seeking functional euphoria without overwhelming sedation. Buds are typically dense with purple-tinged hues, frosted trichomes, and vivid orange pistils reflecting its rich genetic heritage.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 6,
+      "lift_up": 4,
+      "get_creative": 2,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 7,
+      "aphrodisiac": 6
+    }
+  },
+  "sw525051": {
+    "lineage": "Super Sherb x Blockberry (Redwood County Weed Co) — Super Sherb is derived from Sherbet (Girl Scout Cookies x Pink Panties) crossed with an indica-heavy Sherblato or similar Sherb phenotype; Blockberry is believed to be a cross of Blackberry Kush and an OG or Cookie-family strain",
+    "therapeutic": "Stress relief, anxiety reduction, mild chronic pain, muscle tension, mood elevation, creative blocks, mild depression",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, possible couch-lock for low-tolerance users, drowsiness if overconsumed",
+    "aroma": "A lush, dessert-forward bouquet of ripe blackberries and sweet sherbet cream undercut by earthy, doughy undertones and a faint floral herbal finish. The nose is richly fruity and indulgent with subtle candy-like sweetness that lingers pleasantly.",
+    "misc": "Produced by Redwood County Weed Co, this hybrid pre-roll sits at a moderate 16.9% THC, making it approachable for intermediate consumers and manageable for beginners who dose carefully. Buds from this lineage typically display dense, frost-coated structure with deep purple and green hues inherited from the Blackberry and Sherbet parentage. Best suited for late afternoon or early evening use when creativity and relaxation are both welcome, offering a balanced head-and-body effect without heavy sedation.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 6,
+      "lift_up": 5,
+      "get_creative": 5,
+      "get_social": 5,
+      "pain_body": 6,
+      "just_happy": 6,
+      "aphrodisiac": 4
+    }
+  },
+  "sw525062": {
+    "lineage": "Apples & Bananas x Grape Gas — Apples & Bananas is a complex cross of Platinum Cookies x Granddaddy Purple x Blue Power x Gelatti (Compound Genetics), while Grape Gas is derived from Grape Pie x an undisclosed Gas/OG lineage; Gastro Pop was popularized by Compound Genetics and connected breeders in the premium exotic market",
+    "therapeutic": "Insomnia, chronic pain, appetite stimulation, stress relief, anxiety, mild depression, muscle tension",
+    "negative": "Dry mouth, dry eyes, potential couch-lock especially at higher consumption levels, mild paranoia in THC-sensitive users, heavy sedation may impair productivity — best avoided before tasks requiring focus or alertness",
+    "aroma": "Gastro Pop bursts with a luscious blend of ripe tropical fruit, sweet candied grape, and fresh apple skin layered over a deep, fuel-driven earthiness. Subtle creamy undertones reminiscent of banana taffy round out the nose, giving it a rich, dessert-like complexity with a gassy finish.",
+    "misc": "At 16.4% THC this pre-roll sits on the moderate end, making it approachable for intermediate consumers while still delivering a well-rounded indica-leaning hybrid experience — expect dense, resinous buds with purple hues and a frosty trichome coating typical of its Grape and Cookies heritage. Gastro Pop has gained significant traction in the exotic strain market due to its Compound Genetics association and unique flavor-forward profile. Best consumed in the evening or late afternoon when relaxation, appetite stimulation, and social ease are desired without demanding full productivity.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 6,
+      "lift_up": 4,
+      "get_creative": 4,
+      "get_social": 4,
+      "pain_body": 7,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
+  },
+  "sw525078": {
+    "lineage": "Strawberry Jack x Slymer x Sour Hound (Redwood County Weed Co) — Strawberry Jack descends from Strawberry Cough x Jack Herer; Slymer is a phenotype of Ghost Train Haze #1 known for lime/citrus expression; Sour Hound is a sativa-leaning hybrid combining Sour Diesel with Hound Dog genetics",
+    "therapeutic": "Stress relief, mood elevation, fatigue, mild depression, creative blocks, appetite stimulation",
+    "negative": "Dry mouth, dry eyes, mild anxiety or paranoia at higher doses due to sativa-dominant terpene profile, potential for racing thoughts in THC-sensitive consumers",
+    "aroma": "A bright, complex bouquet of ripe strawberries and tangy citrus zest layered over a sharp diesel funk, with a faint earthy pine finish that lingers on the exhale. The sour, candy-like sweetness from the Strawberry Jack and Slymer ancestry dominates the nose, balanced by the fuel-forward bite of Sour Hound.",
+    "misc": "Crafted by Redwood County Weed Co, this hybrid pre-roll sits at 20.2% THC, making it a moderately potent option well-suited for intermediate consumers. The cross of three expressive sativa-leaning parents typically produces elongated, frosty green buds with amber pistils and a sticky resin coat reflective of Ghost Train Haze and Sour Diesel heritage. Best enjoyed during daytime or early evening hours when creativity, socialization, or active tasks are on the agenda.",
+    "mood_ratings": {
+      "wind_down": 4,
+      "anxiety_relief": 4,
+      "lift_up": 7,
+      "get_creative": 7,
+      "get_social": 6,
+      "pain_body": 4,
+      "just_happy": 6,
+      "aphrodisiac": 5
     }
   }
 }
