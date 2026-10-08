@@ -3551,5 +3551,39 @@
       "just_happy": 6,
       "aphrodisiac": 4
     }
+  },
+  "sw566325": {
+    "lineage": "OG Kush x Purple Afghani (dizgo / lineage consistent with classic Cherry Kush breeding)",
+    "therapeutic": "Insomnia, chronic pain, stress and anxiety relief, appetite stimulation, muscle tension, depression",
+    "negative": "Dry mouth, dry eyes, potential couch-lock at higher doses, dizziness in low-tolerance users, may cause excessive sedation if consumed during daytime",
+    "aroma": "A rich, intoxicating blend of sweet cherry and dark berry notes rides on a foundation of earthy, fuel-tinged OG musk, with subtle floral undertones courtesy of its linalool content. The exhale carries a smooth, almost dessert-like sweetness that lingers pleasantly.",
+    "misc": "Cherry Kush is a well-regarded indica-leaning hybrid born from the legendary OG Kush and a Purple Afghani parent, combining the former's resin-heavy potency with the latter's deep relaxation and berry-forward terpene profile. At 19.8% THC, this is a moderately potent offering ideal for evening and nighttime use, especially for consumers seeking wind-down relief after a long day. The dense, bright green buds are heavily frosted with trichomes and carry a visually appealing frosty appearance consistent with its OG and Afghani heritage — best suited for intermediate to experienced consumers due to its pronounced sedative lean.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 6,
+      "lift_up": 4,
+      "get_creative": 2,
+      "get_social": 4,
+      "pain_body": 5,
+      "just_happy": 7,
+      "aphrodisiac": 6
+    }
+  },
+  "sw566331": {
+    "lineage": "Mixed Strains (multiple hybrid cultivars blended via live rosin extraction process — likely a curated mix of fruit-forward hybrids such as Zkittlez, Tropical Runtz, or similar fruity phenotypes; specific genetics proprietary to Dizgo's sourcing)",
+    "therapeutic": "Stress relief, mild anxiety reduction, mood elevation, appetite stimulation, mild pain relief, creative focus",
+    "negative": "Dry mouth, dry eyes, possible paranoia at high doses due to elevated THC (~71.9%), mild dizziness for low-tolerance users, overconsumption risk given concentrate potency",
+    "aroma": "A vibrant burst of tropical and mixed berry sweetness, reminiscent of a fresh fruit salad with hints of citrus zest and candy-like undertones. The live rosin process preserves volatile terpenes, lending an authentic, true-to-plant aromatic complexity that feels lush and juicy.",
+    "misc": "Dizgo is known for solventless concentrate-derived vape products using live rosin, which captures the full terpene profile of fresh-frozen cannabis flower without chemical solvents — resulting in a cleaner, more flavorful experience. At 71.9% THC, this is a moderately potent concentrate ideal for intermediate to experienced consumers; beginners should take 1-2 second puffs and wait before redosing. Best suited for daytime to early evening use given its hybrid nature, offering a balanced cerebral uplift alongside mild physical relaxation.",
+    "mood_ratings": {
+      "wind_down": 5,
+      "anxiety_relief": 5,
+      "lift_up": 7,
+      "get_creative": 5,
+      "get_social": 6,
+      "pain_body": 4,
+      "just_happy": 7,
+      "aphrodisiac": 5
+    }
   }
 }
