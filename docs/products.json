@@ -3899,7 +3899,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1786403079_61172c6e-dc0a-46e4-8e91-cf8671df296f.png",
       "description": "The Soap is a vibrant cross of Animal Mints x Kush Mints, delivering bold flavor with an energetic, mood-lifting experience. This sativa-leaning hybrid hits quickly, offering an uplifting headspace paired with light, stimulating body effects.\n\nIts terpene profile blends sour citrus and sweet woody pine with hints of spicy cheese and pungent diesel. The aroma carries a sharp, minty-fuel character with a bright citrus edge.\n\nOversized mint-green buds feature orange hairs and a thick coating of golden-white trichomes.",
       "first_seen": "2026-10-07T20:11:15.712166-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw291860": {
       "sweed_id": 291860,
@@ -3949,7 +3949,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1776125778_06a87b2d-edf3-4ecc-b9d0-dccc2668e295.jpg",
       "description": "Guava is a sativa-leaning phenotype of Gelato, known for its vibrant flavor and uplifting character. This strain builds gradually, delivering a bright wave of euphoria paired with sharp focus and enhanced sociability.\n\nIts terpene profile blends sweet, creamy berries with sour tropical citrus and ripe guava notes, finished with subtle hints of spice and light diesel. The aroma mirrors its sweet-and-sour fruit profile with a gassy edge.\n\nHeart-shaped olive-green buds feature bright orange hairs and a frosty coating of white trichomes.",
       "first_seen": "2026-09-15T12:46:36.655936-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw291861": {
       "sweed_id": 291861,
@@ -4000,7 +4000,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1776125748_1967fee6-b134-46df-be58-112f3ed44b4f.jpg",
       "description": "Cap Junky is a high-potency cross of Kush Mintz x Alien Cookies, delivering a powerful yet balanced hybrid experience. Fast-acting and intense, this strain opens with an uplifting cerebral rush before settling into a smooth, full-body relaxation that stays active rather than overly sedating.\n\nThe flavor blends sweet fruit with cool menthol and floral notes, while the aroma carries fresh mint, pine, and gassy diesel undertones.\n\nDense forest-green buds feature bright orange hairs and a thick coating of milky amber trichomes, showcasing its premium potency.",
       "first_seen": "2026-08-18T13:28:26.709930-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw432697": {
       "sweed_id": 432697,
@@ -4136,7 +4136,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1784936301_dda03c91-658c-4a55-9fa8-73cb21969f5d.png",
       "description": "Hawaiian-Romulan \u00d7 Island Sweet Skunk\n\nGolden Goat offers bright tropical fruit and citrus layered with earthy herbs and sweet spice. provides a deep body relaxation, soothing stress relief and a calm grounded finish.",
       "first_seen": "2026-07-27T17:34:27.527824-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw444439": {
       "sweed_id": 444439,
@@ -4397,7 +4397,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1784141206_04ede23c-5078-40e0-b899-1bf10b2152e7.png",
       "description": "Blue Mammoth Auto x Blue Dream x Amnesia",
       "first_seen": "2026-07-16T14:03:28.511190-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw242117": {
       "sweed_id": 242117,
@@ -4405,19 +4405,18 @@
       "brand": "Campfire Cannabis",
       "category": "flower",
       "strain_type": "Hybrid",
-      "thc": "21.3%",
+      "thc": "19.4%",
       "cbd": "",
       "cbg": "",
       "cbn": "",
-      "total_terpenes_pct": "1.0%",
+      "total_terpenes_pct": "0.9%",
       "tac_pct": "",
       "coa_status": "confirmed",
       "terpenes": [
         "Myrcene",
         "Linalool",
         "Limonene",
-        "Caryophyllene",
-        "Isopulegol"
+        "Caryophyllene"
       ],
       "effects": [
         "Sleepy",
@@ -4431,25 +4430,25 @@
         "Talkative"
       ],
       "flavors": [
-        "Apricot",
-        "Citrus",
         "Fruity",
-        "Pineapple",
+        "Citrus",
         "Spice",
         "Sweet",
-        "Tropical"
+        "Tropical",
+        "Pineapple",
+        "Apricot"
       ],
-      "weight": "7g",
-      "price": "$85.00",
+      "weight": "3.5g",
+      "price": "$48.00",
       "price_tiers": {
-        "eighth": "$48.00",
-        "quarter": "$85.00"
+        "quarter": "$85.00",
+        "eighth": "$48.00"
       },
       "in_stock": true,
       "image": "https://media-prime.sweedpos.com/store/prime/1773943973_9ae0f93f-376c-47c1-b89f-17173456bf06.jpg",
       "description": "Runtz is a balanced cross of Zkittlez x Gelato, celebrated for its candy-like flavor and smooth, full-bodied effects. This hybrid settles in shortly after inhale, offering a calming cerebral lift before easing into deep, soothing body relaxation.\n\nIts terpene profile bursts with tropical citrus, sour berries, and sweet pineapple, finished with a lightly pungent edge. The experience leans euphoric and tranquil, making it ideal for unwinding in the evening.\n\nDense olive-green buds feature purple undertones, orange hairs, and a frosty coating of crystal trichomes.",
       "first_seen": "2026-08-26T17:05:23.199223-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw242323": {
       "sweed_id": 242323,
@@ -4498,7 +4497,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1773943792_1b7d4c4a-39c2-4b4a-b498-91a3d875f9fd.jpg",
       "description": "Lit OG is a potent cross of Tahoe OG x Runtz, delivering immediate uplift with smooth indica-backed relaxation. This strain opens with a wave of clear-headed euphoria before settling into a calm, body-soothing finish that keeps you comfortably grounded.\n\nIts terpene profile blends sweet, creamy citrus with classic kush, woody pine, and subtle spice. The aroma leans rich and earthy with bright fruit undertones.\n\nOversized olive-green buds feature purple accents, thick orange hairs, and a frosty coating of crystal trichomes.",
       "first_seen": "2026-08-26T17:05:23.199223-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw242343": {
       "sweed_id": 242343,
@@ -4548,7 +4547,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1773943921_f321771f-26e1-43dc-b598-039344b1f1ec.jpg",
       "description": "Permanent Marker is a potent cross of Biscotti x Jealousy x Sherbet BX, delivering bold flavor with high-impact effects. This indica-leaning hybrid settles in after a few pulls, offering a lifted, creative headspace paired with steady, calming body relaxation.\n\nIts terpene profile blends sweet and sour fruity candy with sharp citrus diesel and pungent spice. The aroma leans gassy and dank with a bright citrus edge.\n\nDense emerald-green buds feature purple accents, orange hairs, and a frosty layer of amber-tinted trichomes.",
       "first_seen": "2026-08-26T17:05:23.199223-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw242346": {
       "sweed_id": 242346,
@@ -4598,7 +4597,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1778186508_a53d0273-21f7-4b73-92b5-7cad326a68c3.png",
       "description": "MAC Stomper is a flavorful cross of MAC x Grape Stomper, delivering rich fruit notes with calming indica effects. This strain settles in gradually, lifting the mood before easing into deep physical relaxation that leans tranquil and sleep-friendly.\n\nIts terpene profile features fresh mixed berries, spicy grape, and hints of sour lemon, rounded out by floral and earthy undertones. The aroma carries a grape-forward richness with subtle spice.\n\nRounded olive-green buds display purple accents, orange hairs, and a frosty coating of purple-tinted trichomes.",
       "first_seen": "2026-08-26T17:05:23.199223-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw242348": {
       "sweed_id": 242348,
@@ -4696,7 +4695,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1774281040_b505596f-d02f-4ca3-b4a5-e3d47eff38eb.jpg",
       "description": "Fight Club is a balanced hybrid known for its bold character and refined terpene profile. This strain delivers an uplifting cerebral edge paired with smooth, grounded relaxation, making it versatile for both daytime and evening use.\n\nIts aroma leads with bright citrus notes of orange and lemon, layered with subtle herbal and earthy undertones. The flavor follows with tangy grapefruit, light sweetness, and a touch of spice on the finish.\n\nDense forest-green buds feature purple accents, orange pistils, and a thick coating of frosty trichomes.",
       "first_seen": "2026-10-08T11:48:12.178879-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw381984": {
       "sweed_id": 381984,
@@ -5074,7 +5073,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1780242398_b6816263-5775-481c-9aad-e3bc3a5b318c.png",
       "description": "Runtz is a balanced cross of Zkittlez x Gelato, celebrated for its candy-like flavor and smooth, full-bodied effects. This hybrid settles in shortly after inhale, offering a calming cerebral lift before easing into deep, soothing body relaxation.\n\nIts terpene profile bursts with tropical citrus, sour berries, and sweet pineapple, finished with a lightly pungent edge. The experience leans euphoric and tranquil, making it ideal for unwinding in the evening.\n\nDense olive-green buds feature purple undertones, orange hairs, and a frosty coating of crystal trichomes.",
       "first_seen": "2026-10-07T14:30:05.513383-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw451776": {
       "sweed_id": 451776,
@@ -5905,7 +5904,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1780408592_fecd79e7-a0bd-4e6a-8e96-7e0c9d53d9d1.png",
       "description": "Jacked up flowed coated in Super Boof kief.\n\nSuper Boof: Purple Panty Dropper x Blueberry.\n\nJacked Up: Jack Herer x Timewreck.",
       "first_seen": "2026-09-10T15:27:42.055316-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw498160": {
       "sweed_id": 498160,
@@ -5959,7 +5958,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779112271_198d438e-d98b-4d98-b825-1a31dd28d789.png",
       "description": "10mg THC per serving (1 piece)  - 100mg total per package.",
       "first_seen": "2026-09-10T15:27:42.055316-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw362501": {
       "sweed_id": 362501,
@@ -5987,7 +5986,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1780407285_4ca89e55-dca7-4e38-a2ab-cc7f97825bd6.png",
       "description": "",
       "first_seen": "2026-09-10T15:27:42.055316-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw498183": {
       "sweed_id": 498183,
@@ -6132,7 +6131,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1773943731_a20cf591-6ef1-47a8-9e00-81bbe7f2291e.jpg",
       "description": "Donny Burger is a potent cross of GMO x Han Solo Burger, delivering bold flavor and full-bodied effects. This indica offers an immediate uplifted mood paired with smooth physical relaxation, creating a balanced yet deeply calming experience.\n\nIts terpene profile is rich and savory, blending spicy pepper, cheesy funk, earthy anise, and tangy citrus undertones. The aroma leans pungent and gassy with hints of black licorice and sour citrus.\n\nOversized neon-green buds feature bright orange hairs and a thick coating of frosty golden-white trichomes.",
       "first_seen": "2026-09-10T18:21:52.358731-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw335377": {
       "sweed_id": 335377,
@@ -6179,7 +6178,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779280535_72cf67dd-fac5-41af-8a38-f2ff7e0b2c89.png",
       "description": "Grape Cream Cake is a cross of Grape Pie x Wedding Crasher, delivering rich flavor and soothing indica-leaning effects. This strain settles in shortly after exhale, offering a warm, uplifting headspace that gradually transitions into deep physical relaxation.\n\nIts terpene profile features sweet cherry and berry notes layered with creamy vanilla, sugary nuttiness, and subtle grape spice. As the experience deepens, it leans calming and sleepy, making it well-suited for evening use.\n\nBright neon-green buds display orange hairs and a frosty layer of purple-tinted trichomes.",
       "first_seen": "2026-09-10T18:21:52.358731-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw511181": {
       "sweed_id": 511181,
@@ -6399,7 +6398,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1784936180_64e22b70-fa81-4ac2-8343-fb3197eccdef.png",
       "description": "Chemdawg \u00d7 (Hindu Kush \u00d7 Lemon Thai)\n\nOG Kush delivers classic earthy pine, woody spice, and subtle sour citrus wrapped in a rich herbal finish. This legendary hybrid offers a deeply relaxing experience while maintaining a balanced, mellow character.",
       "first_seen": "2026-09-11T12:16:52.594530-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw521405": {
       "sweed_id": 521405,
@@ -6520,7 +6519,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1781640368_a2d2c41a-dbcd-456e-b2f0-b48d9351ed46.png",
       "description": "Terp Poison is a vibrant cross of Durban Poison x AVL, delivering bold citrus intensity with energetic, daytime-friendly effects. This sativa-leaning hybrid offers an uplifting, focused headspace that supports creativity and productivity.\n\nDominant terpenes, led by terpinolene, create a sharp aroma of sweet lemon, lime, and gassy fuel with a bright, herbal edge. The experience is clear, motivating, and socially engaging.\n\nDense sage-green buds are heavily coated in shimmering resin, highlighting its rich terpene profile and premium visual appeal.",
       "first_seen": "2026-09-15T12:46:36.655936-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw371799": {
       "sweed_id": 371799,
@@ -6574,7 +6573,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1783621056_af9e970e-fe20-468c-a8d5-382fcc05847e.png",
       "description": "10mg THC per Gummy - 10 Gummies per pack. 100mg total.",
       "first_seen": "2026-09-15T12:46:36.655936-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "c317a8353f11": {
       "name": "Guava",
@@ -6858,7 +6857,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1790124472_94debbf4-0f55-4dc3-95ee-418f759b482c.png",
       "description": "Grape Crinkle \u00d7 Sour Stomper",
       "first_seen": "2026-10-02T23:32:43.146091-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw537870": {
       "sweed_id": 537870,
@@ -7078,7 +7077,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779044027_95a5edd4-7115-4e9a-91f9-5e69868e1432.png",
       "description": "Super Sherb x Blockberry",
       "first_seen": "2026-09-25T16:01:24.777536-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw525062": {
       "sweed_id": 525062,
@@ -7121,7 +7120,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1779044027_95a5edd4-7115-4e9a-91f9-5e69868e1432.png",
       "description": "Apples & Bananas x Grape Gas",
       "first_seen": "2026-09-25T16:01:24.777536-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw525078": {
       "sweed_id": 525078,
@@ -7191,7 +7190,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1790187119_118d3432-509d-492e-b0d9-2665197c6a98.png",
       "description": "Sunset Sherbert exhibits powerful, full-body effects that are elevated by a jolt of cerebral energy and carefree state of mind. \n\nThe high potency of Sherbert makes it an ideal choice for smokers seeking relief from symptoms associated with stress, tension, and mood disorders. This strain features a sweet, dessert-like flavor profile with notes of skunky citrus, sweet berry, and candy.\n\nAccording to growers, Sherbert flowers into oblong fluffy nugs with rich trichome coverage and dark amber hairs throughout light and dark green foliage.",
       "first_seen": "2026-09-26T08:57:09.105927-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw425242": {
       "sweed_id": 425242,
@@ -7218,7 +7217,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1784830374_5f87c535-7c94-45ff-9a68-8b909cc9b3e0.png",
       "description": "Crisp, tart, and refreshingly bold. Voyageur Sour Apple gummies deliver a bright green apple flavor with a mouthwatering sour kick on the finish. Each pack includes 10 precisely dosed gummies at 10mg each, ensuring consistent potency and a reliable experience every time.\n\nThe balance of tangy and sweet makes Sour Apple a standout choice for those who enjoy a sharper fruit profile. Smooth in texture and evenly infused, these gummies are perfect for adding a little zing to your routine wherever the journey takes you.",
       "first_seen": "2026-09-30T13:53:55.670340-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw541506": {
       "sweed_id": 541506,
@@ -7303,7 +7302,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1790356092_2d2bdef4-33f5-4da1-8a57-372ece51c05c.png",
       "description": "Gorilla Zkittlez is a slightly indica dominant hybrid strain (60% indica/40% sativa) created through crossing the potent Gorilla Glue 4 X Zkittlez strains. If you love a great hybrid with a slight indica lean and a great flavor, Gorilla Zkittlez is totally made for you.\n\n This bud packs the best of everything, with a stimulating yet soothing high and a mouthwatering taste that will leave you begging for more. The high starts with a slow creeping effect, sneaking into the brain with a subtle lifting build. Suddenly you'll find your mind flying high into the clouds with a sense of pure happiness and ease that can leave you falling into fits of giggles at times. This is accompanied by a boost in creativity and a touch of sedation that has you fading away into long-lasting artistic thought before you finally fall asleep.",
       "first_seen": "2026-10-02T10:34:43.948672-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw542434": {
       "sweed_id": 542434,
@@ -7351,7 +7350,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1790356403_a5158328-3890-4c21-bbb9-9d7f5f6c6c89.png",
       "description": "Magic Marker is an indica dominant hybrid strain (70% indica/30% sativa) created through crossing the iconic Permanent Marker X Dosidos strains. Touted as the next generation of its parent strain, Permanent Marker, this high-powered hybrid offers a soothing, stoney high that is perfect for helping you to physically and mentally settle down before you finally get to sleep at night.\n\nThis bud has a deliciously multi-layered flavor of sweet creamy citrus accented by spicy diesel and a touch of fresh earthiness. The aroma amps up the complexity, bringing in woody pine and pungent dank to the fruity, citrusy blend. Magnetic Marker buds have dense, spade-shaped bright emerald-green nugs with dark purple leaves, thick deep orange hairs and chunky white trichomes.",
       "first_seen": "2026-10-02T19:18:39.006309-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw561545": {
       "sweed_id": 561545,
@@ -7396,7 +7395,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1790790339_eb31682d-5e0e-4c71-8c6e-06627eee328f.png",
       "description": "Dante\u2019s Inferno is a hybrid cannabis strain known for its creative, sleepy and talkative effects and ammonia, pepper and tea flavor profile. Its terpene profile features Caryophyllene, Humulene, Myrcene. Dante\u2019s Inferno delivers a multi-layered experience that combines several notable effects. The primary effects include enhanced creative thinking and inspiration for artistic or brainstorming activities, accompanied by drowsiness and sedation, making it ideal for evening or bedtime use. Its profile also lists increased sociability and desire for conversation.",
       "first_seen": "2026-10-03T09:06:13.819669-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw542438": {
       "sweed_id": 542438,
@@ -7444,7 +7443,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1790356272_bb2b2418-28af-4020-8d4c-0b63697cbc86.png",
       "description": "Hippie Crasher, also known as \u201cHippy Crasher,\u201d is an indica dominant hybrid strain (80% indica/20% sativa) created through crossing the delicious Wedding Cake X Kush Mints strains. If you're looking for a bud that will really take hold and knock out any aches or pains, you've found it with Hippie Crasher. This bud comes on fast and hard, launching your mood to new levels of happiness while dropping your body into a state of pure physical relaxation and ease.\n\nThis bud has a sweet and fruity berry cake flavor with a lightly nutty minty cookie exhale. The aroma is of sweet fruity cherries and sharp mint with hints of spicy nuts, too. Hippie Crasher buds have fat dense heart-shaped minty green nugs with orange hairs and a coating of tiny frosty white crystal trichomes.",
       "first_seen": "2026-10-04T19:07:23.880382-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw542336": {
       "sweed_id": 542336,
@@ -7497,7 +7496,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1790356114_35837c8d-f877-4095-ab79-f3613d222b23.png",
       "description": "Grape Canyon Zkittlez is a flavorful cross of Grape Ape x Zkittlez, delivering a balanced, full-bodied experience. This hybrid offers an uplifting cerebral boost paired with smooth physical relaxation, creating an easygoing yet satisfying effect profile.\n\nIts terpene profile bursts with sweet grape and mixed berry notes, accented by sour citrus, subtle banana, and a touch of peppery spice. The aroma mirrors its candy-like sweetness with a lightly spicy finish.\n\nFluffy, dusty green buds feature purple undertones, orange hairs, and a thick coating of white trichomes.",
       "first_seen": "2026-10-05T15:53:51.879507-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw542444": {
       "sweed_id": 542444,
@@ -7546,7 +7545,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1790356069_b5bebd3d-52c8-4611-9f74-1772281d8828.png",
       "description": "Glitter Bomb is an indica dominant hybrid strain (70% indica/30% sativa) created through crossing the delicious Grape. Gas X OG Kush Breath Blueberry Headband strains. Named for its gorgeous appearance and explosive high, Glitter Bomb is the perfect choice for any classic indica lover. \n\nGlitter Bomb has beautiful oversized heavy pepper-shaped nugs with dark olive green leaves, thin orange hairs and a super glittery coating of chunky bright white crystal trichomes.",
       "first_seen": "2026-10-05T15:53:51.879507-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw563234": {
       "sweed_id": 563234,
@@ -7586,7 +7585,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1791215303_8a3f5641-2b6e-4830-9c84-8783503a631f.png",
       "description": "FrankenPine is an autoflowering hybrid bred from FrankenCakes x LilMissHS. It is designed to combine classic pine-forward flavors with modern high-performance traits, producing plants with elongated, helix-stacked colas reminiscent of traditional Jack strains. \n\nFrankenPine is known for its bold, forest-forward aroma with notes of fresh pine, rosemary, citrus, spice, and a touch of skunky gas. The flavor profile emphasizes savory, terpene-rich characteristics, appealing to consumers who prefer herbal and earthy flavors over sweet or candy-like profiles.",
       "first_seen": "2026-10-09T11:23:57.884107-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw564442": {
       "sweed_id": 564442,
@@ -7623,7 +7622,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1791315705_a7d88514-fb5a-4d4b-960e-e8d63ff7df76.png",
       "description": "Blue Zushi x Strawberry Jelly",
       "first_seen": "2026-10-06T14:05:09.694882-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw564443": {
       "sweed_id": 564443,
@@ -7678,7 +7677,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1791315716_ede07f1d-5b05-4356-a8a4-a9c40d127297.png",
       "description": "Alien Cookies x Kush Mints #11",
       "first_seen": "2026-10-06T14:05:09.694882-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw564444": {
       "sweed_id": 564444,
@@ -7711,7 +7710,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1791315813_d6be2585-0959-4876-afc0-b4018d42a15f.png",
       "description": "Watermelon N Later (Watermelon Soda x Zlushies (Zkittles x Strawberry Fritter)) Red Gummy x Rainbow Rolex #1",
       "first_seen": "2026-10-06T14:05:09.694882-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw564636": {
       "sweed_id": 564636,
@@ -7743,7 +7742,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1791315734_6327bfcb-e276-4dde-ab27-fba4dfcb247c.png",
       "description": "Oreoz x Hash Plant",
       "first_seen": "2026-10-06T14:05:09.694882-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw566094": {
       "sweed_id": 566094,
@@ -7795,7 +7794,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1791309639_5d54b7ac-27c1-454a-a2ba-dd1c79baed11.png",
       "description": "Mexican Sativa \u00d7 Thai Sativa \u00d7 Afghani Indica \n\nTrainwreck didn't get its name or claim to fame in the marijuana community for no reason at all. This exhilarating hybrid strain has mind blowing components that will hit you like a train after just a couple of hits. It's long green leaves are accompanied by a pine/citrus aroma that can't be mistaken. You can expect a noticeable after taste of lemon with a slight cough when inhaling this strain.",
       "first_seen": "2026-10-06T14:05:09.694882-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw563240": {
       "sweed_id": 563240,
@@ -7837,7 +7836,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1791215349_84773378-c4b6-4cdb-a0e4-6c1d0a5c4209.png",
       "description": "Zesty Parm is a sativa dominant hybrid strain created through crossing the iconic Cherry Kush X (Lemon Tree Papaya X GMO) X FroDo strains. \n\nThe flavor of this bud will wake up your tastebuds, with a sharp herbal spice overtone accented by hints of citrus zest and savory, creamy cheese. The aroma is even heavier, with an earthy spice overtone accented by fresh woods, peppery zest and a hint of dank herbal cheese.\n\nThe Zesty Parm high will strike immediately, smashing into your mind with a vibrant cerebral flare that intensifies the senses. You'll feel an influx of euphoria and focus that allows your mood to run free and your mental clarity to follow. A gentle physical relaxation comes next, rolling throughout the body with warming waves of calm that help you to really settle down",
       "first_seen": "2026-10-06T16:55:55.008901-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw564638": {
       "sweed_id": 564638,
@@ -7877,7 +7876,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1791215898_b61d1e2e-3051-45af-a7fd-d92255ff4574.png",
       "description": "",
       "first_seen": "2026-10-07T14:30:05.513383-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw566325": {
       "sweed_id": 566325,
@@ -7919,7 +7918,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1784146576_742ffb38-dc97-42d7-9801-463ba97949f5.png",
       "description": "OG Kush x A Purple Afghani \n\nThe buds are bright green and frosted with a dense layer of trichomes. This strain has a sweet, pungent flavor with hints of berry.",
       "first_seen": "2026-10-08T14:34:26.556194-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw566331": {
       "sweed_id": 566331,
@@ -7946,7 +7945,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1791549714_383c9d1f-1e9b-4ae0-b339-347e66fd2546.png",
       "description": "Mixed Strains",
       "first_seen": "2026-10-08T14:34:26.556194-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw566382": {
       "sweed_id": 566382,
@@ -7982,7 +7981,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1791321266_c94b59ee-dbdf-4d52-93fc-065498a27467.jpg",
       "description": "Citrus Slushy crosses Grape Pie with Lemon OG, a balanced hybrid that tastes exactly like its name. Sharp lemon peel hits first, then a cool wave of sweet grape candy and soft berry on the exhale. The onset is bright and social, lifting mood without racing thoughts. The body follows at the same pace \u2014 loose and easy, steady rather than sedating, with the head staying clear throughout. Infused and rolled in a 1g pair, it holds up from afternoon into evening.",
       "first_seen": "2026-10-08T17:40:15.814054-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw566567": {
       "sweed_id": 566567,
@@ -8021,7 +8020,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1791336117_dadfd2b7-ebf3-4187-a06a-058c04bd64f8.avif",
       "description": "Crafted by Grasslandz, this 10-pack of Zoap Mini Pre-Rolls delivers the complex sweet, soapy, and fruity-gas aroma of the popular hybrid strain in perfectly portioned, portable shorties. Each mini pre-roll burns smoothly to provide a balanced rush of euphoric bliss and body relaxation, settling into a functional, feel-good buzz that leaves you refreshed rather than couch-locked. Packed in a convenient pocket-sized container, they are ideal for effortless afternoon resets, social hangouts, or quick sessions on the go.",
       "first_seen": "2026-10-08T17:40:15.814054-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw566363": {
       "sweed_id": 566363,
@@ -8048,7 +8047,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1791320042_4402478a-8eba-4032-b8ca-52b7df87dd74.png",
       "description": "10mg THC per serving (1 piece)  - 100mg total per package.",
       "first_seen": "2026-10-08T17:40:15.814054-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw566356": {
       "sweed_id": 566356,
@@ -8081,7 +8080,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1791319795_8420baa3-28f2-4cab-a614-9cee22df7650.jpg",
       "description": "Lemonade Stand brings classic, tart, ice-cold lemonade flavor straight to the dock. Crisp, refreshing, and made for soaking up every last drop of summer. Consider this your sign to pull up a chair and stay awhile.",
       "first_seen": "2026-10-08T17:40:15.814054-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw569064": {
       "sweed_id": 569064,
@@ -8126,7 +8125,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1791495534_6b24545e-31c6-4cc2-9681-88000607f8e8.png",
       "description": "Magic Marker is an indica dominant hybrid strain (70% indica/30% sativa) created through crossing the iconic Permanent Marker X Dosidos strains. Touted as the next generation of its parent strain, Permanent Marker, this high-powered hybrid offers a soothing, stoney high that is perfect for helping you to physically and mentally settle down before you finally get to sleep at night.\n\nThis bud has a deliciously multi-layered flavor of sweet creamy citrus accented by spicy diesel and a touch of fresh earthiness. The aroma amps up the complexity, bringing in woody pine and pungent dank to the fruity, citrusy blend. Magnetic Marker buds have dense, spade-shaped bright emerald-green nugs with dark purple leaves, thick deep orange hairs and chunky white trichomes.",
       "first_seen": "2026-10-09T17:04:23.843343-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw569921": {
       "sweed_id": 569921,
@@ -8173,7 +8172,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1791495534_6b24545e-31c6-4cc2-9681-88000607f8e8.png",
       "description": "Banana Kush x Starburst Bubba",
       "first_seen": "2026-10-09T17:04:23.843343-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw569927": {
       "sweed_id": 569927,
@@ -8229,7 +8228,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1791495534_6b24545e-31c6-4cc2-9681-88000607f8e8.png",
       "description": "Cap Junky is a high-potency cross of Kush Mintz x Alien Cookies, delivering a powerful yet balanced hybrid experience. Fast-acting and intense, this strain opens with an uplifting cerebral rush before settling into a smooth, full-body relaxation that stays active rather than overly sedating.\n\nThe flavor blends sweet fruit with cool menthol and floral notes, while the aroma carries fresh mint, pine, and gassy diesel undertones.\n\nDense forest-green buds feature bright orange hairs and a thick coating of milky amber trichomes, showcasing its premium potency.",
       "first_seen": "2026-10-09T17:04:23.843343-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw569946": {
       "sweed_id": 569946,
@@ -8284,7 +8283,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1791495534_6b24545e-31c6-4cc2-9681-88000607f8e8.png",
       "description": "MAC Stomper is a flavorful cross of MAC x Grape Stomper, delivering rich fruit notes with calming indica effects. This strain settles in gradually, lifting the mood before easing into deep physical relaxation that leans tranquil and sleep-friendly.\n\nIts terpene profile features fresh mixed berries, spicy grape, and hints of sour lemon, rounded out by floral and earthy undertones. The aroma carries a grape-forward richness with subtle spice.\n\nRounded olive-green buds display purple accents, orange hairs, and a frosty coating of purple-tinted trichomes.",
       "first_seen": "2026-10-09T17:04:23.843343-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw569950": {
       "sweed_id": 569950,
@@ -8336,7 +8335,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1791495534_6b24545e-31c6-4cc2-9681-88000607f8e8.png",
       "description": "Black Cherry Punch x Tropicana Cookies.",
       "first_seen": "2026-10-09T17:04:23.843343-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw569956": {
       "sweed_id": 569956,
@@ -8386,7 +8385,7 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1791564180_c4cc337f-bf0b-449e-a118-178cc3ec6e04.png",
       "description": "Grape Ape x Zkittlez",
       "first_seen": "2026-10-09T17:04:23.843343-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     },
     "sw569964": {
       "sweed_id": 569964,
@@ -8436,9 +8435,9 @@
       "image": "https://media-prime.sweedpos.com/store/prime/1791565020_0e9c9b81-72bc-4328-8aff-c11610ba3658.png",
       "description": "Grape Ape x Zkittlez",
       "first_seen": "2026-10-09T17:04:23.843343-06:00",
-      "last_seen": "2026-10-09T17:04:23.843343-06:00"
+      "last_seen": "2026-10-09T19:51:52.823789-06:00"
     }
   },
-  "last_updated": "2026-10-09T17:04:23.843607-06:00",
+  "last_updated": "2026-10-09T19:51:52.823905-06:00",
   "store": "South Metro"
 }
