@@ -4027,5 +4027,39 @@
       "just_happy": 5,
       "aphrodisiac": 4
     }
+  },
+  "sw577131": {
+    "lineage": "Gelato phenotype (Gelato = Sunset Sherbet x Thin Mint Girl Scout Cookies) (Cookies Fam / Sherbinski)",
+    "therapeutic": "Stress relief, depression, mood elevation, fatigue, mild anxiety, appetite stimulation, low-grade pain management",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, possible anxiety in THC-sensitive consumers, overconsumption may blunt focus",
+    "aroma": "A lush, candy-like wave of ripe guava and tropical citrus greets the nose first, layered beneath with sweet creamy berry and a soft vanilla undertone inherited from its Gelato lineage. The exhale reveals a subtle spicy kick and a light fuel-tinged gassiness that keeps the profile grounded and complex.",
+    "misc": "Guava is a sativa-expressing phenotype of the legendary Gelato line, developed within the Cookies Fam ecosystem and popularized for its vibrant tropical expression diverging from Gelato's typically more dessert-forward character. At 17.4% THC it sits in an approachable mid-potency range, making it well-suited for daytime or early-evening social use without overwhelming newer consumers. Heart-shaped olive-green buds with vivid orange pistils and heavy trichome coverage reflect strong Gelato genetics, and its gradual-building euphoria makes it ideal for creative sessions, social gatherings, or active daytime activities.",
+    "mood_ratings": {
+      "wind_down": 5,
+      "anxiety_relief": 6,
+      "lift_up": 5,
+      "get_creative": 2,
+      "get_social": 5,
+      "pain_body": 5,
+      "just_happy": 7,
+      "aphrodisiac": 6
+    }
+  },
+  "sw577153": {
+    "lineage": "Girl Scout Cookies (GSC) x Chemdog (Chem Cookies cross, lineage tracing back to Cookies Fam / Chemdog's original East Coast cut)",
+    "therapeutic": "Insomnia, chronic pain, muscle tension, stress and anxiety relief, appetite stimulation, depression",
+    "negative": "Dry mouth, dry eyes, potential dizziness or paranoia at higher doses, heavy sedation may impair productivity, couch-lock at elevated consumption",
+    "aroma": "A pungent, fuel-forward nose opens with sharp diesel and acrid chemical notes inherited from Chemdog, quickly giving way to rich, doughy sweetness and earthy cookie undertones from the GSC heritage. The overall profile is bold and complex — a classic dank, skunky exhale that lingers and lives up to its cough-inducing reputation.",
+    "misc": "Chem Cookies is a well-regarded hybrid leaning indica, popularized through Cookies Fam genetics circles and recognized for its heavy-hitting, full-body effects paired with an initial cerebral uplift. At 20.6% THC, this is a moderately potent offering best suited for evening or nighttime use given its deeply relaxing and sleep-promoting effects. Consumers new to indica-dominant hybrids should start slow, as the combination of Chemdog's intensity and GSC's sedating body high can be overwhelming; experienced users will appreciate its balanced onset before the calming, hunger-inducing finish takes hold.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 6,
+      "lift_up": 4,
+      "get_creative": 4,
+      "get_social": 4,
+      "pain_body": 8,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
   }
 }
