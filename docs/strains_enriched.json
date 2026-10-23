@@ -1053,23 +1053,6 @@
       "aphrodisiac": 5
     }
   },
-  "a1d94f46edc0": {
-    "lineage": "Infused edible product — no specific strain lineage applicable. This is a manufactured cannabis edible by Nebula, dosed at 10mg THC per serving with 10 servings per bar (100mg total).",
-    "therapeutic": "Stress relief, mild to moderate pain management, appetite stimulation, sleep aid (at higher doses), anxiety reduction",
-    "negative": "Delayed onset (30–120 minutes) may lead to overconsumption; dry mouth, elevated heart rate, anxiety or paranoia if dose exceeded, couch-lock, impaired coordination and cognition, not recommended for first-time consumers without guidance",
-    "aroma": "As a gummy edible, this product carries a bright, tart green apple candy scent with a sugary-sweet finish. The aroma is artificially flavored, evoking crisp Granny Smith apple with minimal cannabis odor.",
-    "misc": "This is a 100mg THC edible bar by Nebula, broken into 10mg per-piece servings — a standard beginner-to-intermediate dose. New consumers should start with half a serving (5mg) and wait at least 90 minutes before redosing to assess tolerance. Experienced consumers may find 10–20mg appropriate; the THC percentage listed (101%) likely reflects concentration within the infused oil or extract used, not the product as a whole.",
-    "mood_ratings": {
-      "wind_down": 5,
-      "anxiety_relief": 5,
-      "lift_up": 4,
-      "get_creative": 4,
-      "get_social": 4,
-      "pain_body": 5,
-      "just_happy": 5,
-      "aphrodisiac": 3
-    }
-  },
   "487b0db2bda3": {
     "lineage": "Cannabis-infused edible product by Nebula; no specific strain lineage disclosed. Formulated with distillate or concentrate at 91.6% THC potency per extract used in production.",
     "therapeutic": "Stress relief, anxiety reduction, mild to moderate pain management, appetite stimulation, insomnia support, mood elevation",
@@ -4108,6 +4091,74 @@
       "lift_up": 7,
       "get_creative": 6,
       "get_social": 7,
+      "pain_body": 4,
+      "just_happy": 7,
+      "aphrodisiac": 5
+    }
+  },
+  "sw230616": {
+    "lineage": "Infused edible product — no specific strain lineage applicable. This is a manufactured cannabis edible by Nebula, dosed at 10mg THC per serving with 10 servings per bar (100mg total).",
+    "therapeutic": "Stress relief, mild to moderate pain management, appetite stimulation, sleep aid (at higher doses), anxiety reduction",
+    "negative": "Delayed onset (30–120 minutes) may lead to overconsumption; dry mouth, elevated heart rate, anxiety or paranoia if dose exceeded, couch-lock, impaired coordination and cognition, not recommended for first-time consumers without guidance",
+    "aroma": "As a gummy edible, this product carries a bright, tart green apple candy scent with a sugary-sweet finish. The aroma is artificially flavored, evoking crisp Granny Smith apple with minimal cannabis odor.",
+    "misc": "This is a 100mg THC edible bar by Nebula, broken into 10mg per-piece servings — a standard beginner-to-intermediate dose. New consumers should start with half a serving (5mg) and wait at least 90 minutes before redosing to assess tolerance. Experienced consumers may find 10–20mg appropriate; the THC percentage listed (101%) likely reflects concentration within the infused oil or extract used, not the product as a whole.",
+    "mood_ratings": {
+      "wind_down": 5,
+      "anxiety_relief": 5,
+      "lift_up": 4,
+      "get_creative": 4,
+      "get_social": 4,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 3
+    }
+  },
+  "sw579098": {
+    "lineage": "Rainbow Sherbert x Pink Guava (bred by Deo Farms / popularized by connected Cannabis)",
+    "therapeutic": "Stress relief, depression, mood elevation, mild anxiety, mental fatigue, lack of focus",
+    "negative": "Dry mouth, dry eyes, occasional mild paranoia at higher doses, potential dizziness for low-tolerance users",
+    "aroma": "Zoap bursts with a vivid tropical and floral bouquet, blending ripe guava, sweet cherry, and citrus zest over a creamy, dessert-like sherbet base. Subtle earthy and floral undertones round out the nose, giving it a complex, candy-like depth that lingers.",
+    "misc": "Zoap gained significant recognition after winning multiple awards in 2023 and becoming a staple in top-shelf dispensaries across the US, prized for its bag appeal and well-rounded sativa-leaning high. Buds typically present dense, medium-to-large nuggets with a vivid green and purple hue blanketed in thick, frosty trichomes and bright orange pistils. With a THC range typically landing between 20–26%, this strain is best suited for daytime or early afternoon use when creativity, social engagement, or productive focus is the goal — beginners should start low given its potency.",
+    "mood_ratings": {
+      "wind_down": 4,
+      "anxiety_relief": 5,
+      "lift_up": 7,
+      "get_creative": 6,
+      "get_social": 7,
+      "pain_body": 4,
+      "just_happy": 7,
+      "aphrodisiac": 6
+    }
+  },
+  "sw579046": {
+    "lineage": "Triangle Kush x Animal Mints (Cookies Fam / Sherbinski collaboration)",
+    "therapeutic": "Stress relief, mild pain management, anxiety reduction, mood elevation, muscle tension, appetite stimulation",
+    "negative": "Dry mouth, dry eyes, possible dizziness or headache at high THC concentrations (78.9%), paranoia in THC-sensitive users, couch-lock at higher doses",
+    "aroma": "A luscious wave of tropical fruit candy — think ripe white grape, guava, and passionfruit — layered over a tangy sour candy finish with subtle creamy, doughy undertones. The exhale lingers with a sweet, almost confectionery richness reminiscent of the fruit snack it's named after.",
+    "misc": "Gushers was originally bred under the Cookies Fam umbrella and quickly gained a devoted following for its dessert-like profile and well-balanced hybrid effects. At 78.9% THC in vape form, this is a potent concentrate best suited for experienced consumers; newer users should take single puffs and wait before redosing. It shines as an afternoon or early evening strain — functional enough to stay social and creative, yet relaxing enough to ease physical tension without full sedation.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 6,
+      "lift_up": 5,
+      "get_creative": 4,
+      "get_social": 5,
+      "pain_body": 6,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
+  },
+  "sw579076": {
+    "lineage": "Likely derived from Peaches and Cream (Peach Puree x Cookies and Cream) crossed with a Dreamy sativa-leaning cultivar such as Blue Dream or Dream Star; exact breeder lineage for Grasslandz's proprietary expression is not publicly disclosed, but the flavor and effect profile suggest Peach Puree and Cookies genetics as a foundation",
+    "therapeutic": "Stress relief, depression, fatigue, ADD/ADHD, mild anxiety, creative blocks, mood elevation",
+    "negative": "Dry mouth, dry eyes, mild paranoia at high doses, potential restlessness or racing thoughts in THC-sensitive users; the high 78.7% THC concentration in vape form makes slow, measured puffing strongly advised for beginners",
+    "aroma": "A sun-warmed, nectar-rich bouquet of ripe white peaches and apricot drizzled with sweet cream, underscored by a delicate floral undertone reminiscent of jasmine or orange blossom. The exhale carries a soft, sugary candy-like sweetness with a barely-there herbal brightness that lingers pleasantly.",
+    "misc": "Peaches & Dream is a Grasslandz house vape expression likely formulated with a curated terpene-enhanced distillate to emphasize the peachy-floral flavor profile; at 78.7% THC and 1.6% CBD, the mild CBD presence helps temper the intensity of the high for a more balanced, functional experience. Best suited for daytime or early afternoon use — ideal for creative work, outdoor activities, or social settings. Consumers should start with 1-2 short draws and wait several minutes before redosing given the high potency of the concentrate format.",
+    "mood_ratings": {
+      "wind_down": 4,
+      "anxiety_relief": 5,
+      "lift_up": 7,
+      "get_creative": 6,
+      "get_social": 6,
       "pain_body": 4,
       "just_happy": 7,
       "aphrodisiac": 5
