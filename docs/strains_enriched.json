@@ -203,23 +203,6 @@
       "aphrodisiac": 3
     }
   },
-  "dbcb7ab15506": {
-    "lineage": "Ice Cream Cake x Blockberry (Redwood County Weed Co.)",
-    "therapeutic": "Stress, anxiety, depression, mild pain, mood enhancement",
-    "negative": "Dry mouth, dry eyes",
-    "aroma": "Sweet berry cream, orange citrus, tropical fruit, light earthiness, vanilla cream finish",
-    "misc": "Redwood County Weed Co. cultivar. Ice Cream Cake contributes creamy sweetness; Blockberry adds bold fruit and citrus. THC 14–18%. Approachable potency makes this excellent for daytime use or new consumers. Well-balanced, pleasant, mood-lifting — a safe bet for gift recommendations.",
-    "mood_ratings": {
-      "wind_down": 7,
-      "anxiety_relief": 6,
-      "lift_up": 5,
-      "get_creative": 3,
-      "get_social": 4,
-      "pain_body": 6,
-      "just_happy": 7,
-      "aphrodisiac": 6
-    }
-  },
   "32de19b6f29e": {
     "lineage": "Do-Si-Dos x Purple Punch (In House Genetics)",
     "therapeutic": "Insomnia, chronic pain, stress, appetite stimulation, nausea",
@@ -4179,6 +4162,23 @@
       "pain_body": 7,
       "just_happy": 3,
       "aphrodisiac": 3
+    }
+  },
+  "sw416272": {
+    "lineage": "Ice Cream Cake x Blockberry (Redwood County Weed Co.)",
+    "therapeutic": "Stress, anxiety, depression, mild pain, mood enhancement",
+    "negative": "Dry mouth, dry eyes",
+    "aroma": "Sweet berry cream, orange citrus, tropical fruit, light earthiness, vanilla cream finish",
+    "misc": "Redwood County Weed Co. cultivar. Ice Cream Cake contributes creamy sweetness; Blockberry adds bold fruit and citrus. THC 14–18%. Approachable potency makes this excellent for daytime use or new consumers. Well-balanced, pleasant, mood-lifting — a safe bet for gift recommendations.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 6,
+      "lift_up": 5,
+      "get_creative": 3,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 7,
+      "aphrodisiac": 6
     }
   }
 }
