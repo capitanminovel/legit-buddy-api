@@ -101,23 +101,6 @@
       "aphrodisiac": 5
     }
   },
-  "184eb9c71846": {
-    "lineage": "Grape Ape x Zkittlez (also known as Grape Zkittlez)",
-    "therapeutic": "Stress, anxiety, mild pain, mood enhancement, appetite",
-    "negative": "Dry mouth, dry eyes, potential drowsiness at higher doses",
-    "aroma": "Intense grape candy, mixed berry compote, sweet citrus, tropical Zkittlez notes, light earthy base",
-    "misc": "Natural cross combining Grape Ape's deep grape flavor with Zkittlez' candy sweetness. THC 19–24%. Dense colorful buds with purple hues. Well-balanced hybrid — calming without being fully sedating. Popular for its distinctive grape-forward flavor profile. Good afternoon/social strain.",
-    "mood_ratings": {
-      "wind_down": 8,
-      "anxiety_relief": 6,
-      "lift_up": 4,
-      "get_creative": 2,
-      "get_social": 3,
-      "pain_body": 7,
-      "just_happy": 6,
-      "aphrodisiac": 5
-    }
-  },
   "b0990993b588": {
     "lineage": "OG Kush x Durban Poison (Cookies Fam, San Francisco)",
     "therapeutic": "Chronic pain, PTSD, depression, nausea, appetite stimulation",
@@ -473,23 +456,6 @@
       "pain_body": 3,
       "just_happy": 5,
       "aphrodisiac": 3
-    }
-  },
-  "0332f6000648": {
-    "lineage": "Purple Thai x Undisclosed Hybrid (Campfire Cannabis); Purple Thai itself is a classic sativa-dominant landrace cross of Thai stick genetics and Purple varieties, likely carrying Afghani influence through the purple-expressing parent",
-    "therapeutic": "Stress relief, depression, fatigue, mild anxiety, appetite stimulation, focus disorders, mood elevation",
-    "negative": "Dry mouth, dry eyes, mild paranoia in sensitive users or at higher doses, potential anxiousness due to sativa-forward profile, overconsumption may cause racing thoughts",
-    "aroma": "Bangkok Purple opens with a vibrant burst of sun-ripened blueberry and tropical citrus, layered over a delicate floral undercurrent of lavender and jasmine. As the bouquet settles, warm hints of spice and earthy resin emerge, giving it an exotic, Southeast Asian-inspired complexity.",
-    "misc": "Produced by Campfire Cannabis, Bangkok Purple is a sativa-leaning hybrid with a moderate THC content of 16.9%, making it approachable for intermediate consumers while still delivering a meaningful effect. Buds are expected to display deep purple and forest green hues with amber trichomes, consistent with its Purple Thai heritage and the linalool-rich terpene profile that reinforces the lavender and floral notes. Best enjoyed during morning or early afternoon sessions when its energetic, focusing, and motivating qualities can be fully leveraged — particularly well-suited for creative work, social activity, or outdoor adventures.",
-    "mood_ratings": {
-      "wind_down": 6,
-      "anxiety_relief": 7,
-      "lift_up": 7,
-      "get_creative": 5,
-      "get_social": 6,
-      "pain_body": 5,
-      "just_happy": 6,
-      "aphrodisiac": 8
     }
   },
   "e0b832e65b4f": {
@@ -4179,6 +4145,74 @@
       "pain_body": 6,
       "just_happy": 7,
       "aphrodisiac": 6
+    }
+  },
+  "sw347757": {
+    "lineage": "Purple Thai x Undisclosed Hybrid (Campfire Cannabis); Purple Thai itself is a classic sativa-dominant landrace cross of Thai stick genetics and Purple varieties, likely carrying Afghani influence through the purple-expressing parent",
+    "therapeutic": "Stress relief, depression, fatigue, mild anxiety, appetite stimulation, focus disorders, mood elevation",
+    "negative": "Dry mouth, dry eyes, mild paranoia in sensitive users or at higher doses, potential anxiousness due to sativa-forward profile, overconsumption may cause racing thoughts",
+    "aroma": "Bangkok Purple opens with a vibrant burst of sun-ripened blueberry and tropical citrus, layered over a delicate floral undercurrent of lavender and jasmine. As the bouquet settles, warm hints of spice and earthy resin emerge, giving it an exotic, Southeast Asian-inspired complexity.",
+    "misc": "Produced by Campfire Cannabis, Bangkok Purple is a sativa-leaning hybrid with a moderate THC content of 16.9%, making it approachable for intermediate consumers while still delivering a meaningful effect. Buds are expected to display deep purple and forest green hues with amber trichomes, consistent with its Purple Thai heritage and the linalool-rich terpene profile that reinforces the lavender and floral notes. Best enjoyed during morning or early afternoon sessions when its energetic, focusing, and motivating qualities can be fully leveraged — particularly well-suited for creative work, social activity, or outdoor adventures.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 7,
+      "lift_up": 7,
+      "get_creative": 5,
+      "get_social": 6,
+      "pain_body": 5,
+      "just_happy": 6,
+      "aphrodisiac": 8
+    }
+  },
+  "sw449635": {
+    "lineage": "Grape Ape x Zkittlez (also known as Grape Zkittlez)",
+    "therapeutic": "Stress, anxiety, mild pain, mood enhancement, appetite",
+    "negative": "Dry mouth, dry eyes, potential drowsiness at higher doses",
+    "aroma": "Intense grape candy, mixed berry compote, sweet citrus, tropical Zkittlez notes, light earthy base",
+    "misc": "Natural cross combining Grape Ape's deep grape flavor with Zkittlez' candy sweetness. THC 19–24%. Dense colorful buds with purple hues. Well-balanced hybrid — calming without being fully sedating. Popular for its distinctive grape-forward flavor profile. Good afternoon/social strain.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 6,
+      "lift_up": 4,
+      "get_creative": 2,
+      "get_social": 3,
+      "pain_body": 7,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
+  },
+  "sw583535": {
+    "lineage": "Pineapple-flavored THC gummy edible by Voyageur — not a cultivar/strain product. No genetic lineage applicable. Each gummy contains 10mg THC, with 10 gummies per pack totaling 100mg THC.",
+    "therapeutic": "Stress relief, anxiety reduction, mild to moderate pain management, appetite stimulation, sleep support (at higher doses)",
+    "negative": "Delayed onset (30–120 minutes) can lead to overconsumption — do not re-dose too soon. Possible dry mouth, dry eyes, increased heart rate, anxiety or paranoia at high doses, sedation, impaired coordination and cognition. Not recommended for first-time users to exceed 5mg.",
+    "aroma": "As a gummy edible, the sensory experience is flavor-forward rather than aromatic — expect a bright, tropical pineapple sweetness with a sugary candy finish. The scent is reminiscent of fresh pineapple chunks with a subtle confectionery undertone.",
+    "misc": "Each 10mg gummy represents a moderate dose suitable for experienced consumers; beginners should start with half a gummy (5mg) and wait at least 90 minutes before considering an additional dose. Effects from edibles are typically longer-lasting (4–8 hours) and more body-focused than inhaled cannabis. Store in a cool, dry place away from children and pets, and always follow local regulations regarding edible cannabis products.",
+    "mood_ratings": {
+      "wind_down": 5,
+      "anxiety_relief": 5,
+      "lift_up": 5,
+      "get_creative": 4,
+      "get_social": 5,
+      "pain_body": 4,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
+  },
+  "sw583539": {
+    "lineage": "N/A — Infused edible product (not a flower strain). Voyageur Watermelon Gummies are cannabis-infused confections, not a cultivar with genetic lineage.",
+    "therapeutic": "Mild to moderate pain relief, stress and anxiety reduction, appetite stimulation, sleep support, mood elevation",
+    "negative": "Delayed onset may lead to overconsumption if patient is not cautious; possible dry mouth, dizziness, heightened anxiety or paranoia at higher doses, sedation, impaired coordination — effects can last 4–8 hours",
+    "aroma": "Sweet, candy-like watermelon fragrance with a sugary rind note and a faint tropical undertone. The scent is bright and artificial in a pleasant, confection-forward way typical of fruit gummies.",
+    "misc": "Each gummy contains 10mg THC, placing it at a standard single-dose serving recommended for beginner to intermediate consumers. First-time or low-tolerance users should start with half a gummy (5mg) and wait a minimum of 90–120 minutes before considering an additional dose, as edible onset varies widely by metabolism and stomach contents. Voyageur is a Canadian cannabis brand known for accessible, consistent edible formats designed for recreational and wellness consumers.",
+    "mood_ratings": {
+      "wind_down": 5,
+      "anxiety_relief": 5,
+      "lift_up": 5,
+      "get_creative": 4,
+      "get_social": 5,
+      "pain_body": 4,
+      "just_happy": 5,
+      "aphrodisiac": 4
     }
   }
 }
