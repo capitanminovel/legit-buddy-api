@@ -4282,5 +4282,73 @@
       "just_happy": 6,
       "aphrodisiac": 6
     }
+  },
+  "sw594218": {
+    "lineage": "Jungle Spice x Gorilla Diesel #3 (Float / independent cross); Gorilla Diesel #3 traces back to GG#4 (Gorilla Glue) x Diesel genetics, while Jungle Spice is believed to carry Tropicana Cookies and Spice lineage, combining citrus-forward sativa energy with heavy resin-producing indica backbone",
+    "therapeutic": "Fatigue, depression, ADD/ADHD, mild stress relief, creative blocks, low motivation",
+    "negative": "Anxiety and paranoia at higher doses (listed as a known effect — sensitive users should approach with caution), dry mouth, dry eyes, potential racing thoughts",
+    "aroma": "A vivid burst of bright lemon zest and citrus peel leads the nose, backed by earthy pine, a whisper of floral lavender, and a subtle spicy diesel undertone that grounds the blend. The terpene stack — especially the Limonene, Ocimene, and Terpinolene — gives it a sharp, almost cleaning-product-clean citrus brightness with herbal complexity on the exhale.",
+    "misc": "Float is known for craft pre-rolls featuring well-curated hybrid crosses, and Lemon Fresh sits squarely in their sativa-leaning lineup at a solid 20.3% THC — a moderate-to-strong range ideal for experienced daytime consumers. The dominant myrcene paired with energizing terpenes like Terpinolene and Ocimene creates a nuanced push-pull effect: uplifting and focused yet grounded enough to avoid overwhelming jitteriness for most users. Best consumed in the morning or early afternoon; not recommended for nighttime use or anxiety-prone individuals due to its stimulating terpene and cannabinoid profile.",
+    "mood_ratings": {
+      "wind_down": 5,
+      "anxiety_relief": 4,
+      "lift_up": 8,
+      "get_creative": 7,
+      "get_social": 7,
+      "pain_body": 6,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
+  },
+  "sw594340": {
+    "lineage": "Gorilla Diesel #3 x Lil Miss HS (Float)",
+    "therapeutic": "Stress relief, anxiety, mild depression, fatigue, mood elevation, social anxiety",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, potential headache in sensitive users due to elevated THC",
+    "aroma": "A pungent, fuel-forward nose bursts with sharp diesel and earthy pine, layered beneath with bright citrus zest and subtle floral lavender undertones that round out the intensity.",
+    "misc": "Green Diesel is a hybrid cross blending the gassy, resin-heavy traits of Gorilla Diesel #3 with the uplifting genetic influence of Lil Miss HS, producing a well-balanced effect profile that leans slightly sativa in its early onset before settling into a relaxed, grounded finish. At 23.1% THC and a rich terpene profile featuring Myrcene, Limonene, and Caryophyllene, this cultivar delivers energetic euphoria and mental clarity ideal for daytime or early evening social use. Consumers new to high-THC hybrids should start slowly, as the diesel-dominant genetics can hit with quick cerebral intensity before the Myrcene and Linalool ease the body into relaxation.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 7,
+      "get_creative": 8,
+      "get_social": 6,
+      "pain_body": 6,
+      "just_happy": 6,
+      "aphrodisiac": 7
+    }
+  },
+  "sw594588": {
+    "lineage": "Gorilla Glue #4 (GG Strains) x Zkittlez (3rd Gen Family Seeds / Dying Breed Seeds)",
+    "therapeutic": "Stress relief, anxiety reduction, depression, insomnia, mild to moderate chronic pain, appetite stimulation, fatigue",
+    "negative": "Dry mouth, dry eyes, dizziness at higher doses, potential couch-lock, mild paranoia in THC-sensitive users, overconsumption may accelerate sedation",
+    "aroma": "A rich, complex bouquet of sweet tropical fruit and candy-like grape bursts forward immediately, underscored by earthy, diesel-tinged pine and a subtle floral note from linalool and bisabolol. As it opens up, hints of dark chocolate and citrus zest weave through the profile, creating a layered, dessert-like olfactory experience.",
+    "misc": "Gorilla Zkittlez was crafted by crossing the legendary adhesive-resin powerhouse GG#4 with the fruity, award-winning Zkittlez, combining two hall-of-fame genetics into a balanced hybrid that leans indica. At 23.4% THC this is a moderately potent offering best suited for late afternoon or evening use, as the creative euphoria gradually gives way to deep relaxation and sleep. Novice consumers should start slow given the creeping onset — the high can intensify well after the first few puffs, making this Float pre-roll a great choice for experienced users seeking a flavorful, full-body wind-down session.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 6,
+      "lift_up": 6,
+      "get_creative": 6,
+      "get_social": 5,
+      "pain_body": 8,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
+  },
+  "sw594650": {
+    "lineage": "Grape Gas x OG Kush Breath x Blueberry Headband (exact breeder unconfirmed, likely indie or regional cultivator)",
+    "therapeutic": "Stress relief, anxiety reduction, mild pain management, insomnia, muscle tension, mood elevation",
+    "negative": "Dry mouth, dry eyes, potential couch-lock at higher doses, mild dizziness or paranoia in THC-sensitive users, sedation may be too heavy for daytime productivity",
+    "aroma": "A rich, layered bouquet of sweet grape and ripe blueberry up front, giving way to a fuel-tinged earthiness and subtle floral notes courtesy of linalool and bisabolol, with a peppery, spiced finish on the exhale from caryophyllene.",
+    "misc": "Glitter Bomb is a 70/30 indica-dominant hybrid boasting dense, resin-drenched nugs coated in bright white trichomes that live up to its sparkling name. At 23.6% THC with a robust terpene stack led by myrcene and linalool, this strain delivers a deeply calming yet mood-lifting experience ideal for evening or late-afternoon unwinding. The Float pre-roll format makes it an accessible, ready-to-enjoy option — best suited for experienced consumers seeking relaxation without full sedation, though newcomers should approach the THC content with caution and start slow.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 6,
+      "lift_up": 5,
+      "get_creative": 4,
+      "get_social": 3,
+      "pain_body": 7,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
   }
 }
