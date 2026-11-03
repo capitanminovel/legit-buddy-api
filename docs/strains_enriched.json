@@ -4350,5 +4350,39 @@
       "just_happy": 6,
       "aphrodisiac": 5
     }
+  },
+  "sw577417": {
+    "lineage": "Cherry Kush x (Lemon Tree Papaya x GMO) x FroDo — bred by or associated with Minny Grown Cannabis; Cherry Kush derives from Purple Afghani x OG Kush lineage, Lemon Tree Papaya blends Lemon Tree with Papaya genetics, GMO (Garlic Cookies) is a Chemdog x GSC cross, and FroDo contributes additional hybrid complexity",
+    "therapeutic": "Stress relief, anxiety reduction, mood elevation, mild pain management, mental fatigue, creative blocks, mild depression",
+    "negative": "Dry mouth, dry eyes, possible paranoia or anxiety in THC-sensitive users at higher doses, mild dizziness; not recommended for those sensitive to cerebral sativa effects",
+    "aroma": "An assertive and layered nose opens with damp earth and sharp herbal spice, quickly giving way to zesty citrus peel, fresh cracked black pepper, and a funky undercurrent of dank, savory cheese reminiscent of aged parmesan. The woodsy depth ties it all together into a complex, invigorating bouquet that lives up to its namesake.",
+    "misc": "Zesty Parm is a sativa-dominant hybrid with a THC content around 21-23%, making it moderately potent and well-suited for experienced consumers seeking daytime or early-evening use. The bud typically presents with dense, frosty green nugs accented by orange pistils and a generous trichome coating reflecting its GMO and OG heritage. Best enjoyed during creative sessions, social outings, or anytime a mood boost with grounded physical calm is desired; novice users should start slow given its fast-acting cerebral onset.",
+    "mood_ratings": {
+      "wind_down": 5,
+      "anxiety_relief": 4,
+      "lift_up": 5,
+      "get_creative": 2,
+      "get_social": 5,
+      "pain_body": 6,
+      "just_happy": 5,
+      "aphrodisiac": 5
+    }
+  },
+  "sw577430": {
+    "lineage": "FrankenCakes x LilMissHS (Minny Grown Cannabis) — autoflowering hybrid line; FrankenCakes is believed to carry Wedding Cake and OG Kush heritage, while LilMissHS (Little Miss Head Stash) contributes resinous, terpene-forward genetics with possible Haze and Skunk influences",
+    "therapeutic": "Stress relief, muscle tension, mild chronic pain, anxiety reduction, social anxiety, appetite stimulation, end-of-day relaxation",
+    "negative": "Dry mouth, dry eyes, possible mild paranoia at higher doses for THC-sensitive users, couch-lock potential with heavy consumption, may cause drowsiness — use caution before operating machinery",
+    "aroma": "FrankenPine opens with a bold, resinous burst of fresh forest pine and rosemary, evoking a walk through a conifer woodland after rain. Underlying notes of citrus zest, warm spice, and a skunky gassy undercurrent add complexity and depth to its savory, herb-forward bouquet.",
+    "misc": "Bred by Minny Grown Cannabis as an autoflowering hybrid, FrankenPine is a Minnesota-grown strain built for both performance and terpene richness, sitting at a robust 26% THC — suitable for intermediate to experienced consumers. Buds are typically elongated with helix-stacked cola structure reminiscent of classic Jack Herer-lineage plants, coated in a generous layer of trichomes. Best consumed in the early evening as a social or wind-down strain, bridging the gap between uplifting engagement and deep physical relaxation.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 2,
+      "get_creative": 5,
+      "get_social": 2,
+      "pain_body": 5,
+      "just_happy": 3,
+      "aphrodisiac": 3
+    }
   }
 }
