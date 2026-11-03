@@ -849,23 +849,6 @@
       "aphrodisiac": 3
     }
   },
-  "bc4c058f8526": {
-    "lineage": "Likely a proprietary or house hybrid cross; possibly derived from citrus-forward and OG-influenced genetics such as a Lemon or Orange-based cultivar crossed with an earthy Kush or Diesel variety — exact breeder and parentage unconfirmed, developed or curated by Campfire Cannabis",
-    "therapeutic": "Stress relief, anxiety management, mild depression, mental fatigue, creative blocks, mild pain relief, mood elevation",
-    "negative": "Dry mouth, dry eyes, mild paranoia in sensitive users at higher doses, occasional mild headache, may cause restlessness in those sensitive to sativa-leaning hybrids",
-    "aroma": "The nose opens with a vivid burst of fresh citrus — bright orange peel and zesty lemon — riding on a current of piney freshness and light floral ocimene sweetness. Beneath the top notes, earthy herbal undertones and a faint diesel spice add depth and complexity to the overall bouquet.",
-    "misc": "Fight Club is a sativa-leaning hybrid at 21.8% THC, making it a moderately potent option well-suited for intermediate to experienced consumers. The dense forest-green buds with purple accents and heavy trichome coverage suggest a well-cultivated phenotype with strong resin production. Best enjoyed during morning to early evening hours when creative focus and uplifted social energy are desired without sacrificing functional clarity.",
-    "mood_ratings": {
-      "wind_down": 4,
-      "anxiety_relief": 4,
-      "lift_up": 8,
-      "get_creative": 7,
-      "get_social": 7,
-      "pain_body": 5,
-      "just_happy": 5,
-      "aphrodisiac": 6
-    }
-  },
   "223a4c4c39a3": {
     "lineage": "Snowman x The Y (Cookies Fam & Powerzzzup Genetics) — Note: The store-listed lineage of Snowman x Cherry Pie x Girl Scout Cookies reflects the broader Cookies family tree; the commercially recognized Gary Payton was developed by Cookies Fam in collaboration with Powerzzzup Genetics, named after NBA Hall of Famer Gary Payton",
     "therapeutic": "Stress relief, anxiety management, mild depression, fatigue, low-grade pain, mood elevation, focus support",
@@ -1083,23 +1066,6 @@
       "get_creative": 6,
       "get_social": 5,
       "pain_body": 5,
-      "just_happy": 4,
-      "aphrodisiac": 5
-    }
-  },
-  "bcda70086ab4": {
-    "lineage": "Grape Pie x Wedding Crasher (Grape Pie = Grape Stomper x Cherry Pie; Wedding Crasher = Wedding Cake x Purple Punch) — breeding attribution associated with Symbiotic Genetics",
-    "therapeutic": "Insomnia, chronic pain, muscle tension, anxiety, stress relief, appetite stimulation, mild depression",
-    "negative": "Dry mouth, dry eyes, potential dizziness at higher doses, couch-lock, may cause heavy sedation — use caution if operating machinery or if sensitive to indica-dominant effects",
-    "aroma": "A lush, dessert-forward bouquet of ripe crushed grapes and sweet cherry jam layered over creamy vanilla frosting, with a subtle earthy spice and nutty undertone that lingers on the exhale. The overall scent profile is rich, smooth, and indulgent — reminiscent of a chilled fruit tart dusted with sugar.",
-    "misc": "Grape Cream Cake is a visually striking cultivar with bright neon-green buds accented by vivid orange pistils and a heavy coating of purple-tinted trichomes, reflecting its Purple Punch heritage. At 22.3% THC with a dominant myrcene, linalool, and caryophyllene terpene profile, this strain is best reserved for evening or nighttime use when full relaxation and sedation are welcome. Consumers new to indica-heavy hybrids should start slow, as the creeping body effect can intensify significantly 20–30 minutes post-inhalation.",
-    "mood_ratings": {
-      "wind_down": 8,
-      "anxiety_relief": 6,
-      "lift_up": 2,
-      "get_creative": 2,
-      "get_social": 2,
-      "pain_body": 6,
       "just_happy": 4,
       "aphrodisiac": 5
     }
@@ -1713,23 +1679,6 @@
       "get_social": 6,
       "pain_body": 4,
       "just_happy": 7,
-      "aphrodisiac": 5
-    }
-  },
-  "683ea2f806a4": {
-    "lineage": "Hi-Octane phenotype (Purple Octane) — Hi-Octane is derived from OG Kush Breath x High Octane OG, with Purple Octane being a select phenotype expressing strong anthocyanin pigmentation and deep indica characteristics; bred/selected by Campfire Cannabis",
-    "therapeutic": "Insomnia, chronic pain, muscle tension, anxiety, stress relief, appetite stimulation, headaches, depression",
-    "negative": "Dry mouth, dry eyes, couch-lock at higher doses, potential dizziness or paranoia in THC-sensitive users, heavy sedation may impair productivity — not recommended for daytime use or new consumers",
-    "aroma": "A bold and intoxicating nose opens with sweet grape wine and ripe dark berries before giving way to a sharp, fuel-driven diesel kick layered with cracked black pepper and earthy, floral undertones. The finish is savory-sweet and lingers with a frosty, almost spiced complexity that reflects its rich terpene stack.",
-    "misc": "Purple Octane is a potent indica-dominant phenotype selected from the Hi-Octane lineage, featuring dense forest-green buds heavily washed in deep purple hues, vivid orange pistils, and a thick blanket of frosted trichomes indicative of its high resin production. At 23.2% THC, it sits in a strong consumer range best suited for experienced users seeking powerful evening or nighttime relief. Its terpene profile — led by Myrcene, Caryophyllene, and Linalool — drives the sedative, body-heavy experience, making this pre-roll an excellent choice for unwinding after demanding days or combating sleep difficulties.",
-    "mood_ratings": {
-      "wind_down": 7,
-      "anxiety_relief": 4,
-      "lift_up": 5,
-      "get_creative": 4,
-      "get_social": 4,
-      "pain_body": 6,
-      "just_happy": 6,
       "aphrodisiac": 5
     }
   },
@@ -4383,6 +4332,193 @@
       "pain_body": 5,
       "just_happy": 3,
       "aphrodisiac": 3
+    }
+  },
+  "sw316516": {
+    "lineage": "Likely a proprietary or house hybrid cross; possibly derived from citrus-forward and OG-influenced genetics such as a Lemon or Orange-based cultivar crossed with an earthy Kush or Diesel variety — exact breeder and parentage unconfirmed, developed or curated by Campfire Cannabis",
+    "therapeutic": "Stress relief, anxiety management, mild depression, mental fatigue, creative blocks, mild pain relief, mood elevation",
+    "negative": "Dry mouth, dry eyes, mild paranoia in sensitive users at higher doses, occasional mild headache, may cause restlessness in those sensitive to sativa-leaning hybrids",
+    "aroma": "The nose opens with a vivid burst of fresh citrus — bright orange peel and zesty lemon — riding on a current of piney freshness and light floral ocimene sweetness. Beneath the top notes, earthy herbal undertones and a faint diesel spice add depth and complexity to the overall bouquet.",
+    "misc": "Fight Club is a sativa-leaning hybrid at 21.8% THC, making it a moderately potent option well-suited for intermediate to experienced consumers. The dense forest-green buds with purple accents and heavy trichome coverage suggest a well-cultivated phenotype with strong resin production. Best enjoyed during morning to early evening hours when creative focus and uplifted social energy are desired without sacrificing functional clarity.",
+    "mood_ratings": {
+      "wind_down": 4,
+      "anxiety_relief": 4,
+      "lift_up": 8,
+      "get_creative": 7,
+      "get_social": 7,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 6
+    }
+  },
+  "sw387595": {
+    "lineage": "Grape Pie x Wedding Crasher (Grape Pie = Grape Stomper x Cherry Pie; Wedding Crasher = Wedding Cake x Purple Punch) — breeding attribution associated with Symbiotic Genetics",
+    "therapeutic": "Insomnia, chronic pain, muscle tension, anxiety, stress relief, appetite stimulation, mild depression",
+    "negative": "Dry mouth, dry eyes, potential dizziness at higher doses, couch-lock, may cause heavy sedation — use caution if operating machinery or if sensitive to indica-dominant effects",
+    "aroma": "A lush, dessert-forward bouquet of ripe crushed grapes and sweet cherry jam layered over creamy vanilla frosting, with a subtle earthy spice and nutty undertone that lingers on the exhale. The overall scent profile is rich, smooth, and indulgent — reminiscent of a chilled fruit tart dusted with sugar.",
+    "misc": "Grape Cream Cake is a visually striking cultivar with bright neon-green buds accented by vivid orange pistils and a heavy coating of purple-tinted trichomes, reflecting its Purple Punch heritage. At 22.3% THC with a dominant myrcene, linalool, and caryophyllene terpene profile, this strain is best reserved for evening or nighttime use when full relaxation and sedation are welcome. Consumers new to indica-heavy hybrids should start slow, as the creeping body effect can intensify significantly 20–30 minutes post-inhalation.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 6,
+      "lift_up": 2,
+      "get_creative": 2,
+      "get_social": 2,
+      "pain_body": 6,
+      "just_happy": 4,
+      "aphrodisiac": 5
+    }
+  },
+  "sw452188": {
+    "lineage": "Hi-Octane phenotype (Purple Octane) — Hi-Octane is derived from OG Kush Breath x High Octane OG, with Purple Octane being a select phenotype expressing strong anthocyanin pigmentation and deep indica characteristics; bred/selected by Campfire Cannabis",
+    "therapeutic": "Insomnia, chronic pain, muscle tension, anxiety, stress relief, appetite stimulation, headaches, depression",
+    "negative": "Dry mouth, dry eyes, couch-lock at higher doses, potential dizziness or paranoia in THC-sensitive users, heavy sedation may impair productivity — not recommended for daytime use or new consumers",
+    "aroma": "A bold and intoxicating nose opens with sweet grape wine and ripe dark berries before giving way to a sharp, fuel-driven diesel kick layered with cracked black pepper and earthy, floral undertones. The finish is savory-sweet and lingers with a frosty, almost spiced complexity that reflects its rich terpene stack.",
+    "misc": "Purple Octane is a potent indica-dominant phenotype selected from the Hi-Octane lineage, featuring dense forest-green buds heavily washed in deep purple hues, vivid orange pistils, and a thick blanket of frosted trichomes indicative of its high resin production. At 23.2% THC, it sits in a strong consumer range best suited for experienced users seeking powerful evening or nighttime relief. Its terpene profile — led by Myrcene, Caryophyllene, and Linalool — drives the sedative, body-heavy experience, making this pre-roll an excellent choice for unwinding after demanding days or combating sleep difficulties.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 4,
+      "lift_up": 5,
+      "get_creative": 4,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
+  },
+  "sw606989": {
+    "lineage": "Cap Junky × Cap's Frozen Oranges (Capulator); Cap Junky is Alien Cookies x Kush Mints (Capulator), Cap's Frozen Oranges is believed to be a Mimosa-related cross with strong orange citrus phenotype expression",
+    "therapeutic": "Stress relief, mild anxiety, fatigue, mood disorders, creative blocks, mild depression",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, possible dizziness in low-tolerance users",
+    "aroma": "An inviting burst of fresh-squeezed orange zest layered over sweet vanilla cream, with subtle floral and herbal undertones reminiscent of an orange creamsicle on a warm afternoon. Light piney and spicy notes from pinene and caryophyllene add a clean, grounding depth beneath the bright citrus-forward top notes.",
+    "misc": "Bred by Capulator, one of the most respected underground breeders known for the MAC and Cap Junky lines, Coolio represents a natural extension of his citrus-dominant pheno work. At 18.2% THC it sits in a moderate-to-solid range, making it approachable for intermediate consumers while still delivering noticeable effects; buds typically present with dense, frosty structure, vivid orange pistils, and a resinous sheen consistent with Kush Mints influence. Best suited for daytime to early evening use when creativity and social energy are desired without sacrificing a calm, collected baseline.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 8,
+      "get_creative": 7,
+      "get_social": 7,
+      "pain_body": 6,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
+  },
+  "sw606964": {
+    "lineage": "Jungle Spice x Gorilla Diesel #3 (Float); Jungle Spice is believed to be a Haze-dominant hybrid with tropical and spice genetics, while Gorilla Diesel #3 draws from Gorilla Glue #4 and Diesel lineage, combining robust resin production with classic fuel-forward terpene expression",
+    "therapeutic": "Fatigue, depression, stress, ADD/ADHD, mild anxiety, creative blocks, mood disorders",
+    "negative": "Dry mouth, dry eyes, possible paranoia or racing thoughts at high doses especially for THC-sensitive users, may increase anxiety in predisposed individuals, not recommended before sleep",
+    "aroma": "Lemon Fresh opens with a sharp, zesty citrus burst reminiscent of freshly grated lemon peel layered over a classic hazy earthiness, before settling into a pungent gassy diesel finish underscored by subtle floral and herbal notes from linalool and bisabolol.",
+    "misc": "Produced by Float, Lemon Fresh sits at a potent 25.5% THC making it best suited for intermediate to experienced consumers seeking daytime or creative-session use. Buds are likely dense with sativa-leaning structure, displaying lime-green coloration with amber trichomes and a resinous, frosty coat inherited from its Gorilla Diesel #3 parentage. Best consumed in the morning or early afternoon for productivity, social settings, or creative pursuits — avoid late-night use due to its energizing, stimulating terpene and cannabinoid profile.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 8,
+      "get_creative": 7,
+      "get_social": 7,
+      "pain_body": 6,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
+  },
+  "sw607008": {
+    "lineage": "Peanut Butter Breath x Strawberry Pinecone (Campfire Cannabis); Peanut Butter Breath is a cross of Do-Si-Dos x Mendo Breath (ThugPug Genetics), while Strawberry Pinecone is a rare Pacific Northwest hybrid believed to descend from Strawberry Cough and Pinecone lineage",
+    "therapeutic": "Insomnia, chronic pain, stress and anxiety relief, muscle tension, appetite stimulation, depression",
+    "negative": "Dry mouth, dry eyes, potential couch-lock at higher doses, dizziness or mild paranoia in THC-sensitive users, heavy sedation may impair daytime function",
+    "aroma": "God's Breath greets the nose with a rich, nutty peanut butter sweetness layered over ripe strawberry and earthy pine resin, creating a complex bouquet that feels both dessert-like and forest-fresh. Subtle floral and doughy undertones emerge on the exhale, rounding out a deeply inviting and memorable olfactory profile.",
+    "misc": "With a robust 23.9% THC, this indica-leaning hybrid from Campfire Cannabis is best suited for evening or nighttime use when deep relaxation and sleep support are the goal. Buds are typically dense and frosty, showcasing heavy trichome coverage with hues of deep green and purple, consistent with its Do-Si-Dos and Mendo Breath heritage. Novice consumers should approach with caution given the potency — start low and allow 10–15 minutes between inhalations to gauge sedative effects before redosing.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 7,
+      "lift_up": 3,
+      "get_creative": 4,
+      "get_social": 3,
+      "pain_body": 8,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
+  },
+  "sw607399": {
+    "lineage": "Zkittlez x Animal Mints (Doja Pak / Seed Junky Genetics) — Zkittlez itself is a cross of Grape Ape x Grapefruit (3rd Gen Family Seeds / Dying Breed Seeds); Animal Mints is a cross of Animal Cookies x SinMint Cookies (Seed Junky Genetics)",
+    "therapeutic": "Stress relief, mild anxiety reduction, mood elevation, fatigue, creative blocks, appetite stimulation",
+    "negative": "Dry mouth, dry eyes, possible mild paranoia or racing thoughts in sensitive users; indica-leaning body effects may cause mild sedation at higher doses despite energetic classification",
+    "aroma": "A lush, dessert-forward bouquet opens with ripe apricot and tropical stone fruit from its Zkittlez heritage, underpinned by a creamy, cookie-like sweetness and a sharp diesel exhale courtesy of Animal Mints; floral and piney undertones from linalool, geraniol, and pinene add brightness and complexity to the finish.",
+    "misc": "Giraffe P is a modern exotic hybrid popularized in connoisseur markets, associated with Doja Pak's Animal Mints cut crossed into the legendary Zkittlez line, producing a visually striking flower typically coated in dense trichomes with purple and orange hues. Despite the 0.0% THC listed on this product — likely a hemp-compliant or CBD-dominant version — traditional Giraffe P phenotypes run between 24–30% THC in full-potency markets, so consumers should calibrate expectations to this specific batch's cannabinoid profile. Best enjoyed during afternoon or early evening social settings given its giggly and creative effect profile; novice users should start with small doses and assess tolerance given the terpene-rich, full-spectrum nature of the cultivar.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 4,
+      "lift_up": 7,
+      "get_creative": 7,
+      "get_social": 6,
+      "pain_body": 7,
+      "just_happy": 6,
+      "aphrodisiac": 8
+    }
+  },
+  "sw607019": {
+    "lineage": "Space Runtz x Devil Driver (Space Runtz = Space Queen x Runtz; Devil Driver = Alien OG x Sundae Driver) — assembled by Campfire Cannabis as a proprietary house blend",
+    "therapeutic": "Stress relief, anxiety reduction, mild pain management, mood elevation, creative blocks, fatigue",
+    "negative": "Dry mouth, dry eyes, possible mild paranoia or anxiety in THC-sensitive users, dizziness at higher doses, can transition to couch-lock if overconsumed",
+    "aroma": "Moon Blend opens with a sweet, candy-forward nose reminiscent of grape and tropical fruit from its Runtz heritage, underscored by a creamy, dessert-like earthiness and subtle fuel undertones inherited from the Alien OG lineage. On the exhale, hints of vanilla and berry linger with a faint spicy, diesel finish that keeps the profile grounded and complex.",
+    "misc": "Moon Blend is a Campfire Cannabis house hybrid sitting at 18.1% THC, making it approachable for intermediate consumers while still delivering a well-rounded, balanced experience. Buds are typically dense and frosty with a Runtz-influenced colorful appearance — expect deep greens with possible purple hues and a generous trichome coating from the Driver genetics. Best consumed in the late afternoon or evening when the relaxing body component is welcome, though the creative and euphoric effects make it viable for social or artistic activities earlier in the day.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 6,
+      "lift_up": 6,
+      "get_creative": 5,
+      "get_social": 5,
+      "pain_body": 5,
+      "just_happy": 6,
+      "aphrodisiac": 4
+    }
+  },
+  "sw607457": {
+    "lineage": "Lemon Cherry Gelato × Pina Acai (Float / likely bred or curated by Float brand; Lemon Cherry Gelato itself is derived from Sunset Sherbet × Girl Scout Cookies lineage with Lemon Tree influence; Pina Acai is a tropical exotic cross often tracing back to Acai berry phenotypes and pineapple-forward genetics)",
+    "therapeutic": "Stress relief, anxiety reduction, mild depression, muscle tension, chronic pain management, appetite stimulation, insomnia (late-stage), mood disorders",
+    "negative": "Dry mouth, dry eyes, possible mild paranoia or anxiety in THC-sensitive users at higher doses, couch-lock potential with heavy consumption, dizziness for low-tolerance users",
+    "aroma": "Red Velvet opens with a lush wave of ripe dark cherry and zesty lemon citrus, quickly deepening into creamy vanilla and cocoa undertones reminiscent of fresh dessert — a nod to its name. A subtle tropical fruit backdrop from the Pina Acai lineage adds an exotic sweetness, rounded out by a faintly herbal, spiced earthiness on the exhale.",
+    "misc": "Red Velvet by Float is an indica-leaning hybrid sitting at 21.8% THC, making it a moderately potent choice suitable for intermediate consumers. Buds are typically dense and visually striking, often displaying deep green and purple hues with generous trichome coverage and amber pistils consistent with its Gelato-dominant heritage. Best enjoyed in the evening or late afternoon, this strain is ideal for unwinding after a long day, creative relaxation, or social settings where a calm but euphoric mood is desired.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 6,
+      "lift_up": 7,
+      "get_creative": 7,
+      "get_social": 6,
+      "pain_body": 8,
+      "just_happy": 7,
+      "aphrodisiac": 6
+    }
+  },
+  "sw607479": {
+    "lineage": "Cherry Cookies × Lillt (Float); Cherry Cookies is itself a cross of Girl Scout Cookies (GSC) × Cherry Pie, tracing back to OG Kush, Durban Poison, Granddaddy Purple, and F1 Durb; Lillt is a lesser-documented variety associated with tropical terpene expression, likely contributing limonene and terpinolene-heavy characteristics",
+    "therapeutic": "Stress relief, mood disorders (depression, anxiety), mental fatigue, ADD/ADHD symptom management, mild pain relief, social anxiety",
+    "negative": "Dry mouth, dry eyes, possible mild paranoia or racing thoughts at higher doses particularly in THC-sensitive users; not ideal for evening use or those prone to anxiety from sativa-leaning cultivars",
+    "aroma": "An inviting burst of ripe Bing cherry and sun-warmed tropical fruit leads the nose, followed by a sweet-tart citrus zing reminiscent of lemon zest and tangerine peel, with a grounding base of damp earth, fresh pine, and a subtle floral lavender whisper from the linalool and bisabolol.",
+    "misc": "Produced by Float, a brand known for curating expressive, terpene-forward flower with accessible potency. At 20.7% THC, Tropical Cherry sits in a moderate-to-strong range well-suited for intermediate consumers seeking a functional, sociable high without sedation. Buds are expected to display dense, GSC-influenced structure with reddish-purple undertones, vivid orange pistils, and a generous trichome coating; best consumed during daytime or early evening social settings, creative endeavors, or outdoor activities.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 5,
+      "lift_up": 7,
+      "get_creative": 7,
+      "get_social": 6,
+      "pain_body": 6,
+      "just_happy": 6,
+      "aphrodisiac": 8
+    }
+  },
+  "sw607878": {
+    "lineage": "Black Cherry Punch x Tropicana Cookies (Black Cherry Punch = Purple Punch x Black Cherry Pie; Tropicana Cookies = Girl Scout Cookies x Tangie) — popularized by Blockhead Buds/Compound Genetics",
+    "therapeutic": "Stress relief, anxiety reduction, mild depression, creative blocks, social anxiety, fatigue, mild pain management",
+    "negative": "Dry mouth, dry eyes, possible paranoia or anxiety at high doses especially for THC-sensitive users, dizziness; caution advised for novice consumers given 79.4% THC concentration in vape format",
+    "aroma": "An intoxicating burst of ripe citrus and dark sweet cherries leads the nose, backed by a tropical, candy-like sweetness and a subtle earthy musk that grounds the profile. Warm floral and herbal undertones courtesy of linalool and humulene add depth and complexity to the overall bouquet.",
+    "misc": "Super Boof gained significant underground recognition after winning multiple competitive events and becoming a staple of the Compound Genetics catalog, prized for its vigorous growth and visually striking resin-coated buds displaying deep purples and vivid greens. In flower form THC typically ranges from 25–32%, making Float's 79.4% vape concentrate a significantly amplified experience ideal for experienced consumers. Best suited for daytime to early evening use when creativity, sociability, and a euphoric mental lift are desired without full sedation.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 6,
+      "lift_up": 5,
+      "get_creative": 6,
+      "get_social": 4,
+      "pain_body": 7,
+      "just_happy": 7,
+      "aphrodisiac": 6
     }
   }
 }
