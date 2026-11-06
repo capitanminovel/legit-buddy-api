@@ -4588,5 +4588,39 @@
       "just_happy": 5,
       "aphrodisiac": 4
     }
+  },
+  "sw610208": {
+    "lineage": "Phantom Black is believed to be a phenotype or cross within the broader 'Phantom' family, potentially descending from Phantom OG (itself a cross of OG Kush and Master Kush) with possible influence from dark, resinous hybrids; exact breeder attribution for this specific 'Phantom Black' cut is unconfirmed, though some sources associate similar phenotypes with West Coast breeding programs",
+    "therapeutic": "Stress relief, mood elevation, mild anxiety reduction, fatigue, depression, social anxiety, mild pain management",
+    "negative": "Dry mouth, dry eyes, possible paranoia or anxiety at high doses due to elevated THC (43.1%), dizziness for low-tolerance users, overconsumption risk given potency level",
+    "aroma": "Phantom Black opens with a striking rush of fresh pine and damp forest floor, underscored by peppery spice and a bright lemon zest that cuts through the earthiness with lively precision. Deeper whiffs reveal woody, herbal undertones with a soft floral whisper, creating a complex and layered bouquet that feels both grounding and invigorating.",
+    "misc": "At 43.1% THC this is an exceptionally potent pre-roll best suited for experienced consumers, as novice users should approach with significant caution and take low, measured puffs. The sativa-leaning hybrid profile paired with Linalool, Caryophyllene, and Humulene suggests an entourage effect that leans uplifting and mood-boosting while offering mild anti-inflammatory and calming body support. Best enjoyed during daytime or early evening social settings, creative pursuits, or outdoor activities where energy and euphoria are welcome.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 6,
+      "lift_up": 2,
+      "get_creative": 2,
+      "get_social": 2,
+      "pain_body": 6,
+      "just_happy": 4,
+      "aphrodisiac": 5
+    }
+  },
+  "sw610238": {
+    "lineage": "Likely derived from Auto Pilot (Auto Pilot OG lineage), suspected cross involving OG Kush and Northern Lights auto-flowering genetics; exact breeder attribution for Avió's proprietary cut unconfirmed, but phenotype aligns with classic OG-dominant autoflowering hybrid stock",
+    "therapeutic": "Stress relief, anxiety reduction, mild depression, creative blocks, fatigue, mild pain management, mood elevation",
+    "negative": "Dry mouth, dry eyes, possible paranoia or anxiety at high doses due to elevated 36.2% THC; dizziness for low-tolerance users, mild headache possible; not recommended for THC-sensitive individuals or first-time consumers",
+    "aroma": "The nose opens with a grounding wave of damp earth, aromatic cedar wood, and crushed black pepper, underscored by a sharp herbal pungency reminiscent of fresh cannabis in full bloom. On deeper inspection, subtle floral whispers from linalool and a faint citrus brightness from limonene lift the profile, keeping the aroma dynamic and full without feeling heavy.",
+    "misc": "Avió is known for producing high-potency, craft-quality pre-rolls targeting experienced consumers, and this Auto Pilot cut at 36.2% THC sits firmly at the top of their lineup. The terpene trio of linalool, limonene, and caryophyllene creates a balanced hybrid effect that leans calming without full sedation, making this best suited for late afternoon or early evening use when creativity and relaxation are equally desired. Consumers should approach this pre-roll with caution given the exceptionally high THC content — seasoned users will appreciate the smooth, slow burn and full-bodied finish, while newer users are advised to consume in measured sessions.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 6,
+      "lift_up": 4,
+      "get_creative": 2,
+      "get_social": 4,
+      "pain_body": 5,
+      "just_happy": 7,
+      "aphrodisiac": 6
+    }
   }
 }
