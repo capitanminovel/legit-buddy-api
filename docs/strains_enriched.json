@@ -4673,5 +4673,22 @@
       "just_happy": 5,
       "aphrodisiac": 5
     }
+  },
+  "sw613066": {
+    "lineage": "Exact genetics undisclosed; 'Dabbalicious' is a proprietary distillate blend by Stargaze, likely derived from a balanced Hybrid cultivar base with terpene reintroduction post-distillation. Specific parent strains not publicly documented.",
+    "therapeutic": "Stress relief, anxiety reduction, mild pain management, mood elevation, muscle relaxation, fatigue",
+    "negative": "Dry mouth, dry eyes, potential anxiety or paranoia at high doses due to elevated THC (85.8%), dizziness, overconsumption risk for novice users given high potency distillate format",
+    "aroma": "The reintroduced terpene blend delivers a warm, earthy musk from Myrcene layered with floral lavender sweetness from Linalool, brightened by zesty citrus notes from Limonene. A subtle spicy, peppery depth from Caryophyllene rounds out the profile, creating a complex and inviting aromatic experience.",
+    "misc": "Stargaze is a distillate-focused vape brand that reintroduces cannabis-derived or botanically-sourced terpenes post-distillation to restore flavor and effect profile. At 85.8% THC, this cartridge is best suited for experienced consumers seeking potent, fast-acting hybrid effects. Recommended for afternoon or early evening use; novice users should start with 1-2 short puffs and wait several minutes before redosing to assess tolerance.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 6,
+      "lift_up": 5,
+      "get_creative": 2,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 7,
+      "aphrodisiac": 6
+    }
   }
 }
