@@ -4741,5 +4741,39 @@
       "just_happy": 6,
       "aphrodisiac": 5
     }
+  },
+  "sw613201": {
+    "lineage": "Brazilian Sativa x South Indian Indica (Green House Seeds, Netherlands — original breeder; widely reproduced by numerous seed banks globally)",
+    "therapeutic": "Stress relief, depression, anxiety, fatigue, mild pain, mood disorders, creative blocks",
+    "negative": "Dry mouth, dry eyes, mild paranoia or anxiety at higher doses, occasional dizziness, can cause racing thoughts in sensitive users",
+    "aroma": "White Widow opens with a sharp, resinous pine and earthy wood base, layered with subtle notes of sweet spice, damp soil, and a creamy, almost vanilla-cake-batter warmth on the exhale. The nose is pungent and complex, hinting at its heavily trichome-coated buds.",
+    "misc": "White Widow is one of the most legendary and award-winning strains in cannabis history, having dominated Amsterdam coffeeshops since the mid-1990s and winning the High Times Cannabis Cup in 1995. This Erba cut sits at a moderate 17.5% THC, making it approachable for intermediate consumers while still delivering a well-rounded, balanced hybrid experience — ideal for daytime to early evening use when creativity and social energy are desired. Buds are characteristically dense and blanketed in a thick, white crystalline trichome frost that gives the strain its iconic name, with orange pistils peeking through.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 2,
+      "get_creative": 5,
+      "get_social": 2,
+      "pain_body": 6,
+      "just_happy": 3,
+      "aphrodisiac": 3
+    }
+  },
+  "sw613183": {
+    "lineage": "Edible product — genetic lineage not applicable. 'Groovy Pebbles' is an edible by Hiza Kyte Cannabis, likely inspired by fruity, candy-forward flavor profiles reminiscent of Fruity Pebbles cereal.",
+    "therapeutic": "Stress relief, anxiety reduction, mild pain management, mood elevation, appetite stimulation",
+    "negative": "Note: The listed THC value of 208.8% is physically impossible and likely a data entry error — actual potency should be verified with the retailer or COA before consuming. Overconsumption of edibles can cause extreme anxiety, paranoia, rapid heart rate, dizziness, and prolonged intoxication lasting 4–8 hours.",
+    "aroma": "Expect a sweet, fruity, candy-like aroma with notes of berry, tropical fruit, and sugary cereal — think fruit punch and rainbow candy in confection form. The flavor profile is likely bright, playful, and dessert-forward.",
+    "misc": "Always verify actual THC content (mg per serving and per package) on the product label or Certificate of Analysis before dosing — 208.8% THC is an erroneous figure. Standard edible dosing guidance: beginners should start with 2.5–5mg THC, wait at least 90 minutes before redosing, as effects can take 30–120 minutes to onset. Best consumed in a comfortable, familiar setting, particularly in the evening or on a relaxed day off.",
+    "mood_ratings": {
+      "wind_down": 5,
+      "anxiety_relief": 5,
+      "lift_up": 5,
+      "get_creative": 4,
+      "get_social": 5,
+      "pain_body": 4,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
   }
 }
