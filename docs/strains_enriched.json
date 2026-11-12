@@ -4690,5 +4690,56 @@
       "just_happy": 7,
       "aphrodisiac": 6
     }
+  },
+  "sw615615": {
+    "lineage": "Grape Gas #10 × OGKB Blueberry Headband (Float / lineage rooted in OG Kush Breath / Blueberry Headband genetics, with Grape Gas #10 tracing back to Grape Pie × High Octane OG heritage)",
+    "therapeutic": "Stress relief, anxiety reduction, mild pain management, muscle tension, insomnia (onset), appetite stimulation, mood elevation",
+    "negative": "Dry mouth, dry eyes, potential couch-lock at higher doses, mild dizziness or paranoia in THC-sensitive users, sedation if overconsumed",
+    "aroma": "An intoxicating burst of ripe crushed grapes and fresh blueberries collides with a sharp, dank fuel undertone, rounded out by subtle floral lavender notes from the linalool. The exhale lingers with a sweet, berry-soaked gas that coats the palate like candied fruit at a gas station.",
+    "misc": "Glitter Bomb is a Float-branded indica-leaning hybrid sitting at 21.4% THC, making it moderately potent and well-suited for intermediate consumers. Buds are typically dense and frosty with a heavy trichome coating — true to the 'glitter' branding — often displaying deep purple and green hues inherited from its Grape Gas and OGKB lineage. Best consumed in the evening or late afternoon when relaxation and mild euphoria are desired without full sedation; the giggly and tingly effects make it social-friendly at lower doses before the indica body relaxation sets in.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 6,
+      "lift_up": 4,
+      "get_creative": 2,
+      "get_social": 3,
+      "pain_body": 6,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
+  },
+  "sw615643": {
+    "lineage": "MAC1 (Miracle Alien Cookies F2) × Oreoz (Cookies × Secret Weapon) — Float brand cut",
+    "therapeutic": "Insomnia, chronic pain, anxiety, stress relief, muscle tension, appetite stimulation",
+    "negative": "Dry mouth, dry eyes, sedation and couch-lock at higher doses, potential dizziness or paranoia in THC-sensitive users, not recommended for daytime productivity",
+    "aroma": "A rich, doughy sweetness opens first — think fresh cookies and cream — followed by layers of citrus zest, earthy diesel, and a cool piney exhale that lingers on the palate. Linalool and myrcene push a subtle floral-herbal undertone beneath the gassy, dessert-forward top notes.",
+    "misc": "This cut of Black Ice from Float leans into its modern hybrid parentage — MAC1 contributes creamy citrus and euphoric onset while Oreoz adds the dark, doughy, fuel-edged depth that defines its indica finish. At 20.3% THC with a broad terpene profile dominated by myrcene, linalool, and caryophyllene, expect dense, resin-coated buds with deep green and purple hues. Best reserved for evening or nighttime use given its heavily sedating, sleep-promoting effect profile.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 6,
+      "lift_up": 6,
+      "get_creative": 7,
+      "get_social": 5,
+      "pain_body": 7,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
+  },
+  "sw615660": {
+    "lineage": "Franken Cakes × Gorilla Diesel #3 (Float); Franken Cakes is believed to be a dessert-forward hybrid derived from Wedding Cake and Frankenstein genetics, while Gorilla Diesel #3 traces back to GG4 (Gorilla Glue #4) × Chemdawg/Diesel lineage",
+    "therapeutic": "Stress relief, depression, mood elevation, fatigue, mild anxiety, lack of motivation, social anxiety",
+    "negative": "Dry mouth, dry eyes, mild paranoia at higher doses, potential for overstimulation or racing thoughts in anxiety-prone users, slight dizziness",
+    "aroma": "An inviting burst of ripe tropical pineapple and glazed pastry dough greets the nose first, followed by a resinous pine backbone and a sharp, fuel-laced diesel exhale that keeps the sweetness grounded and complex. Subtle floral linalool and earthy myrcene notes round out the bouquet with a soft, creamy finish.",
+    "misc": "Pineapple Donut is a sativa-leaning hybrid produced by Float, sitting at a moderate 18.6% THC that makes it approachable for intermediate consumers while still delivering a noticeable cerebral lift. Buds are typically dense and medium-sized with a frosty trichome coating, golden-green hues, and amber pistils reflecting its dessert-strain heritage. Best consumed during daytime or early afternoon social settings — creative work, outdoor activities, or casual gatherings — where its talkative, energizing effects can be fully appreciated without disrupting sleep.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 7,
+      "get_creative": 8,
+      "get_social": 6,
+      "pain_body": 6,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
   }
 }
