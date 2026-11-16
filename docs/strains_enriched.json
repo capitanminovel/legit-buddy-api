@@ -4911,5 +4911,39 @@
       "just_happy": 5,
       "aphrodisiac": 5
     }
+  },
+  "sw621085": {
+    "lineage": "Granddaddy Purple x Sour Diesel (60% Indica / 40% Sativa hybrid)",
+    "therapeutic": "Stress relief, anxiety reduction, mild pain management, mood elevation, appetite stimulation, eye pressure relief",
+    "negative": "Dry mouth, dry eyes, possible dizziness at high doses, mild paranoia in sensitive users, couch-lock with overconsumption",
+    "aroma": "A rich and inviting blend of sweet concord grape and ripe red berries layered over pungent diesel fuel and earthy dankness. Subtle notes of fresh herbs, cracked black pepper, and a savory spice finish round out the complex terpene profile inherited from its Sour Diesel parentage.",
+    "misc": "Daily Grape is a well-balanced indica-leaning hybrid whose genetics marry the legendary berry sweetness of Granddaddy Purple with the sharp, energizing fuel of Sour Diesel, resulting in a strain that delivers both cerebral lift and body relaxation. At 75.8% THC in this live rosin format, this is a potent, full-spectrum concentrate preserved through solventless extraction, maintaining the strain's natural terpene integrity — Caryophyllene adds anti-inflammatory depth while Limonene and Pinene contribute mood elevation and mental clarity. Best enjoyed in the late afternoon or early evening when creativity is desired but wind-down is on the horizon; novice consumers should microdose given the high THC concentration.",
+    "mood_ratings": {
+      "wind_down": 3,
+      "anxiety_relief": 4,
+      "lift_up": 5,
+      "get_creative": 6,
+      "get_social": 4,
+      "pain_body": 5,
+      "just_happy": 4,
+      "aphrodisiac": 5
+    }
+  },
+  "sw621120": {
+    "lineage": "Kenobi x Rainbow Sherbet #11 (Trailhead Cannabis Company, Minnesota)",
+    "therapeutic": "Stress relief, mild anxiety, mood elevation, fatigue, mild pain management, depression",
+    "negative": "Dry mouth, dry eyes, possible mild paranoia at high doses, dizziness for low-tolerance users due to elevated THC content (74.9%)",
+    "aroma": "A vibrant blend of sweet citrus and tropical fruit from the Rainbow Sherbet #11 lineage, layered with earthy pine undertones and a subtle spicy finish courtesy of caryophyllene. The myrcene backbone adds a soft herbal muskiness that grounds the more effervescent top notes.",
+    "misc": "Trailside Sunset is a proprietary hybrid developed by Trailhead Cannabis Company and was among the first cultivars introduced to the Minnesota adult-use market, reflecting the brand's commitment to craft, locally-bred genetics. The Rainbow Sherbet #11 parentage contributes sweet, creamy fruit complexity while Kenobi lends structural potency and balancing effects, making this a well-rounded hybrid suited for afternoon or early evening use. As a live rosin vape at 74.9% THC, newer consumers should start with one to two small puffs and wait several minutes before re-dosing to gauge individual tolerance.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 4,
+      "lift_up": 5,
+      "get_creative": 6,
+      "get_social": 5,
+      "pain_body": 6,
+      "just_happy": 4,
+      "aphrodisiac": 5
+    }
   }
 }
