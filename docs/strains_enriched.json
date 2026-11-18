@@ -4962,5 +4962,39 @@
       "just_happy": 5,
       "aphrodisiac": 5
     }
+  },
+  "sw622120": {
+    "lineage": "Blue Zushi (Zkittlez x Kush Mints) x Zour Banana Sherbert (Sour Banana Sherbert x unknown Zour phenotype); exact breeder attribution unconfirmed but associated with West Coast exotic cultivar circles",
+    "therapeutic": "Stress relief, mild anxiety, mood elevation, mild pain management, creative blocks, social anxiety, mild insomnia (onset)",
+    "negative": "Dry mouth, dry eyes, possible mild paranoia at higher doses, slight sedation with overconsumption, may cause drowsiness in sensitive users",
+    "aroma": "A vivid burst of sour citrus and ripe banana leads the nose, layered with cool mint, creamy sherbet sweetness, and a subtle diesel undertone that grounds the tropical brightness. Linalool and bisabolol add a faint floral lavender softness beneath the sharp, candy-like top notes.",
+    "misc": "Zour Zushi is an exotic West Coast hybrid born from two dessert-forward lineages, resulting in a complex terpene profile dominated by myrcene and limonene that deliver both relaxation and uplift. At 14.6% THC this is an approachable mid-potency option well-suited for afternoon or early evening use — ideal for creative sessions, social gatherings, or unwinding without full sedation. The Float pre-roll format suggests a convenience-forward product likely featuring machine-rolled or hand-finished flower from indoor or greenhouse cultivation, appealing to consumers seeking flavorful exotic genetics at an accessible potency level.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 6,
+      "lift_up": 6,
+      "get_creative": 7,
+      "get_social": 5,
+      "pain_body": 6,
+      "just_happy": 6,
+      "aphrodisiac": 7
+    }
+  },
+  "sw622143": {
+    "lineage": "Blue Nerdz x Sherb Cream Pie (Float / independent breeding project); Blue Nerdz is believed to be derived from Blue Candy Kush or similar Blue-family genetics, while Sherb Cream Pie descends from Sunset Sherbet x Wedding Cake lineage, connecting to Girl Scout Cookies and OG Kush heritage",
+    "therapeutic": "Stress relief, mild anxiety reduction, muscle tension, mood elevation, mild pain management, appetite stimulation, fatigue (low-dose use)",
+    "negative": "Dry mouth, dry eyes, mild sedation at higher doses, potential couch-lock with extended use, mild dizziness in low-tolerance consumers, may increase appetite",
+    "aroma": "A lush, dessert-forward nose opens with ripe blueberry and candied grape layered over a creamy sherbet base, with a subtle gassy, doughy undertone that lingers on the exhale. Citrus zest and faint floral lavender notes (from Linalool) round out the profile, giving it a sweet-meets-fuel complexity reminiscent of a berry sorbet with a fuel-kissed finish.",
+    "misc": "Candy Blues is a Float-branded indica-leaning hybrid sitting at a moderate 15% THC, making it approachable for intermediate consumers or those sensitive to high-potency flower. Buds from this lineage typically display dense, frosty structure with purple-hued calyxes inherited from its Blue and Sherbet ancestry, often coated in a heavy trichome layer. Best suited for evening or late-afternoon use, this strain is an excellent choice for unwinding after a stressful day, pairing well with creative leisure, light social settings, or pre-sleep relaxation.",
+    "mood_ratings": {
+      "wind_down": 7,
+      "anxiety_relief": 6,
+      "lift_up": 4,
+      "get_creative": 6,
+      "get_social": 3,
+      "pain_body": 6,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
   }
 }
