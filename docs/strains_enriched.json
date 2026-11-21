@@ -1427,23 +1427,6 @@
       "aphrodisiac": 4
     }
   },
-  "64b90fbb9207": {
-    "lineage": "Edible product — no genetic lineage applicable. Infused chocolate bar inspired by Blueberry Cheesecake flavor profiles, likely utilizing a hybrid cannabis extract. Blueberry Cheesecake as a strain is generally derived from Blueberry (DJ Short) x Cheese (Big Buddha Seeds) genetics, but the specific extract source is not disclosed by Legacy Cannabis.",
-    "therapeutic": "Stress relief, mild to moderate pain management, anxiety reduction, appetite stimulation, sleep support (at higher serving doses)",
-    "negative": "Delayed onset typical of edibles (30–120 minutes) — overconsumption risk is high; dry mouth, increased heart rate, anxiety or paranoia if too many servings consumed, impaired motor coordination, prolonged intoxication lasting 4–8 hours",
-    "aroma": "As a chocolate bar edible, expect rich dark or milk chocolate notes layered with sweet blueberry and creamy cheesecake undertones. The flavor experience is dessert-forward with a smooth, indulgent finish that masks the cannabis taste effectively.",
-    "misc": "This is a precisely dosed edible containing 200mg total THC across 20 servings at 10mg THC each — a standard beginner-to-intermediate dose per serving. New consumers should start with half a serving (5mg) and wait at least 90 minutes before redosing. Note: the listed 193.9% THC figure appears to be a data entry error and should likely read 193.9mg total or reflect a per-unit concentration metric — always defer to the 10mg per serving guidance printed on packaging.",
-    "mood_ratings": {
-      "wind_down": 6,
-      "anxiety_relief": 6,
-      "lift_up": 4,
-      "get_creative": 4,
-      "get_social": 4,
-      "pain_body": 6,
-      "just_happy": 5,
-      "aphrodisiac": 3
-    }
-  },
   "7f6f0f130cb9": {
     "lineage": "Ice Cream Cake x Grape Cream Cake (Unbound / likely derived from Seed Junky Genetics & Compound Genetics lineage — Ice Cream Cake: Wedding Cake x Gelato #33; Grape Cream Cake: Grape Pie x Ice Cream Cake)",
     "therapeutic": "Insomnia, chronic stress, anxiety, mild to moderate pain, muscle tension, appetite stimulation",
@@ -4995,6 +4978,74 @@
       "pain_body": 6,
       "just_happy": 6,
       "aphrodisiac": 5
+    }
+  },
+  "sw425601": {
+    "lineage": "Edible product — no genetic lineage applicable. Infused chocolate bar inspired by Blueberry Cheesecake flavor profiles, likely utilizing a hybrid cannabis extract. Blueberry Cheesecake as a strain is generally derived from Blueberry (DJ Short) x Cheese (Big Buddha Seeds) genetics, but the specific extract source is not disclosed by Legacy Cannabis.",
+    "therapeutic": "Stress relief, mild to moderate pain management, anxiety reduction, appetite stimulation, sleep support (at higher serving doses)",
+    "negative": "Delayed onset typical of edibles (30–120 minutes) — overconsumption risk is high; dry mouth, increased heart rate, anxiety or paranoia if too many servings consumed, impaired motor coordination, prolonged intoxication lasting 4–8 hours",
+    "aroma": "As a chocolate bar edible, expect rich dark or milk chocolate notes layered with sweet blueberry and creamy cheesecake undertones. The flavor experience is dessert-forward with a smooth, indulgent finish that masks the cannabis taste effectively.",
+    "misc": "This is a precisely dosed edible containing 200mg total THC across 20 servings at 10mg THC each — a standard beginner-to-intermediate dose per serving. New consumers should start with half a serving (5mg) and wait at least 90 minutes before redosing. Note: the listed 193.9% THC figure appears to be a data entry error and should likely read 193.9mg total or reflect a per-unit concentration metric — always defer to the 10mg per serving guidance printed on packaging.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 6,
+      "lift_up": 4,
+      "get_creative": 4,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 5,
+      "aphrodisiac": 3
+    }
+  },
+  "sw623262": {
+    "lineage": "Edible product — genetic lineage not applicable. 'Lemon Lift' is a branded flavor/name for this gummy line by Hiza Kyte Cannabis, not a cultivar with traceable genetics.",
+    "therapeutic": "Stress relief, mild anxiety reduction, mood elevation, appetite stimulation, mild pain management, sleep support at higher doses",
+    "negative": "Overconsumption risk for new users, delayed onset (30–90 minutes) may lead to redosing too soon, dry mouth, increased heart rate, anxiety or paranoia at high doses, impaired coordination, couch-lock at multi-gummy consumption",
+    "aroma": "As an edible, the sensory experience is flavor-forward rather than aromatic — expect a bright, zesty lemon candy profile with citrus sweetness on the palate. The taste is likely reminiscent of lemon drop candy with a clean, slightly tart finish.",
+    "misc": "Each gummy contains 10mg THC, placing them in the standard single-dose category recommended by most cannabis health guidelines — ideal for beginners starting with half a gummy (5mg). The 200mg total package (20 gummies) offers good value for experienced users managing consistent dosing. New consumers should wait a full 90 minutes before considering an additional dose, as edible onset varies significantly based on metabolism, body weight, and whether taken with food.",
+    "mood_ratings": {
+      "wind_down": 5,
+      "anxiety_relief": 5,
+      "lift_up": 5,
+      "get_creative": 4,
+      "get_social": 5,
+      "pain_body": 4,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
+  },
+  "sw622145": {
+    "lineage": "Edible product — no strain-specific genetic lineage applicable. This is a infused chocolate bar by Legacy Cannabis, dosed with cannabis extract. THC percentage listed (183.3%) reflects extract/oil concentration, not a flower percentage; total package contains 200mg THC across 20 servings at 10mg THC each.",
+    "therapeutic": "Mild to moderate pain relief, anxiety reduction, stress management, appetite stimulation, sleep support at higher doses",
+    "negative": "Delayed onset (30–120 minutes) may lead to overconsumption; potential for anxiety or paranoia if dose exceeded; dry mouth, sedation, impaired coordination, couch-lock at multiple servings; not suitable for beginners without caution",
+    "aroma": "As a chocolate edible, expect rich cocoa and sweet banana bread notes — warm, buttery, and baked-good forward with hints of vanilla and ripe banana. Cannabis flavor is typically masked by the chocolate base.",
+    "misc": "This is a precisely dosed edible ideal for both new and experienced consumers — beginners should start with half a serving (5mg THC) and wait at least 90 minutes before redosing. At 10mg per serving, it falls within standard recreational and therapeutic dosing guidelines. Best consumed after a meal for smoother onset; effects typically last 4–8 hours depending on individual metabolism and tolerance.",
+    "mood_ratings": {
+      "wind_down": 5,
+      "anxiety_relief": 5,
+      "lift_up": 4,
+      "get_creative": 4,
+      "get_social": 4,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 4
+    }
+  },
+  "sw622149": {
+    "lineage": "Edible product — no strain-specific genetic lineage applicable. This is a infused chocolate bar by Legacy Cannabis, formulated with cannabis extract rather than tied to a single named cultivar.",
+    "therapeutic": "Stress relief, mild to moderate pain management, anxiety reduction, sleep support, appetite stimulation, mood elevation",
+    "negative": "Delayed onset (30–120 minutes) may lead to overconsumption; dry mouth, sedation, impaired coordination, anxiety or paranoia at higher doses, prolonged intoxication compared to inhalation methods — not recommended for first-time consumers without guidance",
+    "aroma": "Rich, warming cinnamon spice layered over sweet, creamy milk chocolate with a hint of baked pastry and brown sugar. The scent is indulgent and dessert-forward, reminiscent of a freshly glazed cinnamon roll.",
+    "misc": "Each bar contains 200mg total THC across 20 precisely dosed 10mg servings, making it well-suited for both micro-dosing beginners and experienced consumers seeking controlled, incremental dosing. New consumers are advised to start with one serving (10mg) and wait at least 90 minutes before considering an additional dose. Chocolate-based edibles may have slightly faster onset than gummies due to fat content aiding cannabinoid absorption, and effects can last 4–8 hours depending on individual metabolism and tolerance.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 6,
+      "lift_up": 4,
+      "get_creative": 4,
+      "get_social": 4,
+      "pain_body": 5,
+      "just_happy": 5,
+      "aphrodisiac": 3
     }
   }
 }
