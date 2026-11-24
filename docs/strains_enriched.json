@@ -5047,5 +5047,56 @@
       "just_happy": 5,
       "aphrodisiac": 3
     }
+  },
+  "sw627780": {
+    "lineage": "Cherry Kush x (Lemon Tree Papaya x GMO) x FroDo — bred to combine the sweet-tart fruit notes of Cherry Kush, the citrus-funk complexity of the Lemon Tree x Papaya cross, the pungent garlic-diesel character of GMO (Garlic Cookies by Divine Genetics), and the relaxing hybrid depth of FroDo; brand/breeder attribution tied to Dizgo's proprietary catalog",
+    "therapeutic": "Stress relief, mood elevation, mild anxiety reduction, mental fatigue, mild pain and muscle tension, creative blocks, depression",
+    "negative": "Dry mouth, dry eyes, possible mild paranoia or racing thoughts in THC-sensitive users at higher doses, mild dizziness; not ideal for those prone to sativa-induced anxiety",
+    "aroma": "A bold, layered nose of earthy spice and fresh pine resin opens first, followed by a punchy wave of citrus zest and black pepper that gives way to a dank, savory cheese funk anchored by herbal and woody undertones. The overall profile is complex and invigorating — think a walk through a spiced forest with a parmesan-lemon finish.",
+    "misc": "Zesty Parm is a sativa-dominant hybrid sitting at a solid 20.2% THC, making it approachable for intermediate consumers while still delivering a noticeable cerebral punch for experienced users. The strain's unusual name nods directly to its flavor profile — sharp citrus zest meeting creamy, savory cheese notes reminiscent of a parmesan rind. Best enjoyed during daytime or early afternoon hours when the euphoric focus can be channeled into creative tasks, social settings, or active pursuits; the gentle body relaxation makes it versatile without being sedating.",
+    "mood_ratings": {
+      "wind_down": 6,
+      "anxiety_relief": 5,
+      "lift_up": 5,
+      "get_creative": 6,
+      "get_social": 4,
+      "pain_body": 6,
+      "just_happy": 6,
+      "aphrodisiac": 5
+    }
+  },
+  "sw627772": {
+    "lineage": "Fro'Do x Alaskan Yeti, then crossed with LilMissHS (Dizgo Genetics) — Fro'Do is believed to descend from Froot Loop and Do-Si-Dos lineage; Alaskan Yeti carries cold-climate sativa genetics; LilMissHS (Lil Miss High School) adds sweet, resinous hybrid complexity",
+    "therapeutic": "Stress relief, mild pain management, mood elevation, fatigue, focus and motivation support, mild anxiety relief",
+    "negative": "Dry mouth, dry eyes, possible mild paranoia or racing thoughts in sativa-sensitive users, light headedness at higher doses — best approached with moderation by low-tolerance consumers",
+    "aroma": "An inviting burst of tropical and citrus fruit upfront, underscored by a sharp piney resin and a subtle warm spice on the exhale. The myrcene lends an earthy, herbal backbone that grounds the bright limonene-driven sweetness into something grounded and complex.",
+    "misc": "Produced by Dizgo, a brand known for craft small-batch genetics and innovative crosses, this Frodo Squeeze 3-pack delivers 0.33g mini pre-rolls ideal for microdosing or session control. At 18.2% THC with a terpene profile led by Myrcene, Limonene, and Terpinene, expect a balanced sativa-leaning hybrid experience that leans energetic and social without being overly stimulating — best suited for daytime or early evening use. The pinene-forward spice and fruity character make it approachable for intermediate consumers looking for uplifting functional effects.",
+    "mood_ratings": {
+      "wind_down": 5,
+      "anxiety_relief": 4,
+      "lift_up": 6,
+      "get_creative": 2,
+      "get_social": 5,
+      "pain_body": 4,
+      "just_happy": 5,
+      "aphrodisiac": 3
+    }
+  },
+  "sw627866": {
+    "lineage": "Gelato 41 x Sherbert Bx1 (bred by Seed Junky Genetics, popularized by Cookies Fam)",
+    "therapeutic": "Stress relief, anxiety reduction, mild pain management, mood disorders, appetite stimulation, mild insomnia",
+    "negative": "Dry mouth, dry eyes, possible paranoia or anxiety at high doses, dizziness in low-tolerance users, mild couch-lock with heavy consumption",
+    "aroma": "A rich, dessert-forward bouquet of sweet cream and ripe fruit layered over earthy, spicy undertones, with subtle floral and piney notes from linalool and pinene rounding out a complex, mouth-watering nose. Hints of fuel and pepper emerge on the exhale, adding depth to the otherwise indulgent sweetness.",
+    "misc": "Jealousy was created by Seed Junky Genetics and gained widespread recognition after being named Leafly's Strain of the Year in 2022, cementing its status as a modern classic. In its flower form, it typically tests between 25–33% THC with exceptionally dense, trichome-caked buds displaying deep greens and purple hues with vivid orange pistils. This distillate at 77.6% THC is best reserved for experienced consumers and is ideally enjoyed in the early evening, offering a euphoric, creative lift that gradually transitions into relaxed, full-body comfort without full sedation.",
+    "mood_ratings": {
+      "wind_down": 8,
+      "anxiety_relief": 4,
+      "lift_up": 5,
+      "get_creative": 6,
+      "get_social": 4,
+      "pain_body": 8,
+      "just_happy": 6,
+      "aphrodisiac": 7
+    }
   }
 }
